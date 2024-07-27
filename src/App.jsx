@@ -13,11 +13,9 @@ function App() {
       {/* <Login></Login> */}
 
         <div className='flex '>
-          <div className=''>
-          <Sidebar/>  
-          </div>
-        
-        <div className='flex-1 w-full'><Layout/></div>
+          
+          <Sidebar/>     
+    <Layout/>
         </div>
         
        
