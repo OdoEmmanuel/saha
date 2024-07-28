@@ -50,6 +50,7 @@ const Navbar = () => {
               </div>
               <div className="z-10 bg-[#fff]  hidden absolute rounded-lg shadow w-32 group-focus:block top-full right-0 p-4">
                 <ul className="text-[#000]">
+                    <li className="font-[500] mb-2 text-[15px]">Welcome!</li>
                     <li>Logout</li>
                 </ul>
               </div>
