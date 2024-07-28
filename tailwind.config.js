@@ -9,5 +9,12 @@ export default {
   },
   plugins: [
     // require('daisyui'),
-  ],
+  ], 
+  variants:{
+    variants:{
+      extend:{
+        display:["focus-group"]
+      }
+    }
+  }
 }

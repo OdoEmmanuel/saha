@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Login from './pages/Login'
 import Sidebar from './components/Sidebar'
-import Layout from './components/Layout'
+import RightSide from './components/RightSide'
 
 function App() {
 
@@ -14,8 +14,9 @@ function App() {
 
         <div className='flex '>
           
-          <Sidebar/>     
-    <Layout/>
+          <Sidebar/>
+          <RightSide/>     
+    
         </div>
         
        

@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.1.5",
     "@windmill/react-ui": "^0.6.0",
     "axios": "^1.7.2",
     "cookies-next": "^4.2.1",
