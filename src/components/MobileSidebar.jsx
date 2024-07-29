@@ -50,7 +50,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-[rgb(17,24,39)]  h-screen overflow-y-auto fixed flex flex-col items-center p-4 no-scrollbar">
+    <div className="w-64 bg-[rgb(17,24,39)]  h-screen overflow-y-auto relative top-0 right-0 flex flex-col items-center p-4 no-scrollbar z-10">
         <div >
         <img src={logo} className='mb-4'></img>
         </div>

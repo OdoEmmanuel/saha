@@ -1,8 +1,19 @@
+import { useState } from "react";
 import { TfiAlignJustify } from "react-icons/tfi";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
+import { IoMoon } from "react-icons/io5";
+import { IoSunny } from "react-icons/io5";
+import { IconContext } from "react-icons";
 
 const Navbar = () => {
+
+    const [dark, setDark] = useState(false);
+
+    const darkModeHandler = () => {
+        setDark(!dark);
+        document.body.classList.toggle("dark");
+    }
   return (
     <div className="p-6  w-full   bg-[rgb(17,24,39)] items-center ">
       <div className="flex justify-between">
@@ -11,7 +22,7 @@ const Navbar = () => {
             <TfiAlignJustify />
           </button>
         </div>
-        <div>
+        <div className="flex items-center">
           {/* <Menu as="div" className="relative inline-block text-left">
             <div>
               <MenuButton className="inline-flex w-full justify-center  rounded-md   text-sm font-semibold text-[#fff] shadow-sm ">
@@ -42,10 +53,24 @@ const Navbar = () => {
               </div>
             </MenuItems>
           </Menu> */}
+            <div className=" text-white mr-4 flex items-center">
+            <button onClick={()=> darkModeHandler()}>
+                {
+                    
+                    dark && <IoSunny />
+                }
+                {
+                    !dark && <IoMoon />
+                }
+            </button>
+        </div>
           <div className="relative">
             <button className="text-[#fff] group">
               <div className="flex items-center">
-                <span className="mr-1">UserName</span>
+                <div>
+                <span className="mr-1">USERNAME</span>
+                </div>
+                
                 <IoChevronDown />
               </div>
               <div className="z-10 bg-[#fff]  hidden absolute rounded-lg shadow w-32 group-focus:block top-full right-0 p-4">
