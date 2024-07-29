@@ -39,7 +39,7 @@ import {
       label: 'Customer management',
       isTitle: false,
       icon: File,
-      url: '/',
+      url: '/customer',
   
       children: [
         {
@@ -95,7 +95,7 @@ import {
   
   
     {
-      key: 'forms',
+      key: 'norms',
       label: 'Loan Approval',
       isTitle: false,
       icon: FileText,

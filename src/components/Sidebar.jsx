@@ -1,25 +1,67 @@
-import React from 'react'
-import { MENU_ITEMS } from '../common/MenuItem'
-import icon from "../assets/gti-microfinance-logo.png";
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+import { IoChevronDown, IoChevronUp } from "react-icons/io5";
+import { MENU_ITEMS } from '../common/MenuItem';
+import logo from '../assets/gti-microfinance-logo.png'
 
 const Sidebar = () => {
-    const [activeMenu, setActiveMenu] = useState(null);
-  const toggleSubMenu = (index) => {
-    setActiveMenu(activeMenu === index ? null : index);
-  };
-  return (
-    <div className='py-4 px-6 h-screen bg-[rgb(17,24,39)] fixed  left-0 top-0 bottom-0 flex flex-col w-64 '>
-       <div>
-        <img src={icon}></img>
-       </div>
-       <div>
-        {MENU_ITEMS.map((item,index) =>(
-           <div key={index}></div> 
-        ))}
-       </div>
-    </div>
-  )
-}
+  const location = useLocation();
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-export default Sidebar
+  const toggleDropdown = (key) => {
+    setOpenDropdown(prevOpen => prevOpen === key ? null : key);
+  };
+
+  const renderMenuItem = (item) => {
+    const isActive = location.pathname === item.url;
+    const activeClass = isActive ? 'text-blue-500' : 'text-[#f9f9f9] hover:text-blue-500';
+    const hasChildren = item.children && item.children.length > 0;
+    const isOpen = openDropdown === item.key;
+
+    return (
+      <li key={item.key} className="mb-4">
+        {hasChildren ? (
+          <div>
+            <button 
+              onClick={() => toggleDropdown(item.key)} 
+              className={`flex items-center justify-between w-full ${activeClass}`}
+            >
+              <span className="flex items-center">
+                {item.icon && <item.icon className="mr-2" size={18} />}
+                <span>{item.label}</span>
+              </span>
+              {isOpen ? <IoChevronDown size={16} /> : <IoChevronUp size={16} />}
+            </button>
+            {isOpen && (
+              <ul className="ml-4 mt-2">
+                {item.children.map(renderMenuItem)}
+              </ul>
+            )}
+          </div>
+        ) : (
+          <Link to={item.url} className={`flex items-center ${activeClass}`}>
+            {item.icon && <item.icon className="mr-2" size={18} />}
+            <span>{item.label}</span>
+          </Link>
+        )}
+      </li>
+    );
+  };
+
+  return (
+    <div className="w-64 bg-[rgb(17,24,39)]  h-screen overflow-y-auto fixed flex flex-col items-center p-4 no-scrollbar">
+        <div >
+        <img src={logo} className='mb-4'></img>
+        </div>
+        
+      <nav className="mt-5">
+        <ul>
+          {MENU_ITEMS.map(renderMenuItem)}
+        </ul>
+      </nav>
+    </div>
+  );
+};
+
+export default Sidebar;
