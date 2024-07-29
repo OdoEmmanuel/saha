@@ -6,7 +6,12 @@ import { IoMoon } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
 import { IconContext } from "react-icons";
 
-const Navbar = () => {
+
+
+const Navbar = ({tog}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+    
 
     const [dark, setDark] = useState(false);
 
@@ -16,9 +21,10 @@ const Navbar = () => {
     }
   return (
     <div className="p-6  w-full   bg-[rgb(17,24,39)] items-center ">
+        
       <div className="flex justify-between">
         <div className="text-[#fff]">
-          <button>
+          <button onClick={tog}>
             <TfiAlignJustify />
           </button>
         </div>
