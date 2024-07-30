@@ -5,7 +5,7 @@ import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { MENU_ITEMS } from '../common/MenuItem';
 import logo from '../assets/gti-microfinance-logo.png'
 
-const Sidebar = ({sidebarToggle}) => {
+const Sidebar = ({isOpen,tog}) => {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

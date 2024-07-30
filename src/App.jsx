@@ -5,20 +5,21 @@ import './App.css'
 import Login from './pages/Login'
 import Sidebar from './components/Sidebar'
 import RightSide from './components/RightSide'
+import Layout from './components/Layout'
 
 function App() {
 
   return (
     <>
       {/* <Login></Login> */}
-
+{/* 
         <div className='flex '>
           
           <Sidebar/>
           <RightSide/>     
     
-        </div>
-        
+        </div> */}
+        <Layout/>
        
       
     </>

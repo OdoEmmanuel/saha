@@ -5,8 +5,11 @@ import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { IoMoon } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
 import { IconContext } from "react-icons";
+import MobileSidebar from "./MobileSidebar";
 
-const Navbar = ({sidebarToggle,setSidebarToggle}) => {
+const Navbar = ({isOpen,tog}) => {
+//     const [isOpen, setIsOpen] = useState(false);
+//   const toggle = () => setIsOpen(!isOpen);
   
     
 
@@ -18,10 +21,10 @@ const Navbar = ({sidebarToggle,setSidebarToggle}) => {
     }
   return (
     <div className="p-6  w-full    items-center ">
-        
+        {isOpen && <MobileSidebar isOpen={isOpen} tog={tog}/>}
       <div className="flex justify-between">
         <div className="text-[#fff]">
-          <button onClick={() => setSidebarToggle(!sidebarToggle)}>
+          <button onClick={tog}>
             <TfiAlignJustify />
           </button>
         </div>
