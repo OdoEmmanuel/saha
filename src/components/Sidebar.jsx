@@ -27,7 +27,7 @@ const Sidebar = ({isOpen,tog}) => {
     const Open = openDropdown === item.key;
 
     return (
-      <li key={item.key} className={`${isOpen ? 'mb-8' :'mb-2'}`}>
+      <li key={item.key} className={`${isOpen ? 'mb-6' :'mb-2'}`}>
         {hasChildren ? (
           <div>
             <button 
