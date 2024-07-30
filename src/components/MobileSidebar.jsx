@@ -5,7 +5,7 @@ import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { MENU_ITEMS } from '../common/MenuItem';
 import logo from '../assets/gti-microfinance-logo.png'
 
-const MobileSidebar = ({tog, isOpen}) => {
+const MobileSidebar = () => {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -50,7 +50,7 @@ const MobileSidebar = ({tog, isOpen}) => {
   };
 
   return (
-    <div className=" bg-[rgb(17,24,39)]  h-screen overflow-y-auto  top-0 right-0 flex flex-col items-center p-4 no-scrollbar z-20">
+    <div className=" bg-[rgb(17,24,39)]  h-screen overflow-y-auto  top-0 right-0 flex flex-col items-center p-4 no-scrollbar z-[1000]">
         <div >
         <img src={logo} className='mb-4'></img>
         </div>

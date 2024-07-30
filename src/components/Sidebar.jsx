@@ -5,22 +5,29 @@ import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { MENU_ITEMS } from '../common/MenuItem';
 import logo from '../assets/gti-microfinance-logo.png'
 
-const Sidebar = () => {
+const Sidebar = ({sidebarToggle}) => {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+
 
   const toggleDropdown = (key) => {
     setOpenDropdown(prevOpen => prevOpen === key ? null : key);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   const renderMenuItem = (item) => {
     const isActive = location.pathname === item.url;
-    const activeClass = isActive ? 'text-blue-500' : 'text-[#f9f9f9] hover:text-blue-500';
+    const activeClass = isActive ? 'text-[#FFFFFF] p-2 rounded-[5px] bg-[#5932EA]' : 'text-[#9197B3] hover:text-blue-500';
     const hasChildren = item.children && item.children.length > 0;
     const isOpen = openDropdown === item.key;
 
     return (
-      <li key={item.key} className="mb-4">
+      <li key={item.key} className="mb-2">
         {hasChildren ? (
           <div>
             <button 
@@ -50,7 +57,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-[rgb(17,24,39)]  h-screen overflow-y-auto fixed lg:flex flex-col items-center p-4 no-scrollbar  hidden">
+    <div className="w-64 bg-[#FFFFFF]  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] h-screen overflow-y-auto fixed lg:flex flex-col items-center p-4 no-scrollbar  hidden">
         <div >
         <img src={logo} className='mb-4'></img>
         </div>
