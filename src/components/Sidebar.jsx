@@ -24,10 +24,10 @@ const Sidebar = ({isOpen,tog}) => {
     const isActive = location.pathname === item.url;
     const activeClass = isActive ? 'text-[#FFFFFF] p-2 rounded-[5px] bg-[#5932EA]' : 'text-[#9197B3] hover:text-blue-500';
     const hasChildren = item.children && item.children.length > 0;
-    const isOpen = openDropdown === item.key;
+    const Open = openDropdown === item.key;
 
     return (
-      <li key={item.key} className="mb-2">
+      <li key={item.key} className={`${isOpen ? 'mb-8' :'mb-2'}`}>
         {hasChildren ? (
           <div>
             <button 
@@ -36,11 +36,11 @@ const Sidebar = ({isOpen,tog}) => {
             >
               <span className="flex items-center">
                 {item.icon && <item.icon className="mr-2" size={18} />}
-                <span className='mr-1'>{item.label}</span>
+                <span className={`${isOpen ? 'hidden':'block mr-1'}`}>{item.label}</span>
               </span>
-              {isOpen ? <IoChevronUp size={16} /> : <IoChevronDown size={16} />}
+              {Open ? <IoChevronUp size={16} className={`${isOpen ? 'hidden':'block'}`} /> : <IoChevronDown size={16}  className={`${isOpen ? 'hidden':'block'}`}/>}
             </button>
-            {isOpen && (
+            {Open && (
               <ul className="ml-4 mt-2">
                 {item.children.map(renderMenuItem)}
               </ul>
@@ -49,7 +49,7 @@ const Sidebar = ({isOpen,tog}) => {
         ) : (
           <Link to={item.url} className={`flex items-center ${activeClass}`}>
             {item.icon && <item.icon className="mr-2" size={18} />}
-            <span>{item.label}</span>
+            <span className={`${isOpen ? 'hidden':'block mr-1'}`}>{item.label}</span>
           </Link>
         )}
       </li>
@@ -57,7 +57,7 @@ const Sidebar = ({isOpen,tog}) => {
   };
 
   return (
-    <div className="w-64 bg-[#FFFFFF]  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] h-screen overflow-y-auto fixed lg:flex flex-col items-center p-4 no-scrollbar  hidden">
+    <div className={`${isOpen ? 'w-24 p-2':"w-64"}  bg-[#FFFFFF]  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] h-screen overflow-y-auto fixed lg:flex flex-col items-center p-4 no-scrollbar  hidden`}>
         <div >
         <img src={logo} className='mb-4'></img>
         </div>
