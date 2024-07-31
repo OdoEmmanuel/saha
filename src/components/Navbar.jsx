@@ -20,10 +20,10 @@ const Navbar = ({isOpen,tog}) => {
         document.body.classList.toggle("dark");
     }
   return (
-    <div className="p-6  w-full    items-center ">
+    <div className="p-6  w-full  bg-[#ffffff] text-[#9197B3]   items-center ">
         {isOpen && <MobileSidebar isOpen={isOpen} tog={tog}/>}
       <div className="flex justify-between">
-        <div className="text-[#fff]">
+        <div className="">
           <button onClick={tog}>
             <TfiAlignJustify />
           </button>
@@ -59,7 +59,7 @@ const Navbar = ({isOpen,tog}) => {
               </div>
             </MenuItems>
           </Menu> */}
-            <div className=" text-white mr-4 flex items-center">
+            <div className="  mr-4 flex items-center">
             <button onClick={()=> darkModeHandler()}>
                 {
                     
@@ -71,7 +71,7 @@ const Navbar = ({isOpen,tog}) => {
             </button>
         </div>
           <div className="relative">
-            <button className="text-[#fff] group">
+            <button className=" group">
               <div className="flex items-center">
                 <div>
                 <span className="mr-1">USERNAME</span>
@@ -79,7 +79,7 @@ const Navbar = ({isOpen,tog}) => {
                 
                 <IoChevronDown />
               </div>
-              <div className="z-10 bg-[#fff]  hidden absolute rounded-lg shadow w-32 group-focus:block top-full right-0 p-4">
+              <div className="z-10 bg-[#fff] shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]  hidden absolute rounded-lg  w-32 group-focus:block top-full right-0 p-4">
                 <ul className="text-[#000]">
                     <li className="font-[500] mb-2 text-[15px]">Welcome!</li>
                     <li>Logout</li>
