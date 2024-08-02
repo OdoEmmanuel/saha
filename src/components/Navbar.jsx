@@ -20,7 +20,7 @@ const Navbar = ({isOpen,tog}) => {
         document.body.classList.toggle("dark");
     }
   return (
-    <div className="p-6  w-full  bg-[#ffffff] text-[#9197B3]   items-center ">
+    <div className="p-6  w-full  bg-[#ffffff] text-[#9197B3]  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]  items-center ">
         {isOpen && <MobileSidebar isOpen={isOpen} tog={tog}/>}
       <div className="flex justify-between">
         <div className="">
@@ -79,7 +79,7 @@ const Navbar = ({isOpen,tog}) => {
                 
                 <IoChevronDown />
               </div>
-              <div className="z-10 bg-[#fff] shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]  hidden absolute rounded-lg  w-32 group-focus:block top-full right-0 p-4">
+              <div className="z-10 bg-[#fff] shadow-[8px_8px_12px_8px_rgba(0,_0,_0,_0.25)]  hidden absolute rounded-lg  w-32 group-focus:block top-full right-0 p-4">
                 <ul className="text-[#000]">
                     <li className="font-[500] mb-2 text-[15px]">Welcome!</li>
                     <li>Logout</li>
