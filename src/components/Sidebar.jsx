@@ -22,32 +22,49 @@ const Sidebar = ({isOpen,tog}) => {
 
   const renderMenuItem = (item) => {
     const isActive = location.pathname === item.url;
-    const activeClass = isActive ? 'text-[#FFFFFF] p-2 rounded-[5px] bg-[#5932EA]' : 'text-[#9197B3] hover:text-blue-500';
+    const isParentOfActive = item.children && item.children.some(child => location.pathname === child.url);
+    const activeClass = isActive || isParentOfActive ? "px-4 py-2 text-[#a46ede] bg-[#F3E5F5]" : ' hover:text-[#a46ede] text-gray-400';
     const hasChildren = item.children && item.children.length > 0;
     const Open = openDropdown === item.key;
 
     return (
-      <li key={item.key} className={`${isOpen ? 'mb-6' :'mb-2'}`}>
+      <li key={item.key} className={`${isOpen ? 'mb-6' :'mb-2'} `}>
         {hasChildren ? (
           <div>
             <button 
               onClick={() => toggleDropdown(item.key)} 
-              className={`flex items-center justify-between w-full ${activeClass}`}
+              className={`flex items-center justify-between w-full px-4  ${activeClass}`}
             >
               <span className="flex items-center">
                 {item.icon && <item.icon className="mr-2" size={18} />}
-                <span className={`${isOpen ? 'hidden':'block mr-1'}`}>{item.label}</span>
+                <span className={` ${isOpen ? 'hidden':'block mr-1 '}`}>{item.label}</span>
               </span>
               {Open ? <IoChevronUp size={16} className={`${isOpen ? 'hidden':'block'}`} /> : <IoChevronDown size={16}  className={`${isOpen ? 'hidden':'block'}`}/>}
             </button>
-            {Open && (
-              <ul className="ml-4 mt-2">
+            {/* {Open && (
+              <ul className="ml-10 mt-2">
                 {item.children.map(renderMenuItem)}
               </ul>
-            )}
+            )} */}
+                {Open && (
+            <ul className="ml-10 mt-2">
+              {item.children.map(child => {
+                const isChildActive = location.pathname === child.url;
+                const childActiveClass = isChildActive ? "text-[#a46ede]" : 'text-[#9197B3] hover:text-[#a46ede]';
+                return (
+                  <li key={child.key}>
+                    <Link to={child.url} className={`flex items-center mb-2 ${childActiveClass}`}>
+                      {child.icon && <child.icon className="mr-2" size={18} />}
+                      <span className={`${isOpen ? 'hidden' : 'block mr-1 text-black-400'}`}>{child.label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           </div>
         ) : (
-          <Link to={item.url} className={`flex items-center ${activeClass}`}>
+          <Link to={item.url} className={`flex items-center ${activeClass} px-4 ` }>
             {item.icon && <item.icon className="mr-2" size={18} />}
             <span className={`${isOpen ? 'hidden':'block mr-1'}`}>{item.label}</span>
           </Link>
@@ -57,9 +74,9 @@ const Sidebar = ({isOpen,tog}) => {
   };
 
   return (
-    <div className={`${isOpen ? 'w-24 p-2':"w-64"}  bg-[#FFFFFF]  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] h-screen overflow-y-auto fixed lg:flex flex-col items-center p-4 no-scrollbar  hidden`}>
-        <div >
-        <img src={logo} className='mb-4'></img>
+    <div className={`${isOpen ? 'w-24 p-2':"w-64"}  bg-[#FFFFFF]   h-screen overflow-y-auto fixed lg:flex flex-col   no-scrollbar  hidden`}>
+        <div className='px-4 pt-2' >
+        <img src={logo} className='mb-4 '></img>
         </div>
         
       <nav className="mt-5">

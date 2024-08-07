@@ -6,6 +6,7 @@ import { IoMoon } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import MobileSidebar from "./MobileSidebar";
+import { CiSearch } from "react-icons/ci";
 
 const Navbar = ({isOpen,tog}) => {
 //     const [isOpen, setIsOpen] = useState(false);
@@ -20,13 +21,17 @@ const Navbar = ({isOpen,tog}) => {
         document.body.classList.toggle("dark");
     }
   return (
-    <div className="p-6  w-full  bg-[#ffffff] text-[#9197B3]  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]  items-center ">
+    <div className="p-6  w-full       items-center ">
         {isOpen && <MobileSidebar isOpen={isOpen} tog={tog}/>}
       <div className="flex justify-between">
-        <div className="">
+        {/* <div className="">
           <button onClick={tog}>
             <TfiAlignJustify />
           </button>
+        </div> */}
+        <div className="flex items-center">
+          <div className="mr-1"><CiSearch /></div>
+          <input placeholder="search " className="bg-inherit"/>
         </div>
         <div className="flex items-center">
           {/* <Menu as="div" className="relative inline-block text-left">
