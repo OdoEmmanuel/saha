@@ -24,16 +24,12 @@ const Navbar = ({isOpen,tog}) => {
     <div className="p-6  w-full       items-center ">
         {isOpen && <MobileSidebar isOpen={isOpen} tog={tog}/>}
       <div className="flex justify-between">
-        {/* <div className="">
-          <button onClick={tog}>
-            <TfiAlignJustify />
-          </button>
-        </div> */}
-        <div className="flex items-center">
-          <div className="mr-1"><CiSearch /></div>
-          <input placeholder="search " className="bg-inherit"/>
+       
+        <div className="flex items-center text-black ">
+          <div className="mr-1"><CiSearch size={20} /></div>
+          <input placeholder="search " className="bg-inherit outline-none"/>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center text-gray-400">
           {/* <Menu as="div" className="relative inline-block text-left">
             <div>
               <MenuButton className="inline-flex w-full justify-center  rounded-md   text-sm font-semibold text-[#fff] shadow-sm ">
@@ -75,11 +71,11 @@ const Navbar = ({isOpen,tog}) => {
                 }
             </button>
         </div>
-          <div className="relative">
+          <div className="relative mr-2">
             <button className=" group">
               <div className="flex items-center">
                 <div>
-                <span className="mr-1">USERNAME</span>
+                <span className="mr-1 text-black">USERNAME</span>
                 </div>
                 
                 <IoChevronDown />
@@ -92,6 +88,11 @@ const Navbar = ({isOpen,tog}) => {
               </div>
             </button>
           </div>
+               <div className="lg:hidden">
+          <button onClick={tog}>
+            <TfiAlignJustify />
+          </button>
+        </div>
         </div>
       </div>
     </div>
