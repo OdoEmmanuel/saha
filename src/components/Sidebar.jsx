@@ -23,7 +23,7 @@ const Sidebar = ({isOpen,tog}) => {
   const renderMenuItem = (item) => {
     const isActive = location.pathname === item.url;
     const isParentOfActive = item.children && item.children.some(child => location.pathname === child.url);
-    const activeClass = isActive || isParentOfActive ? "px-4 py-2 text-[#a46ede] bg-[#F3E5F5]" : ' hover:text-[#a46ede] text-[#fff]';
+    const activeClass = isActive || isParentOfActive ? "px-4 py-2 text-[rgb(79,70,229)]  " : ' hover:text-[rgb(79,70,229)] text-gray-500';
     const hasChildren = item.children && item.children.length > 0;
     const Open = openDropdown === item.key;
 
@@ -50,7 +50,7 @@ const Sidebar = ({isOpen,tog}) => {
             <ul className="ml-10 mt-2">
               {item.children.map(child => {
                 const isChildActive = location.pathname === child.url;
-                const childActiveClass = isChildActive ? "text-[#a46ede]" : 'text-[#fff] hover:text-[#a46ede]';
+                const childActiveClass = isChildActive ? "text-[rgb(79,70,229)]" : 'text-gray-500 hover:text-[rgb(79,70,229)]';
                 return (
                   <li key={child.key}>
                     <Link to={child.url} className={`flex items-center mb-2 ${childActiveClass}`}>
@@ -74,7 +74,7 @@ const Sidebar = ({isOpen,tog}) => {
   };
 
   return (
-    <div className={`${isOpen ? 'w-24 p-2':"w-64"}  bg-[rgb(17,24,39)]   h-screen overflow-y-auto fixed lg:flex flex-col   no-scrollbar  hidden`}>
+    <div className={`${isOpen ? 'w-24 p-2':"w-64"}  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col   no-scrollbar  hidden`}>
         <div className='px-4 pt-2' >
         <img src={logo} className='mb-4 '></img>
         </div>
