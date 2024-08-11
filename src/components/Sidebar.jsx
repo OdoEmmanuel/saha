@@ -28,7 +28,7 @@ const Sidebar = ({isOpen,tog}) => {
     const Open = openDropdown === item.key;
 
     return (
-      <li key={item.key} className={`${isOpen ? 'mb-6' :'mb-2'} `}>
+      <li key={item.key} className={`${isOpen ? 'mb-4' :'mb-4'} `}>
         {hasChildren ? (
           <div>
             <button 
@@ -74,7 +74,7 @@ const Sidebar = ({isOpen,tog}) => {
   };
 
   return (
-    <div className={`${isOpen ? 'w-24 p-2':"w-64"}  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col   no-scrollbar  hidden`}>
+    <div className={`${isOpen ? 'w-24 p-2':"w-64"}  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] rounded-[5px]  no-scrollbar  hidden`}>
         <div className='px-4 pt-2' >
         <img src={logo} className='mb-4 '></img>
         </div>

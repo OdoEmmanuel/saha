@@ -78,7 +78,7 @@ const HomePage = () => {
 
             <div className='grid grid-cols-4 gap-4  mt-5 '>
 
-                <div className={` bg-fff w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
+                <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
                     <img src={Ornament} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
