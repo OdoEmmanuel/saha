@@ -1,8 +1,9 @@
 import React,{useState} from "react";
 import Sidebar from "./Sidebar";
-import { Navigate, Route, Routes } from "react-router-dom";
+
 import Navbar from "./Navbar";
 import RightSide from "./RightSide";
+import {  Routes, Route, Navigate } from 'react-router-dom';
 
 
 const Layout = () => {
@@ -14,7 +15,15 @@ const Layout = () => {
         
       <div className="flex ">
           <Sidebar isOpen={isOpen} tog={toggle} />
-          <RightSide isOpen={isOpen} tog={toggle} />
+
+         <Routes>
+          <Route path="/*" element={<RightSide isOpen={isOpen} tog={toggle} />}></Route>
+         </Routes>
+           
+               
+          
+          
+          
 
         
       </div>

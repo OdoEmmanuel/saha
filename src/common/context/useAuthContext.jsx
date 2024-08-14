@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
     localStorage.clear();
   }
 
-  const token = localStorage.getItem("token")
+  const tokens = localStorage.getItem("token")
 
   const authorizationService = " https://auth-service.test.saha.ng/"
   const middleware = "https://baascore.test.saha.ng/"
@@ -48,7 +48,7 @@ const clientid = import.meta.env.VITE_client_id
         removeSession,
         middleware,
         authorizationService,
-        token, 
+        tokens, 
        pending,
        setpending,
        request, 

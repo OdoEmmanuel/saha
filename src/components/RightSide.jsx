@@ -1,10 +1,18 @@
 import {useState} from 'react'
 import Navbar from './Navbar'
 import HomePage from '../pages/HomePage'
+import {  Routes, Route, Navigate } from 'react-router-dom';
+import { useAuthContext } from '../common/context/useAuthContext';
 
 
 
 const RightSide = ({isOpen, tog}) => {
+  const { isAuthenticated,tokens} = useAuthContext();
+  console.log(isAuthenticated)
+
+  if (!tokens) {
+    return <Navigate to="/auth/login" replace />;
+  }
   console.log(isOpen)
   return (
     <>
@@ -15,7 +23,12 @@ const RightSide = ({isOpen, tog}) => {
       </div>
       
       <div className='p-6'>
-        <HomePage/>
+       
+          <Routes>
+            <Route path='/' element={<HomePage/>}></Route>
+          </Routes>
+     
+        
       </div>
     </div></>
   

@@ -6,22 +6,20 @@ import Login from './pages/Login'
 import Sidebar from './components/Sidebar'
 import RightSide from './components/RightSide'
 import Layout from './components/Layout'
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
 
   return (
+
     <>
-      {/* <Login></Login> */}
-{/* 
-        <div className='flex '>
-          
-          <Sidebar/>
-          <RightSide/>     
-    
-        </div> */}
-        <Layout/>
-       
-      
+   
+        <Routes>
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/*" element={<Layout />} />
+        </Routes>
+     
+
     </>
   )
 }
