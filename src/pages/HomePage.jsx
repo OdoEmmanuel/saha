@@ -3,6 +3,11 @@ import Ornament from '../assets/Ornament.png'
 import Ornament2 from '../assets/Ornament2.png'
 import Ornament3 from '../assets/Ornament3.png'
 import Ornament4 from '../assets/Ornament4.png'
+import Ornament6 from '../assets/Ornament6.png'
+import Ornament5 from '../assets/Ornament5.png'
+import Ornament9 from '../assets/Ornament9.png'
+import Ornament10 from '../assets/Ornament10.png'
+import Ornament12 from '../assets/Ornament12.png'
 import { IoIosPerson } from "react-icons/io";
 
 
@@ -76,7 +81,7 @@ const HomePage = () => {
             </div>
 
 
-            <div className='grid grid-cols-4 gap-4  mt-5 '>
+            <div className='grid lg:grid-cols-4 grid-cols-2 gap-4  mt-5 '>
 
                 <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
@@ -114,7 +119,7 @@ const HomePage = () => {
                 </div>
                 <div className={` bg-[#ffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament4} />
+                    <img src={Ornament5} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
@@ -125,7 +130,7 @@ const HomePage = () => {
                 </div>
                 <div className={` bg-[#ffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament2} />
+                    <img src={Ornament6} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
@@ -136,7 +141,7 @@ const HomePage = () => {
                 </div>
                 <div className={` bg-[#ffffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament4} />
+                    <img src={Ornament10} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
@@ -148,7 +153,7 @@ const HomePage = () => {
 
                 <div className={` bg-[#ffffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament} />
+                    <img src={Ornament12} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
