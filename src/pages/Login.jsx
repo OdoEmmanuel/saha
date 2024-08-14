@@ -6,24 +6,47 @@ import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import icon from "../assets/gti-microfinance-logo.png";
 import { useNavigate, Link } from "react-router-dom";
 import InputField from "../components/InputField";
+import { useAuthContext } from "../common/context/useAuthContext";
 
 const Login = () => {
+  const{middleware,request,clientid} = useAuthContext()
   const [isLoading, setisLoading] = useState(false);
+  
   const [toggle, settoggle] = useState(false);
   const [countrycheck, setcountrycheck] = useState("Nigeria");
   const [toggle2, settoggle2] = useState(false);
   const navigate = useNavigate();
+
+
+  const config={
+    headers: {
+      'client-id': clientid,
+      'Content-Type': 'application/json',
+      'request-source': request,
+      'Username': values.username
+    },
+  }
+
+ 
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validationSchema: signinValidate,
+    validationSchema: signinValidate,  
     onSubmit: (values) => {
       setisLoading(true);
+      const config = {
+        headers: {
+          'client-id': clientid,
+          'Content-Type': 'application/json',
+          'request-source': request,
+          'Username': values.email
+        },
+      };
       axios
-        .post(`/accounts/login/`, values)
+        .post(`${middleware}oauth/login`, values,config)
         .then((res) => {
           console.log(res);
           // toast.success(res.data.message, {
