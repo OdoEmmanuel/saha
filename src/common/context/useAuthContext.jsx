@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
 
   const tokens = localStorage.getItem("token")
 
-  const authorizationService = " https://auth-service.test.saha.ng/"
+  const authorizationService = "https://auth-service.test.saha.ng/"
   const middleware = "https://baascore.test.saha.ng/"
   const [pending,setpending] = useState(false)
   

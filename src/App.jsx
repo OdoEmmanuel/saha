@@ -7,13 +7,16 @@ import Sidebar from './components/Sidebar'
 import RightSide from './components/RightSide'
 import Layout from './components/Layout'
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function App() {
 
   return (
 
     <>
-   
+        <ToastContainer position="top-center" autoClose={2000} />
+
         <Routes>
           <Route path="/auth/login" element={<Login />} />
           <Route path="/*" element={<Layout />} />

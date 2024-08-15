@@ -7,7 +7,8 @@ import icon from "../assets/gti-microfinance-logo.png";
 import { useNavigate, Link } from "react-router-dom";
 import InputField from "../components/InputField";
 import { useAuthContext } from "../common/context/useAuthContext";
-i
+import { toast, Bounce } from "react-toastify";
+import JSEncrypt from 'jsencrypt'
 
 const Login = () => {
   const{authorizationService,request,clientid} = useAuthContext()
@@ -17,6 +18,7 @@ const Login = () => {
   const [countrycheck, setcountrycheck] = useState("Nigeria");
   const [toggle2, settoggle2] = useState(false);
   const navigate = useNavigate();
+  const Public_key = import.meta.env.VITE_public_key
 
 
 
@@ -30,6 +32,13 @@ const Login = () => {
     validationSchema: signinValidate,  
     onSubmit: (values) => {
       setisLoading(true);
+         var encrypt = new JSEncrypt()
+      encrypt.setPublicKey(Public_key)
+
+      var ciphertext = encrypt.encrypt(values.password)
+
+      const body = { username:values.email, password: ciphertext }
+    
       const config = {
         headers: {
           'client-id': clientid,
@@ -39,20 +48,28 @@ const Login = () => {
         },
       };
       axios
-        .post(`${authorizationService}oauth/login`, values, config)
+        .post(`${authorizationService}oauth/login`, body, config)
         .then((res) => {
-          console.log(res);
-          // toast.success(res.data.message, {
-          //   transition: Bounce,
-          // });
+          toast.success(res.data.responseMessage);
+          console.log(res.data.data)
+          localStorage.setItem('token', res.data.data.accessToken)
+          localStorage.setItem('email', res.data.data.email)
+          localStorage.setItem('name', res.data.data.username)
+          localStorage.setItem('companyCode', res.data.data.companyCode)
+          localStorage.setItem('userType', res.data.data.userType)
+
+          
+        if (res.data.data.hasChangedPassword === false) {
+          navigate('/ui/system/changepassword')
+        }
         
-          secureLocalStorage.setItem("values", values);
+
+        navigate('/')
+          // secureLocalStorage.setItem("values", values);
         })
         .catch((e) => {
-          console.log(e);
-          toast.error(e.response.data.message, {
-            transition: Bounce,
-          });
+          console.log(e.response.data.responseMessage);
+          toast.error(e.response.data.responseMessage || 'an error occured');
         })
         .finally(() => {
           setisLoading(false);
