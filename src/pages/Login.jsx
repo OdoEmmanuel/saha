@@ -7,9 +7,10 @@ import icon from "../assets/gti-microfinance-logo.png";
 import { useNavigate, Link } from "react-router-dom";
 import InputField from "../components/InputField";
 import { useAuthContext } from "../common/context/useAuthContext";
+i
 
 const Login = () => {
-  const{middleware,request,clientid} = useAuthContext()
+  const{authorizationService,request,clientid} = useAuthContext()
   const [isLoading, setisLoading] = useState(false);
   
   const [toggle, settoggle] = useState(false);
@@ -18,14 +19,6 @@ const Login = () => {
   const navigate = useNavigate();
 
 
-  const config={
-    headers: {
-      'client-id': clientid,
-      'Content-Type': 'application/json',
-      'request-source': request,
-      'Username': values.username
-    },
-  }
 
  
 
@@ -46,12 +39,13 @@ const Login = () => {
         },
       };
       axios
-        .post(`${middleware}oauth/login`, values,config)
+        .post(`${authorizationService}oauth/login`, values, config)
         .then((res) => {
           console.log(res);
           // toast.success(res.data.message, {
           //   transition: Bounce,
           // });
+        
           secureLocalStorage.setItem("values", values);
         })
         .catch((e) => {
