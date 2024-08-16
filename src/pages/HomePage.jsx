@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useAuthContext } from '../common/context/useAuthContext'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Ornament from '../assets/Ornament.png'
 import Ornament2 from '../assets/Ornament2.png'
 import Ornament3 from '../assets/Ornament3.png'
@@ -9,12 +12,88 @@ import Ornament9 from '../assets/Ornament9.png'
 import Ornament10 from '../assets/Ornament10.png'
 import Ornament12 from '../assets/Ornament12.png'
 import { IoIosPerson } from "react-icons/io";
+import { toast, Bounce } from "react-toastify";
+import { Settings2 } from 'lucide-react';
+import { PulseLoader } from "react-spinners";
 
 
 const HomePage = () => {
+    const { middleware, authorizationService, request, clientid } = useAuthContext()
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [data, setData] = useState({})
+    const [isLoading, setisLoading] = useState(false);
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token')
+    const email = localStorage.getItem('email')
+    const name = localStorage.getItem('name')
+
+
+    useEffect(() => {
+
+        FetchData()
+    }, [])
+
+    const formatDateString = (dateString) => {
+        const date = new Date(dateString)
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        const seconds = String(date.getSeconds()).padStart(2, '0')
+        return `${year}-${month}-${day}`
+    }
+
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'client-id': clientid,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email
+        },
+    };
+
+    const requestbody = {
+        startDate: startDate,
+        endDate: endDate,
+    }
+
+
+    const FetchData = async () => {
+        setisLoading(true);
+        axios.post(`${middleware}dashboard/admin/report`, requestbody, config)
+            .then((res) => {
+              setData(res.data)
+            }).catch((e) => {
+                //   console.log(e.response.data.responseMessage)
+
+                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/auth/login')
+                }
+                else if (e.response.data.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response.data.responseMessage)
+                }
+                else {
+                    toast.error(e.response.data.responseMessage)
+                }
+            }).finally(() => {
+                setisLoading(false)
+            })
+    }
+
     return (
         <div>
-            <h1 className='text-[30px]'>Welcome Back AYOBAMI</h1>
+            {isLoading && (
+                <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
+                    {" "}
+                    <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
+                </div>
+            )}
+            <h1 className='text-[30px]'>Welcome Back {name}</h1>
             <div className='flex justify-between items-center'>
                 <p className='text-gray-500'>View your analytics here</p>
 
@@ -91,7 +170,7 @@ const HomePage = () => {
                             <IoIosPerson />
                         </div>
                         <p className='text-gray-500'>Total Customers</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> 14</p>
+                        <p className='text-[30px] text-[#000000] font-[500]'>{data.noOfCustomers}</p>
                     </div>
                 </div>
 
@@ -103,7 +182,7 @@ const HomePage = () => {
                             <IoIosPerson />
                         </div>
                         <p className='text-gray-500'>Total accounts</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> 14</p>
+                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfAccounts}</p>
                     </div>
                 </div>
                 <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
@@ -114,7 +193,7 @@ const HomePage = () => {
                             <IoIosPerson />
                         </div>
                         <p className='text-gray-500'>Total Staff</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> 14</p>
+                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfStaff}</p>
                     </div>
                 </div>
                 <div className={` bg-[#ffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
@@ -125,7 +204,7 @@ const HomePage = () => {
                             <IoIosPerson />
                         </div>
                         <p className='text-gray-500'>Total Loan Processed</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> 14</p>
+                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfLoanProcessed}</p>
                     </div>
                 </div>
                 <div className={` bg-[#ffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
@@ -136,7 +215,7 @@ const HomePage = () => {
                             <IoIosPerson />
                         </div>
                         <p className='text-gray-500'>Total Loan PROCESSED</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> 14</p>
+                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfLoanApproved}</p>
                     </div>
                 </div>
                 <div className={` bg-[#ffffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
@@ -147,7 +226,7 @@ const HomePage = () => {
                             <IoIosPerson />
                         </div>
                         <p className='text-gray-500'>Average Loan Turn Around Time</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> 14</p>
+                        <p className='text-[30px] text-[#000000] font-[500]'> {data.averageLoanTurnAroundTime}</p>
                     </div>
                 </div>
 
@@ -159,7 +238,7 @@ const HomePage = () => {
                             <IoIosPerson />
                         </div>
                         <p className='text-gray-500'>Total Transaction Counts</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> 14</p>
+                        <p className='text-[30px] text-[#000000] font-[500]'> {data.transactionCounts}</p>
                     </div>
                 </div>
             </div>

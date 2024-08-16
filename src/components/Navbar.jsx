@@ -11,7 +11,7 @@ import { CiSearch } from "react-icons/ci";
 const Navbar = ({isOpen,tog}) => {
 //     const [isOpen, setIsOpen] = useState(false);
 //   const toggle = () => setIsOpen(!isOpen);
-  
+const name = localStorage.getItem('name')
     
 
     const [dark, setDark] = useState(false);
@@ -75,7 +75,7 @@ const Navbar = ({isOpen,tog}) => {
             <button className=" group">
               <div className="flex items-center">
                 <div>
-                <span className="mr-1 text-black">USERNAME</span>
+                <span className="mr-1 text-black">{name}</span>
                 </div>
                 
                 <IoChevronDown />
