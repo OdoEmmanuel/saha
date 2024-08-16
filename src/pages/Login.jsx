@@ -69,7 +69,7 @@ const Login = () => {
           // secureLocalStorage.setItem("values", values);
         })
         .catch((e) => {
-          console.log(e.response.data.responseMessage);
+          // console.log(e.response.data.responseMessage);
           toast.error(e.response.data.responseMessage || 'an error occured');
         })
         .finally(() => {
@@ -134,7 +134,7 @@ const Login = () => {
               <div className="flex justify-between">
                 <div></div>
                 <div>
-                  <p className="text-[rgb(79,70,229)]">Forgot Password?</p>
+                  <Link to="/auth/recover-password" className="text-[rgb(79,70,229)]">Forgot Password?</Link>
                 </div>
               </div>
 

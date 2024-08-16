@@ -10,6 +10,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; 
 import 'react-loading-skeleton/dist/skeleton.css'
+import Otp from './pages/Otp'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
 
         <Routes>
           <Route path="/auth/login" element={<Login />} />
+          <Route path= "/auth/recover-password" element={<Otp/>}/>
           <Route path="/*" element={<Layout />} />
         </Routes>
      

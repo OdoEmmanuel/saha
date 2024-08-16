@@ -13,3 +13,25 @@ const passwordRegExp =
       .min(8, "password must containat least 8 characters ")
       .required("required"),
   });
+
+  export const  emailValidate = yup.object().shape({
+    email:yup.string().email("enter valid email").required("required")
+  })
+
+
+  export const recoverPassword = yup.object().shape({
+    otp:yup.string().max(6,"can't contain more than 6 characters").required("required"),
+    userName:yup.string().email("enter valid Username").required("required"),
+    password: yup
+    .string()
+    .min(8, "password must containat least 8 characters ")
+    .matches(
+      passwordRegExp,
+      "characters with at least one of each: uppercase, lowercase, number and special"
+    )
+    .required("required"),
+  passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("required"),
+  })
