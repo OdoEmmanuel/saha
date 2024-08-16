@@ -32,7 +32,7 @@ const HomePage = () => {
     useEffect(() => {
 
         FetchData()
-    }, [])
+    }, [startDate,endDate])
 
     const formatDateString = (dateString) => {
         const date = new Date(dateString)
@@ -118,8 +118,8 @@ const HomePage = () => {
                                 type="date"
                                 className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 px-2 leading-tight focus:outline-none bg-[#fff]"
                                 placeholder="Select Date"
-                            //   value={startDate}
-                            //   onChange={(e) => formatDateString(setStartDate(e.target.value))}
+                              value={startDate}
+                              onChange={(e) => formatDateString(setStartDate(e.target.value))}
                             />
                         </div>
                     </div>
@@ -143,17 +143,17 @@ const HomePage = () => {
                                 type="date"
                                 className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 px-2 leading-tight focus:outline-none"
                                 placeholder="Select Date"
-                            //   value={endDate}
-                            //   onChange={(e) => formatDateString(setEndDate(e.target.value))}
+                              value={endDate}
+                              onChange={(e) => formatDateString(setEndDate(e.target.value))}
                             />
                         </div>
                     </div>
-                    <button
+                    {/* <button
                         className=" mt-2 ml-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                    //   onClick={FetchData}
+                      onClick={FetchData}
                     >
                         Fetch Data
-                    </button>
+                    </button> */}
                 </div>
 
 
