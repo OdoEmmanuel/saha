@@ -33,6 +33,10 @@ const RevenueChart = ({series,labels,title,name,set}) => {
       curve: 'smooth',
       width: 4,
     },
+    markers: {
+      size: 0,
+  },
+  
     series: [
       {
         name: 'Revenue',
