@@ -6,6 +6,8 @@ import { BiSearch } from "react-icons/bi";
 import { useAuthContext } from '../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
+import { IoFilter } from "react-icons/io5";
+
 
 function pad(num) {
     var s = '' + num
@@ -26,6 +28,7 @@ const AllCustomer = () => {
     const [pagesize, SetPageSize] = useState(10)
     const [totalPages, setTotalPages] = useState(1)
     const [filteredUsers, setFilteredUsers] = useState([])
+    const [element, setElement] = useState(0)
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
@@ -34,7 +37,7 @@ const AllCustomer = () => {
 
 
     useEffect(() => {
-        
+
         fetchData()
     }, [pageNumber, startDate, endDate, pagesize])
 
@@ -77,9 +80,10 @@ const AllCustomer = () => {
         setisLoading(true)
         axios.get(`${middleware}user/getUsersBetweenCreationDates?startDate=${startDate} 00:00:00&endDate=${endDate} 00:00:00&pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
             .then((res) => {
-                console.log(res.data.data.users.totalPages)
                 setUsers(res.data.data.users.content)
                 setTotalPages(res.data.data.users.totalPages)
+                setElement(res.data.data.users.numberOfElements)
+
             })
             .catch((e) => {
                 console.log(e.response.data.responseMessage)
@@ -119,7 +123,7 @@ const AllCustomer = () => {
         return `${day}-${month}-${year}`
     }
 
-   
+
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
@@ -153,13 +157,13 @@ const AllCustomer = () => {
 
     const handleNextPage = () => {
         setPageNumber(pageNumber + 1)
-      }
-    
-      const handlePreviousPage = () => {
+    }
+
+    const handlePreviousPage = () => {
         if (pageNumber > 0) {
-          setPageNumber(pageNumber - 1)
+            setPageNumber(pageNumber - 1)
         }
-      }
+    }
 
     let idCounter = pageNumber * pagesize + 1
 
@@ -193,7 +197,7 @@ const AllCustomer = () => {
                                 </svg>
                                 <input
                                     type="date"
-                                    className="bg-transparent border-none text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 "
+                                    className="bg-transparent border-none text-gray-700 py-2 px-3 outline-none leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 "
                                     placeholder="Select Date"
                                     value={startDate}
                                     onChange={handleStartDateChange}
@@ -218,7 +222,7 @@ const AllCustomer = () => {
                                 </svg>
                                 <input
                                     type="date"
-                                    className="bg-transparent border-none text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                                    className="bg-transparent border-none outline-none text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                                     placeholder="Select Date"
                                     value={endDate}
                                     onChange={handleEndDateChange}
@@ -242,8 +246,9 @@ const AllCustomer = () => {
                 </div>
             </div>
 
-            <div className='bg-[#fff] mt-16 shadow-md  overflow-x-scroll no-scrollbar  rounded-[5px]'>
-                <div className="">
+            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[5px]'>
+
+                <div className="overflow-x-scroll no-scrollbar">
                     <div className="min-w-full inline-block align-middle">
                         <div className="">
                             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll">
@@ -352,80 +357,97 @@ const AllCustomer = () => {
 
 
                             </table>
-                            <div className="p-4 flex justify-between my-4">
-                                <div className=" flex border-2 p-4">
-                                    <select
-                                        value={pagesize}
-                                        onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                                    >
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="25">25</option>
-                                        <option value="30">30</option>
-                                        <option value="50">50</option>
-                                    </select>
-                                </div>
 
-                                <div className="flex justify-end my-4">
-                                    <button
-                                        className={`mr-2 ${pageNumber === 0
-                                                ? 'opacity-50 cursor-not-allowed'
-                                                : 'cursor-pointer'
-                                            }`}
-                                        // onClick={() => onPageChange(currentPage - 1)}
-                                        onClick={handlePreviousPage}
-                                        disabled={pageNumber === 0}
-                                    >
-                                        <svg
-                                            className="w-6 h-6 inline-block align-middle"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M15 19l-7-7 7-7"
-                                            />
-                                        </svg>
-                                        Prev
-                                    </button>
-                                    <div>
-                                        {pageNumber + 1} of {totalPages}
-                                    </div>
-                                    <button
-                                        className={`ml-2 ${pageNumber + 1 === totalPages
-                                                ? 'opacity-50 cursor-not-allowed'
-                                                : 'cursor-pointer'
-                                            }`}
-                                        onClick={handleNextPage}
-                                        // disabled={currentPage === totalPages}
-                                        disabled={pageNumber + 1 === totalPages}
-                                    >
-                                        Next
-                                        <svg
-                                            className="w-6 h-6 inline-block align-middle"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M9 5l7 7-7 7"
-                                            />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
+                <div className='flex justify-between p-4'>
+                    <div className="flex justify-between">
+                        <div></div>
+                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                            <div>
+                                <IoFilter />
+                            </div>
+                            <select
+                                value={pagesize}
+                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                                className='outline-none'
+                            >
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div className="flex justify-end items-center">
+                        <button
+                            className={`mr-2 ${pageNumber === 0
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'cursor-pointer'
+                                }`}
+                            // onClick={() => onPageChange(currentPage - 1)}
+                            onClick={handlePreviousPage}
+                            disabled={pageNumber === 0}
+                        >
+                            <svg
+                                className="w-6 h-6 inline-block align-middle"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M15 19l-7-7 7-7"
+                                />
+                            </svg>
+                            Prev
+                        </button>
+                        <div>
+                            {pageNumber + 1} of {totalPages}
+                        </div>
+                        <button
+                            className={`ml-2 ${pageNumber + 1 === totalPages
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'cursor-pointer'
+                                }`}
+                            onClick={handleNextPage}
+                            // disabled={currentPage === totalPages}
+                            disabled={pageNumber + 1 === totalPages}
+                        >
+                            Next
+                            <svg
+                                className="w-6 h-6 inline-block align-middle"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
         </div>
     )
