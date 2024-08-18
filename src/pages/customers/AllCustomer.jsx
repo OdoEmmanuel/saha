@@ -4,7 +4,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { BiSearch } from "react-icons/bi";
 import { useAuthContext } from '../../common/context/useAuthContext';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { IoEyeSharp } from "react-icons/io5";
 
 function pad(num) {
     var s = '' + num
@@ -33,13 +34,13 @@ const AllCustomer = () => {
 
 
     useEffect(() => {
-        calculateMonthPeriod()
+        
         fetchData()
     }, [pageNumber, startDate, endDate, pagesize])
 
-    // useEffect(() => {
-
-    // }, [])
+    useEffect(() => {
+        calculateMonthPeriod()
+    }, [])
 
 
     const calculateMonthPeriod = () => {
@@ -101,6 +102,15 @@ const AllCustomer = () => {
     }
 
 
+    const handleStartDateChange = (event) => {
+        setStartDate(event.target.value)
+    }
+
+    const handleEndDateChange = (event) => {
+        setEndDate(event.target.value)
+    }
+
+
     const formatDate = (dateString) => {
         const date = new Date(dateString)
         const day = date.getDate().toString().padStart(2, '0')
@@ -109,13 +119,7 @@ const AllCustomer = () => {
         return `${day}-${month}-${year}`
     }
 
-    const handleStartDateChange = (event) => {
-        setStartDate(event.target.value)
-    }
-
-    const handleEndDateChange = (event) => {
-        setEndDate(event.target.value)
-    }
+   
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
@@ -146,11 +150,28 @@ const AllCustomer = () => {
         }
     }, [searchQuery, users])
 
+
+    const handleNextPage = () => {
+        setPageNumber(pageNumber + 1)
+      }
+    
+      const handlePreviousPage = () => {
+        if (pageNumber > 0) {
+          setPageNumber(pageNumber - 1)
+        }
+      }
+
     let idCounter = pageNumber * pagesize + 1
 
 
     return (
         <div className='flex flex-col'>
+            {isLoading && (
+                <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
+                    {" "}
+                    <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
+                </div>
+            )}
             <div className='flex justify-between'>
                 <div className=" flex flex-col rounded-lg ">
                     <div className="flex flex-col md:flex-row md:items-center ">
@@ -317,9 +338,9 @@ const AllCustomer = () => {
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Link
                                                         to={`/ui/customer/Veiw-all-customer/${staff.id}`}
-                                                        className="text-white btn bg-primary/90 hover:bg-primary"
+                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                     >
-                                                        view
+                                                        <IoEyeSharp size={'1.5em'} />
                                                     </Link>
                                                 </td>
                                             </tr>
@@ -331,6 +352,77 @@ const AllCustomer = () => {
 
 
                             </table>
+                            <div className="p-4 flex justify-between my-4">
+                                <div className=" flex border-2 p-4">
+                                    <select
+                                        value={pagesize}
+                                        onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                                    >
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+
+                                <div className="flex justify-end my-4">
+                                    <button
+                                        className={`mr-2 ${pageNumber === 0
+                                                ? 'opacity-50 cursor-not-allowed'
+                                                : 'cursor-pointer'
+                                            }`}
+                                        // onClick={() => onPageChange(currentPage - 1)}
+                                        onClick={handlePreviousPage}
+                                        disabled={pageNumber === 0}
+                                    >
+                                        <svg
+                                            className="w-6 h-6 inline-block align-middle"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M15 19l-7-7 7-7"
+                                            />
+                                        </svg>
+                                        Prev
+                                    </button>
+                                    <div>
+                                        {pageNumber + 1} of {totalPages}
+                                    </div>
+                                    <button
+                                        className={`ml-2 ${pageNumber + 1 === totalPages
+                                                ? 'opacity-50 cursor-not-allowed'
+                                                : 'cursor-pointer'
+                                            }`}
+                                        onClick={handleNextPage}
+                                        // disabled={currentPage === totalPages}
+                                        disabled={pageNumber + 1 === totalPages}
+                                    >
+                                        Next
+                                        <svg
+                                            className="w-6 h-6 inline-block align-middle"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M9 5l7 7-7 7"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
