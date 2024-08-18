@@ -91,6 +91,7 @@ const AllCustomer = () => {
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
                     navigate('/auth/login')
+                    localStorage.clear()
                 }
                 else if (e.response.data.responseMessage === 'Insufficient permission') {
                     toast.error(e.response.data.responseMessage)
