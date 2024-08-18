@@ -21,7 +21,7 @@ import SalesChart from '../components/charts/SalesChart';
 
 
 const HomePage = () => {
-    const { middleware, authorizationService, request, clientid } = useAuthContext()
+    const { middleware, authorizationService, request, clientid,setHeaders } = useAuthContext()
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [data, setData] = useState({})
@@ -33,6 +33,7 @@ const HomePage = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const name = localStorage.getItem('name')
+    setHeaders('Dashboard')
 
     const lab = [
         'FAILED',
