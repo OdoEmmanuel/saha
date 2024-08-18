@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { useFormik } from "formik";
+import { useNavigate } from 'react-router-dom';
 import icon from "../assets/gti-microfinance-logo.png";
 import axios from "axios";
 import { emailValidate } from '../services';
@@ -12,6 +13,7 @@ const Otp = () => {
 
     const{authorizationService,request,clientid} = useAuthContext()
   const [isLoading, setisLoading] = useState(false);
+     const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
@@ -33,6 +35,7 @@ const Otp = () => {
           .then((res) => {
             // console.log(res.data.responseMessage)
             toast.success(res.data.responseMessage)
+            navigate('/auth/reset-password')
           })
           .catch((e) => {
            

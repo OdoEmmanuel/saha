@@ -21,8 +21,8 @@ const passwordRegExp =
 
   export const recoverPassword = yup.object().shape({
     otp:yup.string().max(6,"can't contain more than 6 characters").required("required"),
-    userName:yup.string().email("enter valid Username").required("required"),
-    password: yup
+    username:yup.string().email("enter valid Username").required("required"),
+    newPassword: yup
     .string()
     .min(8, "password must containat least 8 characters ")
     .matches(
@@ -30,7 +30,7 @@ const passwordRegExp =
       "characters with at least one of each: uppercase, lowercase, number and special"
     )
     .required("required"),
-  passwordConfirmation: yup
+    confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "Passwords must match")
     .required("required"),

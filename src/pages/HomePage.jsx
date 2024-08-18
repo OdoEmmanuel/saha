@@ -2,19 +2,22 @@ import React, { useState, useEffect } from 'react'
 import { useAuthContext } from '../common/context/useAuthContext'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Ornament from '../assets/Ornament.png'
+import Ornament14 from '../assets/Ornament14.png'
 import Ornament2 from '../assets/Ornament2.png'
-import Ornament3 from '../assets/Ornament3.png'
+import Ornament15 from '../assets/Ornament15.png'
 import Ornament4 from '../assets/Ornament4.png'
 import Ornament6 from '../assets/Ornament6.png'
 import Ornament5 from '../assets/Ornament5.png'
-import Ornament9 from '../assets/Ornament9.png'
-import Ornament10 from '../assets/Ornament10.png'
+import Ornament13 from '../assets/Ornament13.png'
+import Ornament16 from '../assets/Ornament16.png'
 import Ornament12 from '../assets/Ornament12.png'
 import { IoIosPerson } from "react-icons/io";
 import { toast, Bounce } from "react-toastify";
 import { Settings2 } from 'lucide-react';
 import { PulseLoader } from "react-spinners";
+import RevenueChart from '../components/charts/RevenueChart';
+import TragetChart from '../components/charts/TragetChart';
+import SalesChart from '../components/charts/SalesChart';
 
 
 const HomePage = () => {
@@ -22,17 +25,31 @@ const HomePage = () => {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [data, setData] = useState({})
+    const [transactionStatusSummary, setTransactionSummary] = useState([])
+    const [loanStatusSummary, setLoanStatusSummary] = useState([])
+    const [complaintsStatusSummary,setComplaintStatusSummary] = useState([])
     const [isLoading, setisLoading] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const name = localStorage.getItem('name')
 
+    const lab = [
+        'FAILED',
+        'SUCCESSFUL',
+        'INITIATED',
+        'PENDING',
+        'NULL',
+        'UNKNOWN',
+    ]
+
 
     useEffect(() => {
 
-        FetchData()
-    }, [startDate,endDate])
+        FetchData().finally(() => isLoading(false))
+
+
+    }, [startDate, endDate])
 
     const formatDateString = (dateString) => {
         const date = new Date(dateString)
@@ -66,7 +83,11 @@ const HomePage = () => {
         setisLoading(true);
         axios.post(`${middleware}dashboard/admin/report`, requestbody, config)
             .then((res) => {
-              setData(res.data)
+                setData(res.data)
+                setTransactionSummary(res.data.transactionStatusSummary.transactionStatusSummary)
+                setLoanStatusSummary(res.data.loanStatusSummary.loanStatusSummary)
+                setComplaintStatusSummary(res.data.complaintsStatusSummary.complaintStatusSummary)
+
             }).catch((e) => {
                 //   console.log(e.response.data.responseMessage)
 
@@ -82,6 +103,7 @@ const HomePage = () => {
                 }
             }).finally(() => {
                 setisLoading(false)
+                console.log(data)
             })
     }
 
@@ -118,8 +140,8 @@ const HomePage = () => {
                                 type="date"
                                 className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 px-2 leading-tight focus:outline-none bg-[#fff]"
                                 placeholder="Select Date"
-                              value={startDate}
-                              onChange={(e) => formatDateString(setStartDate(e.target.value))}
+                                value={startDate}
+                                onChange={(e) => formatDateString(setStartDate(e.target.value))}
                             />
                         </div>
                     </div>
@@ -143,8 +165,8 @@ const HomePage = () => {
                                 type="date"
                                 className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 px-2 leading-tight focus:outline-none"
                                 placeholder="Select Date"
-                              value={endDate}
-                              onChange={(e) => formatDateString(setEndDate(e.target.value))}
+                                value={endDate}
+                                onChange={(e) => formatDateString(setEndDate(e.target.value))}
                             />
                         </div>
                     </div>
@@ -164,7 +186,7 @@ const HomePage = () => {
 
                 <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament} />
+                    <img src={Ornament13} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
@@ -187,7 +209,7 @@ const HomePage = () => {
                 </div>
                 <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament3} />
+                    <img src={Ornament14} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
@@ -220,19 +242,19 @@ const HomePage = () => {
                 </div>
                 <div className={` bg-[#ffffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament10} />
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col'>
+                    <img src={Ornament15} />
+                    <div className='absolute top-[15%] left-[4%] flex  flex-col'>
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
                         </div>
-                        <p className='text-gray-500'>Average Loan Turn Around Time</p>
+                        <p className='text-gray-500 text-[15px]'>Average Loan Turn Around Time</p>
                         <p className='text-[30px] text-[#000000] font-[500]'> {data.averageLoanTurnAroundTime}</p>
                     </div>
                 </div>
 
                 <div className={` bg-[#ffffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
-                    <img src={Ornament12} />
+                    <img src={Ornament16} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
@@ -242,6 +264,83 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <div className="grid lg:grid-cols-3 gap-5 mt-12">
+
+                <div className='bg-[#fff]   '>
+                    <TragetChart
+                        className="h-full"
+                        series={transactionStatusSummary.map(
+                            (item) => item.transactionVolume
+                        )}
+                        labels={transactionStatusSummary.map(
+                            (item) => item.transactionStatus
+                        )}
+                        title="Transaction Status Summary By Volume"
+                        name="Volume"
+                    />
+                </div>
+
+                <div className='bg-[#fff] col-span-2  '>
+                    <RevenueChart
+                        className="h-full lg:w-full w-full"
+                        series={transactionStatusSummary.map(
+                            (item) => item.transactionValue
+                        )}
+                        labels={lab}
+                        title="Transaction Status Summary By Value"
+                        set={false}
+                        name="Value"
+                    />
+                </div>
+
+
+                <div className='bg-[#fff] col-span-2  '>
+                    <RevenueChart
+                        className="h-full lg:w-full w-full"
+                        series={loanStatusSummary.map(
+                            (item) => item.loanValue
+                        )}
+                        labels={loanStatusSummary.map((item) =>
+                            item.loanStatus.replace(/_/g, ' ')
+                        )}
+                        title="Loan Summary By Value"
+                        set={false}
+                        name="Value"
+                    />
+                </div>
+
+                <div className='bg-[#fff]'>
+                    <TragetChart
+                        className="h-full"
+                        series={loanStatusSummary.map(
+                            (item) => item.loanVolume
+                        )}
+                        labels={loanStatusSummary.map((item) =>
+                            item.loanStatus.replace(/_/g, ' ')
+                        )}
+                        title="Transaction Status Summary By Volume"
+                        name="Volume"
+                    />
+                </div>
+
+                <div className='bg-[#fff] col-span-2'>
+                    <SalesChart className="h-full"
+                        series={complaintsStatusSummary.map(
+                            (item) => item.complainCounts
+                          )}
+                          labels={complaintsStatusSummary.map(
+                            (item) => item.complainCounts
+                          )}
+                        title="Transaction Status Summary By Volume"
+                        name="Volume"
+                    />
+                </div>
+
+
+
+
+            </div>
+
         </div>
     )
 }
