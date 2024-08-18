@@ -7,6 +7,7 @@ import {  Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../common/context/useAuthContext';
 
 
+
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -29,6 +30,7 @@ const Layout = () => {
 
          <Routes>
           <Route path="/*" element={<RightSide isOpen={isOpen} tog={toggle} />}></Route>
+          
          </Routes>
            
                

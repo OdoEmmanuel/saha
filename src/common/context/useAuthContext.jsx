@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
   const authorizationService = "https://auth-service.test.saha.ng/"
   const middleware = "https://baascore.test.saha.ng/"
   const [pending,setpending] = useState(false)
+  const [headers,setHeaders] = useState('')
   
   const request = "platform-backend"
 //  const email = localStorage.getItem('email', data.data.email)
@@ -52,7 +53,9 @@ const clientid = import.meta.env.VITE_client_id
        pending,
        setpending,
        request, 
-       clientid
+       clientid,
+       headers,
+       setHeaders
       }}
     >
       {children}

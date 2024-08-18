@@ -7,11 +7,13 @@ import { IoSunny } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import MobileSidebar from "./MobileSidebar";
 import { CiSearch } from "react-icons/ci";
+import { useAuthContext } from "../common/context/useAuthContext";
 
 const Navbar = ({isOpen,tog}) => {
 //     const [isOpen, setIsOpen] = useState(false);
 //   const toggle = () => setIsOpen(!isOpen);
 const name = localStorage.getItem('name')
+const { headers} = useAuthContext()
     
 
     const [dark, setDark] = useState(false);
@@ -21,13 +23,15 @@ const name = localStorage.getItem('name')
         document.body.classList.toggle("dark");
     }
   return (
-    <div className="p-6  w-full       items-center ">
+    <div className="p-6  w-full    sticky top-0 mb-8   items-center border-2">
         {isOpen && <MobileSidebar isOpen={isOpen} tog={tog}/>}
       <div className="flex justify-between">
        
         <div className="flex items-center text-black ">
-          <div className="mr-1"><CiSearch size={20} /></div>
-          <input placeholder="search " className="bg-inherit outline-none"/>
+          {/* <div className="mr-1"><CiSearch size={20} /></div>
+          
+          <input placeholder="search " className="bg-inherit outline-none"/> */}
+          <p className="text-[20px]">{headers}</p>
         </div>
         <div className="flex items-center text-gray-400">
           {/* <Menu as="div" className="relative inline-block text-left">
