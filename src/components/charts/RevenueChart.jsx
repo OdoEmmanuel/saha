@@ -6,7 +6,7 @@ import ReactApexCharts from 'react-apexcharts'
 // icons
 import { UilEllipsisV } from '@iconscout/react-unicons'
 
-const RevenueChart = ({series,labels,title,name,set}) => {
+const RevenueChart = ({series,labels,title,name,set,}) => {
   
   const revenueChart = {
 
@@ -39,14 +39,15 @@ const RevenueChart = ({series,labels,title,name,set}) => {
   
     series: [
       {
-        name: 'Revenue',
+        name:'value' ,
         data: series,
       },
+     
     ],
     legend: {
       show: false,
     },
-    colors: ['#43d39e'],
+    colors: ['#008FFB'],
     xaxis: {
       tooltip: {
         enabled: false,
@@ -58,7 +59,7 @@ const RevenueChart = ({series,labels,title,name,set}) => {
       labels: {
         rotate: -45, // Rotate labels for better readability
         trim: set, // Trim labels if they don't fit
-        minHeight: 60, // Set minimum height for labels
+        minHeight: 70, // Set minimum height for labels
       },
     },
     yaxis: {

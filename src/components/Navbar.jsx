@@ -74,7 +74,7 @@ const Navbar = ({ isOpen, tog }) => {
               </div>
             </MenuItems>
           </Menu> */}
-          <div className="  mr-4 flex items-center">
+          {/* <div className="  mr-4 flex items-center">
             <button onClick={() => darkModeHandler()}>
               {
 
@@ -84,7 +84,7 @@ const Navbar = ({ isOpen, tog }) => {
                 !dark && <IoMoon />
               }
             </button>
-          </div>
+          </div> */}
           <div className="relative mr-2">
             <button className=" group">
               <div className="flex items-center">

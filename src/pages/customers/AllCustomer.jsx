@@ -254,50 +254,50 @@ const AllCustomer = () => {
                         <div className="">
                             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll">
 
-                                <thead className="bg-blue-200 ">
-                                    <tr className="text-gray-700 dark:text-gray-200">
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                <thead className="bg-gray-50 text-[#667085] font-[500] ">
+                                    <tr className=" ">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             #{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             First Name{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             Last Name{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
                                             {' '}
                                             Email{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             BVN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             MOBILE{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             Gender{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             DOB{' '}
                                         </th>
 
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             State{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             NIN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm font-semibold whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
 
@@ -306,9 +306,7 @@ const AllCustomer = () => {
                                         {filteredUsers.map((staff, idx) => (
                                             <tr
                                                 key={idx}
-                                                className={
-                                                    idx % 2 === 0 ? 'bg-blue-50' : 'bg-white'
-                                                }
+                                                className="bg-[#fff] text-[#667085]"
                                             >
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {idCounter++}

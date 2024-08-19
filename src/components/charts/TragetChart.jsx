@@ -7,13 +7,13 @@ import Dropdown from "./Dropdown";
 
 
 
-const TragetChart = ({series,labels,title,name}) => {
+const TragetChart = ({series,labels,title,name,series2}) => {
   
 
 
   const targetChart = {
     chart: {
-      height: 349,
+      height: 500,
       type: "bar",
       stacked: true,
       toolbar: {
@@ -23,7 +23,7 @@ const TragetChart = ({series,labels,title,name}) => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "45%",
+        columnWidth: "40%",
       },
     },
     dataLabels: {
@@ -31,14 +31,18 @@ const TragetChart = ({series,labels,title,name}) => {
     },
     stroke: {
       show: true,
-      width: 2,
+      width: 8,
       colors: ["transparent"],
     },
     series: [
       {
-        name: name,
+        name: 'volume',
         data: series,
       },
+      // {
+      //   name:'Value',
+      //   data: series2
+      // }
     ],
     xaxis: {
       categories: labels,
@@ -60,6 +64,7 @@ const TragetChart = ({series,labels,title,name}) => {
         opacity: 0.2,
       },
       borderColor: "#f3f4f7",
+      
     },
     tooltip: {
       y: {
@@ -71,7 +76,7 @@ const TragetChart = ({series,labels,title,name}) => {
   };
   
   return (
-    <div className="col-span-2">
+    <div className="">
       <div className="card h-full">
         <div className="p-5">
           <div className="flex items-center justify-between">
