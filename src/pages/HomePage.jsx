@@ -21,13 +21,13 @@ import SalesChart from '../components/charts/SalesChart';
 
 
 const HomePage = () => {
-    const { middleware, authorizationService, request, clientid,setHeaders } = useAuthContext()
+    const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [data, setData] = useState({})
     const [transactionStatusSummary, setTransactionSummary] = useState([])
     const [loanStatusSummary, setLoanStatusSummary] = useState([])
-    const [complaintsStatusSummary,setComplaintStatusSummary] = useState([])
+    const [complaintsStatusSummary, setComplaintStatusSummary] = useState([])
     const [isLoading, setisLoading] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
@@ -80,6 +80,18 @@ const HomePage = () => {
     }
 
 
+    function TrimText(text) {
+        if (text === null) {
+          return ''
+        }
+        const trimmedText = text.length > 10 ? text.substring(0, 10) + '...' : text
+        return trimmedText
+      }
+
+
+      console.log(TrimText(`res.data.transactionStatusSummary.transactionStatusSummary`))
+
+
     const FetchData = async () => {
         setisLoading(true);
         axios.post(`${middleware}dashboard/admin/report`, requestbody, config)
@@ -95,6 +107,7 @@ const HomePage = () => {
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
                     navigate('/auth/login')
+                    localStorage.clear()
                 }
                 else if (e.response.data.responseMessage === 'Insufficient permission') {
                     toast.error(e.response.data.responseMessage)
@@ -107,6 +120,8 @@ const HomePage = () => {
                 console.log(data)
             })
     }
+
+ 
 
     return (
         <div>
@@ -183,6 +198,101 @@ const HomePage = () => {
             </div>
 
 
+            {/* <div className='flex justify-between gap-4   my-8 bg-[#fff] shadow-lg rounded-[10px] overflow-x-scroll no-scrollbar'>
+                <div className='flex justify-between'>
+                <div className='p-4 border-r-2 w-[270px]'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total Customers</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfCustomers}</p>
+                </div>
+                <div className='p-4 border-r-2 w-[270px]'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total account</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfAccounts}</p>
+                </div>
+                <div className='p-4 border-r-2 w-[270px]'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total Loan Processed</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfLoanProcessed}</p>
+                </div>
+                <div className='p-4 border-r-2 w-[270px]'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Average Loan Turn Around Time</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.averageLoanTurnAroundTime}</p>
+                    
+                </div>
+                <div className='p-4 border-r-2 w-[270px]'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total Staff</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfStaff}</p>
+                    
+                </div>
+                <div className='p-4 border-r-2 w-[270px]'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total Loan Approved</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfLoanApproved}</p>
+                    
+                </div>
+
+                <div className='p-4 border-r-2 w-[260px]'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total Transaction Counts</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.transactionCounts}</p>
+                    
+                </div>
+                </div>
+               
+                
+                
+                
+                
+            </div> */}
+
+
+            {/* <div className='grid lg:grid-cols-3 g-cols-2 gap-4  mt-5 bg-[#fff] shadow-lg rounded-[10px]'>
+                <div className='p-4 border-r-2'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total Customers</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfCustomers}</p>
+                </div>
+                <div className='p-4 border-r-2'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total account</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfAccounts}</p>
+                </div>
+                <div className='p-4 border-r-2'>
+                    <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] '>
+                        <IoIosPerson />
+                    </div>
+                    <p className='text-gray-500'>Total Loan Processed</p>
+                    <p className='text-[30px] text-[#000000] font-[500] '>{data.noOfLoanProcessed}</p>
+                </div>
+               
+                
+                
+            </div> */}
+
+            
+
+
             <div className='grid lg:grid-cols-4 grid-cols-2 gap-4  mt-5 '>
 
                 <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
@@ -237,7 +347,7 @@ const HomePage = () => {
                         <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
                             <IoIosPerson />
                         </div>
-                        <p className='text-gray-500'>Total Loan PROCESSED</p>
+                        <p className='text-gray-500'>Total Loan Approved</p>
                         <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfLoanApproved}</p>
                     </div>
                 </div>
@@ -265,13 +375,16 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid lg:grid-cols-3 gap-5 mt-12">
+            <div className="grid lg:grid-cols-2 gap-5 mt-12">
 
                 <div className='bg-[#fff]   '>
                     <TragetChart
                         className="h-full"
                         series={transactionStatusSummary.map(
                             (item) => item.transactionVolume
+                        )}
+                        series2={transactionStatusSummary.map(
+                            (item) => item.transactionValue
                         )}
                         labels={transactionStatusSummary.map(
                             (item) => item.transactionStatus
@@ -281,11 +394,14 @@ const HomePage = () => {
                     />
                 </div>
 
-                <div className='bg-[#fff] col-span-2  '>
+                <div className='bg-[#fff]   '>
                     <RevenueChart
                         className="h-full lg:w-full w-full"
                         series={transactionStatusSummary.map(
                             (item) => item.transactionValue
+                        )}
+                        series2={transactionStatusSummary.map(
+                            (item) => item.transactionVolume
                         )}
                         labels={lab}
                         title="Transaction Status Summary By Value"
@@ -295,14 +411,18 @@ const HomePage = () => {
                 </div>
 
 
-                <div className='bg-[#fff] col-span-2  '>
+                <div className='bg-[#fff] '>
                     <RevenueChart
                         className="h-full lg:w-full w-full"
                         series={loanStatusSummary.map(
                             (item) => item.loanValue
                         )}
+                        series2={loanStatusSummary.map(
+                            (item) => item.loanVolume
+                        )}
                         labels={loanStatusSummary.map((item) =>
-                            item.loanStatus.replace(/_/g, ' ')
+                             TrimText(item.loanStatus.replace(/_/g, ' '))  
+                         
                         )}
                         title="Loan Summary By Value"
                         set={false}
@@ -316,6 +436,9 @@ const HomePage = () => {
                         series={loanStatusSummary.map(
                             (item) => item.loanVolume
                         )}
+                        series2={loanStatusSummary.map(
+                            (item) => item.loanValue
+                        )}
                         labels={loanStatusSummary.map((item) =>
                             item.loanStatus.replace(/_/g, ' ')
                         )}
@@ -324,14 +447,14 @@ const HomePage = () => {
                     />
                 </div>
 
-                <div className='bg-[#fff] col-span-2'>
+                <div className='bg-[#fff] '>
                     <SalesChart className="h-full"
                         series={complaintsStatusSummary.map(
                             (item) => item.complainCounts
-                          )}
-                          labels={complaintsStatusSummary.map(
+                        )}
+                        labels={complaintsStatusSummary.map(
                             (item) => item.complainCounts
-                          )}
+                        )}
                         title="Transaction Status Summary By Volume"
                         name="Volume"
                     />

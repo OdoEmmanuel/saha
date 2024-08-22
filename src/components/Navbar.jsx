@@ -2,31 +2,41 @@ import { useState } from "react";
 import { TfiAlignJustify } from "react-icons/tfi";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
+import { IoIosLogOut } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import MobileSidebar from "./MobileSidebar";
 import { CiSearch } from "react-icons/ci";
 import { useAuthContext } from "../common/context/useAuthContext";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({isOpen,tog}) => {
-//     const [isOpen, setIsOpen] = useState(false);
-//   const toggle = () => setIsOpen(!isOpen);
-const name = localStorage.getItem('name')
-const { headers} = useAuthContext()
-    
+const Navbar = ({ isOpen, tog }) => {
+  //     const [isOpen, setIsOpen] = useState(false);
+  //   const toggle = () => setIsOpen(!isOpen);
+  const name = localStorage.getItem('name')
+  const { headers } = useAuthContext()
+  const navigate = useNavigate()
 
-    const [dark, setDark] = useState(false);
 
-    const darkModeHandler = () => {
-        setDark(!dark);
-        document.body.classList.toggle("dark");
-    }
+  const logout = () => {
+    localStorage.clear()
+    navigate('/auth/login')
+
+  }
+
+
+  const [dark, setDark] = useState(false);
+
+  const darkModeHandler = () => {
+    setDark(!dark);
+    document.body.classList.toggle("dark");
+  }
   return (
     <div className="p-6  w-full    sticky top-0 mb-8   items-center border-2">
-        {isOpen && <MobileSidebar isOpen={isOpen} tog={tog}/>}
+      {isOpen && <MobileSidebar isOpen={isOpen} tog={tog} />}
       <div className="flex justify-between">
-       
+
         <div className="flex items-center text-black ">
           {/* <div className="mr-1"><CiSearch size={20} /></div>
           
@@ -64,39 +74,44 @@ const { headers} = useAuthContext()
               </div>
             </MenuItems>
           </Menu> */}
-            <div className="  mr-4 flex items-center">
-            <button onClick={()=> darkModeHandler()}>
-                {
-                    
-                    dark && <IoSunny />
-                }
-                {
-                    !dark && <IoMoon />
-                }
+          {/* <div className="  mr-4 flex items-center">
+            <button onClick={() => darkModeHandler()}>
+              {
+
+                dark && <IoSunny />
+              }
+              {
+                !dark && <IoMoon />
+              }
             </button>
-        </div>
+          </div> */}
           <div className="relative mr-2">
             <button className=" group">
               <div className="flex items-center">
                 <div>
-                <span className="mr-1 text-black">{name}</span>
+                  <span className="mr-1 text-black">{name}</span>
                 </div>
-                
+
                 <IoChevronDown />
               </div>
-              <div className="z-10 bg-[#fff] shadow-[8px_8px_12px_8px_rgba(0,_0,_0,_0.25)]  hidden absolute rounded-lg  w-32 group-focus:block top-full right-0 p-4">
-                <ul className="text-[#000]">
-                    <li className="font-[500] mb-2 text-[15px]">Welcome!</li>
-                    <li>Logout</li>
+              <div className="z-10 bg-[#fff] shadow-[8px_8px_12px_8px_rgba(0,_0,_0,_0.25)]    hidden absolute rounded-lg  w-32 group-focus:block top-full right-0 p-4">
+                <ul className="">
+                  <li className="font-[500] mb-2 text-[15px] text-gray-600 hover:text-gray-800">Welcome!</li>
+                  <li className="flex items-center text-gray-500 hover:text-gray-800" onClick={() => logout()} >
+                    <div>
+                      <IoIosLogOut size={'1.5em'} className="mr-2" />
+                    </div>
+                    Logout
+                  </li>
                 </ul>
               </div>
             </button>
           </div>
-               <div className="lg:hidden">
-          <button onClick={tog}>
-            <TfiAlignJustify />
-          </button>
-        </div>
+          <div className="lg:hidden">
+            <button onClick={tog}>
+              <TfiAlignJustify />
+            </button>
+          </div>
         </div>
       </div>
     </div>
