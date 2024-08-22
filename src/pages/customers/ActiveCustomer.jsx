@@ -7,86 +7,47 @@ import { useAuthContext } from '../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
-import Checkbox from "../../assets/checkbox.png"
 
-
-function pad(num) {
-    var s = '' + num
-    if (num < 10) {
-        s = '0' + num
-    }
-    return s
-}
-
-const AllCustomer = () => {
+const ActiveCustomer = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('')
-    const [users, setUsers] = useState([])
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('')
     const [pagesize, SetPageSize] = useState(10)
     const [totalPages, setTotalPages] = useState(1)
+    const [users, setUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState([])
-    const [element, setElement] = useState(0)
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
-    const name = localStorage.getItem('name')
-    setHeaders('ALL CUSTOMERS')
+
+    setHeaders('Active Customers')
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'client-id': clientid,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email
+        },
+    };
 
 
     useEffect(() => {
 
-        fetchData()
-    }, [pageNumber, startDate, endDate, pagesize])
-
-    useEffect(() => {
-        calculateMonthPeriod()
-    }, [])
-
-
-    const calculateMonthPeriod = () => {
-        const currentDate = new Date()
-        const endMonth = currentDate.getMonth()
-        const endYear = currentDate.getFullYear()
-        const startMonth = endMonth === 0 ? 11 : endMonth - 1
-        const startYear = startMonth === 11 ? endYear - 1 : endYear
-
-        const formattedStartDate = `${startYear}-${String(startMonth + 1).padStart(
-            2,
-            '0'
-        )}-01`
-        const formattedEndDate = `${endYear}-${String(endMonth + 1).padStart(
-            2,
-            '0'
-        )}-${pad(currentDate.getDate())}`
-
-        setStartDate(formattedStartDate)
-        setEndDate(formattedEndDate)
-    }
-
-
-    const fetchData = async () => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'client-id': clientid,
-                'Content-Type': 'application/json',
-                'request-source': request,
-                'Username': email
-            },
-        };
         setisLoading(true)
-        axios.get(`${middleware}user/getUsersBetweenCreationDates?startDate=${startDate} 00:00:00&endDate=${endDate} 00:00:00&pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
+        fetchData()
+
+    }, [pageNumber, pagesize])
+
+    const fetchData = () => {
+        axios.get(`${middleware}user/allUsers?pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
             .then((res) => {
+                console.log(res.data.data.users.content)
                 setUsers(res.data.data.users.content)
                 setTotalPages(res.data.data.users.totalPages)
-                setElement(res.data.data.users.numberOfElements)
-
-            })
-            .catch((e) => {
+            }).catch((e) => {
                 console.log(e.response.data.responseMessage)
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -101,35 +62,120 @@ const AllCustomer = () => {
                 else {
                     toast.error(e.response.data.responseMessage)
                 }
-            })
-            .finally(() => {
+            }).finally(() => {
                 setisLoading(false)
             })
     }
 
 
-    const handleStartDateChange = (event) => {
-        setStartDate(event.target.value)
+    const handleNextPage = () => {
+        setPageNumber(pageNumber + 1)
     }
 
-    const handleEndDateChange = (event) => {
-        setEndDate(event.target.value)
+    const handlePreviousPage = () => {
+        if (pageNumber > 0) {
+            setPageNumber(pageNumber - 1)
+        }
     }
-
-
-    const formatDate = (dateString) => {
-        const date = new Date(dateString)
-        const day = date.getDate().toString().padStart(2, '0')
-        const month = (date.getMonth() + 1).toString().padStart(2, '0')
-        const year = date.getFullYear()
-        return `${day}-${month}-${year}`
-    }
-
-
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
     }
+
+    const handleUnblockUser = (loginId, pin) => {
+        if (pin === true) {
+            axios.put(`${middleware}user/ubBlockTransactionPin?loginId=${loginId}`, null, config)
+                .then((res) => {
+                    toast.success(res.data.data.responseData)
+                    fetchData()
+                })
+                .catch((e) => {
+                    if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                        toast.error(e.response.data.responseMessage)
+                        navigate('/auth/login')
+                        localStorage.clear()
+                    }
+                    else if (e.response.data.responseMessage === 'Insufficient permission') {
+                        toast.error(e.response.data.responseMessage)
+                        navigate('/')
+                    }
+                    else {
+                        toast.error(e.response.data.responseMessage)
+                    }
+                })
+        } else {
+
+            axios.put(`${middleware}user/blockTransactionPin?loginId=${loginId}`, null, config)
+            .then((res) => {
+                toast.success(res.data.data.responseData)
+                fetchData()
+            })
+            .catch((e) => {
+                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/auth/login')
+                    localStorage.clear()
+                }
+                else if (e.response.data.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/')
+                }
+                else {
+                    toast.error(e.response.data.responseMessage)
+                }
+            })
+
+        }
+
+
+
+    }
+
+    const handleBlockandUnblockUser=(id,block) => {
+
+        if(block === true){
+            axios.put(`${middleware}unBlockCustomerAccount?customerId=${id}`,null, config)
+            .then((res) => {
+                toast.success(res.data.data.responseData)
+                fetchData()
+            }).catch((e)=>{
+                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/auth/login')
+                    localStorage.clear()
+                }
+                else if (e.response.data.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/')
+                }
+                else {
+                    toast.error(e.response.data.responseMessage)
+                }
+            })
+        }else {
+            axios.put(`${middleware}blockCustomerAccount?customerId=${id}`,null, config)
+            .then((res) => {
+                toast.success(res.data.data.responseData)
+                fetchData()
+            }).catch((e)=>{
+                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/auth/login')
+                    localStorage.clear()
+                }
+                else if (e.response.data.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/')
+                }
+                else {
+                    toast.error(e.response.data.responseMessage)
+                }
+            })
+        }
+
+    }
+
+
 
     useEffect(() => {
         if (searchQuery.trim() === '') {
@@ -157,20 +203,20 @@ const AllCustomer = () => {
     }, [searchQuery, users])
 
 
-    const handleNextPage = () => {
-        setPageNumber(pageNumber + 1)
-    }
-
-    const handlePreviousPage = () => {
-        if (pageNumber > 0) {
-            setPageNumber(pageNumber - 1)
-        }
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const day = date.getDate().toString().padStart(2, '0')
+        const month = (date.getMonth() + 1).toString().padStart(2, '0')
+        const year = date.getFullYear()
+        return `${day}-${month}-${year}`
     }
 
     let idCounter = pageNumber * pagesize + 1
 
 
     return (
+
+
         <div className='flex flex-col'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
@@ -179,62 +225,8 @@ const AllCustomer = () => {
                 </div>
             )}
             <div className='flex justify-between'>
-                <div className=" flex flex-col rounded-lg ">
-                    <div className="flex flex-col md:flex-row md:items-center ">
-                        <div className="flex items-center space-x-4 mt-2 md:mt-0 md:ml-4 ">
-                            <label className="text-gray-700">From:</label>
-                            <div className="flex items-center border-2 rounded bg-[#fff]">
-                                <svg
-                                    className="w-5 h-5 text-gray-500 mr-2 ml-1"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16m-7 6h7"
-                                    />
-                                </svg>
-                                <input
-                                    type="date"
-                                    className="bg-transparent border-none text-gray-700 py-2 px-3 outline-none leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 "
-                                    placeholder="Select Date"
-                                    value={startDate}
-                                    onChange={handleStartDateChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-4 mt-2 md:mt-0 md:ml-4">
-                            <label className="text-gray-700">To:</label>
-                            <div className="flex items-center border-2 rounded bg-[#fff]">
-                                <svg
-                                    className="w-5 h-5 text-gray-500 mr-2 ml-1"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16m-7 6h7"
-                                    />
-                                </svg>
-                                <input
-                                    type="date"
-                                    className="bg-transparent border-none outline-none text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                                    placeholder="Select Date"
-                                    value={endDate}
-                                    onChange={handleEndDateChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center">
+                <div></div>
+                <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 items-center">
                     <div className=' mr-2 text-gray-500'>
                         <BiSearch />
                     </div>
@@ -298,7 +290,7 @@ const AllCustomer = () => {
                                             {' '}
                                             NIN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Actions</th>
                                     </tr>
                                 </thead>
 
@@ -311,7 +303,7 @@ const AllCustomer = () => {
                                             >
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {idCounter++}
-                                                   
+
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {staff.firstName}
@@ -342,12 +334,18 @@ const AllCustomer = () => {
                                                     {staff.nin}
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <Link
-                                                        to={`/ui/customer/Veiw-all-customer/${staff.id}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
-                                                    >
-                                                        <IoEyeSharp size={'1.5em'} />
-                                                    </Link>
+                                                    <button onClick={() => handleUnblockUser(staff.loginId, staff.pinBlocked)} className={`${staff.pinBlocked ? 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300'}`}>
+                                                        {
+                                                            staff.pinBlocked === true ? 'Unblock Pin' : 'Block Pin'
+                                                        }
+                                                    </button>
+                                                </td>
+                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                    <button onClick={() => handleBlockandUnblockUser(staff.id,staff.accountBlocked) } className={`${staff.accountBlocked ? 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300':'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300'}`}>
+                                                        {
+                                                            staff.accountBlocked ? 'Unblock Customer' : 'Block Customer' 
+                                                        }
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}
@@ -454,4 +452,4 @@ const AllCustomer = () => {
     )
 }
 
-export default AllCustomer
+export default ActiveCustomer

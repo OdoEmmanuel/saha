@@ -3,6 +3,8 @@ import Navbar from './Navbar'
 import HomePage from '../pages/HomePage'
 import {  Routes, Route, Navigate } from 'react-router-dom';
 import AllCustomer from '../pages/customers/AllCustomer';
+import ViewCustomerdetails from '../pages/customers/ViewCustomer/ViewCustomerdetails';
+import ActiveCustomer from '../pages/customers/ActiveCustomer';
 
 
 
@@ -23,6 +25,8 @@ const RightSide = ({isOpen, tog}) => {
           <Routes>
             <Route path='/' element={<HomePage/>}></Route>
             <Route path="/ui/customer/customer-date" element={<AllCustomer/>}></Route>
+            <Route path="/ui/customer/Veiw-all-customer/:id/*" element={<ViewCustomerdetails/>}></Route>
+            <Route path="ui/customer/all-customer" element={<ActiveCustomer/>}></Route>
           </Routes>
      
         
