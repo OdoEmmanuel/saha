@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, tog }) => {
     const Open = openDropdown === item.key;
 
     return (
-      <li key={item.key} className={`${isOpen ? 'mb-4' : 'mb-4'} `}>
+      <li key={item.key} className={`mb-4 `}>
         {hasChildren ? (
           <div>
             <button
@@ -37,9 +37,9 @@ const Sidebar = ({ isOpen, tog }) => {
             >
               <span className="flex items-center">
                 {item.icon && <item.icon className="mr-2" size={18} />}
-                <span className={` ${isOpen ? 'hidden' : 'block mr-1 '}`}>{item.label}</span>
+                <span className={`  'block mr-1 '`}>{item.label}</span>
               </span>
-              {Open ? <IoChevronUp size={16} className={`${isOpen ? 'hidden' : 'block'}`} /> : <IoChevronDown size={16} className={`${isOpen ? 'hidden' : 'block'}`} />}
+              {Open ? <IoChevronUp size={16} className={`  block}`} /> : <IoChevronDown size={16} className={` block`} />}
             </button>
             {/* {Open && (
               <ul className="ml-10 mt-2">
@@ -55,7 +55,7 @@ const Sidebar = ({ isOpen, tog }) => {
                     <li key={child.key}>
                       <Link to={child.url} className={`flex items-center mb-2 ${childActiveClass}`}>
                         {child.icon && <child.icon className="mr-2" size={18} />}
-                        <span className={`${isOpen ? 'hidden' : 'block mr-1 text-black-400'}`}>{child.label}</span>
+                        <span className={` block mr-1 text-black-400`}>{child.label}</span>
                       </Link>
                     </li>
                   );
@@ -66,7 +66,7 @@ const Sidebar = ({ isOpen, tog }) => {
         ) : (
           <Link to={item.url} className={`flex items-center ${activeClass} px-4 `}>
             {item.icon && <item.icon className="mr-2" size={18} />}
-            <span className={`${isOpen ? 'hidden' : 'block mr-1'}`}>{item.label}</span>
+            <span className={` block mr-1`}>{item.label}</span>
           </Link>
         )}
       </li>
@@ -74,7 +74,7 @@ const Sidebar = ({ isOpen, tog }) => {
   };
 
   return (
-    <div className={`${isOpen ? 'w-24 p-2' : "w-64"}  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] rounded-[5px]  no-scrollbar  hidden`}>
+    <div className={` w-64  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] rounded-[5px]  no-scrollbar  hidden`}>
       <div className='px-4 pt-2' >
         <img src={logo} className='mb-4 '></img>
       </div>
