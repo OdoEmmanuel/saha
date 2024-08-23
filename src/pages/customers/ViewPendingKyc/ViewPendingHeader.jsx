@@ -4,11 +4,11 @@ import { toast } from 'react-toastify';
 import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
-const ViewHeader = ({id}) => {
+const ViewPendingHeader = ({id}) => {
     const navigate = useNavigate();
     const [activeLink, setActiveLink] = useState("customers");
-    return (
-        <div className=''>
+  return (
+    <div className='flex justify-between'>
             <div className='flex items-center mb-8'>
                 <button onClick={() => navigate(-1)} className="mr-4">
                     <svg
@@ -26,13 +26,15 @@ const ViewHeader = ({id}) => {
                         <circle cx="16.5" cy="16.5" r="16" stroke="#000" />
                     </svg>
                 </button>
-                <Link to={`/ui/customer/Veiw-all-customer/${id}/`} onClick={() => setActiveLink('customers')} className={`mr-4   pb-2 ${activeLink === 'customers' ? 'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-400'}`}> Customers Details </Link>
-                <Link to={`/ui/customer/Veiw-all-customer/${id}/kin`} onClick={() => setActiveLink('kin')} className={`mr-4  pb-2 ${activeLink === 'kin' ?  'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-500'}` }>Next of Kin details</Link>
-                <Link to={`/ui/customer/Veiw-all-customer/${id}/documents`} onClick={() => setActiveLink('documents')} className={`mr-4  pb-2 ${activeLink === 'documents' ? 'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-500'}`}>Documents</Link>
+                <Link to={`/ui/customer/pending-kyc/view/${id}/`} onClick={() => setActiveLink('customers')} className={`mr-4   pb-2 ${activeLink === 'customers' ? 'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-400'}`}> Customers Details </Link>
+                <Link to={`/ui/customer/pending-kyc/view/${id}/kin`} onClick={() => setActiveLink('kin')} className={`mr-4  pb-2 ${activeLink === 'kin' ?  'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-500'}` }>Next of Kin details</Link>
+                <Link to={`/ui/customer/pending-kyc/view/${id}/documents`} onClick={() => setActiveLink('documents')} className={`mr-4  pb-2 ${activeLink === 'documents' ? 'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-500'}`}>Documents</Link>
             </div>
 
+            <button  className="text-white btn bg-blue-500 mb-8 hover:bg-primary rounded-[10px] px-5 py-2"> Approve Kyc</button>
+
         </div>
-    )
+  )
 }
 
-export default ViewHeader
+export default ViewPendingHeader

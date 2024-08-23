@@ -64,7 +64,7 @@ const ViewCustomerdetails = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <ViewHeader />
+            <ViewHeader id={id} />
             <Routes>
                 <Route path={'/'} element={<ViewCustomer dat={data}/>} />
                 <Route path={'/kin'} element={<ViewCustomerKin  dat={data}/>} />

@@ -8,6 +8,7 @@ import ActiveCustomer from '../pages/customers/ActiveCustomer';
 import BlockCustomer from '../pages/customers/BlockCustomer';
 import MobileSidebar from './MobileSidebar';
 import PendingKyc from '../pages/customers/PendingKyc';
+import ViewPendingKycdetail from '../pages/customers/ViewPendingKyc/ViewPendingKycdetail';
 
 
 
@@ -33,6 +34,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/customer/all-customer" element={<ActiveCustomer/>}></Route>
             <Route path="/ui/customer/block-customers" element={<BlockCustomer/>}></Route>
             <Route path="/ui/customer/pending-kyc" element={<PendingKyc/>}></Route>
+            <Route path="ui/customer/pending-kyc/view/:id/*" element={<ViewPendingKycdetail/>}></Route>
           </Routes>
      
         
