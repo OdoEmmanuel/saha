@@ -19,7 +19,7 @@ const RightSide = ({isOpen, tog}) => {
   return (
     <>
       
-      <div className={ `lg:ml-[16rem]  ml-0  w-full flex flex-col bg-[#f3f4f7] min-h-screen overflow-hidden   `}>
+      <div className={ ` ml-0  w-full flex flex-col bg-[#f3f4f7] min-h-screen overflow-hidden   `}>
       <div className=' w-full top-0   '>
       <Navbar isOpen={isOpen} tog={tog} />
       {isOpen && <MobileSidebar isOpen={isOpen} tog={tog} />}
@@ -39,7 +39,8 @@ const RightSide = ({isOpen, tog}) => {
      
         
       </div>
-    </div></>
+    </div>
+    </>
   
   )
 }

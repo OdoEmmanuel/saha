@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
-const ViewPendingHeader = ({id}) => {
+const ViewPendingHeader = ({id, func}) => {
     const navigate = useNavigate();
     const [activeLink, setActiveLink] = useState("customers");
+    
   return (
     <div className='flex justify-between'>
             <div className='flex items-center mb-8'>
@@ -31,7 +32,7 @@ const ViewPendingHeader = ({id}) => {
                 <Link to={`/ui/customer/pending-kyc/view/${id}/documents`} onClick={() => setActiveLink('documents')} className={`mr-4  pb-2 ${activeLink === 'documents' ? 'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-500'}`}>Documents</Link>
             </div>
 
-            <button  className="text-white btn bg-blue-500 mb-8 hover:bg-primary rounded-[10px] px-5 py-2"> Approve Kyc</button>
+            <button  className="text-white btn bg-blue-500 mb-8 hover:bg-primary rounded-[10px] px-5 py-2" onClick={func} > Approve Kyc</button>
 
         </div>
   )

@@ -8,6 +8,7 @@ import ViewPendingHeader from './ViewPendingHeader';
 import ViewPendingCustomer from './ViewPendingCustomer';
 import ViewPendingKin from './ViewPendingKin';
 import ViewPendingDocument from './ViewPendingDocument';
+import ConfirmationModal from './ConfirmationModal';
 
 const ViewPendingKycdetail = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
@@ -17,6 +18,15 @@ const ViewPendingKycdetail = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
+    const [openModal, setOpenModal] = useState(false)
+
+    const open = () => {
+      setOpenModal(true)
+    }
+  
+    const close = () => {
+      setOpenModal(false)
+    }
 
     const { id } = useParams()
     setHeaders('Pending KYC Details')
@@ -57,13 +67,14 @@ const ViewPendingKycdetail = () => {
     }, [])
   return (
     <div className='flex flex-col'>
+        {openModal && <ConfirmationModal func={close} id={id}/>}
              {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <ViewPendingHeader id={id}/>
+            <ViewPendingHeader id={id} func={open}/>
             <Routes>
                 <Route path={'/'} element={<ViewPendingCustomer dat={data}/>} />
                 <Route path={'/kin'} element={<ViewPendingKin  dat={data}/>} />
