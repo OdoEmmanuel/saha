@@ -178,9 +178,9 @@ const AllCustomer = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className='flex justify-between'>
+            <div className='lg:flex justify-between'>
                 <div className=" flex flex-col rounded-lg ">
-                    <div className="flex flex-col md:flex-row md:items-center ">
+                    <div className="flex md:flex-row flex-col  md:items-center ">
                         <div className="flex items-center space-x-4 mt-2 md:mt-0 md:ml-4 ">
                             <label className="text-gray-700">From:</label>
                             <div className="flex items-center border-2 rounded bg-[#fff]">
@@ -206,7 +206,7 @@ const AllCustomer = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex items-center space-x-4 mt-2 md:mt-0 md:ml-4">
+                        <div className="flex items-center space-x-4 mt-2 md:mt-0 md:ml-4 ">
                             <label className="text-gray-700">To:</label>
                             <div className="flex items-center border-2 rounded bg-[#fff]">
                                 <svg
@@ -224,7 +224,7 @@ const AllCustomer = () => {
                                 </svg>
                                 <input
                                     type="date"
-                                    className="bg-transparent border-none outline-none text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                                    className="bg-transparent  border-none outline-none text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                                     placeholder="Select Date"
                                     value={endDate}
                                     onChange={handleEndDateChange}
@@ -234,7 +234,7 @@ const AllCustomer = () => {
                     </div>
                 </div>
 
-                <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center">
+                <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center lg:mt-0 mt-5" >
                     <div className=' mr-2 text-gray-500'>
                         <BiSearch />
                     </div>

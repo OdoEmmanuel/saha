@@ -8,7 +8,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 
-const ActiveCustomer = () => {
+const PendingKyc = () => {
+
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -21,7 +22,7 @@ const ActiveCustomer = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
-    setHeaders('Active Customers')
+    setHeaders('Pending KYC')
 
     const config = {
         headers: {
@@ -33,7 +34,6 @@ const ActiveCustomer = () => {
         },
     };
 
-
     useEffect(() => {
 
         setisLoading(true)
@@ -41,8 +41,9 @@ const ActiveCustomer = () => {
 
     }, [pageNumber, pagesize])
 
+
     const fetchData = () => {
-        axios.get(`${middleware}user/allUsers?pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
+        axios.get(`${middleware}user/getCustomersByKycStatus?pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
             .then((res) => {
                 console.log(res.data.data.users.content)
                 setUsers(res.data.data.users.content)
@@ -82,101 +83,6 @@ const ActiveCustomer = () => {
         setSearchQuery(event.target.value)
     }
 
-    const handleUnblockUser = (loginId, pin) => {
-        if (pin === true) {
-            axios.put(`${middleware}user/ubBlockTransactionPin?loginId=${loginId}`, null, config)
-                .then((res) => {
-                    toast.success(res.data.data.responseData)
-                    fetchData()
-                })
-                .catch((e) => {
-                    if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/auth/login')
-                        localStorage.clear()
-                    }
-                    else if (e.response.data.responseMessage === 'Insufficient permission') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/')
-                    }
-                    else {
-                        toast.error(e.response.data.responseMessage)
-                    }
-                })
-        } else {
-
-            axios.put(`${middleware}user/blockTransactionPin?loginId=${loginId}`, null, config)
-                .then((res) => {
-                    toast.success(res.data.data.responseData)
-                    fetchData()
-                })
-                .catch((e) => {
-                    if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/auth/login')
-                        localStorage.clear()
-                    }
-                    else if (e.response.data.responseMessage === 'Insufficient permission') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/')
-                    }
-                    else {
-                        toast.error(e.response.data.responseMessage)
-                    }
-                })
-
-        }
-
-
-
-    }
-
-    const handleBlockandUnblockUser = (id, block) => {
-
-        if (block === true) {
-            axios.put(`${middleware}unBlockCustomerAccount?customerId=${id}`, null, config)
-                .then((res) => {
-                    toast.success(res.data.data.responseData)
-                    fetchData()
-                }).catch((e) => {
-                    if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/auth/login')
-                        localStorage.clear()
-                    }
-                    else if (e.response.data.responseMessage === 'Insufficient permission') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/')
-                    }
-                    else {
-                        toast.error(e.response.data.responseMessage)
-                    }
-                })
-        } else {
-            axios.put(`${middleware}blockCustomerAccount?customerId=${id}`, null, config)
-                .then((res) => {
-                    toast.success(res.data.data.responseData)
-                    fetchData()
-                }).catch((e) => {
-                    if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/auth/login')
-                        localStorage.clear()
-                    }
-                    else if (e.response.data.responseMessage === 'Insufficient permission') {
-                        toast.error(e.response.data.responseMessage)
-                        navigate('/')
-                    }
-                    else {
-                        toast.error(e.response.data.responseMessage)
-                    }
-                })
-        }
-
-    }
-
-
-
     useEffect(() => {
         if (searchQuery.trim() === '') {
             // If search query is empty, do not filter users
@@ -202,7 +108,6 @@ const ActiveCustomer = () => {
         }
     }, [searchQuery, users])
 
-
     const formatDate = (dateString) => {
         const date = new Date(dateString)
         const day = date.getDate().toString().padStart(2, '0')
@@ -212,12 +117,8 @@ const ActiveCustomer = () => {
     }
 
     let idCounter = pageNumber * pagesize + 1
-
-
-    return (
-
-
-        <div className='flex flex-col'>
+  return (
+    <div className='flex flex-col'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -290,8 +191,8 @@ const ActiveCustomer = () => {
                                             {' '}
                                             NIN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Actions</th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+                                        
                                     </tr>
                                 </thead>
 
@@ -335,19 +236,14 @@ const ActiveCustomer = () => {
                                                     {staff.nin}
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <button onClick={() => handleUnblockUser(staff.loginId, staff.pinBlocked)} className={`${staff.pinBlocked ? 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300'}`}>
-                                                        {
-                                                            staff.pinBlocked === true ? 'Unblock Pin' : 'Block Pin'
-                                                        }
-                                                    </button>
+                                                <Link
+                                                        to={`/ui/customer/pending-kyc/view/${staff.id}`}
+                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                    >
+                                                        <IoEyeSharp size={'1.5em'} />
+                                                    </Link>
                                                 </td>
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <button onClick={() => handleBlockandUnblockUser(staff.id, staff.accountBlocked)} className={`${staff.accountBlocked ? 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300'}`}>
-                                                        {
-                                                            staff.accountBlocked ? 'Unblock Customer' : 'Block Customer'
-                                                        }
-                                                    </button>
-                                                </td>
+                                                
                                             </tr>
                                         ))}
                                     </tbody>
@@ -450,7 +346,7 @@ const ActiveCustomer = () => {
 
             </div>
         </div>
-    )
+  )
 }
 
-export default ActiveCustomer
+export default PendingKyc

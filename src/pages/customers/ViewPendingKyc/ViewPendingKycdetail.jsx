@@ -4,13 +4,13 @@ import { PulseLoader } from "react-spinners";
 import { toast } from 'react-toastify';
 import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link, Route, Routes, useParams } from 'react-router-dom';
-import ViewHeader from './ViewHeader';
-// import ViewCustomer from './ViewCustomer';
-import ViewCustomer from './ViewCustomer';
-import ViewCustomerKin from './ViewCustomerKin';
-import ViewCustomerDocuments from './ViewCustomerDocuments';
+import ViewPendingHeader from './ViewPendingHeader';
+import ViewPendingCustomer from './ViewPendingCustomer';
+import ViewPendingKin from './ViewPendingKin';
+import ViewPendingDocument from './ViewPendingDocument';
+import ConfirmationModal from './ConfirmationModal';
 
-const ViewCustomerdetails = () => {
+const ViewPendingKycdetail = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [data, setdata] = useState({})
   const [kyc, setKyc] = useState([])
@@ -18,9 +18,18 @@ const ViewCustomerdetails = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
+    const [openModal, setOpenModal] = useState(false)
+
+    const open = () => {
+      setOpenModal(true)
+    }
+  
+    const close = () => {
+      setOpenModal(false)
+    }
 
     const { id } = useParams()
-    setHeaders('Customer Details')
+    setHeaders('Pending KYC Details')
 
     useEffect(() => {
         setisLoading('true')
@@ -56,22 +65,23 @@ const ViewCustomerdetails = () => {
             setisLoading(false)
         })
     }, [])
-    return (
-        <div className='flex flex-col'>
+  return (
+    <div className='flex flex-col'>
+        {openModal && <ConfirmationModal func={close} id={id}/>}
              {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <ViewHeader id={id} />
+            <ViewPendingHeader id={id} func={open}/>
             <Routes>
-                <Route path={'/'} element={<ViewCustomer dat={data}/>} />
-                <Route path={'/kin'} element={<ViewCustomerKin  dat={data}/>} />
-                <Route path={'/documents'} element={<ViewCustomerDocuments kycs={kyc} />} />
+                <Route path={'/'} element={<ViewPendingCustomer dat={data}/>} />
+                <Route path={'/kin'} element={<ViewPendingKin  dat={data}/>} />
+                <Route path={'/documents'} element={<ViewPendingDocument kycs={kyc} />} />
             </Routes>
         </div>
-    )
+  )
 }
 
-export default ViewCustomerdetails
+export default ViewPendingKycdetail

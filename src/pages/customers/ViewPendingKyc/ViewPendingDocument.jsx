@@ -1,8 +1,7 @@
 import React from 'react'
 import { LucideEye, LucideFileText, LucideUsers } from 'lucide-react'
 
-const ViewCustomerDocuments = ({ kycs }) => {
-
+const ViewPendingDocument = ({ kycs }) => {
     function removeUnderscores(text) {
         return text.replace(/_/g, ' ')
     }
@@ -15,8 +14,8 @@ const ViewCustomerDocuments = ({ kycs }) => {
         window.open(src, '_blank')
       }
 
-    return (
-        <div className='bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8'>
+  return (
+    <div className='bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8'>
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll">
 
                 <thead className="bg-gray-50 text-[#667085] font-[500] ">
@@ -51,7 +50,7 @@ const ViewCustomerDocuments = ({ kycs }) => {
 
             </table>
         </div>
-    )
+  )
 }
 
-export default ViewCustomerDocuments
+export default ViewPendingDocument

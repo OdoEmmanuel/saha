@@ -34,14 +34,14 @@ const Navbar = ({ isOpen, tog }) => {
   }
   return (
     <div className="p-6  w-full    sticky top-0 mb-8   items-center border-2">
-      {isOpen && <MobileSidebar isOpen={isOpen} tog={tog} />}
+      
       <div className="flex justify-between">
 
         <div className="flex items-center text-black ">
           {/* <div className="mr-1"><CiSearch size={20} /></div>
           
           <input placeholder="search " className="bg-inherit outline-none"/> */}
-          <p className="text-[20px]">{headers}</p>
+          <p className="lg:text-[25px] text-[12px]">{headers}</p>
         </div>
         <div className="flex items-center text-gray-400">
           {/* <Menu as="div" className="relative inline-block text-left">
@@ -107,7 +107,7 @@ const Navbar = ({ isOpen, tog }) => {
               </div>
             </button>
           </div>
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center">
             <button onClick={tog}>
               <TfiAlignJustify />
             </button>

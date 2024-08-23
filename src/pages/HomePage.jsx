@@ -124,14 +124,14 @@ const HomePage = () => {
  
 
     return (
-        <div>
+        <div className='z-[1]'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <h1 className='text-[30px]'>Welcome Back {name}</h1>
+            <h1 className='text-[25px] sm:text-left xss:text-center '>Welcome Back {name}</h1>
             <div className='flex justify-between items-center'>
                 <p className='text-gray-500'>View your analytics here</p>
 
@@ -293,7 +293,7 @@ const HomePage = () => {
             
 
 
-            <div className='grid lg:grid-cols-4 grid-cols-2 gap-4  mt-5 '>
+            <div className='sm:grid lg:grid-cols-4 sm:grid-cols-2 xss:flex flex-col items-center gap-4   mt-5 '>
 
                 <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
 
@@ -375,7 +375,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid lg:grid-cols-2 gap-5 mt-12">
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 mt-12">
 
                 <div className='bg-[#fff]   '>
                     <TragetChart

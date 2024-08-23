@@ -73,12 +73,12 @@ const MobileSidebar = ({ isOpen, tog }) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-black lg:bg-none lg:bg-opacity-0 lg:z-0  bg-opacity-50 z-[999]" onClick={tog}></div>
+        <div className="fixed inset-0 bg-black lg:bg-none lg:bg-opacity-0   bg-opacity-50 z-[999]" onClick={tog}></div>
       )}
       <div 
         ref={sidebarRef}
         className={`
-          duration-300 sidebar h-screen bg-[#0A0C11] overflow-auto flex flex-col leading-normal text-white w-[60%] md:w-[45%] lg:h-[100vh] px-[20px] py-[20px] fixed top-0 ${isOpen ? 'left-0' : 'left-[-100%]'} z-[1000] no-scrollbar lg:hidden
+          duration-300 sidebar h-screen bg-[#0A0C11] overflow-auto flex flex-col leading-normal text-white w-[80%] md:w-[45%] lg:h-[100vh] px-[20px] py-[20px] fixed top-0 ${isOpen ? 'left-0' : 'left-[-100%]'} z-[1000] no-scrollbar lg:hidden
         `}
       >
         <div>
