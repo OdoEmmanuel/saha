@@ -20,8 +20,8 @@ const SelectField = ({
       <select
         className={
           error
-            ? "border border-red-500 h-10  shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full bg-white form-select   rounded-[5px] outline-0 text-[#11233D] "
-            : "h-10 border shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full rounded-[5px]   outline-none bg-white    placeholder:font-normal form-select  border-[#D0D5DD] focus:ring-0 focus:border-[#D0D5DD] text-[#11233D] placeholder:text-[#11233D] "
+            ? "border border-red-500 h-[36px]  shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full bg-white form-select   rounded-[5px] outline-0 text-[#11233D] "
+            : "h-[36px] border shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full rounded-[5px]   outline-none bg-white    placeholder:font-normal form-select  border-[#D0D5DD] focus:ring-0 focus:border-[#D0D5DD] text-[#11233D] placeholder:text-[#11233D] "
         }
         name={name}
         onChange={onChange}

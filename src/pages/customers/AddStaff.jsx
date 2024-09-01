@@ -6,7 +6,7 @@ import { addStaff } from '../../services';
 import { useNavigate, Link } from 'react-router-dom'
 import { PulseLoader } from "react-spinners";
 import { useFormik } from "formik";
-import InputField from '../../components/InputField';
+import InputField2 from '../../components/InputField2';
 import SelectField from '../../components/SelectField';
 
 const AddStaff = () => {
@@ -59,13 +59,28 @@ const AddStaff = () => {
         })
     }, [])
 
+    const lang = languages.map((item) => {
+        return {
+            label:item.lang,
+            value:item.key
+        }
+    })
+
+    const type = userType.map((item) => {
+        return {
+            label:item,
+            value:item
+        }
+    })
+
     const formik = useFormik({
         initialValues: {
             email: '',
             firstName: '',
             lastName: '',
             phone: '',
-            lang: ''
+            lang: '',
+            userType:''
 
         },
         validationSchema: addStaff,
@@ -73,10 +88,10 @@ const AddStaff = () => {
     })
     return (
         <div className="flex  items-center justify-center lg:mt-0 mt-5">
-            <form className='bg-[#fff] rounded-lg shadow-md px-4 w-[500px] '>
-                <div className='flex flex-col'>
+            <form className='bg-[#fff] rounded-lg shadow-md p-4 w-[500px] '>
+                <div className='flex flex-col gap-4'>
 
-                    <InputField
+                    <InputField2
                         label={`First Name`}
                         name={`firstName`}
                         value={formik.values.firstName}
@@ -86,15 +101,46 @@ const AddStaff = () => {
 
                     />
 
-                    <InputField
+                    <InputField2
                         label={`Last Name`}
                         name={`Last Name`}
                         value={formik.values.lastName}
                         onChange={formik.handleChange}
-                        error={formik.touched.lastNameName && formik.errors.lastName}
+                        error={formik.touched.lastName && formik.errors.lastName}
                         errorText={formik.errors.lastName}
 
                     />
+                    <InputField2
+                        label={`Phone`}
+                        name={`Phone`}
+                        value={formik.values.phone}
+                        onChange={formik.handleChange}
+                        error={formik.touched.phone && formik.errors.phone}
+                        errorText={formik.errors.phone}
+                    />
+                    <SelectField
+                        label={`Language`}
+                        options={lang}
+                        onChange={formik.handleChange}
+                        value={formik.values.lang}
+                        error={formik.touched.lang && formik.errors.lang}
+                        errorText={formik.errors.lang}
+                    
+                    />
+                    <SelectField
+                      label={`Staff Type`}
+                      options= {type}
+                      onChange={formik.handleChange}
+                      value={formik.values.userType}
+                      error={formik.touched.userType && formik.errors.userType}
+                      errorText={formik.errors.userType}
+                    
+                    />
+
+                    <div className='flex justify-between'>
+                        <div></div>
+                        <button  className="text-white btn bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > Approve Kyc</button>
+                    </div>
                 </div>
             </form>
 
