@@ -35,3 +35,15 @@ const passwordRegExp =
     .oneOf([yup.ref("password")], "Passwords must match")
     .required("required"),
   })
+
+  export const addStaff= yup.object().shape({
+    email: yup
+    .string()
+    .email('Please enter valid email')
+    .required('Please enter email'),
+  firstName: yup.string().required(`Please enter staff's first name`),
+  lastName:yup.string().required(`Please enter staff last name `),
+  phone: yup.string().required('Please enter mobile number'),
+  lang: yup.string().required('Enter language'),
+  userType: yup.string().required('Select Staff type'),
+  })
