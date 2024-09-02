@@ -16,6 +16,7 @@ const AddStaff = () => {
     const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
+    const fetchCompanyCode = localStorage.getItem('companyCode')
 
     setHeaders('Add Staff')
 
@@ -55,7 +56,7 @@ const AddStaff = () => {
                 toast.error(e.response.data.responseMessage)
             }
         }).finally(() => {
-            setisLoading(true)
+            setisLoading(false)
         })
     }, [])
 
@@ -84,7 +85,40 @@ const AddStaff = () => {
 
         },
         validationSchema: addStaff,
-        onSubmit: (values) => { }
+        onSubmit: (values) => { 
+            setisLoading(true)
+            const body = {
+               companyCode:fetchCompanyCode,
+               email: values.email,
+               staffName:`${values.firstName} ${values.lastName}`,
+               phone: values.phone,
+               userType: values.userType,
+               lang:values.lang
+            }
+            axios.post(`${authorizationService}user/create`,body,config)
+            .then((res) => {
+                 console.log()
+                 toast.success(res.data.responseMessage)
+            })
+            .catch((e) => {
+                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/auth/login')
+                    localStorage.clear()
+                }
+                else if (e.response.data.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/')
+                }
+                else {
+                    toast.error(e.response.data.responseMessage)
+                }
+            })
+            .finally(() =>{
+                setisLoading(false)
+            } )
+           
+        }
     })
     return (
         <div className="flex  items-center justify-center lg:mt-0 mt-5">
@@ -120,6 +154,7 @@ const AddStaff = () => {
                     />
                     <SelectField
                         label={`Language`}
+                        name={`Language`}
                         options={lang}
                         onChange={formik.handleChange}
                         value={formik.values.lang}
@@ -129,6 +164,7 @@ const AddStaff = () => {
                     />
                     <SelectField
                       label={`Staff Type`}
+                      name={`Staff Type`}
                       options= {type}
                       onChange={formik.handleChange}
                       value={formik.values.userType}
@@ -139,7 +175,7 @@ const AddStaff = () => {
 
                     <div className='flex justify-between'>
                         <div></div>
-                        <button  className="text-white btn bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > Approve Kyc</button>
+                        <button type='submit' className="text-white btn bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Submit'}</button>
                     </div>
                 </div>
             </form>

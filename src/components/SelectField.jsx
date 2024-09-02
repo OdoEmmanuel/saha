@@ -13,7 +13,7 @@ const SelectField = ({
   }) => {
   return (
     <div className="flex flex-col mb-2 w-full">
-      <label htmlFor="" className="text-[#344054]">
+      <label htmlFor="" className="text-[#344054] mb-2">
         {label}
       </label>
 
