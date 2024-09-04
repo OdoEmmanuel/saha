@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { BiSearch } from "react-icons/bi";
 import { useAuthContext } from '../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { FaPen } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 
@@ -16,6 +17,7 @@ const AllStaff = () => {
     const [filteredUsers, setFilteredUsers] = useState([])
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
+    const navigate = useNavigate()
     setHeaders(`ALL STAFF`)
     useEffect(() => {
         setisLoading(true);
@@ -23,17 +25,19 @@ const AllStaff = () => {
     
     }, [])
 
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'client-id': clientid,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email
+        },
+    };
+
 
     const fetchData = () => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'client-id': clientid,
-                'Content-Type': 'application/json',
-                'request-source': request,
-                'Username': email
-            },
-        };
+       
         axios.post(`${authorizationService}user`,null,config)
         .then((res) => {
              
@@ -59,6 +63,15 @@ const AllStaff = () => {
             setisLoading(false)
         })
     } 
+
+
+    const toggleStaffHandle =  (staffId) => {
+       axios.post(`${authorizationService}user/${staffId}/toggle`,null,config)
+       .then((res) => {
+          toast.success(res.data.responseMessage)
+          fetchData()
+       })
+    }
 
     
     const handleSearchInputChange = (event) => {
@@ -126,10 +139,7 @@ const AllStaff = () => {
 
                                 <thead className="bg-gray-50 text-[#667085] font-[500] ">
                                     <tr className=" ">
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
-                                            {' '}
-                                            #{' '}
-                                        </th>
+                                       
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                            ID
@@ -154,7 +164,7 @@ const AllStaff = () => {
                                             {' '}
                                             Status{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Actions</th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
@@ -184,6 +194,21 @@ const AllStaff = () => {
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {staff.status}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                      <button onClick={() => toggleStaffHandle(staff.id)} className={`${staff.status === 'Disabled'? 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300':'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300' }`} >
+                                                        {staff.status==='Disabled' ? 'Enable' : 'Disable'}
+                                                      </button>
+
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+
+                                                <Link
+                                                        to={`/ui/customer/Veiw-all-customer/${staff.id}`}
+                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                    >
+                                                        <FaPen size={'1.5em'} />
+                                                    </Link>
                                                 </td>
                                                
                                                 
