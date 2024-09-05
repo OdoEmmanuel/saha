@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, tog }) => {
     // if (isActive || isParentOfActive) {
     //   setLastActiveRoute(item.url);
     // }
-    const activeClass = isActive || isParentOfActive ? "px-4 py-2 border-blue-700 backgrou border-l-4  bg-blue-500/[0.7] text-[#fff]  " : ' hover:text-[rgb(79,70,229)] text-gray-500';
+    const activeClass = isActive || isParentOfActive ? "bg-blue-100 py-2 px-2 text-blue-700 rounded-lg font-semibold" : 'text-gray-600  hover:bg-blue-50 hover:text-blue-600'
     const hasChildren = item.children && item.children.length > 0;
     const Open = openDropdown === item.key;
 
@@ -39,7 +39,7 @@ const Sidebar = ({ isOpen, tog }) => {
           <div>
             <button
               onClick={() => toggleDropdown(item.key)}
-              className={`flex items-center justify-between w-full px-4  ${activeClass}`}
+              className={`flex items-center justify-between w-full px-4  rounded-lg transition-colors duration-200 ${activeClass}`}
             >
               <span className="flex items-center">
                 {item.icon && <item.icon className="mr-2" size={18} />}
@@ -53,10 +53,10 @@ const Sidebar = ({ isOpen, tog }) => {
               </ul>
             )} */}
             {Open && (
-              <ul className="ml-10 mt-2">
+              <ul className="mt-1 ml-12 space-y-1">
                 {item.children.map(child => {
                   const isChildActive = location.pathname === child.url;
-                  const childActiveClass = isChildActive ? "text-[rgb(79,70,229)]" : 'text-gray-500 hover:text-[rgb(79,70,229)]';
+                  const childActiveClass = isChildActive ? " text-blue-700 font-semibold" : 'text-gray-600  hover:text-blue-600';
                   return (
                     <li key={child.key}>
                       <Link to={child.url} className={`flex items-center mb-2 ${childActiveClass}`}>
@@ -80,7 +80,7 @@ const Sidebar = ({ isOpen, tog }) => {
   };
 
   return (
-    <div className={` w-64  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] rounded-[5px]  no-scrollbar  hidden`}>
+    <div className={` w-64  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] rounded-[5px]  no-scrollbar   hidden`}>
       <div className='px-4 pt-2' >
         <img src={logo} className='mb-4 '></img>
       </div>

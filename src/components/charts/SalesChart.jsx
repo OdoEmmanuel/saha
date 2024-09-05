@@ -51,7 +51,7 @@ const SalesChart = ({series,labels,title}) => {
   };
   return (
     <>
-      <div className="xl:col-span-2">
+      <div className="xl:col-span-2 ">
         <div className="card h-full">
           <div className="p-5">
             <div className="flex items-start justify-between">

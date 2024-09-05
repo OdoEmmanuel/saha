@@ -10,11 +10,13 @@ import MobileSidebar from "./MobileSidebar";
 import { CiSearch } from "react-icons/ci";
 import { useAuthContext } from "../common/context/useAuthContext";
 import { useNavigate } from "react-router-dom";
+import avatar from "../assets/Avatar.png"
 
 const Navbar = ({ isOpen, tog }) => {
   //     const [isOpen, setIsOpen] = useState(false);
   //   const toggle = () => setIsOpen(!isOpen);
   const name = localStorage.getItem('name')
+  const email = localStorage.getItem('email')
   const { headers } = useAuthContext()
   const navigate = useNavigate()
 
@@ -34,7 +36,7 @@ const Navbar = ({ isOpen, tog }) => {
   }
   return (
     <div className="p-6  w-full    sticky top-0 mb-8   items-center border-2">
-      
+
       <div className="flex justify-between">
 
         <div className="flex items-center text-black ">
@@ -86,27 +88,36 @@ const Navbar = ({ isOpen, tog }) => {
             </button>
           </div> */}
           <div className="relative mr-2">
-            <button className=" group">
-              <div className="flex items-center">
-                <div>
-                  <span className="mr-1 text-black">{name}</span>
-                </div>
-
-                <IoChevronDown />
-              </div>
-              <div className="z-10 bg-[#fff] shadow-[8px_8px_12px_8px_rgba(0,_0,_0,_0.25)]    hidden absolute rounded-lg  w-32 group-focus:block top-full right-0 p-4">
-                <ul className="">
-                  <li className="font-[500] mb-2 text-[15px] text-gray-600 hover:text-gray-800">Welcome!</li>
-                  <li className="flex items-center text-gray-500 hover:text-gray-800" onClick={() => logout()} >
-                    <div>
-                      <IoIosLogOut size={'1.5em'} className="mr-2" />
-                    </div>
-                    Logout
-                  </li>
-                </ul>
-              </div>
-            </button>
+  <button className="group relative">
+    <div className="flex items-center">
+      <div className="flex">
+        <img src={avatar} className="mr-2" alt="Avatar" />
+        <div className="flex flex-col">
+          <span className="font-[500] text-[14px] text-black">{name}</span>
+          <span className="font-[400] text-[12px] text-[#959595]">{email}</span>
+        </div>
+      </div>
+    </div>
+    {/* Dropdown with tooltip shape */}
+    <div className="z-10 bg-white shadow-lg hidden absolute rounded-lg w-32 group-focus:block top-full right-0 mt-4 p-4">
+      {/* Tooltip triangle */}
+      <div className="absolute top-0 right-4 transform -translate-y-full">
+        <div className="w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
+      </div>
+      <ul>
+        <li className="font-[500] mb-2 text-[15px] text-gray-600 hover:text-gray-800">Welcome!</li>
+        <li className="flex items-center text-gray-500 hover:text-gray-800" onClick={() => logout()}>
+          <div>
+            <IoIosLogOut size={'1.5em'} className="mr-2" />
           </div>
+          Logout
+        </li>
+      </ul>
+    </div>
+  </button>
+</div>
+
+
           <div className="lg:hidden flex items-center">
             <button onClick={tog}>
               <TfiAlignJustify />
