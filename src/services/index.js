@@ -41,8 +41,7 @@ const passwordRegExp =
     .string()
     .email('Please enter valid email')
     .required('Please enter email'),
-  firstName: yup.string().required(`Please enter staff's first name`),
-  lastName:yup.string().required(`Please enter staff last name `),
+  Name:yup.string().required(`Please enter staff last name `),
   phone: yup.string().required('Please enter mobile number'),
   lang: yup.string().required('Enter language'),
   userType: yup.string().required('Select Staff type'),
