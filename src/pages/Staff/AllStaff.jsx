@@ -204,7 +204,7 @@ const AllStaff = () => {
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
 
                                                 <Link
-                                                        to={`/ui/customer/Veiw-all-customer/${staff.id}`}
+                                                        to={`/ui/staffs/UpdateStaff/${staff.id}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                     >
                                                         <FaPen size={'1.5em'} />

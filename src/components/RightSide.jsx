@@ -11,6 +11,7 @@ import PendingKyc from '../pages/customers/PendingKyc';
 import ViewPendingKycdetail from '../pages/customers/ViewPendingKyc/ViewPendingKycdetail';
 import AddStaff from '../pages/Staff/AddStaff';
 import AllStaff from '../pages/Staff/AllStaff';
+import UpdateStaff from '../pages/Staff/UpdateStaff';
 
 
 
@@ -39,6 +40,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/customer/pending-kyc/view/:id/*" element={<ViewPendingKycdetail/>}></Route>
             <Route path="/ui/staffs/AddStaff" element={<AddStaff/>}></Route>
             <Route path='/ui/staffs/AllStaff' element={<AllStaff/>}></Route>
+            <Route path='/ui/staffs/UpdateStaff/:id' element={<UpdateStaff/>}></Route>
           </Routes>
      
         

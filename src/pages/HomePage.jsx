@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { IoIosPerson, IoMdCalendar } from "react-icons/io";
+import { IoIosPerson, IoMdCalendar,IoIosPaper  } from "react-icons/io";
+import { MdPeople } from "react-icons/md";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import RevenueChart from '../components/charts/RevenueChart';
@@ -154,7 +155,7 @@ const HomePage = () => {
                     <img src={Ornament13} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] rounded-[5px]'>
-                            <IoIosPerson />
+                            <MdPeople />
                         </div>
                         <p className='text-gray-500'>Total Customers</p>
                         <p className='text-[30px] text-[#000000] font-[500]'>{data.noOfCustomers}</p>
@@ -166,7 +167,7 @@ const HomePage = () => {
                     <img src={Ornament2} />
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
                         <div className='mb-6 bg-gray-500 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
-                            <IoIosPerson />
+                            <IoIosPaper />
                         </div>
                         <p className='text-gray-500'>Total accounts</p>
                         <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfAccounts}</p>
