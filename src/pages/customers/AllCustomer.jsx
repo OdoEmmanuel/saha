@@ -8,6 +8,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 import Checkbox from "../../assets/checkbox.png"
+import { IoMdCalendar } from 'react-icons/io';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 
 function pad(num) {
@@ -20,8 +23,11 @@ function pad(num) {
 
 const AllCustomer = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('')
+    const [dateRange, setDateRange] = useState([
+        new Date(new Date().setMonth(new Date().getMonth() - 5)),
+        new Date()
+    ]);
+    const [startDate, endDate] = dateRange;
     const [users, setUsers] = useState([])
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -37,14 +43,25 @@ const AllCustomer = () => {
     setHeaders('ALL CUSTOMERS')
 
 
-    useEffect(() => {
-
-        fetchData()
-    }, [pageNumber, startDate, endDate, pagesize])
+  
 
     useEffect(() => {
-        calculateMonthPeriod()
-    }, [])
+        if (startDate && endDate) {
+            fetchData().finally(() => setisLoading(false));
+        }
+    }, [dateRange,pageNumber,pagesize]);
+
+    // useEffect(() => {
+    //     calculateMonthPeriod()
+    // }, [])
+
+    const formatDateString = (date) => {
+        if (!date) return '';
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
 
     const calculateMonthPeriod = () => {
@@ -79,7 +96,7 @@ const AllCustomer = () => {
             },
         };
         setisLoading(true)
-        axios.get(`${middleware}user/getUsersBetweenCreationDates?startDate=${startDate} 00:00:00&endDate=${endDate} 00:00:00&pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
+        axios.get(`${middleware}user/getUsersBetweenCreationDates?startDate=${formatDateString(startDate)} 00:00:00&endDate=${formatDateString(endDate)} 00:00:00&pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
             .then((res) => {
                 setUsers(res.data.data.users.content)
                 setTotalPages(res.data.data.users.totalPages)
@@ -108,13 +125,13 @@ const AllCustomer = () => {
     }
 
 
-    const handleStartDateChange = (event) => {
-        setStartDate(event.target.value)
-    }
+    // const handleStartDateChange = (event) => {
+    //     setStartDate(event.target.value)
+    // }
 
-    const handleEndDateChange = (event) => {
-        setEndDate(event.target.value)
-    }
+    // const handleEndDateChange = (event) => {
+    //     setEndDate(event.target.value)
+    // }
 
 
     const formatDate = (dateString) => {
@@ -180,61 +197,29 @@ const AllCustomer = () => {
             )}
             <div className='lg:flex justify-between'>
                 <div className=" flex flex-col rounded-lg ">
-                    <div className="flex md:flex-row flex-col  md:items-center ">
-                        <div className="flex items-center space-x-4 mt-2 md:mt-0 md:ml-4 ">
-                            <label className="text-gray-700">From:</label>
-                            <div className="flex items-center border-2 rounded bg-[#fff]">
-                                <svg
-                                    className="w-5 h-5 text-gray-500 mr-2 ml-1"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16m-7 6h7"
-                                    />
-                                </svg>
-                                <input
-                                    type="date"
-                                    className="bg-transparent border-none text-gray-700 py-2 px-3 outline-none leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 "
-                                    placeholder="Select Date"
-                                    value={startDate}
-                                    onChange={handleStartDateChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-4 mt-2 md:mt-0 md:ml-4 ">
-                            <label className="text-gray-700">To:</label>
-                            <div className="flex items-center border-2 rounded bg-[#fff]">
-                                <svg
-                                    className="w-5 h-5 text-gray-500 mr-2 ml-1"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16m-7 6h7"
-                                    />
-                                </svg>
-                                <input
-                                    type="date"
-                                    className="bg-transparent  border-none outline-none text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                                    placeholder="Select Date"
-                                    value={endDate}
-                                    onChange={handleEndDateChange}
-                                />
-                            </div>
+                <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
+                        <label className="text-gray-700">Date Range:</label>
+                        <div className="relative flex items-center border border-gray-300 rounded px-4 py-2  bg-[#fff] hover:border-blue-500 transition-colors duration-200">
+                            <IoMdCalendar className="text-gray-500 mr-2" size={20} />
+                            <DatePicker
+                                selectsRange={true}
+                                startDate={startDate}
+                                endDate={endDate}
+                                onChange={(update) => {
+                                    setDateRange(update);
+                                }}
+                                isClearable={true}
+                                placeholderText="Select date range"
+                                className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                            />
+                              {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                                <IoMdCalendar className="text-gray-400" size={16} />
+                            </div> */}
                         </div>
                     </div>
                 </div>
 
-                <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center lg:mt-0 mt-5" >
+                <div className="flex  border-2 bg-[#fff] rounded-lg px-4 py-2 items-center lg:mt-0 mt-5" >
                     <div className=' mr-2 text-gray-500'>
                         <BiSearch />
                     </div>
