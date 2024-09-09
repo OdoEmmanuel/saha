@@ -54,8 +54,8 @@ const PendingLoans = () => {
             allowOnlyLoggedInUser: true,
             pageIndex: pageNumber,
             pageSize: pagesize,
-          }
-    
+        }
+
         setisLoading(true)
         axios.post(`${authorizationService}approvals/filter`, body, config)
             .then((res) => {
@@ -94,68 +94,68 @@ const PendingLoans = () => {
         const minutes = String(date.getMinutes()).padStart(2, '0')
         const seconds = String(date.getSeconds()).padStart(2, '0')
         return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds}`
-      }
+    }
 
 
-      const bookandUnbook = async(reference,status) => {
+    const bookandUnbook = async (reference, status) => {
         try {
-            if(status === 'booked'){
-               axios.post(`${authorizationService}approvals/${reference}/unbook`,null,config)
-               .then((res) => {
-                toast.success(`${res.data.responseMessage}`)
-                fetchData()
-               })
-               .catch((e) => {
-                console.log(e.response.data.responseMessage)
+            if (status === 'booked') {
+                axios.post(`${authorizationService}approvals/${reference}/unbook`, null, config)
+                    .then((res) => {
+                        toast.success(`${res.data.responseMessage}`)
+                        fetchData()
+                    })
+                    .catch((e) => {
+                        console.log(e.response.data.responseMessage)
 
-                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/auth/login')
-                    localStorage.clear()
-                }
-                else if (e.response.data.responseMessage === 'Insufficient permission') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/')
-                }
-                else {
-                    toast.error(e.response.data.responseMessage)
-                }
-            })
-            .finally(() => {
-                setisLoading(false)
-            })
+                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/auth/login')
+                            localStorage.clear()
+                        }
+                        else if (e.response.data.responseMessage === 'Insufficient permission') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/')
+                        }
+                        else {
+                            toast.error(e.response.data.responseMessage)
+                        }
+                    })
+                    .finally(() => {
+                        setisLoading(false)
+                    })
             }
 
-            else{
-                axios.post(`${authorizationService}approvals/${reference}/book`,null,config)
-               .then((res) => {
-                toast.success(`${res.data.responseMessage}`)
-                fetchData()
-               })
-               .catch((e) => {
-                console.log(e.response.data.responseMessage)
+            else {
+                axios.post(`${authorizationService}approvals/${reference}/book`, null, config)
+                    .then((res) => {
+                        toast.success(`${res.data.responseMessage}`)
+                        fetchData()
+                    })
+                    .catch((e) => {
+                        console.log(e.response.data.responseMessage)
 
-                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/auth/login')
-                    localStorage.clear()
-                }
-                else if (e.response.data.responseMessage === 'Insufficient permission') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/')
-                }
-                else {
-                    toast.error(e.response.data.responseMessage)
-                }
-            })
-            .finally(() => {
-                setisLoading(false)
-            })
+                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/auth/login')
+                            localStorage.clear()
+                        }
+                        else if (e.response.data.responseMessage === 'Insufficient permission') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/')
+                        }
+                        else {
+                            toast.error(e.response.data.responseMessage)
+                        }
+                    })
+                    .finally(() => {
+                        setisLoading(false)
+                    })
             }
         } catch (error) {
-            
+
         }
-      }
+    }
 
     const handleNextPage = () => {
         setPageNumber(pageNumber + 1)
@@ -186,9 +186,9 @@ const PendingLoans = () => {
 
                 return (
                     user.customerEmail
-                    .toLowerCase()
-                    .includes(searchQuery.toLowerCase()) ||
-                  user.approvalStatus.toLowerCase().includes(searchQuery.toLowerCase())
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                    user.approvalStatus.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
             setFilteredUsers(filteredUsers)
@@ -196,8 +196,8 @@ const PendingLoans = () => {
     }, [searchQuery, users])
 
     let idCounter = pageNumber * pagesize + 1
-  return (
-    <div className='flex flex-col'>
+    return (
+        <div className='flex flex-col'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -209,21 +209,43 @@ const PendingLoans = () => {
 
                 </div>
 
-                <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center lg:mt-0 mt-5 p-2" >
-                    <div className=' mr-2 text-gray-500'>
-                        <BiSearch />
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="Search by email "
-                        value={searchQuery}
-                        className=" bg-inherit rounded-md outline-none"
-                        onChange={handleSearchInputChange}
-                    />
-                </div>
+
             </div>
 
             <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
+                <div className="flex justify-between m-2">
+                    <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center my-4 p-2" >
+                        <div className=' mr-2 text-gray-500'>
+                            <BiSearch />
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search by email "
+                            value={searchQuery}
+                            className=" bg-inherit rounded-md outline-none"
+                            onChange={handleSearchInputChange}
+                        />
+                    </div>
+                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                        <div>
+                            <IoFilter />
+                        </div>
+                        <select
+                            value={pagesize}
+                            onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                            className='outline-none'
+                        >
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+
+                </div>
 
                 <div className="overflow-x-scroll no-scrollbar">
                     <div className="min-w-full inline-block align-middle">
@@ -238,7 +260,7 @@ const PendingLoans = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                             Email{' '}
+                                            Email{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
@@ -276,7 +298,7 @@ const PendingLoans = () => {
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             Action (s){' '}
-                                        </th>                                      
+                                        </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
@@ -318,10 +340,10 @@ const PendingLoans = () => {
                                                 </td>
 
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                {formatDateString(staff.createdAt)}
+                                                    {formatDateString(staff.createdAt)}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ?  'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300':'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300'}`}>
+                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300' : 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
                                                         }
@@ -352,33 +374,12 @@ const PendingLoans = () => {
 
 
                 <div className='flex justify-between p-4'>
-                    <div className="flex justify-between">
-                        <div></div>
-                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
-                            <div>
-                                <IoFilter />
-                            </div>
-                            <select
-                                value={pagesize}
-                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                                className='outline-none'
-                            >
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="50">50</option>
-                            </select>
-                        </div>
-
-                    </div>
+                    <div></div>
                     <div className="flex justify-end items-center">
                         <button
                             className={`mr-2 ${pageNumber === 0
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'cursor-pointer'
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
                                 }`}
                             // onClick={() => onPageChange(currentPage - 1)}
                             onClick={handlePreviousPage}
@@ -398,21 +399,21 @@ const PendingLoans = () => {
                                     d="M15 19l-7-7 7-7"
                                 />
                             </svg>
-                            Prev
+                            
                         </button>
-                        <div>
-                            {pageNumber + 1} of {totalPages}
+                        <div className='border-2 px-2 rounded-md'>
+                            {pageNumber + 1}
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'cursor-pointer'
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
                                 }`}
                             onClick={handleNextPage}
                             // disabled={currentPage === totalPages}
                             disabled={pageNumber + 1 === totalPages}
                         >
-                            Next
+                            
                             <svg
                                 className="w-6 h-6 inline-block align-middle"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -437,7 +438,7 @@ const PendingLoans = () => {
 
             </div>
         </div>
-  )
+    )
 }
 
 export default PendingLoans

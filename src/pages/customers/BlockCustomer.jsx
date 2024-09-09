@@ -69,10 +69,10 @@ const BlockCustomer = () => {
   }
 
 
-  
+
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value)
-}
+  }
 
   useEffect(() => {
     if (searchQuery.trim() === '') {
@@ -105,34 +105,34 @@ const BlockCustomer = () => {
     const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const year = date.getFullYear()
     return `${day}-${month}-${year}`
-}
+  }
 
   const handleBlockandUnblockUser = (id) => {
 
-   
-        axios.put(`${middleware}unBlockCustomerAccount?customerId=${id}`, null, config)
-            .then((res) => {
-                toast.success(res.data.data.responseData)
-                fetchData()
-            }).catch((e) => {
-                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/auth/login')
-                    localStorage.clear()
-                }
-                else if (e.response.data.responseMessage === 'Insufficient permission') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/')
-                }
-                else {
-                    toast.error(e.response.data.responseMessage)
-                }
-            })
-    
 
-}
+    axios.put(`${middleware}unBlockCustomerAccount?customerId=${id}`, null, config)
+      .then((res) => {
+        toast.success(res.data.data.responseData)
+        fetchData()
+      }).catch((e) => {
+        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+          toast.error(e.response.data.responseMessage)
+          navigate('/auth/login')
+          localStorage.clear()
+        }
+        else if (e.response.data.responseMessage === 'Insufficient permission') {
+          toast.error(e.response.data.responseMessage)
+          navigate('/')
+        }
+        else {
+          toast.error(e.response.data.responseMessage)
+        }
+      })
 
-let idCounter = pageNumber * pagesize + 1
+
+  }
+
+  let idCounter = pageNumber * pagesize + 1
 
 
 
@@ -146,21 +146,29 @@ let idCounter = pageNumber * pagesize + 1
       )}
       <div className='flex justify-between'>
         <div></div>
-        <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 items-center">
-          <div className=' mr-2 text-gray-500'>
-            <BiSearch />
-          </div>
-          <input
-            type="text"
-            placeholder="Search by email "
-            value={searchQuery}
-            className=" bg-inherit rounded-md outline-none"
-            onChange={handleSearchInputChange}
-          />
-        </div>
+
       </div>
 
       <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
+
+        <div className='flex justify-between my-4 m-2'>
+          <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 items-center">
+            <div className=' mr-2 text-gray-500'>
+              <BiSearch />
+            </div>
+            <input
+              type="text"
+              placeholder="Search by email "
+              value={searchQuery}
+              className=" bg-inherit rounded-md outline-none"
+              onChange={handleSearchInputChange}
+            />
+
+          </div>
+          <div></div>
+        </div>
+
+
 
         <div className="overflow-x-scroll no-scrollbar">
           <div className="min-w-full inline-block align-middle">
@@ -211,7 +219,7 @@ let idCounter = pageNumber * pagesize + 1
                       NIN{' '}
                     </th>
                     <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Actions</th>
-                    
+
                   </tr>
                 </thead>
 
@@ -254,11 +262,11 @@ let idCounter = pageNumber * pagesize + 1
                         <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                           {staff.nin}
                         </td>
-                        
+
                         <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                           <button onClick={() => handleBlockandUnblockUser(staff.id)} className={` bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300`}>
-                             Unblock Customer
-                            
+                            Unblock Customer
+
                           </button>
                         </td>
                       </tr>

@@ -117,32 +117,51 @@ const PendingKyc = () => {
     }
 
     let idCounter = pageNumber * pagesize + 1
-  return (
-    <div className='flex flex-col'>
+    return (
+        <div className='flex flex-col'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className='flex justify-between'>
-                <div></div>
-                <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 items-center">
-                    <div className=' mr-2 text-gray-500'>
-                        <BiSearch />
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="Search by email "
-                        value={searchQuery}
-                        className=" bg-inherit rounded-md outline-none"
-                        onChange={handleSearchInputChange}
-                    />
-                </div>
-            </div>
+            
 
             <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
+                <div className="flex justify-between m-2">
+                    <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 my-4 items-center">
+                        <div className=' mr-2 text-gray-500'>
+                            <BiSearch />
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search by email "
+                            value={searchQuery}
+                            className=" bg-inherit rounded-md outline-none"
+                            onChange={handleSearchInputChange}
+                        />
+                    </div>
 
+                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                        <div>
+                            <IoFilter />
+                        </div>
+                        <select
+                            value={pagesize}
+                            onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                            className='outline-none'
+                        >
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+
+                </div>
                 <div className="overflow-x-scroll no-scrollbar">
                     <div className="min-w-full inline-block align-middle">
                         <div className="">
@@ -192,7 +211,7 @@ const PendingKyc = () => {
                                             NIN{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
-                                        
+
                                     </tr>
                                 </thead>
 
@@ -236,14 +255,14 @@ const PendingKyc = () => {
                                                     {staff.nin}
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                <Link
+                                                    <Link
                                                         to={`/ui/customer/pending-kyc/view/${staff.id}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                     >
                                                         <IoEyeSharp size={'1.5em'} />
                                                     </Link>
                                                 </td>
-                                                
+
                                             </tr>
                                         ))}
                                     </tbody>
@@ -261,33 +280,12 @@ const PendingKyc = () => {
 
 
                 <div className='flex justify-between p-4'>
-                    <div className="flex justify-between">
-                        <div></div>
-                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
-                            <div>
-                                <IoFilter />
-                            </div>
-                            <select
-                                value={pagesize}
-                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                                className='outline-none'
-                            >
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="50">50</option>
-                            </select>
-                        </div>
-
-                    </div>
+                    <div></div>
                     <div className="flex justify-end items-center">
                         <button
                             className={`mr-2 ${pageNumber === 0
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'cursor-pointer'
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
                                 }`}
                             // onClick={() => onPageChange(currentPage - 1)}
                             onClick={handlePreviousPage}
@@ -307,21 +305,21 @@ const PendingKyc = () => {
                                     d="M15 19l-7-7 7-7"
                                 />
                             </svg>
-                            Prev
+                            
                         </button>
-                        <div>
-                            {pageNumber + 1} of {totalPages}
+                        <div className='border-2 px-2 rounded-md'>
+                            {pageNumber + 1} 
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'cursor-pointer'
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
                                 }`}
                             onClick={handleNextPage}
                             // disabled={currentPage === totalPages}
                             disabled={pageNumber + 1 === totalPages}
                         >
-                            Next
+                            
                             <svg
                                 className="w-6 h-6 inline-block align-middle"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -346,7 +344,7 @@ const PendingKyc = () => {
 
             </div>
         </div>
-  )
+    )
 }
 
 export default PendingKyc

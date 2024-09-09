@@ -43,13 +43,13 @@ const AllCustomer = () => {
     setHeaders('ALL CUSTOMERS')
 
 
-  
+
 
     useEffect(() => {
         if (startDate && endDate) {
             fetchData().finally(() => setisLoading(false));
         }
-    }, [dateRange,pageNumber,pagesize]);
+    }, [dateRange, pageNumber, pagesize]);
 
     // useEffect(() => {
     //     calculateMonthPeriod()
@@ -196,44 +196,71 @@ const AllCustomer = () => {
                 </div>
             )}
             <div className='lg:flex justify-between'>
-                <div className=" flex flex-col rounded-lg ">
-                <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
-                        <label className="text-gray-700">Date Range:</label>
-                        <div className="relative flex items-center border border-gray-300 rounded px-4 py-2  bg-[#fff] hover:border-blue-500 transition-colors duration-200">
-                            <IoMdCalendar className="text-gray-500 mr-2" size={20} />
-                            <DatePicker
-                                selectsRange={true}
-                                startDate={startDate}
-                                endDate={endDate}
-                                onChange={(update) => {
-                                    setDateRange(update);
-                                }}
-                                isClearable={true}
-                                placeholderText="Select date range"
-                                className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
-                            />
-                              {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                                <IoMdCalendar className="text-gray-400" size={16} />
-                            </div> */}
-                        </div>
-                    </div>
-                </div>
 
-                <div className="flex  border-2 bg-[#fff] rounded-lg px-4 py-2 items-center lg:mt-0 mt-5" >
-                    <div className=' mr-2 text-gray-500'>
-                        <BiSearch />
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="Search by email "
-                        value={searchQuery}
-                        className=" bg-inherit rounded-md outline-none"
-                        onChange={handleSearchInputChange}
-                    />
-                </div>
+
+
             </div>
 
             <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
+
+                <div className="flex justify-between m-2">
+                    <div className=" flex flex-col rounded-lg ">
+                        <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
+
+                            <div className="relative flex items-center border border-gray-300 rounded px-4 py-2  bg-[#fff] hover:border-blue-500 transition-colors duration-200">
+                                <IoMdCalendar className="text-gray-500 mr-2" size={20} />
+                                <DatePicker
+                                    selectsRange={true}
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    onChange={(update) => {
+                                        setDateRange(update);
+                                    }}
+                                    isClearable={true}
+                                    placeholderText="Select date range"
+                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                                />
+                                {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                                <IoMdCalendar className="text-gray-400" size={16} />
+                            </div> */}
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex justify-between'>
+                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                            <div>
+                                <IoFilter />
+                            </div>
+                            <select
+                                value={pagesize}
+                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                                className='outline-none'
+                            >
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div className="flex  border-2 bg-[#fff] rounded-lg px-4 py-2   items-center my-4" >
+                            <div className=' mr-2 text-gray-500'>
+                                <BiSearch />
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Search by email "
+                                value={searchQuery}
+                                className=" bg-inherit rounded-md outline-none"
+                                onChange={handleSearchInputChange}
+                            />
+                        </div>
+                    </div>
+
+
+                </div>
 
                 <div className="overflow-x-scroll no-scrollbar">
                     <div className="min-w-full inline-block align-middle">
@@ -296,7 +323,7 @@ const AllCustomer = () => {
                                             >
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {idCounter++}
-                                                   
+
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {staff.firstName}
@@ -351,33 +378,13 @@ const AllCustomer = () => {
 
 
                 <div className='flex justify-between p-4'>
-                    <div className="flex justify-between">
-                        <div></div>
-                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
-                            <div>
-                                <IoFilter />
-                            </div>
-                            <select
-                                value={pagesize}
-                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                                className='outline-none'
-                            >
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="50">50</option>
-                            </select>
-                        </div>
+                    <div></div>
 
-                    </div>
-                    <div className="flex justify-end items-center">
+                    <div className="flex justify-end items-center ">
                         <button
                             className={`mr-2 ${pageNumber === 0
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'cursor-pointer'
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
                                 }`}
                             // onClick={() => onPageChange(currentPage - 1)}
                             onClick={handlePreviousPage}
@@ -397,21 +404,21 @@ const AllCustomer = () => {
                                     d="M15 19l-7-7 7-7"
                                 />
                             </svg>
-                            Prev
+                            
                         </button>
-                        <div>
-                            {pageNumber + 1} of {totalPages}
+                        <div className='border-2 px-2 rounded-md'>
+                            {pageNumber + 1} 
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'cursor-pointer'
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
                                 }`}
                             onClick={handleNextPage}
                             // disabled={currentPage === totalPages}
                             disabled={pageNumber + 1 === totalPages}
                         >
-                            Next
+                            
                             <svg
                                 className="w-6 h-6 inline-block align-middle"
                                 xmlns="http://www.w3.org/2000/svg"

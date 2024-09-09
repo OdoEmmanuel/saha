@@ -17,6 +17,7 @@ import AllLoanDetails from '../pages/LoanApproval/ViewAllLoan/AllLoanDetails';
 import PendingLoans from '../pages/LoanApproval/PendingLoans';
 import PendingLoanDetails from '../pages/LoanApproval/ViewPending/PendingLoanDetails';
 import ActiveLoan from '../pages/LoanApproval/ActiveLoan';
+import LoanAdministration from '../pages/LoanApproval/LoanAdministration';
 
 
 
@@ -50,6 +51,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/LoanApproval/pendingloans' element={<PendingLoans/>}></Route>
             <Route path='/ui/LoanApproval/pendingloans/:id/*' element={<PendingLoanDetails/>}></Route>
             <Route path='/ui/LoanApproval/activeloans'element={<ActiveLoan/>}></Route>
+            <Route path='/ui/LoanApproval/loanAdminisration' element={<LoanAdministration/>}></Route>
           </Routes>
      
         
