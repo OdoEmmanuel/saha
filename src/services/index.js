@@ -46,3 +46,9 @@ const passwordRegExp =
   lang: yup.string().required('Enter language'),
   userType: yup.string().required('Select Staff type'),
   })
+
+  export const loanPurpose = yup.object().shape({
+    description:yup.string().required('enter description'),
+    purpose: yup.string().required('enter your purpose')
+
+  })

@@ -18,6 +18,9 @@ import PendingLoans from '../pages/LoanApproval/PendingLoans';
 import PendingLoanDetails from '../pages/LoanApproval/ViewPending/PendingLoanDetails';
 import ActiveLoan from '../pages/LoanApproval/ActiveLoan';
 import LoanAdministration from '../pages/LoanApproval/LoanAdministration';
+import LoanPurpose from '../pages/LoanManagement/LoanPurpose';
+import AddLoanPurpose from '../pages/LoanManagement/AddLoanPurpose';
+import UpdateLoanPuropse from '../pages/LoanManagement/UpdateLoanPuropse';
 
 
 
@@ -52,6 +55,9 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/LoanApproval/pendingloans/:id/*' element={<PendingLoanDetails/>}></Route>
             <Route path='/ui/LoanApproval/activeloans'element={<ActiveLoan/>}></Route>
             <Route path='/ui/LoanApproval/loanAdminisration' element={<LoanAdministration/>}></Route>
+            <Route path='/ui/tables/loan-purpose' element={<LoanPurpose/>}></Route>
+            <Route path='/ui/tables/add-loan-purpose' element={<AddLoanPurpose/>}></Route>
+            <Route path='/ui/tables/edit-loan-purpose/:id' element={<UpdateLoanPuropse/>}></Route>
           </Routes>
      
         

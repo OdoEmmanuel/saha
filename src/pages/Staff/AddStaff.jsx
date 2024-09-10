@@ -120,8 +120,17 @@ const AddStaff = () => {
         }
     })
     return (
-        <div className="flex  items-center justify-center lg:mt-0 mt-2">
-            <form className='bg-[#fff] rounded-lg shadow-md p-4 w-[500px] ' onSubmit={formik.handleSubmit}>
+        <div className=" bg-gray-100 ">
+              {isLoading && (
+                <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
+                    {" "}
+                    <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
+                </div>
+            )}
+              <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+              <div className="px-6 py-4">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Staff</h2>
+              <form className="space-y-1" onSubmit={formik.handleSubmit}>
                 <div className='flex flex-col gap-4'>
 
                 <InputField2
@@ -180,8 +189,12 @@ const AddStaff = () => {
                     </div>
                 </div>
             </form>
+              </div>
+          
 
         </div>
+        </div>
+      
     )
 }
 
