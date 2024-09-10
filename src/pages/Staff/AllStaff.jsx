@@ -114,8 +114,11 @@ const AllStaff = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className='flex justify-between'>
-                <div></div>
+         
+
+            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
+            <div className='flex justify-between m-4'>
+                
                 <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 items-center">
                     <div className=' mr-2 text-gray-500'>
                         <BiSearch />
@@ -129,8 +132,6 @@ const AllStaff = () => {
                     />
                 </div>
             </div>
-
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
 
                 <div className="overflow-x-scroll no-scrollbar">
                     <div className="min-w-full inline-block align-middle">

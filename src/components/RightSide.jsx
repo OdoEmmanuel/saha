@@ -12,7 +12,15 @@ import ViewPendingKycdetail from '../pages/customers/ViewPendingKyc/ViewPendingK
 import AddStaff from '../pages/Staff/AddStaff';
 import AllStaff from '../pages/Staff/AllStaff';
 import UpdateStaff from '../pages/Staff/UpdateStaff';
-
+import AllLoan from '../pages/LoanApproval/AllLoan';
+import AllLoanDetails from '../pages/LoanApproval/ViewAllLoan/AllLoanDetails';
+import PendingLoans from '../pages/LoanApproval/PendingLoans';
+import PendingLoanDetails from '../pages/LoanApproval/ViewPending/PendingLoanDetails';
+import ActiveLoan from '../pages/LoanApproval/ActiveLoan';
+import LoanAdministration from '../pages/LoanApproval/LoanAdministration';
+import LoanPurpose from '../pages/LoanManagement/LoanPurpose/LoanPurpose';
+import AddLoanPurpose from '../pages/LoanManagement/LoanPurpose/AddLoanPurpose';
+import UpdateLoanPuropse from '../pages/LoanManagement/LoanPurpose/UpdateLoanPuropse';
 
 
 
@@ -41,6 +49,15 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/staffs/AddStaff" element={<AddStaff/>}></Route>
             <Route path='/ui/staffs/AllStaff' element={<AllStaff/>}></Route>
             <Route path='/ui/staffs/UpdateStaff/:id' element={<UpdateStaff/>}></Route>
+            <Route path='/ui/LoanApproval/GetAllLoans' element={<AllLoan/>}></Route>
+            <Route path='/ui/LoanApproval/:id/details/*' element={<AllLoanDetails/>}></Route>
+            <Route path='/ui/LoanApproval/pendingloans' element={<PendingLoans/>}></Route>
+            <Route path='/ui/LoanApproval/pendingloans/:id/*' element={<PendingLoanDetails/>}></Route>
+            <Route path='/ui/LoanApproval/activeloans'element={<ActiveLoan/>}></Route>
+            <Route path='/ui/LoanApproval/loanAdminisration' element={<LoanAdministration/>}></Route>
+            <Route path='/ui/tables/loan-purpose' element={<LoanPurpose/>}></Route>
+            <Route path='/ui/tables/add-loan-purpose' element={<AddLoanPurpose/>}></Route>
+            <Route path='/ui/tables/edit-loan-purpose/:id' element={<UpdateLoanPuropse/>}></Route>
           </Routes>
      
         

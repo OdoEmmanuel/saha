@@ -8,98 +8,59 @@ import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 import Checkbox from "../../assets/checkbox.png"
-import { IoMdCalendar } from 'react-icons/io';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 
-
-function pad(num) {
-    var s = '' + num
-    if (num < 10) {
-        s = '0' + num
-    }
-    return s
-}
-
-const AllCustomer = () => {
+const LoanAdministration = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
-    const [dateRange, setDateRange] = useState([
-        new Date(new Date().setMonth(new Date().getMonth() - 5)),
-        new Date()
-    ]);
-    const [startDate, endDate] = dateRange;
-    const [users, setUsers] = useState([])
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('')
     const [pagesize, SetPageSize] = useState(10)
     const [totalPages, setTotalPages] = useState(1)
+    const [users, setUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState([])
-    const [element, setElement] = useState(0)
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
-    const name = localStorage.getItem('name')
-    setHeaders('ALL CUSTOMERS')
 
+    setHeaders('Loan Administration')
 
-
-
-    useEffect(() => {
-        if (startDate && endDate) {
-            fetchData().finally(() => setisLoading(false));
-        }
-    }, [dateRange, pageNumber, pagesize]);
-
-    // useEffect(() => {
-    //     calculateMonthPeriod()
-    // }, [])
-
-    const formatDateString = (date) => {
-        if (!date) return '';
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'client-id': clientid,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email
+        },
     };
 
+    useEffect(() => {
 
-    const calculateMonthPeriod = () => {
-        const currentDate = new Date()
-        const endMonth = currentDate.getMonth()
-        const endYear = currentDate.getFullYear()
-        const startMonth = endMonth === 0 ? 11 : endMonth - 1
-        const startYear = startMonth === 11 ? endYear - 1 : endYear
+        setisLoading(true)
+        fetchData()
 
-        const formattedStartDate = `${startYear}-${String(startMonth + 1).padStart(
-            2,
-            '0'
-        )}-01`
-        const formattedEndDate = `${endYear}-${String(endMonth + 1).padStart(
-            2,
-            '0'
-        )}-${pad(currentDate.getDate())}`
-
-        setStartDate(formattedStartDate)
-        setEndDate(formattedEndDate)
-    }
+    }, [pageNumber, pagesize])
 
 
     const fetchData = async () => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'client-id': clientid,
-                'Content-Type': 'application/json',
-                'request-source': request,
-                'Username': email
-            },
-        };
+        const requestbody = {
+            approvalItemType: 'Loan',
+            companyCode: 'GTI',
+            currentApprovalStage: null,
+            reference: null,
+            approvalStatus: null,
+            startDate: null,
+            endDate: null,
+            allowOnlyLoggedInUser: false,
+            pageIndex: pageNumber,
+            pageSize: pagesize,
+        }
+
         setisLoading(true)
-        axios.get(`${middleware}user/getUsersBetweenCreationDates?startDate=${formatDateString(startDate)} 00:00:00&endDate=${formatDateString(endDate)} 00:00:00&pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
+        axios.post(`${authorizationService}approvals/filter`, requestbody, config)
             .then((res) => {
-                setUsers(res.data.data.users.content)
-                setTotalPages(res.data.data.users.totalPages)
+                setUsers(res.data.data)
+                setTotalPages(res.data.totalPages)
                 setElement(res.data.data.users.numberOfElements)
 
             })
@@ -124,25 +85,87 @@ const AllCustomer = () => {
             })
     }
 
-
-    // const handleStartDateChange = (event) => {
-    //     setStartDate(event.target.value)
-    // }
-
-    // const handleEndDateChange = (event) => {
-    //     setEndDate(event.target.value)
-    // }
-
-
-    const formatDate = (dateString) => {
+    const formatDateString = (dateString) => {
         const date = new Date(dateString)
-        const day = date.getDate().toString().padStart(2, '0')
-        const month = (date.getMonth() + 1).toString().padStart(2, '0')
         const year = date.getFullYear()
-        return `${day}-${month}-${year}`
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        const seconds = String(date.getSeconds()).padStart(2, '0')
+        return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds}`
     }
 
 
+    const bookandUnbook = async (reference, status) => {
+        try {
+            if (status === 'booked') {
+                axios.post(`${authorizationService}approvals/${reference}/unbook`, null, config)
+                    .then((res) => {
+                        toast.success(`${res.data.responseMessage}`)
+                        fetchData()
+                    })
+                    .catch((e) => {
+                        console.log(e.response.data.responseMessage)
+
+                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/auth/login')
+                            localStorage.clear()
+                        }
+                        else if (e.response.data.responseMessage === 'Insufficient permission') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/')
+                        }
+                        else {
+                            toast.error(e.response.data.responseMessage)
+                        }
+                    })
+                    .finally(() => {
+                        setisLoading(false)
+                    })
+            }
+
+            else {
+                axios.post(`${authorizationService}approvals/${reference}/book`, null, config)
+                    .then((res) => {
+                        toast.success(`${res.data.responseMessage}`)
+                        fetchData()
+                    })
+                    .catch((e) => {
+                        console.log(e.response.data.responseMessage)
+
+                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/auth/login')
+                            localStorage.clear()
+                        }
+                        else if (e.response.data.responseMessage === 'Insufficient permission') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/')
+                        }
+                        else {
+                            toast.error(e.response.data.responseMessage)
+                        }
+                    })
+                    .finally(() => {
+                        setisLoading(false)
+                    })
+            }
+        } catch (error) {
+
+        }
+    }
+
+    const handleNextPage = () => {
+        setPageNumber(pageNumber + 1)
+    }
+
+    const handlePreviousPage = () => {
+        if (pageNumber > 0) {
+            setPageNumber(pageNumber - 1)
+        }
+    }
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
@@ -156,36 +179,23 @@ const AllCustomer = () => {
             // Filter users based on search query
             const filteredUsers = users.filter((user) => {
                 if (
-                    user.email === null ||
-                    user.firstName === null ||
-                    user.lastName === null
+                    user.customerEmail === null || user.approvalStatus === null
                 ) {
                     return false
                 }
 
                 return (
-                    user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    user.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+                    user.customerEmail
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                    user.approvalStatus.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
             setFilteredUsers(filteredUsers)
         }
     }, [searchQuery, users])
 
-
-    const handleNextPage = () => {
-        setPageNumber(pageNumber + 1)
-    }
-
-    const handlePreviousPage = () => {
-        if (pageNumber > 0) {
-            setPageNumber(pageNumber - 1)
-        }
-    }
-
     let idCounter = pageNumber * pagesize + 1
-
 
     return (
         <div className='flex flex-col'>
@@ -196,69 +206,45 @@ const AllCustomer = () => {
                 </div>
             )}
             <div className='lg:flex justify-between'>
+                <div className=" flex flex-col rounded-lg ">
 
+                </div>
 
 
             </div>
 
             <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
-
                 <div className="flex justify-between m-2">
-                    <div className=" flex flex-col rounded-lg ">
-                        <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
-
-                            <div className="relative flex items-center border border-gray-300 rounded px-4 py-2  bg-[#fff] hover:border-blue-500 transition-colors duration-200">
-                                <IoMdCalendar className="text-gray-500 mr-2" size={20} />
-                                <DatePicker
-                                    selectsRange={true}
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    onChange={(update) => {
-                                        setDateRange(update);
-                                    }}
-                                    isClearable={true}
-                                    placeholderText="Select date range"
-                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
-                                />
-                                {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                                <IoMdCalendar className="text-gray-400" size={16} />
-                            </div> */}
-                            </div>
+                    <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center my-4 p-2" >
+                        <div className=' mr-2 text-gray-500'>
+                            <BiSearch />
                         </div>
+                        <input
+                            type="text"
+                            placeholder="Search by email "
+                            value={searchQuery}
+                            className=" bg-inherit rounded-md outline-none"
+                            onChange={handleSearchInputChange}
+                        />
                     </div>
-                    <div className='flex justify-between'>
-                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
-                            <div>
-                                <IoFilter />
-                            </div>
-                            <select
-                                value={pagesize}
-                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                                className='outline-none'
-                            >
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="50">50</option>
-                            </select>
+                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                        <div>
+                            <IoFilter />
                         </div>
-                        <div className="flex  border-2 bg-[#fff] rounded-lg px-4 py-2   items-center my-4" >
-                            <div className=' mr-2 text-gray-500'>
-                                <BiSearch />
-                            </div>
-                            <input
-                                type="text"
-                                placeholder="Search by email "
-                                value={searchQuery}
-                                className=" bg-inherit rounded-md outline-none"
-                                onChange={handleSearchInputChange}
-                            />
-                        </div>
+                        <select
+                            value={pagesize}
+                            onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                            className='outline-none'
+                        >
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
                     </div>
-
 
                 </div>
 
@@ -275,40 +261,44 @@ const AllCustomer = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            First Name{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
-                                            {' '}
-                                            Last Name{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
-                                            {' '}
                                             Email{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            BVN{' '}
+                                            Stage{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
+                                            {' '}
+                                            Phone{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            MOBILE{' '}
+                                            loan Amount{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Gender{' '}
+                                            Customer Id{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            DOB{' '}
+                                            Reference{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            Approval Status{' '}
                                         </th>
 
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            State{' '}
+                                            Monthly Income{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            NIN{' '}
+                                            Created At{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            Action (s){' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
                                     </tr>
@@ -326,36 +316,43 @@ const AllCustomer = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.firstName}
+                                                    {staff.customerEmail}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.lastName}
+                                                    {staff.customerPhone}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.email}
+                                                    {staff.currentApprovalStage}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.bvn}
+                                                    {staff.body.loanAmount}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.mobilePhone}
+                                                    {staff.body.customerId}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.gender}
+                                                    {staff.reference}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {formatDate(staff.dateOfBirth)}
+                                                    {staff.approvalStatus}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                    {staff.body.monthlyIncome}
                                                 </td>
 
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.stateOfResidence}
+                                                    {formatDateString(staff.createdAt)}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.nin}
+                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300' : 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300'}`}>
+                                                        {
+                                                            staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
+                                                        }
+                                                    </button>
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Link
-                                                        to={`/ui/customer/Veiw-all-customer/${staff.id}`}
+                                                        to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                     >
                                                         <IoEyeSharp size={'1.5em'} />
@@ -379,8 +376,7 @@ const AllCustomer = () => {
 
                 <div className='flex justify-between p-4'>
                     <div></div>
-
-                    <div className="flex justify-end items-center ">
+                    <div className="flex justify-end items-center">
                         <button
                             className={`mr-2 ${pageNumber === 0
                                 ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
@@ -406,8 +402,8 @@ const AllCustomer = () => {
                             </svg>
                             
                         </button>
-                        <div className='border-2 px-2 rounded-md'>
-                            {pageNumber + 1} 
+                        <div>
+                            {pageNumber + 1}
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages
@@ -418,7 +414,7 @@ const AllCustomer = () => {
                             // disabled={currentPage === totalPages}
                             disabled={pageNumber + 1 === totalPages}
                         >
-                            
+                        
                             <svg
                                 className="w-6 h-6 inline-block align-middle"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -446,4 +442,4 @@ const AllCustomer = () => {
     )
 }
 
-export default AllCustomer
+export default LoanAdministration
