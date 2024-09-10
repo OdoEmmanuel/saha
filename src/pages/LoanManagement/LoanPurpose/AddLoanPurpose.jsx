@@ -3,19 +3,18 @@ import { PulseLoader } from "react-spinners";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { BiSearch } from "react-icons/bi";
-import { useAuthContext } from '../../common/context/useAuthContext';
-import { useNavigate, Link,useParams } from 'react-router-dom';
+import { useAuthContext } from '../../../common/context/useAuthContext';
+import { useNavigate, Link } from 'react-router-dom';
 import { FaPen } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 import { useFormik } from "formik";
-import InputField2 from '../../components/InputField2';
-import SelectField from '../../components/SelectField';
+import InputField2 from '../../../components/InputField2';
+import SelectField from '../../../components/SelectField';
 import { BiArrowBack } from "react-icons/bi";
-import { loanPurpose } from '../../services';
+import { loanPurpose } from '../../../services';
 
-const UpdateLoanPuropse = () => {
-
+const AddLoanPurpose = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [languages, setLanguages] = useState([])
     const [userType, setUserType] = useState([])
@@ -24,10 +23,7 @@ const UpdateLoanPuropse = () => {
     const email = localStorage.getItem('email')
     const navigate = useNavigate(-1)
 
-    const { id } = useParams()
-
-
-    setHeaders('Update Loan Purpose')
+    setHeaders('Add Loan Purpose')
 
     const config = {
         headers: {
@@ -39,38 +35,6 @@ const UpdateLoanPuropse = () => {
         },
     };
 
-    useEffect(() => {
-        setisLoading(true)
-        axios.get(`${middleware}loan/purpose/${id}`,config)
-        .then((res) => {
-            console.log(res.data.data)
-            const userData = res.data.data
-            formik.setValues({
-                description:userData.description,
-                purpose: userData.purpose
-            })
-        })
-        .catch((e) => {
-            console.log(e.response.data.responseMessage)
-
-            if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                toast.error(e.response.data.responseMessage)
-                navigate('/auth/login')
-                localStorage.clear()
-            }
-            else if (e.response.data.responseMessage === 'Insufficient permission') {
-                toast.error(e.response.data.responseMessage)
-                navigate('/')
-            }
-            else {
-                toast.error(e.response.data.responseMessage)
-            }
-        })
-        .finally(() => {
-            setisLoading(false)
-        })
-    },[])
-
     const formik = useFormik({
         initialValues:{
             description:'',
@@ -80,7 +44,8 @@ const UpdateLoanPuropse = () => {
         onSubmit:(values)=>{
             axios.post(`${middleware}loan/purpose/create`,values,config)
             .then((res) => {
-                toast.success(res.data.responseData.responseMessage)
+                console.log(res.data)
+                toast.success(res.data.responseMessage)
                 
             })
             .catch((e) => {
@@ -118,7 +83,7 @@ const UpdateLoanPuropse = () => {
           <BiArrowBack className="mr-2" />
           Back
         </button>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Loan Purpose</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Loan Purpose</h2>
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <InputField2
             label="Description"
@@ -142,14 +107,15 @@ const UpdateLoanPuropse = () => {
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               disabled={isLoading}
             >
-              {isLoading ? 'Adding...' : 'Update Loan Purpose'}
+              {isLoading ? 'Adding...' : 'Add Loan Purpose'}
             </button>
           </div>
         </form>
       </div>
     </div>
   </div>
+   
   )
 }
 
-export default UpdateLoanPuropse
+export default AddLoanPurpose

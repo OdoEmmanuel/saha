@@ -18,9 +18,9 @@ import PendingLoans from '../pages/LoanApproval/PendingLoans';
 import PendingLoanDetails from '../pages/LoanApproval/ViewPending/PendingLoanDetails';
 import ActiveLoan from '../pages/LoanApproval/ActiveLoan';
 import LoanAdministration from '../pages/LoanApproval/LoanAdministration';
-import LoanPurpose from '../pages/LoanManagement/LoanPurpose';
-import AddLoanPurpose from '../pages/LoanManagement/AddLoanPurpose';
-import UpdateLoanPuropse from '../pages/LoanManagement/UpdateLoanPuropse';
+import LoanPurpose from '../pages/LoanManagement/LoanPurpose/LoanPurpose';
+import AddLoanPurpose from '../pages/LoanManagement/LoanPurpose/AddLoanPurpose';
+import UpdateLoanPuropse from '../pages/LoanManagement/LoanPurpose/UpdateLoanPuropse';
 
 
 
