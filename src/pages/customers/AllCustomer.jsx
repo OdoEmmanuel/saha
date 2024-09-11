@@ -201,7 +201,7 @@ const AllCustomer = () => {
 
             </div>
 
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden p-8  rounded-[10px]'>
+            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
 
                 <div className="flex justify-between m-2">
                     <div className=" flex flex-col rounded-lg ">

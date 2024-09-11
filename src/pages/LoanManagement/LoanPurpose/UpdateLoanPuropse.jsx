@@ -22,7 +22,7 @@ const UpdateLoanPuropse = () => {
     const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
-    const navigate = useNavigate(-1)
+    const navigate = useNavigate()
 
     const { id } = useParams()
 
