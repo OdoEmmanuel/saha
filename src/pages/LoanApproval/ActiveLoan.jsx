@@ -166,7 +166,7 @@ const ActiveLoan = () => {
 
             </div>
 
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
+            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden p-8  rounded-[10px]'>
                 <div className="flex justify-between m-2">
                     <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center my-4 p-2" >
                         <div className=' mr-2 text-gray-500'>

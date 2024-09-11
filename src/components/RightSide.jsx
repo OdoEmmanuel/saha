@@ -21,6 +21,8 @@ import LoanAdministration from '../pages/LoanApproval/LoanAdministration';
 import LoanPurpose from '../pages/LoanManagement/LoanPurpose/LoanPurpose';
 import AddLoanPurpose from '../pages/LoanManagement/LoanPurpose/AddLoanPurpose';
 import UpdateLoanPuropse from '../pages/LoanManagement/LoanPurpose/UpdateLoanPuropse';
+import LoanRequirement from '../pages/LoanManagement/LoanRequirement/LoanRequirement';
+import ViewLoanRequirementDetails from '../pages/LoanManagement/LoanRequirement/ViewLoanRequirement/ViewLoanRequirementDetails';
 
 
 
@@ -58,6 +60,8 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/tables/loan-purpose' element={<LoanPurpose/>}></Route>
             <Route path='/ui/tables/add-loan-purpose' element={<AddLoanPurpose/>}></Route>
             <Route path='/ui/tables/edit-loan-purpose/:id' element={<UpdateLoanPuropse/>}></Route>
+            <Route path='/ui/tables/loan-requirement' element={<LoanRequirement/>}></Route>
+            <Route path="/ui/tables/loan-requirement/details/:id/*" element={<ViewLoanRequirementDetails/>}></Route>
           </Routes>
      
         
