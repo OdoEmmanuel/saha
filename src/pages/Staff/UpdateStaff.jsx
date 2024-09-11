@@ -8,6 +8,7 @@ import { PulseLoader } from "react-spinners";
 import { Formik, useFormik } from "formik";
 import InputField2 from '../../components/InputField2';
 import SelectField from '../../components/SelectField';
+import { BiArrowBack } from "react-icons/bi";
 
 
 const UpdateStaff = () => {
@@ -20,6 +21,7 @@ const UpdateStaff = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const fetchCompanyCode = localStorage.getItem('companyCode')
+    const navigate = useNavigate()
 
     setHeaders('UPDATE STAFF')
     const config = {
@@ -166,9 +168,13 @@ const UpdateStaff = () => {
             )}
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
         <div className="px-6 py-4">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Staff</h2>
-        <form className="space-y-1" onSubmit={formik.handleSubmit}>
-          <div className='flex flex-col gap-4'>
+        <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-blue-500 hover:text-blue-600 transition-colors">
+          <BiArrowBack className="mr-2" />
+          Back
+        </button>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Staff</h2>
+        <form className="space-y-4" onSubmit={formik.handleSubmit}>
+          <div className='grid grid-cols-2 gap-4'>
 
           <InputField2
                   label={`Email`}
@@ -219,12 +225,9 @@ const UpdateStaff = () => {
                 errorText={formik.errors.userType}
               
               />
-
-              <div className='flex justify-between'>
-                  <div></div>
-                  <button type='submit' className="text-white btn bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Add Staff'}</button>
-              </div>
+      
           </div>
+          <button type='submit' className="text-white btn w-full bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Add Staff'}</button>
       </form>
         </div>
     

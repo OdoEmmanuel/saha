@@ -62,15 +62,15 @@ const AddStaff = () => {
 
     const lang = languages.map((item) => {
         return {
-            label:item.lang,
-            value:item.key
+            label: item.lang,
+            value: item.key
         }
     })
 
     const type = userType.map((item) => {
         return {
-            label:item,
-            value:item
+            label: item,
+            value: item
         }
     })
 
@@ -80,121 +80,122 @@ const AddStaff = () => {
             Name: '',
             phone: '',
             lang: '',
-            userType:''
+            userType: ''
 
         },
         validationSchema: addStaff,
-        onSubmit: (values) => { 
+        onSubmit: (values) => {
             setisLoading(true)
             const body = {
-               companyCode:fetchCompanyCode,
-               email: values.email,
-               staffName: values.Name,
-               phone: values.phone,
-               userType: values.userType,
-               lang:values.lang
+                companyCode: fetchCompanyCode,
+                email: values.email,
+                staffName: values.Name,
+                phone: values.phone,
+                userType: values.userType,
+                lang: values.lang
             }
-            axios.post(`${authorizationService}user/create`,body,config)
-            .then((res) => {
-                 console.log()
-                 toast.success(res.data.responseMessage)
-            })
-            .catch((e) => {
-                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/auth/login')
-                    localStorage.clear()
-                }
-                else if (e.response.data.responseMessage === 'Insufficient permission') {
-                    toast.error(e.response.data.responseMessage)
-                    navigate('/')
-                }
-                else {
-                    toast.error(e.response.data.responseMessage)
-                }
-            })
-            .finally(() =>{
-                setisLoading(false)
-            } )
-           
+            axios.post(`${authorizationService}user/create`, body, config)
+                .then((res) => {
+                    console.log()
+                    toast.success(res.data.responseMessage)
+                })
+                .catch((e) => {
+                    if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                        toast.error(e.response.data.responseMessage)
+                        navigate('/auth/login')
+                        localStorage.clear()
+                    }
+                    else if (e.response.data.responseMessage === 'Insufficient permission') {
+                        toast.error(e.response.data.responseMessage)
+                        navigate('/')
+                    }
+                    else {
+                        toast.error(e.response.data.responseMessage)
+                    }
+                })
+                .finally(() => {
+                    setisLoading(false)
+                })
+
         }
     })
     return (
         <div className=" bg-gray-100 ">
-              {isLoading && (
+            {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-              <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-              <div className="px-6 py-4">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Staff</h2>
-              <form className="space-y-1" onSubmit={formik.handleSubmit}>
-                <div className='flex flex-col gap-4'>
+            <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+                <div className="px-6 py-4">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Staff</h2>
+                    <form className="space-y-4" onSubmit={formik.handleSubmit}>
+                        <div className='grid grid-cols-2 gap-4'>
 
-                <InputField2
-                        label={`Email`}
-                        name={`email`}
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
-                        error={formik.touched.email && formik.errors.email}
-                        errorText={formik.errors.email}
+                            <InputField2
+                                label={`Email`}
+                                name={`email`}
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                error={formik.touched.email && formik.errors.email}
+                                errorText={formik.errors.email}
 
-                    />
+                            />
 
-                    <InputField2
-                        label={`First Name`}
-                        name={`Name`}
-                        value={formik.values.Name}
-                        onChange={formik.handleChange}
-                        error={formik.touched.Name && formik.errors.Name}
-                        errorText={formik.errors.Name}
+                            <InputField2
+                                label={`First Name`}
+                                name={`Name`}
+                                value={formik.values.Name}
+                                onChange={formik.handleChange}
+                                error={formik.touched.Name && formik.errors.Name}
+                                errorText={formik.errors.Name}
 
-                    />
+                            />
 
-                  
-                    <InputField2
-                        label={`Phone`}
-                        name={`Phone`}
-                        value={formik.values.phone}
-                        onChange={formik.handleChange}
-                        error={formik.touched.phone && formik.errors.phone}
-                        errorText={formik.errors.phone}
-                    />
-                    <SelectField
-                        label={`Language`}
-                        name={`lang`}
-                        options={lang}
-                        onChange={formik.handleChange}
-                        value={formik.values.lang}
-                        error={formik.touched.lang && formik.errors.lang}
-                        errorText={formik.errors.lang}
-                    
-                    />
-                    <SelectField
-                      label={`Staff Type`}
-                      name={`userType`}
-                      options= {type}
-                      onChange={formik.handleChange}
-                      value={formik.values.userType}
-                      error={formik.touched.userType && formik.errors.userType}
-                      errorText={formik.errors.userType}
-                    
-                    />
 
-                    <div className='flex justify-between'>
-                        <div></div>
-                        <button type='submit' className="text-white btn bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Add Staff'}</button>
-                    </div>
+                            <InputField2
+                                label={`Phone`}
+                                name={`Phone`}
+                                value={formik.values.phone}
+                                onChange={formik.handleChange}
+                                error={formik.touched.phone && formik.errors.phone}
+                                errorText={formik.errors.phone}
+                            />
+                            <SelectField
+                                label={`Language`}
+                                name={`lang`}
+                                options={lang}
+                                onChange={formik.handleChange}
+                                value={formik.values.lang}
+                                error={formik.touched.lang && formik.errors.lang}
+                                errorText={formik.errors.lang}
+
+                            />
+                            <SelectField
+                                label={`Staff Type`}
+                                name={`userType`}
+                                options={type}
+                                onChange={formik.handleChange}
+                                value={formik.values.userType}
+                                error={formik.touched.userType && formik.errors.userType}
+                                errorText={formik.errors.userType}
+
+                            />
+
+
+                        </div>
+
+
+                        <button type='submit' className="text-white btn w-full bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Add Staff'}</button>
+
+                    </form>
                 </div>
-            </form>
-              </div>
-          
 
+
+            </div>
         </div>
-        </div>
-      
+
     )
 }
 

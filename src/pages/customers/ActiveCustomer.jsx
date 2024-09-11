@@ -226,7 +226,7 @@ const ActiveCustomer = () => {
             )}
 
 
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden    rounded-[10px]'>
+            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden  p-8  rounded-[10px]'>
                 <div className="flex justify-between">
                     <div className='flex justify-between px-2'>
 
