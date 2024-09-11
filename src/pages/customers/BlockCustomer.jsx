@@ -149,7 +149,7 @@ const BlockCustomer = () => {
 
       </div>
 
-      <div className='bg-[#fff] mt-16 shadow-md overflow-hidden  p-8 rounded-[10px]'>
+      <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
 
         <div className='flex justify-between my-4 m-2'>
           <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 items-center">

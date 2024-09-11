@@ -23,7 +23,11 @@ import AddLoanPurpose from '../pages/LoanManagement/LoanPurpose/AddLoanPurpose';
 import UpdateLoanPuropse from '../pages/LoanManagement/LoanPurpose/UpdateLoanPuropse';
 import LoanRequirement from '../pages/LoanManagement/LoanRequirement/LoanRequirement';
 import ViewLoanRequirementDetails from '../pages/LoanManagement/LoanRequirement/ViewLoanRequirement/ViewLoanRequirementDetails';
-
+import EditLoanRequirement from '../pages/LoanManagement/LoanRequirement/EditLoanRequirement';
+import AddLoanRequirement from '../pages/LoanManagement/LoanRequirement/AddLoanRequirement';
+import LoanTenure from '../pages/LoanManagement/LoanTenure/LoanTenure';
+import AddLonTenure from '../pages/LoanManagement/LoanTenure/AddLonTenure';
+import EditLoanTenure from '../pages/LoanManagement/LoanTenure/EditLoanRequirement';
 
 
 const RightSide = ({isOpen, tog}) => {
@@ -62,6 +66,11 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/tables/edit-loan-purpose/:id' element={<UpdateLoanPuropse/>}></Route>
             <Route path='/ui/tables/loan-requirement' element={<LoanRequirement/>}></Route>
             <Route path="/ui/tables/loan-requirement/details/:id/*" element={<ViewLoanRequirementDetails/>}></Route>
+            <Route path="/ui/tables/loan-requirement/edit/:id" element={<EditLoanRequirement/>}></Route>
+            <Route path="/ui/tables/loan-requirement/addLoan" element={<AddLoanRequirement/>}></Route>
+            <Route path="/ui/tables/loantenure" element={<LoanTenure/>}></Route>
+            <Route path="/ui/tables/addloantenure" element={<AddLonTenure/>}></Route>
+            <Route path="/ui/tables/editloantenure/:id" element={<EditLoanTenure/>}></Route>
           </Routes>
      
         

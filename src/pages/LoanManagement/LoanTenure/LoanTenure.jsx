@@ -9,9 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FaPen } from 'react-icons/fa';
 import { IoEyeSharp } from "react-icons/io5";
 
-
-const LoanRequirement = () => {
-
+const LoanTenure = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -23,9 +21,18 @@ const LoanRequirement = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
+    setHeaders('Loan Tenure')
 
-    setHeaders('Loan Requirement')
-
+    const formatDateString = (dateString) => {
+        const date = new Date(dateString)
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        const seconds = String(date.getSeconds()).padStart(2, '0')
+        return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds}`
+      }
 
     useEffect(() => {
         fetchData()
@@ -43,7 +50,7 @@ const LoanRequirement = () => {
                 'Username': email
             },
         };
-        axios.get(`${middleware}loan/requirements`, config)
+        axios.get(`${middleware}loan/tenure`, config)
             .then((res) => {
                 setUsers(res.data.data)
             })
@@ -67,7 +74,6 @@ const LoanRequirement = () => {
                 setisLoading(false)
             })
     }
-
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
     }
@@ -79,14 +85,14 @@ const LoanRequirement = () => {
         } else {
             // Filter users based on search query
             const filteredUsers = users.filter((user) => {
-                if (user.loanProductCode === null
-
+                if (
+                    user.description === null 
                 ) {
                     return false
                 }
 
                 return (
-                    user.loanProductCode.toLowerCase().includes(searchQuery.toLowerCase())
+                    user.description.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
             setFilteredUsers(filteredUsers)
@@ -126,11 +132,11 @@ const LoanRequirement = () => {
                     </div>
 
                     <Link
-                        to={`/ui/tables/loan-requirement/addLoan`}
+                        to={`/ui/tables/addloantenure`}
                         className="text-white btn bg-blue-500  hover:bg-primary rounded-[10px] my-4 py-2 px-4"
                     >
                         {' '}
-                        Add Loan Requirements
+                        Add Loan Tenure
                     </Link>
 
 
@@ -148,25 +154,22 @@ const LoanRequirement = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Loan Product Code{' '}
+                                            Tenure{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Max Loan Tenure{' '}
+                                            Description{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
                                             {' '}
-                                            Min Amount For Special Approval{' '}
+                                            Created By{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Interest Rate{' '}
+                                            Created Date{' '}
                                         </th>
 
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
-                                            {' '}
-                                            Interest Payment Frequency{' '}
-                                        </th>
+                                       
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Action(s)</th>
                                         
 
@@ -185,47 +188,30 @@ const LoanRequirement = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.loanProductCode}
+                                                    {staff.tenure}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.maxLoanTenure}
+                                                    {staff.description}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.minAmountForSpecialApproval}
+                                                    {staff.createdBy}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.interestRate}
+                                                    {formatDateString(staff.createdDate)}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.interestPaymentFrequency}
-                                                </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap flex ">
-
-                                                </td>
-
-
-
-
-
-
-
-
+                                              
+            
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
                                                     
 
                                                     <Link
-                                                        to={`/ui/tables/loan-requirement/edit/${staff.loanProductCode}`}
+                                                        to={`/ui/tables/editloantenure/${staff.id}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)] mr-8"
                                                     >
                                                         <FaPen size={'1.5em'} />
                                                     </Link>
 
-                                                    <Link
-                                                        to={`/ui/tables/loan-requirement/details/${staff.loanProductCode}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
-                                                    >
-                                                        <IoEyeSharp size={'1.5em'} />
-                                                    </Link>
+                                                  
 
                                                 </td>
                                             </tr>
@@ -250,4 +236,4 @@ const LoanRequirement = () => {
     )
 }
 
-export default LoanRequirement
+export default LoanTenure

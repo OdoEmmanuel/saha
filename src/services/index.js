@@ -52,3 +52,9 @@ const passwordRegExp =
     purpose: yup.string().required('enter your purpose')
 
   })
+
+  export const loanTenure =yup.object().shape({
+    tenure:yup.number().required('enter Tenure'),
+    description: yup.string().required('enter your purpose')
+
+  })
