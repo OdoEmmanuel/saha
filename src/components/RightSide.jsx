@@ -35,6 +35,8 @@ import LoanProduct from '../pages/LoanManagement/LoanProduct/LoanProduct';
 import ApprovalSetup from '../pages/LoanManagement/ApprovalSetup/ApprovalSetup';
 import ViewApprovalItem from '../pages/LoanManagement/ApprovalSetup/ViewApprovalItem';
 import AddAprrovalItem from '../pages/LoanManagement/ApprovalSetup/AddAprrovalItem';
+import EditApprovalSetup from '../pages/LoanManagement/ApprovalSetup/EditApprovalSetup';
+import Customer from '../pages/Report/Customer';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -83,6 +85,8 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/tables/approval' element={<ApprovalSetup/>}></Route>
             <Route path='/ui/tables/approval/details/:id' element={<ViewApprovalItem/>}></Route>
             <Route path='/ui/tables/addapproval' element={<AddAprrovalItem/>}></Route>
+            <Route path='/ui/tables/editapproval/:id' element={<EditApprovalSetup/>}></Route>
+            <Route path='/ui/report/getCustomer' element={<Customer/>}></Route>
           </Routes>
      
         
