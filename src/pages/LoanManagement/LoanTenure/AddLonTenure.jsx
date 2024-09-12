@@ -40,11 +40,13 @@ const AddLonTenure = () => {
             description: ''
         },
         validationSchema: loanTenure,
-        onSubmit: (values) => {
+        onSubmit: (values,{ resetForm} ) => {
             axios.post(`${middleware}loan/tenure/create`, values, config)
                 .then((res) => {
                     console.log(res.data)
                     toast.success(res.data.responseMessage)
+                    resetForm()
+                    
 
                 })
                 .catch((e) => {

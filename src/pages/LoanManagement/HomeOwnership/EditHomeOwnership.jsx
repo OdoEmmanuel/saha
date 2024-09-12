@@ -12,9 +12,10 @@ import { useFormik } from "formik";
 import InputField2 from '../../../components/InputField2';
 import SelectField from '../../../components/SelectField';
 import { BiArrowBack } from "react-icons/bi";
-import { loanTenure } from '../../../services';
+import { homeOwnership } from '../../../services';
 
-const EditLoanTenure = () => {
+const EditHomeOwnership = () => {
+
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [languages, setLanguages] = useState([])
     const [userType, setUserType] = useState([])
@@ -24,8 +25,7 @@ const EditLoanTenure = () => {
     const navigate = useNavigate()
 
     const { id } = useParams()
-    setHeaders('Update Loan Tenure')
-
+    setHeaders('Update Home Ownership')
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -39,13 +39,13 @@ const EditLoanTenure = () => {
 
     useEffect(() => {
         setisLoading(true)
-        axios.get(`${middleware}loan/tenure/${id}`,config)
+        axios.get(`${middleware}loan/homeowner/${id}`,config)
         .then((res) => {
             console.log(res.data.data)
             const userData = res.data.data
             formik.setValues({
                 description:userData.description,
-                tenure:userData.tenure
+                ownershipType:userData.ownershipType
             })
         })
         .catch((e) => {
@@ -71,10 +71,10 @@ const EditLoanTenure = () => {
 
     const formik = useFormik({
         initialValues: {
-            tenure: 0,
+            ownershipType: '',
             description: ''
         },
-        validationSchema: loanTenure,
+        validationSchema: homeOwnership,
         onSubmit: (values) => {
             axios.post(`${middleware}loan/tenure/create`, values, config)
                 .then((res) => {
@@ -104,55 +104,53 @@ const EditLoanTenure = () => {
                 })
         }
     })
-
   return (
     <div className=" bg-gray-100 ">
-            {isLoading && (
-                <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
-                    {" "}
-                    <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
-                </div>
-            )}
-            <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-                <div className="px-6 py-8">
-                    <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-blue-500 hover:text-blue-600 transition-colors">
-                        <BiArrowBack className="mr-2" />
-                        Back
-                    </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Loan Tenure</h2>
-                    <form onSubmit={formik.handleSubmit} className="space-y-6">
-                        <InputField2
-                            label="Tenure"
-                            name="tenure"
-                            type="number"
-                            value={formik.values.tenure}
-                            onChange={formik.handleChange}
-                            error={formik.touched.tenure && formik.errors.tenure}
-                            errorText={formik.errors.tenure}
-                        />
-                        <InputField2
-                            label="Description"
-                            name="description"
-                            value={formik.values.description}
-                            onChange={formik.handleChange}
-                            error={formik.touched.description && formik.errors.description}
-                            errorText={formik.errors.description}
-                        />
-
-                        <div>
-                            <button
-                                type="submit"
-                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                disabled={isLoading}
-                            >
-                                {isLoading ? 'Adding...' : 'Update Loan Tenure'}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    {isLoading && (
+        <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
+            {" "}
+            <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
         </div>
+    )}
+    <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+        <div className="px-6 py-8">
+            <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-blue-500 hover:text-blue-600 transition-colors">
+                <BiArrowBack className="mr-2" />
+                Back
+            </button>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Home Ownership</h2>
+            <form onSubmit={formik.handleSubmit} className="space-y-6">
+                <InputField2
+                    label="Ownership Type"
+                    name="ownershipType"
+                    value={formik.values.ownershipType}
+                    onChange={formik.handleChange}
+                    error={formik.touched.ownershipType && formik.errors.ownershipType}
+                    errorText={formik.errors.ownershipType}
+                />
+                <InputField2
+                    label="Description"
+                    name="description"
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                    error={formik.touched.description && formik.errors.description}
+                    errorText={formik.errors.description}
+                />
+
+                <div>
+                    <button
+                        type="submit"
+                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Adding...' : 'Update Home Onership'}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
   )
 }
 
-export default EditLoanTenure
+export default EditHomeOwnership

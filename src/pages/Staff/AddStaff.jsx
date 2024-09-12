@@ -84,7 +84,7 @@ const AddStaff = () => {
 
         },
         validationSchema: addStaff,
-        onSubmit: (values) => {
+        onSubmit: (values,{ resetForm} ) => {
             setisLoading(true)
             const body = {
                 companyCode: fetchCompanyCode,
@@ -98,6 +98,7 @@ const AddStaff = () => {
                 .then((res) => {
                     console.log()
                     toast.success(res.data.responseMessage)
+                    resetForm()
                 })
                 .catch((e) => {
                     if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -156,7 +157,7 @@ const AddStaff = () => {
 
                             <InputField2
                                 label={`Phone`}
-                                name={`Phone`}
+                                name={`phone`}
                                 value={formik.values.phone}
                                 onChange={formik.handleChange}
                                 error={formik.touched.phone && formik.errors.phone}

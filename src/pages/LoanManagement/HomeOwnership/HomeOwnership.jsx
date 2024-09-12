@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import { PulseLoader } from "react-spinners";
 import axios from 'axios';
@@ -7,9 +8,10 @@ import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { FaPen } from 'react-icons/fa';
+import { IoEyeSharp } from "react-icons/io5";
 
+const HomeOwnership = () => {
 
-const LoanPurpose = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -21,8 +23,7 @@ const LoanPurpose = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
-
-    setHeaders('Loan Purpose')
+    setHeaders('Home Ownership')
 
     const formatDateString = (dateString) => {
         const date = new Date(dateString)
@@ -41,6 +42,7 @@ const LoanPurpose = () => {
         [])
 
 
+
     const fetchData = () => {
         setisLoading(true)
         const config = {
@@ -52,7 +54,7 @@ const LoanPurpose = () => {
                 'Username': email
             },
         };
-        axios.get(`${middleware}loan/purpose`, config)
+        axios.get(`${middleware}loan/homeowner`, config)
             .then((res) => {
                 setUsers(res.data.data)
             })
@@ -76,7 +78,6 @@ const LoanPurpose = () => {
                 setisLoading(false)
             })
     }
-
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
     }
@@ -89,15 +90,14 @@ const LoanPurpose = () => {
             // Filter users based on search query
             const filteredUsers = users.filter((user) => {
                 if (
-                    user.purpose === null ||
+                    user.ownershipType === null ||
                     user.description === null
-
                 ) {
                     return false
                 }
 
                 return (
-                    user.purpose.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    user.ownershipType.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     user.description.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
@@ -106,6 +106,7 @@ const LoanPurpose = () => {
     }, [searchQuery, users])
 
     let idCounter = 1
+
 
     return (
         <div className='flex flex-col'>
@@ -137,15 +138,15 @@ const LoanPurpose = () => {
                             onChange={handleSearchInputChange}
                         />
                     </div>
-                    
-                        <Link
-                            to={`/ui/tables/add-loan-purpose`}
-                            className="text-white btn bg-blue-500  hover:bg-primary rounded-[10px] my-4 py-2 px-4" 
-                        >
-                            {' '}
-                            Add Loan Purpose
-                        </Link>
-                    
+
+                    <Link
+                        to={`/ui/tables/addhomeownership`}
+                        className="text-white btn bg-blue-500  hover:bg-primary rounded-[10px] my-4 py-2 px-4"
+                    >
+                        {' '}
+                        Add Home Ownership
+                    </Link>
+
 
                 </div>
                 <div className="overflow-x-scroll no-scrollbar">
@@ -161,7 +162,7 @@ const LoanPurpose = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Purpose{' '}
+                                            Ownership Type{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
@@ -173,9 +174,12 @@ const LoanPurpose = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Updated By{' '}
+                                            Created Date{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+
+
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Action(s)</th>
+
 
                                     </tr>
                                 </thead>
@@ -192,7 +196,7 @@ const LoanPurpose = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.purpose}
+                                                    {staff.ownershipType}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {staff.description}
@@ -205,20 +209,17 @@ const LoanPurpose = () => {
                                                 </td>
 
 
+                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
 
-
-
-
-
-
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
 
                                                     <Link
-                                                        to={`/ui/tables/edit-loan-purpose/${staff.id}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                        to={`/ui/tables/edithomeownership/${staff.id}`}
+                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)] mr-8"
                                                     >
                                                         <FaPen size={'1.5em'} />
                                                     </Link>
+
+
 
                                                 </td>
                                             </tr>
@@ -243,4 +244,4 @@ const LoanPurpose = () => {
     )
 }
 
-export default LoanPurpose
+export default HomeOwnership
