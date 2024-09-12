@@ -244,7 +244,7 @@ const ApprovalSetup = () => {
 
 
                                                     <Link
-                                                        to={`/ui/tables/loan-requirement/edit/${staff.loanProductCode}`}
+                                                        to={`/ui/tables/editapproval/${staff.id}/`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)] mr-8"
                                                     >
                                                         <FaPen size={'1.5em'} />
