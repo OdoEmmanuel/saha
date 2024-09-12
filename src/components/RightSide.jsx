@@ -28,8 +28,13 @@ import AddLoanRequirement from '../pages/LoanManagement/LoanRequirement/AddLoanR
 import LoanTenure from '../pages/LoanManagement/LoanTenure/LoanTenure';
 import AddLonTenure from '../pages/LoanManagement/LoanTenure/AddLonTenure';
 import EditLoanTenure from '../pages/LoanManagement/LoanTenure/EditLoanRequirement';
-
-
+import HomeOwnership from '../pages/LoanManagement/HomeOwnership/HomeOwnership';
+import AddHomeOwnership from '../pages/LoanManagement/HomeOwnership/AddHomeOwnership';
+import EditHomeOwnership from '../pages/LoanManagement/HomeOwnership/EditHomeOwnership';
+import LoanProduct from '../pages/LoanManagement/LoanProduct/LoanProduct';
+import ApprovalSetup from '../pages/LoanManagement/ApprovalSetup/ApprovalSetup';
+import ViewApprovalItem from '../pages/LoanManagement/ApprovalSetup/ViewApprovalItem';
+import AddAprrovalItem from '../pages/LoanManagement/ApprovalSetup/AddAprrovalItem';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -71,6 +76,13 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/tables/loantenure" element={<LoanTenure/>}></Route>
             <Route path="/ui/tables/addloantenure" element={<AddLonTenure/>}></Route>
             <Route path="/ui/tables/editloantenure/:id" element={<EditLoanTenure/>}></Route>
+            <Route path="/ui/tables/homeownership" element={<HomeOwnership/>}></Route>
+            <Route path='/ui/tables/addhomeownership' element={<AddHomeOwnership/>}></Route>
+            <Route path='/ui/tables/edithomeownership/:id' element={<EditHomeOwnership/>}></Route>
+            <Route path='/ui/tables/loan-product' element={<LoanProduct/>}></Route>
+            <Route path='/ui/tables/approval' element={<ApprovalSetup/>}></Route>
+            <Route path='/ui/tables/approval/details/:id' element={<ViewApprovalItem/>}></Route>
+            <Route path='/ui/tables/addapproval' element={<AddAprrovalItem/>}></Route>
           </Routes>
      
         

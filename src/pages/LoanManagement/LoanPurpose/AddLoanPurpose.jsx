@@ -41,11 +41,12 @@ const AddLoanPurpose = () => {
             purpose:''
         },
         validationSchema:loanPurpose,
-        onSubmit:(values)=>{
+        onSubmit:(values,{ resetForm} )=>{
             axios.post(`${middleware}loan/purpose/create`,values,config)
             .then((res) => {
                 console.log(res.data)
                 toast.success(res.data.responseMessage)
+                resetForm()
                 
             })
             .catch((e) => {

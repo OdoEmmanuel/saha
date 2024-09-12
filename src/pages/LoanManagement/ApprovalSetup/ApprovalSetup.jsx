@@ -7,9 +7,9 @@ import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { FaPen } from 'react-icons/fa';
+import { IoEyeSharp } from "react-icons/io5";
 
-
-const LoanPurpose = () => {
+const ApprovalSetup = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -22,7 +22,7 @@ const LoanPurpose = () => {
     const email = localStorage.getItem('email')
 
 
-    setHeaders('Loan Purpose')
+    setHeaders('Approval Items')
 
     const formatDateString = (dateString) => {
         const date = new Date(dateString)
@@ -33,7 +33,8 @@ const LoanPurpose = () => {
         const minutes = String(date.getMinutes()).padStart(2, '0')
         const seconds = String(date.getSeconds()).padStart(2, '0')
         return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds}`
-    }
+      }
+
 
     useEffect(() => {
         fetchData()
@@ -52,7 +53,7 @@ const LoanPurpose = () => {
                 'Username': email
             },
         };
-        axios.get(`${middleware}loan/purpose`, config)
+        axios.get(`${authorizationService}approvals/item/setup`, config)
             .then((res) => {
                 setUsers(res.data.data)
             })
@@ -89,16 +90,14 @@ const LoanPurpose = () => {
             // Filter users based on search query
             const filteredUsers = users.filter((user) => {
                 if (
-                    user.purpose === null ||
-                    user.description === null
+                    user.approvalItemType === null 
 
                 ) {
                     return false
                 }
 
                 return (
-                    user.purpose.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    user.description.toLowerCase().includes(searchQuery.toLowerCase())
+                    user.approvalItemType.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
             setFilteredUsers(filteredUsers)
@@ -106,7 +105,6 @@ const LoanPurpose = () => {
     }, [searchQuery, users])
 
     let idCounter = 1
-
     return (
         <div className='flex flex-col'>
             {isLoading && (
@@ -137,15 +135,15 @@ const LoanPurpose = () => {
                             onChange={handleSearchInputChange}
                         />
                     </div>
-                    
-                        <Link
-                            to={`/ui/tables/add-loan-purpose`}
-                            className="text-white btn bg-blue-500  hover:bg-primary rounded-[10px] my-4 py-2 px-4" 
-                        >
-                            {' '}
-                            Add Loan Purpose
-                        </Link>
-                    
+
+                    <Link
+                        to={`/ui/tables/addapproval`}
+                        className="text-white btn bg-blue-500  hover:bg-primary rounded-[10px] my-4 py-2 px-4"
+                    >
+                        {' '}
+                        Add Approvals Items
+                    </Link>
+
 
                 </div>
                 <div className="overflow-x-scroll no-scrollbar">
@@ -161,21 +159,39 @@ const LoanPurpose = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Purpose{' '}
+                                            Company Code{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Description{' '}
+                                            Approval Item Type{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
                                             {' '}
-                                            Created By{' '}
+                                            Approval Levels{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             Updated By{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            Created By{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            Created At{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            Updated At{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            Enabled{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Action(s)</th>
+
 
                                     </tr>
                                 </thead>
@@ -192,16 +208,29 @@ const LoanPurpose = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.purpose}
+                                                    {staff.companyCode}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.description}
+                                                    {staff.approvalItemType}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                    {staff.approvalLevels}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {staff.createdBy}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {formatDateString(staff.createdDate)}
+                                                    {staff.updatedBy}
+                                                </td>
+                                               
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap  ">
+                                                    {formatDateString(staff.createdAt)}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap  ">
+                                                    {formatDateString(staff.updatedAt)}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap ">
+                                                    {staff.status}
                                                 </td>
 
 
@@ -211,13 +240,21 @@ const LoanPurpose = () => {
 
 
 
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
+
 
                                                     <Link
-                                                        to={`/ui/tables/edit-loan-purpose/${staff.id}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                        to={`/ui/tables/loan-requirement/edit/${staff.loanProductCode}`}
+                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)] mr-8"
                                                     >
                                                         <FaPen size={'1.5em'} />
+                                                    </Link>
+
+                                                    <Link
+                                                        to={`/ui/tables/approval/details/${staff.id}`}
+                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                    >
+                                                        <IoEyeSharp size={'1.5em'} />
                                                     </Link>
 
                                                 </td>
@@ -243,4 +280,4 @@ const LoanPurpose = () => {
     )
 }
 
-export default LoanPurpose
+export default ApprovalSetup

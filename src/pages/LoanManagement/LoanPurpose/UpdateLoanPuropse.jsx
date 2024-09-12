@@ -81,6 +81,7 @@ const UpdateLoanPuropse = () => {
             axios.post(`${middleware}loan/purpose/create`,values,config)
             .then((res) => {
                 toast.success(res.data.responseData.responseMessage)
+                navigate(-1)
                 
             })
             .catch((e) => {

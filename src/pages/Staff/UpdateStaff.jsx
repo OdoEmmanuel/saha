@@ -137,6 +137,7 @@ const UpdateStaff = () => {
                 .then((res) => {
                     console.log()
                     toast.success(res.data.responseMessage)
+                    navigate(-1)
                 })
                 .catch((e) => {
                     if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {

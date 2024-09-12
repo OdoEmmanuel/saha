@@ -7,9 +7,9 @@ import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { FaPen } from 'react-icons/fa';
+import { IoEyeSharp } from "react-icons/io5";
 
-
-const LoanPurpose = () => {
+const LoanProduct = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -21,8 +21,7 @@ const LoanPurpose = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
-
-    setHeaders('Loan Purpose')
+    setHeaders('Loan Product')
 
     const formatDateString = (dateString) => {
         const date = new Date(dateString)
@@ -33,12 +32,12 @@ const LoanPurpose = () => {
         const minutes = String(date.getMinutes()).padStart(2, '0')
         const seconds = String(date.getSeconds()).padStart(2, '0')
         return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds}`
-    }
+      }
 
-    useEffect(() => {
+      useEffect(() => {
         fetchData()
     },
-        [])
+   [])
 
 
     const fetchData = () => {
@@ -52,7 +51,7 @@ const LoanPurpose = () => {
                 'Username': email
             },
         };
-        axios.get(`${middleware}loan/purpose`, config)
+        axios.get(`${middleware}loan/products/all`, config)
             .then((res) => {
                 setUsers(res.data.data)
             })
@@ -76,7 +75,6 @@ const LoanPurpose = () => {
                 setisLoading(false)
             })
     }
-
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
     }
@@ -89,16 +87,15 @@ const LoanPurpose = () => {
             // Filter users based on search query
             const filteredUsers = users.filter((user) => {
                 if (
-                    user.purpose === null ||
-                    user.description === null
-
+                    user.productCode === null ||
+                    user.productName === null  
                 ) {
                     return false
                 }
 
                 return (
-                    user.purpose.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    user.description.toLowerCase().includes(searchQuery.toLowerCase())
+                    user.productCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    user.productName.toLowerCase().includes(searchQuery.toLowerCase()) 
                 )
             })
             setFilteredUsers(filteredUsers)
@@ -106,9 +103,8 @@ const LoanPurpose = () => {
     }, [searchQuery, users])
 
     let idCounter = 1
-
-    return (
-        <div className='flex flex-col'>
+  return (
+    <div className='flex flex-col'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -137,15 +133,9 @@ const LoanPurpose = () => {
                             onChange={handleSearchInputChange}
                         />
                     </div>
-                    
-                        <Link
-                            to={`/ui/tables/add-loan-purpose`}
-                            className="text-white btn bg-blue-500  hover:bg-primary rounded-[10px] my-4 py-2 px-4" 
-                        >
-                            {' '}
-                            Add Loan Purpose
-                        </Link>
-                    
+
+                  <div></div>
+
 
                 </div>
                 <div className="overflow-x-scroll no-scrollbar">
@@ -161,21 +151,26 @@ const LoanPurpose = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Purpose{' '}
+                                            Product Code{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Description{' '}
+                                            Product Name{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            Product Discriminator{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
                                             {' '}
-                                            Created By{' '}
+                                            Interest Rate{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Updated By{' '}
+                                            Tenure{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+
+                                        
 
                                     </tr>
                                 </thead>
@@ -192,34 +187,21 @@ const LoanPurpose = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.purpose}
+                                                    {staff.productCode}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.description}
+                                                    {staff.productName}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.createdBy}
+                                                    {staff.productDiscriminator}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {formatDateString(staff.createdDate)}
+                                                    {staff.interestRate}
                                                 </td>
-
-
-
-
-
-
-
-
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-
-                                                    <Link
-                                                        to={`/ui/tables/edit-loan-purpose/${staff.id}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
-                                                    >
-                                                        <FaPen size={'1.5em'} />
-                                                    </Link>
-
+                                              
+            
+                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
+                                                    {staff.tenure}
                                                 </td>
                                             </tr>
                                         ))}
@@ -240,7 +222,7 @@ const LoanPurpose = () => {
 
             </div>
         </div>
-    )
+  )
 }
 
-export default LoanPurpose
+export default LoanProduct
