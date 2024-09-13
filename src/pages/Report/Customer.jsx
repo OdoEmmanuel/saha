@@ -116,7 +116,8 @@ const Customer = () => {
                 if (
                     user.email === null ||
                     user.firstName === null ||
-                    user.lastName === null
+                    user.lastName === null ||
+                    user.customerType === null
                 ) {
                     return false
                 }
@@ -124,7 +125,8 @@ const Customer = () => {
                 return (
                     user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    user.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+                    user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    user.customerType.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
             setFilteredUsers(filteredUsers)
@@ -269,9 +271,15 @@ const Customer = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
+                                            Place of Birth{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
                                             NIN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            Customer Type
+                                        </th>
                                     </tr>
                                 </thead>
 
@@ -312,15 +320,13 @@ const Customer = () => {
                                                     {staff.stateOfResidence}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                    {staff.placeOfBirth}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {staff.nin}
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <Link
-                                                        to={`/ui/customer/Veiw-all-customer/${staff.id}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
-                                                    >
-                                                        <IoEyeSharp size={'1.5em'} />
-                                                    </Link>
+                                                    {staff.customerType}
                                                 </td>
                                             </tr>
                                         ))}
