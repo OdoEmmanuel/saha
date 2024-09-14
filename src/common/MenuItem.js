@@ -35,346 +35,237 @@ import {
       url: '/',
     },
     {
-      key: 'customer-management',
-      label: 'Customer management',
-      isTitle: false,
-      icon: File,
-      url: '/customer',
-  
+      key: 'loan',
+      label: 'Loan',
+      isTitle: true,
       children: [
         {
-          key: 'all-customer',
-          label: 'All Customers',
-          url: '/ui/customer/customer-date',
-          parentKey: 'dashboard',
+          key: 'loan-approval',
+          label: 'Loan Approval',
+          isTitle: false,
+          icon: FileText,
+          children: [
+            {
+              key: 'all-loans',
+              label: 'All Loans',
+              url: '/ui/LoanApproval/GetAllLoans',
+            },
+            {
+              key: 'pending-loans',
+              label: 'Pending Loans',
+              url: '/ui/LoanApproval/pendingloans',
+            },
+            {
+              key: 'active-loans',
+              label: 'Active Loans',
+              url: '/ui/LoanApproval/activeloans',
+            },
+            {
+              key: 'loan-administration',
+              label: 'Loan Administration',
+              url: '/ui/LoanApproval/loanAdminisration',
+            },
+          ],
         },
         {
-          key: 'all-customer',
-          label: 'Active Customer',
-          url: '/ui/customer/all-customer',
-          parentKey: 'dashboard',
-        },
-  
-       
-        {
-          key: 'blocked-customers',
-          label: 'Blocked Customers',
-          url: '/ui/customer/block-customers',
-          parentKey: 'dashboard',
-        },
-        {
-          key: 'blocked-customers',
-          label: 'Pending kyc',
-          url: '/ui/customer/pending-kyc',
-          parentKey: 'dashboard',
+          key: 'loan-management',
+          label: 'Loan Management',
+          isTitle: false,
+          icon: Grid,
+          children: [
+            {
+              key: 'loan-purpose',
+              label: 'Loan Purpose',
+              url: '/ui/tables/loan-purpose',
+            },
+            {
+              key: 'loan-requirement',
+              label: 'Loan Requirement Setup',
+              url: '/ui/tables/loan-requirement',
+            },
+            {
+              key: 'loan-tenure',
+              label: 'Loan Tenure',
+              url: '/ui/tables/loantenure',
+            },
+            {
+              key: 'home-ownership',
+              label: 'Home Ownership',
+              url: '/ui/tables/homeownership',
+            },
+            {
+              key: 'loan-products',
+              label: 'Loan Products',
+              url: '/ui/tables/loan-product',
+            },
+            {
+              key: 'approval-item-setup',
+              label: 'Approval Item Setup',
+              url: '/ui/tables/approval',
+            },
+          ],
         },
       ],
     },
-  
     {
-      key: 'forms',
-      label: 'Staff Management',
-      isTitle: false,
-      icon: Bookmark,
+      key: 'account',
+      label: 'Account',
+      isTitle: true,
       children: [
-     
         {
-          key: 'forms-loan-elements',
-          label: 'All Staff',
+          key: 'customer-management',
+          label: 'Customer Management',
+          isTitle: false,
+          icon: File,
+          children: [
+            {
+              key: 'all-customers',
+              label: 'All Customers',
+              url: '/ui/customer/customer-date',
+            },
+            {
+              key: 'active-customers',
+              label: 'Active Customers',
+              url: '/ui/customer/all-customer',
+            },
+            {
+              key: 'blocked-customers',
+              label: 'Blocked Customers',
+              url: '/ui/customer/block-customers',
+            },
+            {
+              key: 'pending-kyc',
+              label: 'Pending KYC',
+              url: '/ui/customer/pending-kyc',
+            },
+          ],
+        },
+        {
+          key: 'Staff',
+          label: 'Staff',
+          isTitle: false,
+          icon: Bookmark,
           url: '/ui/staffs/AllStaff',
-          parentKey: 'forms',
         },
-  
-      ],
-    },
-  
-  
-    {
-      key: 'norms',
-      label: 'Loan Approval',
-      isTitle: false,
-      icon: FileText,
-      children: [
-        {
-          key: 'All Loans',
-          label: 'All Loans',
-          url: '/ui/LoanApproval/GetAllLoans',
-          parentKey: 'forms',
-        },
-        {
-          key: 'Get Pending Loans',
-          label: 'Pending Loans',
-          url: '/ui/LoanApproval/pendingloans',
-          parentKey: 'forms',
-        },
-        {
-          key: 'Active Loans',
-          label: 'Active Loans',
-          url: '/ui/LoanApproval/activeloans',
-          parentKey: 'forms',
-        },
-  
-        {
-          key: 'Loan Adminisration',
-          label: 'Loan Administration',
-          url: '/ui/LoanApproval/loanAdminisration',
-          parentKey: 'forms',
-        },
-  
-        // ...(userType === 'SuperAdmin'|| userType ==='Admin'  ? [{
-        //   key: 'Loan Administration',
-        //   label: 'Loan Administration',
-        //   url: '/ui/LoanApproval/loanAdminisration',
-        //   parentKey: 'forms',
-        // }] : []),
-  
-      ],
-    },
-  
-    {
-      key: 'tables',
-      label: 'Loan management',
-      isTitle: false,
-      icon: Grid,
-      children: [
-  
-        {
-          key: 'tables-loan-purpose',
-          label: 'Loan Purpose',
-          url: '/ui/tables/loan-purpose',
-          parentKey: 'tables',
-        },
-  
-        {
-          key: 'tables-loan-requirement',
-          label: 'Loan Requirement Setup',
-          url: '/ui/tables/loan-requirement',
-          parentKey: 'tables',
-        },
-  
-        {
-          key: 'tables-loan-tenure',
-          label: 'Loan Tenure',
-          url: '/ui/tables/loantenure',
-          parentKey: 'tables',
-        },
-  
-        {
-          key: 'tables-home-ownership',
-          label: 'Home Ownership',
-          url: '/ui/tables/homeownership',
-          parentKey: 'tables',
-        },
-  
-        {
-          key: 'tables-loan',
-          label: 'Loan Products',
-          url: '/ui/tables/loan-product',
-          parentKey: 'tables',
-        },
-        {
-          key: 'tables-loan',
-          label: 'Approval Item Setup',
-          url: '/ui/tables/approval',
-          parentKey: 'tables',
-        },
-   
+      
       ],
     },
     {
-      key: 'maps',
-      label: 'Report',
-      isTitle: false,
-      icon: File,
+      key: 'settings',
+      label: 'Settings',
+      isTitle: true,
       children: [
         {
-          key: 'report',
-          label: 'Customer',
-          url: '/ui/report/getCustomer',
-          parentKey: 'maps',
+          key: 'permission-management',
+          label: 'Permission Management',
+          isTitle: false,
+          icon: LockIcon,
+          children: [
+            {
+              key: 'add-group',
+              label: 'Add Group',
+              url: '/ui/permission/Addgroup',
+            },
+            {
+              key: 'assign-staff',
+              label: 'Assign Staff',
+              url: '/ui/permission/alluser',
+            },
+            {
+              key: 'all-groups',
+              label: 'All Groups',
+              url: '/ui/permission/allgroup',
+            },
+          ],
         },
-  
         {
-          key: 'report',
-          label: 'Transaction',
-          url: '/ui/report/Transaction',
-          parentKey: 'maps',
+          key: 'system-settings',
+          label: 'System Settings',
+          isTitle: false,
+          icon: Settings,
+          children: [
+            {
+              key: 'system-configuration',
+              label: 'System Configuration',
+              url: '/ui/system/setsystem',
+            },
+            {
+              key: 'change-password',
+              label: 'Change Password',
+              url: '/ui/system/changepassword',
+            },
+          ],
         },
       ],
     },
     {
-      key: 'demo',
-      label: 'Permission Management',
-      isTitle: false,
-      icon: LockIcon,
+      key: 'management',
+      label: 'Management',
+      isTitle: true,
       children: [
+      
         {
-          key: 'Add Group',
-          label: 'Add Group',
-          url: '/ui/permission/Addgroup',
-          parentKey: 'Group',
-        },
-        {
-          key: 'all-user',
-          label: 'Assign Staff',
-          url: '/ui/permission/alluser',
-          parentKey: 'Group',
-        },
-  
-        {
-          key: 'all-group',
-          label: 'All Group',
-          url: '/ui/permission/allgroup',
-          parentKey: 'Group',
-        },
-        // {
-        //   key: 'demo-2',
-        //   label: 'Item 2',
-        //   badge: {
-        //     text: 'New',
-        //     variant: 'bg-info',
-        //   },
-        //   url: '/item2',
-        //   parentKey: 'demo',
-        // },
-      ],
-    },
-    {
-      key: 'customer-complains',
-      label: 'Customer Complains',
-      isTitle: false,
-      icon: MessageSquare,
-      children: [
-        {
-          key: 'complains',
-          label: 'All Complains',
-          url: '/ui/complaint/',
-          parentKey: 'customer complains',
-        },
-        // {
-        //   key: "email-read",
-        //   label: "Read Email",
-        //   url: "/apps/email/read",
-        //   parentKey: "apps-email",
-        // },
-        // {
-        //   key: "email-compose",
-        //   label: "Compose Email",
-        //   url: "/apps/email/compose",
-        //   parentKey: "apps-email",
-        // },
-      ],
-    },
-  
-    {
-      key: 'Fixed Deposit',
-      label: 'Fixed Deposit Setup',
-      isTitle: false,
-      icon: Archive,
-     
-  
-      children: [
-        {
-          key: 'Fixed Deposit',
-          label: 'All Fixed Deposit',
+          key: 'fixed-deposit',
+          label: 'Fixed Deposit Setup',
+          isTitle: false,
+          icon: Archive,
           url: '/ui/fixed-deposit/Allfixed',
-          parentKey: 'dashboard'
-        }
-  
-        // {
-        //   key: 'all-customer',
-        //   label: 'Customer',
-        //   url: '/ui/customer/customer-date',
-        //   parentKey: 'dashboard',
-        // },
-        
-        
-      ],
-    },
-  
-  
-    {
-      key: 'Maker & Checker',
-      label: 'Maker & Checker',
-      isTitle: false,
-      icon: Anchor,
-     
-  
-      children: [
-        {
-          key: 'Approval Request',
-          label: 'Approval Request',
-          url: '/ui/system/approvalrequest',
-          parentKey: 'dashboard'
-        }
-  
-        // {
-        //   key: 'all-customer',
-        //   label: 'Customer',
-        //   url: '/ui/customer/customer-date',
-        //   parentKey: 'dashboard',
-        // },
-        
-        
-      ],
-    },
-  
-    {
-      key: 'Risk Management',
-      label: 'Risk Management',
-      isTitle: false,
-      icon: Wrench,
-     
-  
-      children: [
-        {
-          key: 'Repeated Transaction',
-          label: 'Repeated Transaction',
-          url: '/ui/risk-management/',
-          parentKey: 'dashboard',
+          
         },
-  
-        // {
-        //   key: 'all-customer',
-        //   label: 'Customer',
-        //   url: '/ui/customer/customer-date',
-        //   parentKey: 'dashboard',
-        // },
-        
-        
+        {
+          key: 'maker-checker',
+          label: 'Maker & Checker',
+          isTitle: false,
+          icon: Anchor,
+          children: [
+            {
+              key: 'approval-request',
+              label: 'Approval Request',
+              url: '/ui/system/approvalrequest',
+            },
+          ],
+        },
+        {
+          key: 'risk-management',
+          label: 'Risk Management',
+          isTitle: false,
+          icon: Wrench,
+          children: [
+            {
+              key: 'repeated-transaction',
+              label: 'Repeated Transaction',
+              url: '/ui/risk-management/',
+            },
+          ],
+        },
+        {
+          key: 'reports',
+          label: 'Reports',
+          isTitle: false,
+          icon: File,
+          children: [
+            {
+              key: 'customer-report',
+              label: 'Customer',
+              url: '/ui/report/getCustomer',
+            },
+            {
+              key: 'transaction-report',
+              label: 'Transaction',
+              url: '/ui/report/Transaction',
+            },
+          ],
+        },
+      
+        {
+          key: 'Customer complaints',
+          label: 'Customer Complaints',
+          isTitle: false,
+          icon: MessageSquare,
+          url: '/ui/complaint/',
+        },
       ],
     },
-  
-    {
-      key: 'system-setting',
-      label: 'System setting',
-      isTitle: false,
-      icon: Settings,
-      children: [
-  
-        {
-          key: 'setSystem',
-          label: 'System Configuration',
-          url: '/ui/system/setsystem',
-          parentKey: 'dashboard',
-        },
-  
-        // {
-        //   key: 'all-System',
-        //   label: 'Settings',
-        //   url: '/ui/system/settings',
-        //   parentKey: 'dashboard',
-        // },
-  
-        {
-          key: 'Change-Password',
-          label: 'Change Password',
-          url: '/ui/system/changepassword',
-          parentKey: 'dashboard',
-        },
-       
-      ],
-    },
-  ]
+  ];
   
   export { MENU_ITEMS }
