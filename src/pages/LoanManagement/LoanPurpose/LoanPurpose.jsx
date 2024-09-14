@@ -123,8 +123,8 @@ const LoanPurpose = () => {
 
             </div>
 
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
-                <div className="flex justify-between mx-2">
+            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
+                <div className="flex justify-between ">
                     <div className="flex  border-2 bg-[#fff] rounded-lg px-4 my-4 items-center  p-2" >
                         <div className=' mr-2 text-gray-500'>
                             <BiSearch />
@@ -185,7 +185,8 @@ const LoanPurpose = () => {
                                         {filteredUsers.map((staff, idx) => (
                                             <tr
                                                 key={idx}
-                                                className="bg-[#fff] text-[#667085]"
+                                                className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]' : 'bg-[#fff]'}`}
+
                                             >
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {idCounter++}
@@ -215,7 +216,7 @@ const LoanPurpose = () => {
 
                                                     <Link
                                                         to={`/ui/tables/edit-loan-purpose/${staff.id}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                        className="text-[#072D56]"
                                                     >
                                                         <FaPen size={'1.5em'} />
                                                     </Link>

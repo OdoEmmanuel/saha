@@ -12,14 +12,15 @@ import RevenueChart from '../components/charts/RevenueChart';
 import TragetChart from '../components/charts/TragetChart';
 import SalesChart from '../components/charts/SalesChart';
 import Ornament14 from '../assets/Ornament14.png'
-import Ornament2 from '../assets/Ornament2.png'
+import Ornament2 from '../assets/test2.png'
 import Ornament15 from '../assets/Ornament15.png'
 import Ornament4 from '../assets/Ornament4.png'
 import Ornament6 from '../assets/Ornament6.png'
 import Ornament5 from '../assets/Ornament5.png'
-import Ornament13 from '../assets/Ornament13.png'
-import Ornament16 from '../assets/Ornament16.png'
+import Ornament13 from '../assets/TEST1.png'
+import Ornament16 from '../assets/test3.png'
 import Ornament12 from '../assets/Ornament12.png'
+
 
 const HomePage = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext();
@@ -148,86 +149,42 @@ const HomePage = () => {
 
             {/* Dashboard content */}
 
-            <div className='sm:grid lg:grid-cols-4 sm:grid-cols-2 xss:flex flex-col items-center gap-4   mt-5 '>
+            <div className='sm:grid lg:grid-cols-3 sm:grid-cols-2 xss:flex flex-col items-center    mt-5 '>
 
-                <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
+                <div className={` bg-[#fff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative  `}>
 
-                    <img src={Ornament13} />
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                        <div className='mb-6 bg-gray-500 text-[#fff] text-[20px] w-[30px] p-2 flex justify-center items-center  opacity-[.57] rounded-[5px]'>
-                            <MdPeople />
-                        </div>
-                        <p className='text-gray-500'>Total Customers</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'>{data.noOfCustomers}</p>
+                    
+                    <div className='absolute top-[15%] left-[8%] flex  flex-col z-[1]'>
+                       
+                        <p className='text-[#000000] text-[20px] font-[400]'>Total Customers</p>
+                        <p className='text-[30px] text-[#000000] font-[600]'>{data.noOfCustomers}</p>
                     </div>
+                    <img src={Ornament13} className='absolute right-0  bottom-0' />
                 </div>
 
-                <div className={` bg-[#ffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
+                <div className={` bg-[#ffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative  `}>
 
-                    <img src={Ornament2} />
+                    
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                        <div className='mb-6 bg-gray-500 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
-                            <IoIosPaper />
-                        </div>
-                        <p className='text-gray-500'>Total accounts</p>
+                    
+                        <p className='text-[#000000] text-[20px] font-[400]'>Total accounts</p>
                         <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfAccounts}</p>
                     </div>
+                    <img src={Ornament2} className='absolute right-0  bottom-0'  />
                 </div>
-                <div className={` bg-[#fff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
+                
+              
+                
 
-                    <img src={Ornament14} />
+                <div className={` bg-[#ffffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative  `}>
+
+                   
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                        <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
-                            <IoIosPerson />
-                        </div>
-                        <p className='text-gray-500'>Total Staff</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfStaff}</p>
-                    </div>
-                </div>
-                <div className={` bg-[#ffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
-
-                    <img src={Ornament5} />
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                        <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
-                            <IoIosPerson />
-                        </div>
-                        <p className='text-gray-500'>Total Loan Processed</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfLoanProcessed}</p>
-                    </div>
-                </div>
-                <div className={` bg-[#ffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
-
-                    <img src={Ornament6} />
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                        <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
-                            <IoIosPerson />
-                        </div>
-                        <p className='text-gray-500'>Total Loan Approved</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfLoanApproved}</p>
-                    </div>
-                </div>
-                <div className={` bg-[#ffffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
-
-                    <img src={Ornament15} />
-                    <div className='absolute top-[15%] left-[4%] flex  flex-col'>
-                        <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
-                            <IoIosPerson />
-                        </div>
-                        <p className='text-gray-500 text-[15px]'>Average Loan Turn Around Time</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> {data.averageLoanTurnAroundTime}</p>
-                    </div>
-                </div>
-
-                <div className={` bg-[#ffffff] w-[250px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[6px_8px_8px_0px_rgba(0,_0,_0,_0.25)] mr-4`}>
-
-                    <img src={Ornament16} />
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                        <div className='mb-6 bg-gray-400 w-[30px] p-2 flex justify-center items-center opacity-[.57] rounded-[5px]'>
-                            <IoIosPerson />
-                        </div>
-                        <p className='text-gray-500'>Total Transaction Counts</p>
+                        
+                        <p className='text-[#000000] text-[20px] font-[400]'>Total Transaction Counts</p>
                         <p className='text-[30px] text-[#000000] font-[500]'> {data.transactionCounts}</p>
                     </div>
+                    <img src={Ornament16} className='absolute right-0  bottom-0' />
                 </div>
             </div>
 

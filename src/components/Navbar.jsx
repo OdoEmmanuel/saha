@@ -35,7 +35,7 @@ const Navbar = ({ isOpen, tog }) => {
     document.body.classList.toggle("dark");
   }
   return (
-    <div className="p-6  w-full    sticky top-0 mb-8   items-center border-2">
+    <div className="p-6  w-full    sticky top-0 mb-2   items-center border-2">
 
       <div className="flex justify-between">
 

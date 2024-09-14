@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { MENU_ITEMS } from '../common/MenuItem';
-import logo from '../assets/gti-microfinance-logo.png'
+import logo from '../assets/saha.png'
 
 const Sidebar = ({ isOpen, tog }) => {
   const location = useLocation();
@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, tog }) => {
     // if (isActive || isParentOfActive) {
     //   setLastActiveRoute(item.url);
     // }
-    const activeClass = isActive || isParentOfActive ? "bg-blue-100 py-2 px-2 text-blue-700 rounded-lg font-semibold" : 'text-gray-600   hover:text-blue-600'
+    const activeClass = isActive || isParentOfActive ? "bg-blue-100 py-2 px-2 text-blue-700 rounded-lg font-semibold" : 'text-[#fff]   hover:text-blue-600'
     const hasChildren = item.children && item.children.length > 0;
     const Open = openDropdown === item.key;
 
@@ -56,7 +56,7 @@ const Sidebar = ({ isOpen, tog }) => {
               <ul className="mt-1 ml-12 space-y-1">
                 {item.children.map(child => {
                   const isChildActive = location.pathname === child.url;
-                  const childActiveClass = isChildActive ? " text-blue-700 font-semibold" : 'text-gray-600  hover:text-blue-600';
+                  const childActiveClass = isChildActive ? " text-blue-700 font-semibold" : 'text-[#fff]  hover:text-blue-600';
                   return (
                     <li key={child.key}>
                       <Link to={child.url} className={`flex items-center mb-2 ${childActiveClass}`}>
@@ -80,9 +80,9 @@ const Sidebar = ({ isOpen, tog }) => {
   };
 
   return (
-    <div className={` w-64  bg-[#fff]   h-screen overflow-y-auto fixed lg:flex flex-col  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] rounded-[5px]  no-scrollbar   hidden`}>
+    <div className={` w-64  bg-[#002853]   h-screen overflow-y-auto fixed lg:flex flex-col  shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]   no-scrollbar   hidden`}>
       <div className='px-4 pt-2' >
-        <img src={logo} className='mb-4 '></img>
+        <img src={logo} className='mb-4 w-[150px] '></img>
       </div>
 
       <nav className="mt-5">
