@@ -77,12 +77,7 @@ import {
       isTitle: false,
       icon: Bookmark,
       children: [
-        {
-          key: 'forms-basic-elements',
-          label: 'Add Staff',
-          url: '/ui/staffs/AddStaff',
-          parentKey: 'forms',
-        },
+     
         {
           key: 'forms-loan-elements',
           label: 'All Staff',

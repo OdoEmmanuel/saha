@@ -125,8 +125,8 @@ const Transaction = () => {
                 </div>
             )}
 
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden rounded-[10px]'>
-                <div className="flex justify-between m-2">
+            <div className='bg-[#fff] mt-4 shadow-md p-6 overflow-hidden rounded-[10px]'>
+                <div className="flex justify-between mb-2">
                     <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
                         <div className="relative flex items-center border border-gray-300 rounded px-4 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200">
                             <IoMdCalendar className="text-gray-500 mr-2" size={20} />
@@ -169,7 +169,7 @@ const Transaction = () => {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-scroll no-scrollbar">
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                         <thead className="bg-gray-50 text-[#667085] font-[500]">
                             <tr>

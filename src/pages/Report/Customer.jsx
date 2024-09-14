@@ -164,9 +164,9 @@ const Customer = () => {
 
             </div>
 
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden   rounded-[10px]'>
+            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
 
-                <div className="flex justify-between m-2">
+                <div className="flex justify-between ">
                     <div className=" flex flex-col rounded-lg ">
                         <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
 

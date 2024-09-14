@@ -226,7 +226,7 @@ const ActiveCustomer = () => {
             )}
 
 
-            <div className='bg-[#fff] mt-16 shadow-md overflow-hidden    rounded-[10px]'>
+            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
                 <div className="flex justify-between">
                     <div className='flex justify-between px-2'>
 
@@ -322,7 +322,7 @@ const ActiveCustomer = () => {
                                         {filteredUsers.map((staff, idx) => (
                                             <tr
                                                 key={idx}
-                                                className="bg-[#fff] text-[#667085]"
+                                                className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]':'bg-[#fff]'}`}
                                             >
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {idCounter++}
@@ -357,14 +357,14 @@ const ActiveCustomer = () => {
                                                     {staff.nin}
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <button onClick={() => handleUnblockUser(staff.loginId, staff.pinBlocked)} className={`${staff.pinBlocked ? 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300'}`}>
+                                                    <button onClick={() => handleUnblockUser(staff.loginId, staff.pinBlocked)} className={`${staff.pinBlocked ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.pinBlocked === true ? 'Unblock Pin' : 'Block Pin'
                                                         }
                                                     </button>
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <button onClick={() => handleBlockandUnblockUser(staff.id, staff.accountBlocked)} className={`${staff.accountBlocked ? 'bg-green-500 text-white text-xs px-2 py-1 rounded-md hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-red-500 text-white text-xs px-2 py-1 rounded-md hover:bg-red-500/[.57] transition-colors duration-300'}`}>
+                                                    <button onClick={() => handleBlockandUnblockUser(staff.id, staff.accountBlocked)} className={`${staff.accountBlocked ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300' }`}>
                                                         {
                                                             staff.accountBlocked ? 'Unblock Customer' : 'Block Customer'
                                                         }
