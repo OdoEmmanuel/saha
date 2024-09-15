@@ -169,7 +169,7 @@ const UpdateStaff = () => {
             )}
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
         <div className="px-6 py-4">
-        <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-blue-500 hover:text-blue-600 transition-colors">
+        <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
           <BiArrowBack className="mr-2" />
           Back
         </button>
@@ -228,7 +228,7 @@ const UpdateStaff = () => {
               />
       
           </div>
-          <button type='submit' className="text-white btn w-full bg-blue-500  hover:bg-blue-700 rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Add Staff'}</button>
+          <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Add Staff'}</button>
       </form>
         </div>
     

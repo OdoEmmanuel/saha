@@ -151,7 +151,7 @@ const HomePage = () => {
 
             <div className='sm:grid lg:grid-cols-3 sm:grid-cols-2 xss:flex flex-col items-center    mt-5 '>
 
-                <div className={` bg-[#fff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative  `}>
+                <div className={` bg-[#fff] w-[300px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]  text-white relative  `}>
 
                     
                     <div className='absolute top-[15%] left-[8%] flex  flex-col z-[1]'>
@@ -162,7 +162,7 @@ const HomePage = () => {
                     <img src={Ornament13} className='absolute right-0  bottom-0' />
                 </div>
 
-                <div className={` bg-[#ffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative  `}>
+                <div className={` bg-[#ffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
 
                     
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
@@ -176,7 +176,7 @@ const HomePage = () => {
               
                 
 
-                <div className={` bg-[#ffffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative  `}>
+                <div className={` bg-[#ffffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
 
                    
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
