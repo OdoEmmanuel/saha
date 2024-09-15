@@ -9,6 +9,7 @@ import { FaPen } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 
+
 const AllStaff = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [isLoading, setisLoading] = useState(false);
@@ -134,8 +135,8 @@ const AllStaff = () => {
                         </div>
 
                         <Link
-                            to={`/ui/staffs/AllStaff`}
-                            className="text-white btn bg-[#072D56] w-[200px]  hover:bg-primary rounded-[10px] my-4 py-2 px-4"
+                            to={`/ui/staffs/AddStaff`}
+                            className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px] my-4 py-2 px-4"
                         >
                             {' '}
                             Add Staff

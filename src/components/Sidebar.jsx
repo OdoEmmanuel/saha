@@ -28,11 +28,11 @@ const Sidebar = ({ isOpen, tog }) => {
     // if (isActive || isParentOfActive) {
     //   setLastActiveRoute(item.url);
     // }
-    const activeClass = isActive || isParentOfActive ? "bg-blue-100 py-2 px-2 text-blue-700 rounded-lg font-semibold" : 'text-[#fff]   hover:text-blue-600'
+    const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2  rounded-lg font-semibold" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2   hover:text-blue-600'
     const hasChildren = item.children && item.children.length > 0;
-    
 
-    
+
+
 
 
 
@@ -40,21 +40,30 @@ const Sidebar = ({ isOpen, tog }) => {
       <li>
         {item.key !== 'dashboard' ? (
           <div>
-            <h1>{item.key}</h1>
+            <h1 className='text-[#73809C] font-[500] text-[20px] mb-2'>{item.key}</h1>
             {item.children.map((items, index) => {
               const Open = openDropdown === items.key;
-              
+              const isActive = location.pathname === items.url;
+              const isParentOfActive = items.children && items.children.some(child => location.pathname === child.url);
+              // if (isActive || isParentOfActive) {
+              //   setLastActiveRoute(item.url);
+              // }
+              const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA]  py-2 px-2  rounded-lg font-semibold" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2   '
+
               return (
                 <li key={index} className={`mb-4 `} >
                   {items.children && items.children.length > 0 ? (
                     <div>
                       <button
                         onClick={() => toggleDropdown(items.key)}
-                        className={`flex items-center justify-between w-full px-4  rounded-lg transition-colors duration-200 ${activeClass}`}
+                        className={`flex items-center justify-between w-full  transition-colors duration-200 ${activeClass}`}
                       >
                         <span className="flex items-center">
                           {items.icon && <items.icon className="mr-2" size={18} />}
-                          <span className={`  'block mr-1 '`}>{items.label}</span>
+                          <div>
+                            <span className={`'block mr-1 '`}>{items.label}</span>
+
+                          </div>
                         </span>
                         {Open ? <IoChevronUp size={16} className={`  block}`} /> : <IoChevronDown size={16} className={` block`} />}
                       </button>
@@ -81,7 +90,7 @@ const Sidebar = ({ isOpen, tog }) => {
                       )}
                     </div>
                   ) : (
-                    <Link to={items.url} className={`flex items-center ${activeClass} px-4 `}>
+                    <Link to={items.url} className={`flex items-center ${activeClass}  `}>
                       {items.icon && <items.icon className="mr-2" size={18} />}
                       <span className={` block mr-1`}>{items.label}</span>
                     </Link>
@@ -93,7 +102,7 @@ const Sidebar = ({ isOpen, tog }) => {
           </div>
         ) : (
 
-          <Link to={item.url} className={`flex items-center ${activeClass} px-4 `}>
+          <Link to={item.url} className={`flex items-center ${activeClass}  `}>
             {item.icon && <item.icon className="mr-2" size={18} />}
             <span className={` block mr-1`}>{item.label}</span>
           </Link>
@@ -112,7 +121,7 @@ const Sidebar = ({ isOpen, tog }) => {
         <img src={logo} className='mb-4 w-[150px] '></img>
       </div>
       <nav className="mt-5">
-        <ul>
+        <ul className=' flex flex-col gap-4 p-4'>
           {MENU_ITEMS.map(renderMenuItem)}
         </ul>
       </nav>

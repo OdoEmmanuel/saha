@@ -141,7 +141,7 @@ const HomeOwnership = () => {
 
                     <Link
                         to={`/ui/tables/addhomeownership`}
-                        className="text-white btn bg-blue-500  hover:bg-primary rounded-[10px] my-4 py-2 px-4"
+                        className="text-white btn bg-[#072D56] rounded-[10px] my-4 py-2 px-4"
                     >
                         {' '}
                         Add Home Ownership

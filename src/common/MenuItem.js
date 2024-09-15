@@ -35,7 +35,7 @@ import {
       url: '/',
     },
     {
-      key: 'loan',
+      key: 'Loan',
       label: 'Loan',
       isTitle: true,
       children: [
@@ -68,7 +68,7 @@ import {
           ],
         },
         {
-          key: 'loan-management',
+          key: 'Loan-management',
           label: 'Loan Management',
           isTitle: false,
           icon: Grid,
@@ -108,13 +108,13 @@ import {
       ],
     },
     {
-      key: 'account',
+      key: 'Account',
       label: 'Account',
       isTitle: true,
       children: [
         {
           key: 'customer-management',
-          label: 'Customer Management',
+          label: 'Customer',
           isTitle: false,
           icon: File,
           children: [
@@ -150,56 +150,9 @@ import {
       
       ],
     },
+    
     {
-      key: 'settings',
-      label: 'Settings',
-      isTitle: true,
-      children: [
-        {
-          key: 'permission-management',
-          label: 'Permission Management',
-          isTitle: false,
-          icon: LockIcon,
-          children: [
-            {
-              key: 'add-group',
-              label: 'Add Group',
-              url: '/ui/permission/Addgroup',
-            },
-            {
-              key: 'assign-staff',
-              label: 'Assign Staff',
-              url: '/ui/permission/alluser',
-            },
-            {
-              key: 'all-groups',
-              label: 'All Groups',
-              url: '/ui/permission/allgroup',
-            },
-          ],
-        },
-        {
-          key: 'system-settings',
-          label: 'System Settings',
-          isTitle: false,
-          icon: Settings,
-          children: [
-            {
-              key: 'system-configuration',
-              label: 'System Configuration',
-              url: '/ui/system/setsystem',
-            },
-            {
-              key: 'change-password',
-              label: 'Change Password',
-              url: '/ui/system/changepassword',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      key: 'management',
+      key: 'Management',
       label: 'Management',
       isTitle: true,
       children: [
@@ -212,18 +165,26 @@ import {
           url: '/ui/fixed-deposit/Allfixed',
           
         },
+        // {
+        //   key: 'maker-checker',
+        //   label: 'Maker & Checker',
+        //   isTitle: false,
+        //   icon: Anchor,
+        //   children: [
+        //     {
+        //       key: 'approval-request',
+        //       label: 'Approval Request',
+        //       url: '/ui/system/approvalrequest',
+        //     },
+        //   ],
+        // },
         {
-          key: 'maker-checker',
-          label: 'Maker & Checker',
+          key: 'approval-request',
+          label: 'Approval Request',
           isTitle: false,
           icon: Anchor,
-          children: [
-            {
-              key: 'approval-request',
-              label: 'Approval Request',
-              url: '/ui/system/approvalrequest',
-            },
-          ],
+          url: '/ui/fixed-deposit/Allfixed',
+          
         },
         {
           key: 'risk-management',
@@ -263,6 +224,54 @@ import {
           isTitle: false,
           icon: MessageSquare,
           url: '/ui/complaint/',
+        },
+      ],
+    },
+    {
+      key: 'Settings',
+      label: 'Settings',
+      isTitle: true,
+      children: [
+        {
+          key: 'permission-management',
+          label: 'Permission',
+          isTitle: false,
+          icon: LockIcon,
+          children: [
+            {
+              key: 'add-group',
+              label: 'Add Group',
+              url: '/ui/permission/Addgroup',
+            },
+            {
+              key: 'assign-staff',
+              label: 'Assign Staff',
+              url: '/ui/permission/alluser',
+            },
+            {
+              key: 'all-groups',
+              label: 'All Groups',
+              url: '/ui/permission/allgroup',
+            },
+          ],
+        },
+        {
+          key: 'system-settings',
+          label: 'System Settings',
+          isTitle: false,
+          icon: Settings,
+          children: [
+            {
+              key: 'system-configuration',
+              label: 'System Configuration',
+              url: '/ui/system/setsystem',
+            },
+            {
+              key: 'change-password',
+              label: 'Change Password',
+              url: '/ui/system/changepassword',
+            },
+          ],
         },
       ],
     },
