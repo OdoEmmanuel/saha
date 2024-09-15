@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthContext } from '../common/context/useAuthContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { IoIosPerson, IoMdCalendar,IoIosPaper  } from "react-icons/io";
+import { IoIosPerson, IoMdCalendar, IoIosPaper } from "react-icons/io";
 import { MdPeople } from "react-icons/md";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
@@ -20,6 +20,9 @@ import Ornament5 from '../assets/Ornament5.png'
 import Ornament13 from '../assets/TEST1.png'
 import Ornament16 from '../assets/test3.png'
 import Ornament12 from '../assets/Ornament12.png'
+import { UilEllipsisV } from '@iconscout/react-unicons';
+import Dropdown from '../components/charts/Dropdown';
+import CustomToggle from '../components/CustomSwitch';
 
 
 const HomePage = () => {
@@ -38,7 +41,18 @@ const HomePage = () => {
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('email');
     const name = localStorage.getItem('name');
+    const [showTransactionChart, setShowTransactionChart] = useState(true);
+    const [showLoanChart, setShowLoanChart] = useState(true);
     setHeaders('Dashboard');
+
+
+    const handleTransactionToggle = (isChecked) => {
+        setShowTransactionChart(!isChecked);
+    };
+
+    const handleLoanToggle = (isChecked) => {
+        setShowLoanChart(!isChecked);
+    };
 
     useEffect(() => {
         if (startDate && endDate) {
@@ -139,7 +153,7 @@ const HomePage = () => {
                                 placeholderText="Select date range"
                                 className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
                             />
-                              {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                            {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                                 <IoMdCalendar className="text-gray-400" size={16} />
                             </div> */}
                         </div>
@@ -153,9 +167,9 @@ const HomePage = () => {
 
                 <div className={` bg-[#fff] w-[300px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]  text-white relative  `}>
 
-                    
+
                     <div className='absolute top-[15%] left-[8%] flex  flex-col z-[1]'>
-                       
+
                         <p className='text-[#000000] text-[20px] font-[400]'>Total Customers</p>
                         <p className='text-[30px] text-[#000000] font-[600]'>{data.noOfCustomers}</p>
                     </div>
@@ -164,23 +178,23 @@ const HomePage = () => {
 
                 <div className={` bg-[#ffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
 
-                    
+
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                    
+
                         <p className='text-[#000000] text-[20px] font-[400]'>Total accounts</p>
                         <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfAccounts}</p>
                     </div>
-                    <img src={Ornament2} className='absolute right-0  bottom-0'  />
+                    <img src={Ornament2} className='absolute right-0  bottom-0' />
                 </div>
-                
-              
-                
+
+
+
 
                 <div className={` bg-[#ffffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
 
-                   
+
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-                        
+
                         <p className='text-[#000000] text-[20px] font-[400]'>Total Transaction Counts</p>
                         <p className='text-[30px] text-[#000000] font-[500]'> {data.transactionCounts}</p>
                     </div>
@@ -191,77 +205,225 @@ const HomePage = () => {
 
             {/* You can add RevenueChart, TragetChart, and SalesChart components here */}
 
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 mt-12">
+            <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 mt-12">
 
-                
-                    <TragetChart
-                        className="h-full"
-                        series={transactionStatusSummary.map(
-                            (item) => item.transactionVolume
-                        )}
-                        series2={transactionStatusSummary.map(
-                            (item) => item.transactionValue
-                        )}
-                        labels={transactionStatusSummary.map(
-                            (item) => item.transactionStatus
-                        )}
-                        title="Transaction Status Summary By Volume"
-                        name="Volume"
-                    />
-           
-
-                
-                    <RevenueChart
-                        className="h-full lg:w-full w-full"
-                        series={transactionStatusSummary.map(
-                            (item) => item.transactionValue
-                        )}
-                        series2={transactionStatusSummary.map(
-                            (item) => item.transactionVolume
-                        )}
-                        labels={lab}
-                        title="Transaction Status Summary By Value"
-                        set={false}
-                        name="Value"
-                    />
-            
+                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
+                    <div className="p-5">
+                        <div className="flex items-center justify-between mb-4">
+                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Transaction Status Summary By Volume</h5>
+                            <div className="h-8">
+                                <Dropdown />
+                            </div>
+                        </div>
+                        <TragetChart
+                            className="h-full"
+                            series={transactionStatusSummary.map(
+                                (item) => item.transactionVolume
+                            )}
+                            series2={transactionStatusSummary.map(
+                                (item) => item.transactionValue
+                            )}
+                            labels={transactionStatusSummary.map(
+                                (item) => item.transactionStatus
+                            )}
+                            title="Transaction Status Summary By Volume"
+                            name="Volume"
+                        />
+                    </div>
+                </div> */}
 
 
-                
-                    <RevenueChart
-                        className="h-full lg:w-full w-full"
-                        series={loanStatusSummary.map(
-                            (item) => item.loanValue
-                        )}
-                        series2={loanStatusSummary.map(
-                            (item) => item.loanVolume
-                        )}
-                        labels={loanStatusSummary.map((item) =>
-                            TrimText(item.loanStatus.replace(/_/g, ' '))
+                <div className="bg-white rounded-lg shadow-md overflow-hidden col-span-2 h-full w-full">
+                    <div className="overflow-hidden p-2">
+                        <div className="flex i justify-between  overflow-hidden">
+                            <h5 className="text-xl font-semibold text-gray-800 uppercase">
+                                {showTransactionChart ? "Transaction Status Summary By Value" : "Loan Summary By Value"}
+                            </h5>
+                            <CustomToggle
+                                onToggle={handleTransactionToggle}
+                                label1="Transaction"
+                                label2="Loan"
+                            />
+                        </div>
+                        <RevenueChart
+                            className="h-full lg:w-full w-full"
+                            series={showTransactionChart
+                                ? transactionStatusSummary.map((item) => item.transactionValue)
+                                : loanStatusSummary.map((item) => item.loanValue)
+                            }
+                            series2={showTransactionChart
+                                ? transactionStatusSummary.map((item) => item.transactionVolume)
+                                : loanStatusSummary.map((item) => item.loanVolume)
+                            }
+                            labels={showTransactionChart
+                                ? lab
+                                : loanStatusSummary.map((item) => TrimText(item.loanStatus.replace(/_/g, ' ')))
+                            }
+                            title={showTransactionChart ? "Transaction Status Summary By Value" : "Loan Summary By Value"}
+                            set={false}
+                            name="Value"
+                        />
+                    </div>
+                </div>
 
-                        )}
-                        title="Loan Summary By Value"
-                        set={false}
-                        name="Value"
-                    />
-            
+                <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
+                    <div className="p-5">
+                        <div className="flex items-center justify-between mb-4">
+                            <h5 className="text-xl font-semibold text-gray-800 uppercase">
+                                {showLoanChart ? "Transaction Status Summary By Volume" : "Loan Summary By Volume"}
+                            </h5>
+                            <CustomToggle
+                                onToggle={handleLoanToggle}
+                                label1="Transaction"
+                                label2="Loan"
+                            />
+                        </div>
+                        <TragetChart
+                            className="h-full"
+                            series={showLoanChart
+                                ? transactionStatusSummary.map((item) => item.transactionVolume)
+                                : loanStatusSummary.map((item) => item.loanVolume)
+                            }
+                            series2={showLoanChart
+                                ? transactionStatusSummary.map((item) => item.transactionValue)
+                                : loanStatusSummary.map((item) => item.loanValue)
+                            }
+                            labels={showLoanChart
+                                ? transactionStatusSummary.map((item) => item.transactionStatus)
+                                : loanStatusSummary.map((item) => item.loanStatus.replace(/_/g, ' '))
+                            }
+                            title={showLoanChart ? "Transaction Status Summary By Volume" : "Loan Summary By Volume"}
+                            name="Volume"
+                        />
+                    </div>
+                </div>
 
-                
-                    <TragetChart
-                        className="h-full"
-                        series={loanStatusSummary.map(
-                            (item) => item.loanVolume
-                        )}
-                        series2={loanStatusSummary.map(
-                            (item) => item.loanValue
-                        )}
-                        labels={loanStatusSummary.map((item) =>
-                            item.loanStatus.replace(/_/g, ' ')
-                        )}
-                        title="Transaction Status Summary By Volume"
-                        name="Volume"
-                    />
-                
+
+
+
+
+                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden h-full w-full">
+                    <div className="overflow-hidden p-6">
+                        <div className="flex items-center justify-between pb-4 overflow-hidden">
+                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Transaction Status Summary By Value</h5>
+                            <div className="relative">
+                                <button
+                                    type="button"
+                                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                                >
+                                    <UilEllipsisV size={20} />
+                                </button>
+
+                                <div className="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                                    {['Today', '7 Days', '15 Days', '1 Month', '6 Months', '1 Year'].map((period) => (
+                                        <Link
+                                            key={period}
+                                            to=""
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            {period}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        <RevenueChart
+                            className="h-full lg:w-full w-full"
+                            series={transactionStatusSummary.map(
+                                (item) => item.transactionValue
+                            )}
+                            series2={transactionStatusSummary.map(
+                                (item) => item.transactionVolume
+                            )}
+                            labels={lab}
+                            title="Transaction Status Summary By Value"
+                            set={false}
+                            name="Value"
+                        />
+
+                    </div>
+                </div> */}
+
+
+
+
+
+
+                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden h-full w-full">
+                    <div className="overflow-hidden p-6">
+                        <div className="flex items-center justify-between pb-4 overflow-hidden">
+                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Loan Summary By Value</h5>
+                            <div className="relative">
+                                <button
+                                    type="button"
+                                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                                >
+                                    <UilEllipsisV size={20} />
+                                </button>
+                               
+                                <div className="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                                    {['Today', '7 Days', '15 Days', '1 Month', '6 Months', '1 Year'].map((period) => (
+                                        <Link
+                                            key={period}
+                                            to=""
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            {period}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <RevenueChart
+                            className="h-full lg:w-full w-full"
+                            series={loanStatusSummary.map(
+                                (item) => item.loanValue
+                            )}
+                            series2={loanStatusSummary.map(
+                                (item) => item.loanVolume
+                            )}
+                            labels={loanStatusSummary.map((item) =>
+                                TrimText(item.loanStatus.replace(/_/g, ' '))
+
+                            )}
+                            title="Loan Summary By Value"
+                            set={false}
+                            name="Value"
+                        />
+
+                    </div>
+                </div> */}
+
+
+
+                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
+                    <div className="p-5">
+                        <div className="flex items-center justify-between mb-4">
+                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Loan Summary By Volume</h5>
+                            <div className="h-8">
+                                <Dropdown />
+                            </div>
+                        </div>
+                        <TragetChart
+                            className="h-full"
+                            series={loanStatusSummary.map(
+                                (item) => item.loanVolume
+                            )}
+                            series2={loanStatusSummary.map(
+                                (item) => item.loanValue
+                            )}
+                            labels={loanStatusSummary.map((item) =>
+                                item.loanStatus.replace(/_/g, ' ')
+                            )}
+                            title="Transaction Status Summary By Volume"
+                            name="Volume"
+                        />
+                    </div>
+                </div> */}
+
+
+
 
                 <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md'>
                     <SalesChart className="h-full"
