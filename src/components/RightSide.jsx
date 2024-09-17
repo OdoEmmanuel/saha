@@ -38,8 +38,11 @@ import AddAprrovalItem from '../pages/LoanManagement/ApprovalSetup/AddAprrovalIt
 import EditApprovalSetup from '../pages/LoanManagement/ApprovalSetup/EditApprovalSetup';
 import Customer from '../pages/Report/Customer';
 import Transaction from '../pages/Report/Transaction';
-import AllGroup from '../pages/Permission/AllGroup';
-import AssignGroupPermission from '../pages/Permission/AssignPermissiontoGroup';
+import AllGroup from '../pages/Permission/Group/AllGroup';
+import AssignGroupPermission from '../pages/Permission/Group/AssignPermissiontoGroup';
+import UpdateGroup from '../pages/Permission/Group/UpdateGroup';
+import AddGroup from '../pages/Permission/Group/AddGroup';
+import AllAssignStaff from '../pages/Permission/AssignStaff/AllAssignStaff';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -92,6 +95,10 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/report/getCustomer' element={<Customer/>}></Route>
             <Route path='/ui/report/Transaction' element={<Transaction/>}></Route>
             <Route path="/ui/permission/allgroup" element={<AllGroup/>}></Route>
+            <Route path="/ui/permission/assign-permission-group/:id" element={<AssignGroupPermission/>}></Route>
+            <Route path="/ui/permission/updategroup/:id" element={<UpdateGroup/>}></Route>
+            <Route path='/ui/permission/Addgroup' element={<AddGroup/>}></Route>
+            <Route path="/ui/permission/alluser" element={<AllAssignStaff/>}></Route>
           </Routes>
      
         

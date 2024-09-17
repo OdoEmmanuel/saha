@@ -64,3 +64,8 @@ const passwordRegExp =
     description: yup.string().required('enter your description')
 
   })
+
+  export const group = yup.object().shape({
+    groupName: yup.string().required(`Please enter the group's full name`),
+    description: yup.string().required('Please enter description'),
+  })
