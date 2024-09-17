@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useAuthContext } from '../../common/context/useAuthContext';
+import { useAuthContext } from '../../../common/context/useAuthContext';
 import { toast } from 'react-toastify';
 import axios from 'axios'
 
@@ -11,9 +11,11 @@ const AssignGroupPermission = () => {
   const [permissions, setPermissions] = useState([])
   const location = useLocation()
   const navigate = useNavigate()
-  const { isAuthenticated, request, clientid, middleware, authorizationService } = useAuthContext()
+  const { isAuthenticated, request, clientid, middleware, authorizationService, setHeaders } = useAuthContext()
 
   const redirectUrl = location.state?.from.pathname || '/ui/permission/allgroup'
+
+  setHeaders('Assign Permission to Group')
 
   const {
     register,
@@ -39,6 +41,10 @@ const AssignGroupPermission = () => {
       'client-id': clientid,
     },
   })
+
+  function removeUnderscores(text) {
+    return text.replace(/_/g, ' ')
+}
 
   useEffect(() => {
     const fetchPermission = async () => {
@@ -129,7 +135,7 @@ const AssignGroupPermission = () => {
 };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8">
       <div className="flex">
         <button onClick={() => navigate(-1)} className="mb-6 mr-4">
           <svg
@@ -152,8 +158,8 @@ const AssignGroupPermission = () => {
         </h4>
       </div>
 
-      <div className="my-12 bg-white">
-        <div className="mt-8">
+      <div className="my-2 bg-white">
+        <div className="mt-4">
           <p className="text-gray-500 dark:text-gray-400 text-left text-lg py-3 px-6">
             Enter Permission Details
           </p>
@@ -172,7 +178,7 @@ const AssignGroupPermission = () => {
             {permissions.map((permission) => (
               <div
                 key={permission.id}
-                className="border rounded-md flex items-center mx-2"
+                className=" rounded-md flex items-center mx-2"
               >
                 <input
                   type="checkbox"
@@ -183,15 +189,15 @@ const AssignGroupPermission = () => {
                   {...register(`permissionIds.${permission.id}`)}
                 />
                 <label htmlFor={permission.id} className="ml-1">
-                  {permission.permission}
+                  {removeUnderscores(permission.permission)}
                 </label>
               </div>
             ))}
-            <div className="lg:col-span-3"></div>
+            {/* <div className="lg:col-span-3"></div> */}
             <div className="lg:col-span-3 mt-6">
               <button
                 disabled={loading}
-                className="btn bg-primary text-white w-full"
+                className="bg-[#072D56] py-2 px-4 rounded-lg text-white w-full"
                 type="submit"
               >
                 {loading ? 'Assigning Permissions...' : 'Assign Permissions'}

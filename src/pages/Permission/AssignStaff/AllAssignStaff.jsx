@@ -3,13 +3,13 @@ import { PulseLoader } from "react-spinners";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { BiSearch } from "react-icons/bi";
-import { useAuthContext } from '../../common/context/useAuthContext';
+import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaPen } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 
-const AllGroup = () => {
+const AllAssignStaff = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [isLoading, setisLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('')
@@ -18,7 +18,8 @@ const AllGroup = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
-    setHeaders(`ALL Group`)
+    setHeaders(`Assign STAFF`)
+
     useEffect(() => {
         setisLoading(true);
         fetchData()
@@ -38,7 +39,7 @@ const AllGroup = () => {
 
     const fetchData = () => {
 
-        axios.get(`${authorizationService}groups`, config)
+        axios.post(`${authorizationService}user`, null, config)
             .then((res) => {
 
                 setAllStaff(res.data.data)
@@ -64,7 +65,6 @@ const AllGroup = () => {
             })
     }
 
-
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value)
     }
@@ -79,17 +79,15 @@ const AllGroup = () => {
             // Filter users based on search query
             const filteredUsers = allStaff.filter((user) => {
                 if (
-                    user.groupName === null ||
-                    user.description === null ||
-                    user.status ===null
+                    user.email === null ||
+                    user.staffName === null
                 ) {
                     return false
                 }
 
                 return (
-                    user.groupName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    user.description.toLowerCase().includes(searchQuery.toLowerCase())||
-                    user.status.toLowerCase().includes(searchQuery.toLowerCase())
+                    user.staffName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    user.email.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
             setFilteredUsers(filteredUsers)
@@ -129,7 +127,7 @@ const AllGroup = () => {
                             className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px] my-4 py-2 px-4"
                         >
                             {' '}
-                            Add Group
+                            Add Staff
                         </Link>
 
 
@@ -150,20 +148,26 @@ const AllGroup = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
-                                            Group Name{' '}
+                                            Name{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
                                             {' '}
-                                            Decsription{' '}
+                                            Email{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            PHONE{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                            {' '}
+                                            UserType{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
                                             Status{' '}
                                         </th>
-                                        
-                                       
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
-                                        
+                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
 
@@ -179,18 +183,23 @@ const AllGroup = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.groupName}
+                                                    {staff.staffName}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    {staff.description}
+                                                    {staff.email}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                    {staff.phone}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                    {staff.userType}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {staff.status}
                                                 </td>
-                                              
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    <button onClick={() => toggleStaffHandle(staff.id)} className={` bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300`} >
-                                                        Assign Permission
+                                                    <button  className={`${staff.status === 'Disabled' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`} >
+                                                        {staff.status === 'Disabled' ? 'Enable' : 'Disable'}
                                                     </button>
 
                                                 </td>
@@ -226,4 +235,4 @@ const AllGroup = () => {
   )
 }
 
-export default AllGroup
+export default AllAssignStaff
