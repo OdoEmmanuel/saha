@@ -6,7 +6,7 @@ import { UilEllipsisV } from '@iconscout/react-unicons';
 const RevenueChart = ({ series, labels, title, name, set }) => {
   const revenueChart = {
     chart: {
-      height: 350,
+      height: '100%',
       type: 'area',
       toolbar: {
         show: false,
@@ -50,7 +50,7 @@ const RevenueChart = ({ series, labels, title, name, set }) => {
         data: series,
       },
     ],
-    colors: ['#008FFB'],
+    colors: ['#12629C'],
     fill: {
       type: 'gradient',
       gradient: {
@@ -88,7 +88,7 @@ const RevenueChart = ({ series, labels, title, name, set }) => {
         },
       },
       title: {
-        text: 'Revenue',
+        
         style: {
           fontSize: '14px',
           fontWeight: 500,

@@ -183,7 +183,7 @@ import {
           label: 'Approval Request',
           isTitle: false,
           icon: Anchor,
-          url: '/ui/fixed-deposit/Allfixed',
+          url: '/ui/approvalRequest',
           
         },
         {
@@ -238,11 +238,6 @@ import {
           isTitle: false,
           icon: LockIcon,
           children: [
-            {
-              key: 'add-group',
-              label: 'Add Group',
-              url: '/ui/permission/Addgroup',
-            },
             {
               key: 'assign-staff',
               label: 'Assign Staff',

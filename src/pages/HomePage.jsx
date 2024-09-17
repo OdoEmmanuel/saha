@@ -43,6 +43,10 @@ const HomePage = () => {
     const name = localStorage.getItem('name');
     const [showTransactionChart, setShowTransactionChart] = useState(true);
     const [showLoanChart, setShowLoanChart] = useState(true);
+    const [customers, setCustomers] = useState([])
+    const [pageNumber, setPageNumber] = useState(0)
+    const [pagesize, SetPageSize] = useState(10)
+    const [Element, SetElement] = useState(0)
     setHeaders('Dashboard');
 
 
@@ -58,6 +62,7 @@ const HomePage = () => {
         if (startDate && endDate) {
             FetchData().finally(() => setIsLoading(false));
         }
+        fetchCustomer()
     }, [dateRange]);
 
     const formatDateString = (date) => {
@@ -116,6 +121,34 @@ const HomePage = () => {
         }
     };
 
+
+    const fetchCustomer = () => {
+        axios.get(`${middleware}user/allUsers?pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
+            .then((res) => {
+                console.log(res.data.data.users.content)
+                setCustomers(res.data.data.users.content)
+                SetElement(res.data.data.users.totalElements)
+
+            }).catch((e) => {
+                console.log(e.response.data.responseMessage)
+
+                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/auth/login')
+                    localStorage.clear()
+                }
+                else if (e.response.data.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/')
+                }
+                else {
+                    toast.error(e.response.data.responseMessage)
+                }
+            }).finally(() => {
+                setIsLoading(false)
+            })
+    }
+
     const lab = [
         'FAILED',
         'SUCCESSFUL',
@@ -163,9 +196,9 @@ const HomePage = () => {
 
             {/* Dashboard content */}
 
-            <div className='sm:grid lg:grid-cols-3 sm:grid-cols-2 xss:flex flex-col items-center    mt-5 '>
+            <div className='sm:grid lg:grid-cols-3 sm:grid-cols-3 gap-4 xss:flex flex-col items-center    mt-5 '>
 
-                <div className={` bg-[#fff] w-[300px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]  text-white relative  `}>
+                <div className={` bg-[#fff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]  text-white relative  `}>
 
 
                     <div className='absolute top-[15%] left-[8%] flex  flex-col z-[1]'>
@@ -176,7 +209,7 @@ const HomePage = () => {
                     <img src={Ornament13} className='absolute right-0  bottom-0' />
                 </div>
 
-                <div className={` bg-[#ffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
+                <div className={` bg-[#ffff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
 
 
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
@@ -190,7 +223,7 @@ const HomePage = () => {
 
 
 
-                <div className={` bg-[#ffffff] w-[300px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
+                <div className={` bg-[#ffffff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
 
 
                     <div className='absolute top-[15%] left-[8%] flex  flex-col'>
@@ -205,7 +238,7 @@ const HomePage = () => {
 
             {/* You can add RevenueChart, TragetChart, and SalesChart components here */}
 
-            <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 mt-12">
+            <div className="grid lg:grid-cols-3 grid-cols-2  gap-x-5 gap-y-4 mt-12">
 
                 {/* <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
                     <div className="p-5">
@@ -232,11 +265,10 @@ const HomePage = () => {
                     </div>
                 </div> */}
 
-
-                <div className="bg-white rounded-lg shadow-md overflow-hidden col-span-2 h-full w-full">
+                <div className="bg-white rounded-lg shadow-md overflow-hidden col-span-2   w-full">
                     <div className="overflow-hidden p-2">
                         <div className="flex i justify-between  overflow-hidden">
-                            <h5 className="text-xl font-semibold text-gray-800 uppercase">
+                            <h5 className="text-[15px] font-semibold text-gray-800 uppercase">
                                 {showTransactionChart ? "Transaction Status Summary By Value" : "Loan Summary By Value"}
                             </h5>
                             <CustomToggle
@@ -246,7 +278,7 @@ const HomePage = () => {
                             />
                         </div>
                         <RevenueChart
-                            className="h-full lg:w-full w-full"
+                            className=""
                             series={showTransactionChart
                                 ? transactionStatusSummary.map((item) => item.transactionValue)
                                 : loanStatusSummary.map((item) => item.loanValue)
@@ -266,10 +298,78 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
+                <div className="rounded-lg shadow-md p-6 flex flex-col justify-between row-span-2 items-start bg-[#fff] flex-1 gap-4">
+                    <div className="flex justify-between items-center w-full">
+                        <h1 className="text-[1.125rem] font-semibold">Customer</h1>
+
+                        <div className="flex gap-x-3">
+                            <h1 className="text-[1.125rem] font-normal">Total:</h1>
+                            <p className="text-[1.125rem] font-bold">{Element}</p>
+                        </div>
+                    </div>
+
+                    <div className="w-full h-full">
+                        <table className="w-full h-full">
+                            <thead className="bg-gray-100">
+                                <tr className="border-b">
+                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">
+                                        #
+                                    </th>
+                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">
+                                        First Name
+                                    </th>
+                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">
+                                        Last Name
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {customers.map((data, index) => (
+                                    <tr className="border-b" key={index}>
+                                        <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                            {index + 1}
+                                        </td>
+                                        <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                            {data.firstName}
+                                        </td>
+                                        <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                            {data.lastName}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <Link
+                        to="/ui/customer/customer-date"
+                        className="py-2 text-white font-light tracking-wide bg-[#072D56] rounded-md px-4"
+                    >
+                        View More
+                    </Link>
+
+                </div>
+
+                <div className='bg-[#fff] overflow-hidden  rounded-lg shadow-md'>
+                    <SalesChart 
+                        series={complaintsStatusSummary.map(
+                            (item) => item.complainCounts
+                        )}
+                        labels={complaintsStatusSummary.map(
+                            (item) => item.complainCounts
+                        )}
+                        title="Transaction Status Summary By Volume"
+                        name="Volume"
+                    />
+                </div>
+
+
+
+
+                <div className="bg-white rounded-lg shadow-md overflow-hidden  w-full h-full ">
                     <div className="p-5">
                         <div className="flex items-center justify-between mb-4">
-                            <h5 className="text-xl font-semibold text-gray-800 uppercase">
+                            <h5 className="text-[15px] font-semibold text-gray-800 uppercase">
                                 {showLoanChart ? "Transaction Status Summary By Volume" : "Loan Summary By Volume"}
                             </h5>
                             <CustomToggle
@@ -297,6 +397,15 @@ const HomePage = () => {
                         />
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -425,18 +534,7 @@ const HomePage = () => {
 
 
 
-                <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md'>
-                    <SalesChart className="h-full"
-                        series={complaintsStatusSummary.map(
-                            (item) => item.complainCounts
-                        )}
-                        labels={complaintsStatusSummary.map(
-                            (item) => item.complainCounts
-                        )}
-                        title="Transaction Status Summary By Volume"
-                        name="Volume"
-                    />
-                </div>
+
 
 
 

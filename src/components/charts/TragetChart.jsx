@@ -52,7 +52,7 @@ const TragetChart = ({ series, labels, title, name, series2 }) => {
       width: 2,
       colors: ["transparent"],
     },
-    colors: ['#2196F3'],
+    colors: ['#12629C'],
     series: [
       {
         name: 'Volume',
@@ -80,7 +80,7 @@ const TragetChart = ({ series, labels, title, name, series2 }) => {
     },
     yaxis: {
       title: {
-        text: 'Volume',
+        
         style: {
           fontSize: '14px',
           fontWeight: 500,
