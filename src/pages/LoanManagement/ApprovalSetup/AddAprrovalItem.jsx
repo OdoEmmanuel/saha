@@ -224,6 +224,7 @@ const AddAprrovalItem = () => {
                                     className="border-2 p-2 rounded-lg  w-full placeholder:text-gray-400"
                                     onChange={handleApprovalLevelChange}
                                     value={approvalItemLevel}
+                                    placeHolder={`E`}
                                 />
                             </div>
                         </div>

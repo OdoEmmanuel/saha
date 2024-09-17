@@ -38,6 +38,8 @@ import AddAprrovalItem from '../pages/LoanManagement/ApprovalSetup/AddAprrovalIt
 import EditApprovalSetup from '../pages/LoanManagement/ApprovalSetup/EditApprovalSetup';
 import Customer from '../pages/Report/Customer';
 import Transaction from '../pages/Report/Transaction';
+import AllGroup from '../pages/Permission/AllGroup';
+import AssignGroupPermission from '../pages/Permission/AssignPermissiontoGroup';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -89,6 +91,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/tables/editapproval/:id' element={<EditApprovalSetup/>}></Route>
             <Route path='/ui/report/getCustomer' element={<Customer/>}></Route>
             <Route path='/ui/report/Transaction' element={<Transaction/>}></Route>
+            <Route path="/ui/permission/allgroup" element={<AllGroup/>}></Route>
           </Routes>
      
         

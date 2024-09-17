@@ -6,7 +6,7 @@ import { UilEllipsisV } from '@iconscout/react-unicons';
 const RevenueChart = ({ series, labels, title, name, set }) => {
   const revenueChart = {
     chart: {
-      height: 350,
+      height: '100%',
       type: 'area',
       toolbar: {
         show: false,
@@ -50,7 +50,7 @@ const RevenueChart = ({ series, labels, title, name, set }) => {
         data: series,
       },
     ],
-    colors: ['#008FFB'],
+    colors: ['#12629C'],
     fill: {
       type: 'gradient',
       gradient: {
@@ -88,7 +88,7 @@ const RevenueChart = ({ series, labels, title, name, set }) => {
         },
       },
       title: {
-        text: 'Revenue',
+        
         style: {
           fontSize: '14px',
           fontWeight: 500,
@@ -121,40 +121,16 @@ const RevenueChart = ({ series, labels, title, name, set }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden h-full w-full">
-      <div className="overflow-hidden p-6">
-        <div className="flex items-center justify-between pb-4 overflow-hidden">
-          <h5 className="text-xl font-semibold text-gray-800 uppercase">{title}</h5>
-          <div className="relative">
-            <button
-              type="button"
-              className="text-gray-400 hover:text-gray-600 focus:outline-none"
-            >
-              <UilEllipsisV size={20} />
-            </button>
-            {/* Dropdown menu (hidden by default) */}
-            <div className="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-              {['Today', '7 Days', '15 Days', '1 Month', '6 Months', '1 Year'].map((period) => (
-                <Link
-                  key={period}
-                  to=""
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  {period}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-        <ReactApexCharts
+   <>
+   
+   <ReactApexCharts
           options={revenueChart}
           series={revenueChart.series}
           type="area"
           height={350}
           className="apex-charts"
         />
-      </div>
-    </div>
+   </>
   );
 };
 

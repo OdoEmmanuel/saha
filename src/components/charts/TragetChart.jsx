@@ -52,7 +52,7 @@ const TragetChart = ({ series, labels, title, name, series2 }) => {
       width: 2,
       colors: ["transparent"],
     },
-    colors: ['#2196F3'],
+    colors: ['#12629C'],
     series: [
       {
         name: 'Volume',
@@ -80,7 +80,7 @@ const TragetChart = ({ series, labels, title, name, series2 }) => {
     },
     yaxis: {
       title: {
-        text: 'Volume',
+        
         style: {
           fontSize: '14px',
           fontWeight: 500,
@@ -114,23 +114,15 @@ const TragetChart = ({ series, labels, title, name, series2 }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
-      <div className="p-5">
-        <div className="flex items-center justify-between mb-4">
-          <h5 className="text-xl font-semibold text-gray-800 uppercase">{title}</h5>
-          <div className="h-8">
-            <Dropdown />
-          </div>
-        </div>
-        <ReactApexCharts
+    <>
+      <ReactApexCharts
           options={targetChart}
           series={targetChart.series}
           type="bar"
           height={350}
           className="apex-charts"
         />
-      </div>
-    </div>
+    </>
   );
 };
 

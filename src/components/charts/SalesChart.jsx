@@ -1,12 +1,8 @@
-import ReactApexCharts from "react-apexcharts";
-
-// components
+import React from 'react';
+import Chart from "react-apexcharts";
 import Dropdown from "./Dropdown";
 
-// data
-
-
-const SalesChart = ({series,labels,title}) => {
+const SalesChart = ({ series, labels, title, height = 380 }) => {
   const pieSalesChart = {
     plotOptions: {
       pie: {
@@ -17,20 +13,19 @@ const SalesChart = ({series,labels,title}) => {
       },
     },
     chart: {
-      height: 293,
       type: "donut",
     },
     legend: {
       show: true,
-      position: "right",
-      horizontalAlign: "left",
+      position: "bottom",
+      horizontalAlign: "center",
       itemMargin: {
         horizontal: 6,
         vertical: 3,
       },
     },
     series: series,
-    labels: ["Resolved", "In Progress", "Open", ],
+    labels:  ["Resolved", "In Progress", "Open"],
     responsive: [
       {
         breakpoint: 480,
@@ -44,33 +39,34 @@ const SalesChart = ({series,labels,title}) => {
     tooltip: {
       y: {
         formatter: function (value) {
-          return value  ;
+          return value;
         },
       },
     },
   };
+
   return (
-    <>
-      <div className="xl:col-span-2 ">
-        <div className="card h-full">
-          <div className="p-5">
-            <div className="flex items-start justify-between">
-              <h5 className="uppercase">{title}</h5>
-              <div className="h-4">
-                <Dropdown />
-              </div>
+    <div className="h-full">
+      <div className="card h-full">
+        <div className="p-5">
+          <div className="flex items-start justify-between mb-4">
+            <h5 className="uppercase font-bold text-lg">{title}</h5>
+            <div className="h-4">
+              <Dropdown />
             </div>
-            <ReactApexCharts
-              className="apex-charts"
+          </div>
+          <div style={{ height: `${height}px` }}>
+            <Chart
               options={pieSalesChart}
               series={pieSalesChart.series}
               type="donut"
-              height={293}
+              height="100%"
+              width="100%"
             />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
