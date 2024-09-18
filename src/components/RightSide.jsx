@@ -43,6 +43,7 @@ import AssignGroupPermission from '../pages/Permission/Group/AssignPermissiontoG
 import UpdateGroup from '../pages/Permission/Group/UpdateGroup';
 import AddGroup from '../pages/Permission/Group/AddGroup';
 import AllAssignStaff from '../pages/Permission/AssignStaff/AllAssignStaff';
+import AssignGroup from '../pages/Permission/AssignStaff/AssignGroup';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -99,6 +100,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/permission/updategroup/:id" element={<UpdateGroup/>}></Route>
             <Route path='/ui/permission/Addgroup' element={<AddGroup/>}></Route>
             <Route path="/ui/permission/alluser" element={<AllAssignStaff/>}></Route>
+            <Route path="/ui/permission/assign-group/:id" element={<AssignGroup/>}></Route>
           </Routes>
      
         
