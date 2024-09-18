@@ -198,18 +198,18 @@ const AllAssignStaff = () => {
                                                     {staff.status}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-                                                    <button  className={`${staff.status === 'Disabled' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`} >
-                                                        {staff.status === 'Disabled' ? 'Enable' : 'Disable'}
-                                                    </button>
+                                                    <Link to={`/ui/permission/assign-group/${staff.id}`} className={` bg-[#072D56]     text-[#fff] text-xs px-4 py-2 rounded-[5px] w-[150px] hover:bg-[#072D56]/[.57]    transition-colors duration-300`} >
+                                                        Group
+                                                    </Link>
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
 
                                                     <Link
                                                         to={`/ui/staffs/UpdateStaff/${staff.id}`}
-                                                        className="text-[#072D56]"
+                                                        className={` bg-[#072D56]     text-[#fff] text-xs px-4 py-2 rounded-[5px] w-[150px] hover:bg-[#072D56]/[.57]    transition-colors duration-300`}
                                                     >
-                                                        <FaPen size={'1.5em'} />
+                                                        Permission
                                                     </Link>
                                                 </td>
 

@@ -18,15 +18,9 @@ const AssignGroupPermission = () => {
   setHeaders('Assign Permission to Group')
 
   const {
-    register,
     handleSubmit,
     formState: { errors },
-    setValue,
-  } = useForm({
-    defaultValues: {
-      permissionIds: [],
-    },
-  })
+  } = useForm()
 
   const email = localStorage.getItem('email')
   const token = localStorage.getItem('token')
@@ -44,7 +38,7 @@ const AssignGroupPermission = () => {
 
   function removeUnderscores(text) {
     return text.replace(/_/g, ' ')
-}
+  }
 
   useEffect(() => {
     const fetchPermission = async () => {
@@ -95,19 +89,17 @@ const AssignGroupPermission = () => {
     ))
   }
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     setLoading(true)
     const companyCode = localStorage.getItem('companyCode')
 
-    const selectedPermissionIds = data.permissionIds.filter(permissionId => permissionId !== false)
-    const alreadyCheckedPermissionIds = permissions.filter(permission => permission.checked).map(permission => permission.id)
-    const allPermissionIds = [...selectedPermissionIds, ...alreadyCheckedPermissionIds]
+    const selectedPermissionIds = permissions.filter(permission => permission.checked).map(permission => permission.id)
 
     try {
       const response = await axiosInstance.post('group/permission/assign', {
         groupId: id,
         companyCode: companyCode,
-        permissionIds: allPermissionIds,
+        permissionIds: selectedPermissionIds,
       })
 
       toast.success(response.data.responseMessage, { position: 'top-right' })
@@ -119,7 +111,6 @@ const AssignGroupPermission = () => {
   }
 
   const handleApiError = (error) => {
-
     console.log(error.response?.data?.responseMessage)
     const responseMessage = error.response?.data?.responseMessage;
     if (responseMessage === 'Invalid/Expired Token' || responseMessage === 'Invalid Token' || responseMessage === 'Login Token Expired') {
@@ -132,7 +123,7 @@ const AssignGroupPermission = () => {
     } else {
         toast.error(responseMessage || 'An error occurred');
     }
-};
+  };
 
   return (
     <div className="bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8">
@@ -167,33 +158,22 @@ const AssignGroupPermission = () => {
             className="space-y-5 grid grid-cols-2 lg:grid-cols-3 p-3 place-items-start gap-y-6"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {/* Hidden input fields for userId and companyCode */}
-            <input type="hidden" {...register('groupId')} value={id} />
-            <input
-              type="hidden"
-              {...register('companyCode')}
-              value={localStorage.getItem('companyCode')}
-            />
-
             {permissions.map((permission) => (
               <div
                 key={permission.id}
-                className=" rounded-md flex items-center mx-2"
+                className="rounded-md flex items-center mx-2"
               >
                 <input
                   type="checkbox"
                   id={permission.id}
-                  value={permission.id}
                   checked={permission.checked}
                   onChange={() => handleCheckboxChange(permission.id)}
-                  {...register(`permissionIds.${permission.id}`)}
                 />
                 <label htmlFor={permission.id} className="ml-1">
                   {removeUnderscores(permission.permission)}
                 </label>
               </div>
             ))}
-            {/* <div className="lg:col-span-3"></div> */}
             <div className="lg:col-span-3 mt-6">
               <button
                 disabled={loading}
