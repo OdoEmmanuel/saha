@@ -69,3 +69,15 @@ const passwordRegExp =
     groupName: yup.string().required(`Please enter the group's full name`),
     description: yup.string().required('Please enter description'),
   })
+
+
+
+  export const ComplianType = yup.object().shape({
+    complaintType: yup.string(),
+    complaintDate: yup.string(),
+    complaintStatus: yup.string(),
+    compliantDescription:yup.string(),
+    compliantResponse:yup.string(),
+    complaintResponseDate:yup.string()
+  })
+  

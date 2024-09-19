@@ -152,7 +152,7 @@ const AssignGroup = () => {
             <div className="mt-6">
               <button
                 disabled={loading}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                className="px-4 py-2 bg-[#072D56] text-white rounded-lg"
                 type="submit"
               >
                 {loading ? 'Assigning Groups...' : 'Assign Groups'}
