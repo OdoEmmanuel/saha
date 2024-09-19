@@ -69,6 +69,7 @@ const Login = () => {
           // secureLocalStorage.setItem("values", values);
         })
         .catch((e) => {
+          console.log(e)
           // console.log(e.response.data.responseMessage);
           toast.error(e.response.data.responseMessage || 'an error occured');
         })

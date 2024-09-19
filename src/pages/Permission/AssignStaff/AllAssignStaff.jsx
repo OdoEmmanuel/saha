@@ -206,7 +206,7 @@ const AllAssignStaff = () => {
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
 
                                                     <Link
-                                                        to={`/ui/staffs/UpdateStaff/${staff.id}`}
+                                                        to={`/ui/permission/assign-permission/${staff.id}`}
                                                         className={` bg-[#072D56]     text-[#fff] text-xs px-4 py-2 rounded-[5px] w-[150px] hover:bg-[#072D56]/[.57]    transition-colors duration-300`}
                                                     >
                                                         Permission

@@ -44,6 +44,9 @@ import UpdateGroup from '../pages/Permission/Group/UpdateGroup';
 import AddGroup from '../pages/Permission/Group/AddGroup';
 import AllAssignStaff from '../pages/Permission/AssignStaff/AllAssignStaff';
 import AssignGroup from '../pages/Permission/AssignStaff/AssignGroup';
+import AssignPermStaff from '../pages/Permission/AssignStaff/AssignPermStaff';
+import AllComplains from '../pages/Complains/AllComplains';
+import ComplainId from '../pages/Complains/ComplainId';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -101,6 +104,9 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/permission/Addgroup' element={<AddGroup/>}></Route>
             <Route path="/ui/permission/alluser" element={<AllAssignStaff/>}></Route>
             <Route path="/ui/permission/assign-group/:id" element={<AssignGroup/>}></Route>
+            <Route path="/ui/permission/assign-permission/:id" element={<AssignPermStaff/>}></Route>
+            <Route path="/ui/complaint/" element={<AllComplains/>}></Route>
+            <Route path="/ui/complaints/:id" element={<ComplainId/>}></Route>
           </Routes>
      
         
