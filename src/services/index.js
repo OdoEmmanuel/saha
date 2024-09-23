@@ -80,4 +80,17 @@ const passwordRegExp =
     compliantResponse:yup.string(),
     complaintResponseDate:yup.string()
   })
+
+  export const fixedDeposit = yup.object().shape({
+    fixedDepositType: yup.string().required(`Please enter the fixed deposit type`),
+    description: yup.string().required('Enter The Description'),
+    tenure:yup.number().required('Enter the duration'),
+    minAmount: yup.number().required(`Enter Minimmum Amount`),
+    maxAmount: yup.number().required(`Enter the maximum Amount`),
+    rate:yup.number().required('Enter the rate'),
+    tax: yup.number().required(`Enter Tax `),
+    taxDeductible: yup.boolean().required().oneOf([true , false]),
+    available: yup.boolean().required().oneOf([true , false]),
+
+  })
   

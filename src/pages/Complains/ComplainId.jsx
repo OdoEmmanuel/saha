@@ -125,7 +125,7 @@ const ComplainId = () => {
                 </div>
             )}
 
-            {openModel && (<ResolveComplaintModal close={close} id={id}/>)}
+            {openModel && (<ResolveComplaintModal func={close} id={id}/>)}
             <div className=" mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
                 <div className="px-6 py-4">
                     <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">

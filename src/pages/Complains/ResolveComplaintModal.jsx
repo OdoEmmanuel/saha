@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { useAuthContext } from '../../common/context/useAuthContext'
 import axios from 'axios'
 
-const ResolveComplaintModal = () => {
+const ResolveComplaintModal = ({ func, id }) => {
 
     const { middleware, authorizationService, request, clientid } = useAuthContext()
     const [complaintStatus, setComplaintStatus] = useState('')
@@ -18,7 +18,7 @@ const ResolveComplaintModal = () => {
     const token = localStorage.getItem('token')
    
  
-    const handleResolveCompliant = async ({ close, id }) => {
+    const handleResolveCompliant = async () => {
         if (response) {
           try {
             setLoading(true)
@@ -41,7 +41,8 @@ const ResolveComplaintModal = () => {
             )
             setLoading(false)
             setComplaintResponse('')
-            toast.success(`${result.data.responseData}`)
+            toast.success(`${result.data.data.responseData}`)
+            func()
           } catch (error) {
             setLoading(false)
             setComplaintResponse('')
@@ -75,7 +76,8 @@ const ResolveComplaintModal = () => {
             )
             setLoading(false)
             setComplaintStatus('')
-            toast.success(`${result.data.responseData}`)
+            toast.success(`${result.data.data.responseData}`)
+            func()
           } catch (error) {
             setLoading(false)
             setComplaintStatus('')
@@ -97,12 +99,15 @@ const ResolveComplaintModal = () => {
         ) {
           toast.error(responseMessage)
           localStorage.clear()
+          func()
           navigate('/auth/login')
         } else if (responseMessage === 'Insufficient permission') {
           toast.error(responseMessage)
+          func()
           navigate('/')
         } else {
           toast.error(responseMessage || 'An error occurred')
+          func()
         }
       }
 
@@ -118,7 +123,7 @@ const ResolveComplaintModal = () => {
           <button
             type="button"
             className=" inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
-            onClick={close}
+            onClick={func}
           >
             <span className="sr-only">Close</span>
             <UilTimes size={24} />
