@@ -49,6 +49,8 @@ import AllComplains from '../pages/Complains/AllComplains';
 import ComplainId from '../pages/Complains/ComplainId';
 import AllFixedDeposit from '../pages/FixedDeposit/AllFixedDeposit';
 import UpdateDeposits from '../pages/FixedDeposit/UpdateDeposits';
+import AddFixedDeposit from '../pages/FixedDeposit/AddFixedDeposit';
+import ViewFixedDeposit from '../pages/FixedDeposit/ViewFixedDeposit';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -111,6 +113,8 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/complaints/:id" element={<ComplainId/>}></Route>
             <Route path="/ui/fixed-deposit/Allfixed" element={<AllFixedDeposit/>}></Route>
             <Route path="/ui/fixed-deposit/updateFixed/:id" element={<UpdateDeposits/>}></Route>
+            <Route path="/ui/fixed-deposit/createnewfixed" element={<AddFixedDeposit/>}></Route>
+            <Route path="/ui/fixed-deposit/viewFixed/:id" element={<ViewFixedDeposit/>}></Route>
           </Routes>
      
         
