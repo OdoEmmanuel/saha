@@ -47,6 +47,8 @@ import AssignGroup from '../pages/Permission/AssignStaff/AssignGroup';
 import AssignPermStaff from '../pages/Permission/AssignStaff/AssignPermStaff';
 import AllComplains from '../pages/Complains/AllComplains';
 import ComplainId from '../pages/Complains/ComplainId';
+import AllFixedDeposit from '../pages/FixedDeposit/AllFixedDeposit';
+import UpdateDeposits from '../pages/FixedDeposit/UpdateDeposits';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -107,6 +109,8 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/permission/assign-permission/:id" element={<AssignPermStaff/>}></Route>
             <Route path="/ui/complaint/" element={<AllComplains/>}></Route>
             <Route path="/ui/complaints/:id" element={<ComplainId/>}></Route>
+            <Route path="/ui/fixed-deposit/Allfixed" element={<AllFixedDeposit/>}></Route>
+            <Route path="/ui/fixed-deposit/updateFixed/:id" element={<UpdateDeposits/>}></Route>
           </Routes>
      
         
