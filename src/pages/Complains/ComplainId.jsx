@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import InputField2 from '../../components/InputField2';
 import SelectField from '../../components/SelectField';
 import { BiArrowBack } from "react-icons/bi";
+import ResolveComplaintModal from './ResolveComplaintModal';
 
 
 const ComplainId = () => {
@@ -16,11 +17,18 @@ const ComplainId = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [languages, setLanguages] = useState([])
     const [userType, setUserType] = useState([])
+    const [data,setData] = useState({})
     const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const fetchCompanyCode = localStorage.getItem('companyCode')
     const navigate = useNavigate()
+    const [openModel,setOpenModal] = useState(false)
+
+
+    const close = () => {
+        setOpenModal(false)
+    }
 
     setHeaders('View Complains')
 
@@ -58,13 +66,15 @@ const ComplainId = () => {
         setisLoading(true)
         axios.get(`${middleware}complaint/?complaintId=${id}`, config)
             .then((res) => {
-                const userData = res.data.data.compliant;
+                const userData = res.data.data.complaint;
+                console.log(userData)
+                setData(userData)
                 formik.setValues({
                     complaintType: userData.complaintType,
                     complaintDate: userData.createdDate,
-                    complaintStatus: userData.compliantStatus,
-                    compliantDescription: userData.compliantDescription,
-                    compliantResponse: userData.compliantResponse || null,
+                    complaintStatus: userData.complaintStatus,
+                    compliantDescription: userData.complaintDescription,
+                    compliantResponse: userData.complaintResponse || null,
                     complaintResponseDate: convertDateToString(userData.complaintResponseDate) || null
                 });
             }
@@ -114,13 +124,15 @@ const ComplainId = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+
+            {openModel && (<ResolveComplaintModal close={close} id={id}/>)}
+            <div className=" mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
                 <div className="px-6 py-4">
                     <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Staff</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">View Complaint by {`${data.complaintByUserName}`}</h2>
                     <form className="space-y-4" onSubmit={formik.handleSubmit}>
                         <div className='grid grid-cols-2 gap-4'>
 
@@ -189,7 +201,7 @@ const ComplainId = () => {
 
 
                         </div>
-                        <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Add Staff'}</button>
+                        <button onClick={()=> setOpenModal(true)} className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Resolve Compliant'}</button>
                     </form>
                 </div>
 
