@@ -150,7 +150,7 @@ const AllFixedDeposit = () => {
                     </div>
 
                     <Link
-                        to={`/ui/staffs/AddStaff`}
+                        to={`/ui/fixed-deposit/createnewfixed`}
                         className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px] my-4 py-2 px-4"
                     >
                         {' '}
@@ -264,7 +264,7 @@ const AllFixedDeposit = () => {
                                                     </Link>
 
                                                     <Link
-                                                        to={`/ui/tables/approval/details/${staff.id}`}
+                                                        to={`/ui/fixed-deposit/viewFixed/${staff.id}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                     >
                                                         <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
