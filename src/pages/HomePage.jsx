@@ -238,7 +238,7 @@ const HomePage = () => {
 
             {/* You can add RevenueChart, TragetChart, and SalesChart components here */}
 
-            <div className="grid lg:grid-cols-3 grid-cols-2  gap-x-5 gap-y-4 mt-12">
+            <div className="grid lg:grid-cols-3 grid-cols-2   gap-x-5 gap-y-4 mt-16">
 
                 {/* <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
                     <div className="p-5">

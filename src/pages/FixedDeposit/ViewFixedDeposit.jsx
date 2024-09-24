@@ -4,6 +4,7 @@ import axios from 'axios';
 import { PulseLoader } from "react-spinners";
 import { toast } from 'react-toastify';
 import { useNavigate, Link, Route, Routes, useParams } from 'react-router-dom';
+import FixedModal from "./FixedModal";
 
 
 const ViewFixedDeposit = () => {
@@ -13,9 +14,20 @@ const ViewFixedDeposit = () => {
     const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
+    const [openModal, setOpenModal] = useState(false)
     const navigate = useNavigate()
 
     setHeaders('Fixed Deposit Details')
+
+
+    
+  const open = () => {
+    setOpenModal(true)
+  }
+
+  const close = () => {
+    setOpenModal(false)
+  }
 
 
     const config = {
@@ -63,6 +75,7 @@ const ViewFixedDeposit = () => {
                 </div>
             )}
             <div className="flex items-center mb-8 justify-between">
+                {openModal && <FixedModal func={close} id={data.id}/>}
                 <div className="flex items-center">
                     <button onClick={() => navigate(-1)} className="mr-4">
                         <svg
@@ -82,7 +95,7 @@ const ViewFixedDeposit = () => {
                     </button>
                     <h1 className=' font-[500] text-[25px]'>Fixed Deposit Details</h1>
                 </div>
-               <button className="bg-[#DC3545] text-white py-3 px-8 rounded-lg"> Delete</button>
+               <button className="bg-[#DC3545] text-white py-3 px-8 rounded-lg" onClick={open}> Delete</button>
             </div>
 
             <div className='grid grid-cols-3 gap-4'>
