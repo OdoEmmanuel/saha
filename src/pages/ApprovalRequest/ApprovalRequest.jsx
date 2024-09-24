@@ -55,10 +55,11 @@ const ApprovalRequest = () => {
     useEffect(() => {
         fetchUserTypes()
         fetchData()
-    }, [])
+    }, [pageNumber,pagesize,selectedType])
 
 
     const fetchUserTypes = () => {
+        
         axios.get(`${authorizationService}approvals/item/types`, config)
             .then((res) => {
 
@@ -95,6 +96,7 @@ const ApprovalRequest = () => {
             pageIndex: pageNumber,
             pageSize: pagesize,
         }
+        setIsLoading(true)
         axios.post(`${authorizationService}approvals/requests/filter`, body, config)
             .then((res) => {
                 console.log(res.data.data)
