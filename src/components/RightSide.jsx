@@ -53,6 +53,8 @@ import AddFixedDeposit from '../pages/FixedDeposit/AddFixedDeposit';
 import ViewFixedDeposit from '../pages/FixedDeposit/ViewFixedDeposit';
 import RepeatedTransaction from '../pages/RepeatedTransaction/RepeatedTransaction';
 import ApprovalRequest from '../pages/ApprovalRequest/ApprovalRequest';
+import GetApprovalRequest from '../pages/ApprovalRequest/GetApprovalRequest';
+import ChangePassword from '../pages/Settings/ChangePassword';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -119,6 +121,8 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/fixed-deposit/viewFixed/:id" element={<ViewFixedDeposit/>}></Route>
             <Route path='/ui/risk-management/' element={<RepeatedTransaction/>}></Route>
             <Route path="/ui/approvalRequest" element={<ApprovalRequest/>}></Route>
+            <Route path="/ui/getapprovalrequest/:id" element={<GetApprovalRequest/>}></Route>
+            <Route path="/ui/system/changepassword" element={<ChangePassword/>}></Route>
           </Routes>
      
         

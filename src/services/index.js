@@ -93,4 +93,18 @@ const passwordRegExp =
     available: yup.boolean().required().oneOf([true , false]),
 
   })
+
+
+  export const changePassword = yup.object().shape({
+    currentPassword:yup.string()
+    .min(8, "password must containat least 8 characters ")
+    .required("required"),
+    newPassword: yup.string()
+    .min(8, "password must containat least 8 characters ")
+    .required("required"),
+    confirmPassword:yup
+    .string()
+    .oneOf([yup.ref("newPassword")], "Passwords must match")
+    .required("required"),
+  })
   

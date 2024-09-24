@@ -296,7 +296,7 @@ const ApprovalRequest = () => {
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     <Link
-                                                        to={`/ui/fixed-deposit/viewFixed/${staff.id}`}
+                                                        to={`/ui/getapprovalrequest/${staff.id}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                     >
                                                         <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
