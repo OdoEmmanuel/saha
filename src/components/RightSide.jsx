@@ -55,6 +55,7 @@ import RepeatedTransaction from '../pages/RepeatedTransaction/RepeatedTransactio
 import ApprovalRequest from '../pages/ApprovalRequest/ApprovalRequest';
 import GetApprovalRequest from '../pages/ApprovalRequest/GetApprovalRequest';
 import ChangePassword from '../pages/Settings/ChangePassword';
+import SetSystem from '../pages/Settings/SetSystem';
 const RightSide = ({isOpen, tog}) => {
   
   console.log(isOpen)
@@ -123,6 +124,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/approvalRequest" element={<ApprovalRequest/>}></Route>
             <Route path="/ui/getapprovalrequest/:id" element={<GetApprovalRequest/>}></Route>
             <Route path="/ui/system/changepassword" element={<ChangePassword/>}></Route>
+            <Route path="/ui/system/setsystem" element={<SetSystem/>}></Route>
           </Routes>
      
         
