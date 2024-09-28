@@ -4,28 +4,20 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { IoIosPerson, IoMdCalendar, IoIosPaper } from "react-icons/io";
-import { MdPeople } from "react-icons/md";
+import { IoMdCalendar } from "react-icons/io";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import RevenueChart from '../components/charts/RevenueChart';
 import TragetChart from '../components/charts/TragetChart';
 import SalesChart from '../components/charts/SalesChart';
-import Ornament14 from '../assets/Ornament14.png'
 import Ornament2 from '../assets/test2.png'
-import Ornament15 from '../assets/Ornament15.png'
-import Ornament4 from '../assets/Ornament4.png'
-import Ornament6 from '../assets/Ornament6.png'
-import Ornament5 from '../assets/Ornament5.png'
 import Ornament13 from '../assets/TEST1.png'
 import Ornament16 from '../assets/test3.png'
-import Ornament12 from '../assets/Ornament12.png'
-import { UilEllipsisV } from '@iconscout/react-unicons';
-import Dropdown from '../components/charts/Dropdown';
 import CustomToggle from '../components/CustomSwitch';
-
+import { motion, AnimatePresence } from 'framer-motion';
 
 const HomePage = () => {
+    // ... (keep all your existing state and functions)
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext();
     const [dateRange, setDateRange] = useState([
         new Date(new Date().setMonth(new Date().getMonth() - 5)),
@@ -158,22 +150,63 @@ const HomePage = () => {
         'UNKNOWN',
     ]
 
+    const fadeInUp = {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6 }
+    };
+
+    const staggerChildren = {
+        animate: {
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
     return (
-        <div className='z-[1]'>
+        <motion.div 
+            className='relative z-0'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             {isLoading && (
-                <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
+                <motion.div 
+                    className="fixed bg-black/[0.6] h-screen w-screen z-[70] left-0 top-0 items-center flex justify-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
-                </div>
+                </motion.div>
             )}
-            <h1 className='text-[16px] sm:text-left xss:text-center'>Welcome Back</h1>
-            <p className='text-[26px] sm:text-left xss:text-center'>{name}</p>
-            <div className='flex justify-between items-center'>
+            <motion.h1 
+                className='text-[16px] sm:text-left xss:text-center'
+                {...fadeInUp}
+            >
+                Welcome Back
+            </motion.h1>
+            <motion.p 
+                className='text-[26px] sm:text-left xss:text-center'
+                {...fadeInUp}
+            >
+                {name}
+            </motion.p>
+            <motion.div 
+                className='flex justify-between items-center'
+                {...fadeInUp}
+            >
                 <p className='text-gray-500'>View your analytics here</p>
 
                 <div className="lg:flex mb-5">
                     <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
                         <label className="text-gray-700">Date Range:</label>
-                        <div className="relative flex items-center border border-gray-300 rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200">
+                        <motion.div 
+                            className="relative flex items-center border border-gray-300 rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
                             <IoMdCalendar className="text-gray-500 mr-2" size={20} />
                             <DatePicker
                                 selectsRange={true}
@@ -186,88 +219,56 @@ const HomePage = () => {
                                 placeholderText="Select date range"
                                 className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
                             />
-                            {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                                <IoMdCalendar className="text-gray-400" size={16} />
-                            </div> */}
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <motion.div 
+                className='sm:grid lg:grid-cols-3 sm:grid-cols-3 gap-4 xss:flex flex-col items-center mt-5'
+                variants={staggerChildren}
+                initial="initial"
+                animate="animate"
+            >
+                {[
+                    { title: "Total Customers", value: data.noOfCustomers, image: Ornament13 },
+                    { title: "Total accounts", value: data.noOfAccounts, image: Ornament2 },
+                    { title: "Total Transaction Counts", value: data.transactionCounts, image: Ornament16 }
+                ].map((item, index) => (
+                    <motion.div 
+                        key={index}
+                        className={`bg-[#fff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)] text-white relative`}
+                        variants={fadeInUp}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <div className='absolute top-[15%] left-[8%] flex flex-col z-[1]'>
+                            <p className='text-[#000000] text-[20px] font-[400]'>{item.title}</p>
+                            <p className='text-[30px] text-[#000000] font-[600]'>{item.value}</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Dashboard content */}
-
-            <div className='sm:grid lg:grid-cols-3 sm:grid-cols-3 gap-4 xss:flex flex-col items-center    mt-5 '>
-
-                <div className={` bg-[#fff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]  text-white relative  `}>
-
-
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col z-[1]'>
-
-                        <p className='text-[#000000] text-[20px] font-[400]'>Total Customers</p>
-                        <p className='text-[30px] text-[#000000] font-[600]'>{data.noOfCustomers}</p>
-                    </div>
-                    <img src={Ornament13} className='absolute right-0  bottom-0' />
-                </div>
-
-                <div className={` bg-[#ffff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
-
-
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-
-                        <p className='text-[#000000] text-[20px] font-[400]'>Total accounts</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> {data.noOfAccounts}</p>
-                    </div>
-                    <img src={Ornament2} className='absolute right-0  bottom-0' />
-                </div>
-
-
-
-
-                <div className={` bg-[#ffffff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden text-white relative shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]   `}>
-
-
-                    <div className='absolute top-[15%] left-[8%] flex  flex-col'>
-
-                        <p className='text-[#000000] text-[20px] font-[400]'>Total Transaction Counts</p>
-                        <p className='text-[30px] text-[#000000] font-[500]'> {data.transactionCounts}</p>
-                    </div>
-                    <img src={Ornament16} className='absolute right-0  bottom-0' />
-                </div>
-            </div>
-
-
-            {/* You can add RevenueChart, TragetChart, and SalesChart components here */}
-
-            <div className="grid lg:grid-cols-3 grid-cols-2   gap-x-5 gap-y-4 mt-16">
-
-                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
-                    <div className="p-5">
-                        <div className="flex items-center justify-between mb-4">
-                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Transaction Status Summary By Volume</h5>
-                            <div className="h-8">
-                                <Dropdown />
-                            </div>
-                        </div>
-                        <TragetChart
-                            className="h-full"
-                            series={transactionStatusSummary.map(
-                                (item) => item.transactionVolume
-                            )}
-                            series2={transactionStatusSummary.map(
-                                (item) => item.transactionValue
-                            )}
-                            labels={transactionStatusSummary.map(
-                                (item) => item.transactionStatus
-                            )}
-                            title="Transaction Status Summary By Volume"
-                            name="Volume"
+                        <motion.img 
+                            src={item.image} 
+                            className='absolute right-0 bottom-0'
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 }}
                         />
-                    </div>
-                </div> */}
+                    </motion.div>
+                ))}
+            </motion.div>
 
-                <div className="bg-white rounded-lg shadow-md overflow-hidden col-span-2   w-full">
+            <motion.div 
+                className="grid lg:grid-cols-3 grid-cols-2 gap-x-5 gap-y-4 mt-16"
+                variants={staggerChildren}
+                initial="initial"
+                animate="animate"
+            >
+                <motion.div 
+                    className="bg-white rounded-lg shadow-md overflow-hidden col-span-2 w-full"
+                    variants={fadeInUp}
+                >
                     <div className="overflow-hidden p-2">
-                        <div className="flex i justify-between  overflow-hidden">
+                        <div className="flex justify-between overflow-hidden">
                             <h5 className="text-[15px] font-semibold text-gray-800 uppercase">
                                 {showTransactionChart ? "Transaction Status Summary By Value" : "Loan Summary By Value"}
                             </h5>
@@ -278,6 +279,7 @@ const HomePage = () => {
                             />
                         </div>
                         <RevenueChart
+                            // ... (keep your existing props)
                             className=""
                             series={showTransactionChart
                                 ? transactionStatusSummary.map((item) => item.transactionValue)
@@ -296,62 +298,76 @@ const HomePage = () => {
                             name="Value"
                         />
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="rounded-lg shadow-md p-6 flex flex-col justify-between row-span-2 items-start bg-[#fff] flex-1 gap-4">
+                <motion.div 
+                    className="rounded-lg shadow-md p-6 flex flex-col justify-between row-span-2 items-start bg-[#fff] flex-1 gap-4"
+                    variants={fadeInUp}
+                >
                     <div className="flex justify-between items-center w-full">
                         <h1 className="text-[1.125rem] font-semibold">Customer</h1>
-
                         <div className="flex gap-x-3">
                             <h1 className="text-[1.125rem] font-normal">Total:</h1>
                             <p className="text-[1.125rem] font-bold">{Element}</p>
                         </div>
                     </div>
 
-                    <div className="w-full h-full">
+                    <div className="w-full h-full overflow-hidden">
                         <table className="w-full h-full">
                             <thead className="bg-gray-100">
                                 <tr className="border-b">
-                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">
-                                        #
-                                    </th>
-                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">
-                                        First Name
-                                    </th>
-                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">
-                                        Last Name
-                                    </th>
+                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">#</th>
+                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">First Name</th>
+                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">Last Name</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {customers.map((data, index) => (
-                                    <tr className="border-b" key={index}>
-                                        <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                            {index + 1}
-                                        </td>
-                                        <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                            {data.firstName}
-                                        </td>
-                                        <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                            {data.lastName}
-                                        </td>
-                                    </tr>
-                                ))}
+                                <AnimatePresence>
+                                    {customers.map((data, index) => (
+                                        <motion.tr 
+                                            key={index}
+                                            className="border-b"
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{ delay: index * 0.1 }}
+                                        >
+                                            <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                                {index + 1}
+                                            </td>
+                                            <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                                {data.firstName}
+                                            </td>
+                                            <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                                {data.lastName}
+                                            </td>
+                                        </motion.tr>
+                                    ))}
+                                </AnimatePresence>
                             </tbody>
                         </table>
                     </div>
 
-                    <Link
-                        to="/ui/customer/customer-date"
-                        className="py-2 text-white font-light tracking-wide bg-[#072D56] rounded-md px-4"
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        View More
-                    </Link>
+                        <Link
+                            to="/ui/customer/customer-date"
+                            className="py-2 text-white font-light tracking-wide bg-[#072D56] rounded-md px-4"
+                        >
+                            View More
+                        </Link>
+                    </motion.div>
+                </motion.div>
 
-                </div>
-
-                <div className='bg-[#fff] overflow-hidden  rounded-lg shadow-md'>
+                <motion.div 
+                    className='bg-[#fff] overflow-hidden rounded-lg shadow-md'
+                    variants={fadeInUp}
+                >
                     <SalesChart 
+                        // ... (keep your existing props)
+                        
                         series={complaintsStatusSummary.map(
                             (item) => item.complainCounts
                         )}
@@ -360,13 +376,14 @@ const HomePage = () => {
                         )}
                         title="Transaction Status Summary By Volume"
                         name="Volume"
+
                     />
-                </div>
+                </motion.div>
 
-
-
-
-                <div className="bg-white rounded-lg shadow-md overflow-hidden  w-full h-full ">
+                <motion.div 
+                    className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full"
+                    variants={fadeInUp}
+                >
                     <div className="p-5">
                         <div className="flex items-center justify-between mb-4">
                             <h5 className="text-[15px] font-semibold text-gray-800 uppercase">
@@ -379,7 +396,8 @@ const HomePage = () => {
                             />
                         </div>
                         <TragetChart
-                            className="h-full"
+                            // ... (keep your existing props)
+                                  className="h-full"
                             series={showLoanChart
                                 ? transactionStatusSummary.map((item) => item.transactionVolume)
                                 : loanStatusSummary.map((item) => item.loanVolume)
@@ -396,152 +414,9 @@ const HomePage = () => {
                             name="Volume"
                         />
                     </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden h-full w-full">
-                    <div className="overflow-hidden p-6">
-                        <div className="flex items-center justify-between pb-4 overflow-hidden">
-                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Transaction Status Summary By Value</h5>
-                            <div className="relative">
-                                <button
-                                    type="button"
-                                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
-                                >
-                                    <UilEllipsisV size={20} />
-                                </button>
-
-                                <div className="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                                    {['Today', '7 Days', '15 Days', '1 Month', '6 Months', '1 Year'].map((period) => (
-                                        <Link
-                                            key={period}
-                                            to=""
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        >
-                                            {period}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                        <RevenueChart
-                            className="h-full lg:w-full w-full"
-                            series={transactionStatusSummary.map(
-                                (item) => item.transactionValue
-                            )}
-                            series2={transactionStatusSummary.map(
-                                (item) => item.transactionVolume
-                            )}
-                            labels={lab}
-                            title="Transaction Status Summary By Value"
-                            set={false}
-                            name="Value"
-                        />
-
-                    </div>
-                </div> */}
-
-
-
-
-
-
-                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden h-full w-full">
-                    <div className="overflow-hidden p-6">
-                        <div className="flex items-center justify-between pb-4 overflow-hidden">
-                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Loan Summary By Value</h5>
-                            <div className="relative">
-                                <button
-                                    type="button"
-                                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
-                                >
-                                    <UilEllipsisV size={20} />
-                                </button>
-                               
-                                <div className="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                                    {['Today', '7 Days', '15 Days', '1 Month', '6 Months', '1 Year'].map((period) => (
-                                        <Link
-                                            key={period}
-                                            to=""
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        >
-                                            {period}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        <RevenueChart
-                            className="h-full lg:w-full w-full"
-                            series={loanStatusSummary.map(
-                                (item) => item.loanValue
-                            )}
-                            series2={loanStatusSummary.map(
-                                (item) => item.loanVolume
-                            )}
-                            labels={loanStatusSummary.map((item) =>
-                                TrimText(item.loanStatus.replace(/_/g, ' '))
-
-                            )}
-                            title="Loan Summary By Value"
-                            set={false}
-                            name="Value"
-                        />
-
-                    </div>
-                </div> */}
-
-
-
-                {/* <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full ">
-                    <div className="p-5">
-                        <div className="flex items-center justify-between mb-4">
-                            <h5 className="text-xl font-semibold text-gray-800 uppercase">Loan Summary By Volume</h5>
-                            <div className="h-8">
-                                <Dropdown />
-                            </div>
-                        </div>
-                        <TragetChart
-                            className="h-full"
-                            series={loanStatusSummary.map(
-                                (item) => item.loanVolume
-                            )}
-                            series2={loanStatusSummary.map(
-                                (item) => item.loanValue
-                            )}
-                            labels={loanStatusSummary.map((item) =>
-                                item.loanStatus.replace(/_/g, ' ')
-                            )}
-                            title="Transaction Status Summary By Volume"
-                            name="Volume"
-                        />
-                    </div>
-                </div> */}
-
-
-
-
-
-
-
-
-
-            </div>
-
-        </div>
+                </motion.div>
+            </motion.div>
+        </motion.div>
     );
 };
 
