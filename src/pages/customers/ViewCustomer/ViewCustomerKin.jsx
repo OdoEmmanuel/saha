@@ -7,83 +7,83 @@ const ViewCustomerKin = ({ dat }) => {
             <h1 className='mb-8 font-[500] text-[25px]'>NEXT OF KINS DETAILS</h1>
             <div className='grid grid-cols-3 gap-4'>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-400   text-gray-900">
+                    <h4 className=" mb-2    text-gray-500">
                         Next Of Kin Title
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className="font-bold mb-6 text-gray-600 text-lg dark:text-gray-400">
                         {data.nextOfKinTitle}
                     </h4>
                 </div>
 
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500   ">
                         Next Of Kin FirstName
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-gray-600 text-lg dark:text-gray-400">
                         {data.nextOfKinFirstName}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500   ">
                         Next Of Kin Middle Name
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-gray-600 text-lg">
                         {data.nextOfKinMiddleName}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500   ">
                         Next Of Kin Last Name
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400 ">
+                    <h4 className=" font-bold text-lg mb-6 text-gray-500 ">
                         {data.nextOfKinLastName}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500">
                         Next Of Kin Email
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className="font-bold text-lg mb-6 text-gray-500 ">
                         {data.nextOfKinEmail}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500   ">
                         Next Of Kin Relationship
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.nextOfKinRelationship}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Next Of Kin Address
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.nextOfKinAddress}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Next Of Kin PhoneNo
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.nextOfKinPhoneNo}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Next Of Kin PhoneNo
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.nextOfKinPhoneNo}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Next Of Kin Relationship Other
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.nextOfKinRelationshipOther}
                     </h4>
                 </div>

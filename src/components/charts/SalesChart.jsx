@@ -50,7 +50,7 @@ const SalesChart = ({ series, labels, title, height = 380 }) => {
       <div className="card h-full">
         <div className="p-5">
           <div className="flex items-start justify-between mb-4">
-            <h5 className="uppercase font-bold text-lg">{title}</h5>
+            <h5 className=" font-bold text-lg">{title}</h5>
             <div className="h-4">
               <Dropdown />
             </div>

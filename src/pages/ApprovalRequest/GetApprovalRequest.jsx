@@ -189,117 +189,117 @@ const GetApprovalRequest = () => {
                                     <div className="overflow-hidden">
                                         <div className="grid lg:grid-cols-4 grid-cols-2 gap-7 lg:gap-x-7">
                                             <div className="mb-4 ">
-                                                <h4 className="uppercase mb-6 dark:text-gray-400   text-gray-900">
+                                                <h4 className=" mb-6 dark:text-gray-400   text-gray-900">
                                                     Approval Item Type
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.approvalItemType}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-400   text-gray-900 ">
+                                                <h4 className=" mb-6 dark:text-gray-400   text-gray-900 ">
                                                     Action
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.action}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6   dark:text-gray-700   text-gray-900 ">
+                                                <h4 className=" mb-6   dark:text-gray-700   text-gray-900 ">
                                                     Description
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.description}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                                <h4 className=" mb-2 text-gray-500  ">
                                                     Entity
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.entity}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                                <h4 className=" mb-2 text-gray-500  ">
                                                     Status
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.status}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Comment
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.commen}
                                                 </h4>
                                             </div>
 
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Maker
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.maker}
                                                 </h4>
                                             </div>
 
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                                <h4 className=" mb-2 text-gray-500  ">
                                                     Checker
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400 ">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400 ">
                                                     {data.mothersMaidenName}
                                                 </h4>
                                             </div>
 
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Contact Address
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.contactAddress}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Approval Required
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.approvalRequired}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Created At
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.createdAt}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Updated At
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.updatedAt}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Created By
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.createdBy}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
-                                                <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                                <h4 className=" mb-2 text-gray-500 ">
                                                     Updated By
                                                 </h4>
-                                                <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                                     {data.updatedBy}
                                                 </h4>
                                             </div>
@@ -317,56 +317,56 @@ const GetApprovalRequest = () => {
                         <div className="card">
                             <div >
                                 <div>
-                                    <h3 className="uppercase mb-8  text-xl">
+                                    <h3 className=" mb-8  text-xl">
                                         Inital State
                                     </h3>
                                 </div>
                                 <div className="grid grid-cols-4 gap-6">
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Email
                                         </h4>
-                                        <h4 className="uppercase mb-6  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
                                             {iemail}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Phone
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {iphone}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Language
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {ilang}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                        <h4 className=" mb-2 text-gray-500  ">
                                             Staff Name
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {istaff}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                        <h4 className=" mb-2 text-gray-500  ">
                                             User Type
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {iuser}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                        <h4 className=" mb-2 text-gray-500  ">
                                             Status
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {istatus}
                                         </h4>
                                     </div>
@@ -374,56 +374,56 @@ const GetApprovalRequest = () => {
                             </div>
                             <div >
                                 <div>
-                                    <h3 className="uppercase mt-8 mb-8  text-xl">
+                                    <h3 className=" mt-8 mb-8  text-xl">
                                         Final State
                                     </h3>
                                 </div>
                                 <div className="grid grid-cols-4 gap-6">
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Email
                                         </h4>
-                                        <h4 className="uppercase mb-6  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
                                             {email}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Phone
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {phone}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Language
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {lang}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                        <h4 className=" mb-2 text-gray-500  ">
                                             Staff Name
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {staff}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                        <h4 className=" mb-2 text-gray-500  ">
                                             User Type
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {user}
                                         </h4>
                                     </div>
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                                        <h4 className=" mb-2 text-gray-500  ">
                                             Status
                                         </h4>
-                                        <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {status}
                                         </h4>
                                     </div>
@@ -437,32 +437,32 @@ const GetApprovalRequest = () => {
                     <div className="card">
                         <div >
                             <div>
-                                <h3 className="uppercase mb-8  text-xl">
+                                <h3 className=" mb-8  text-xl">
                                     Final State
                                 </h3>
                             </div>
                             <div className="grid grid-cols-4 gap-6 ">
                                 <div className="mb-4">
-                                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                    <h4 className=" mb-2 text-gray-500 ">
                                         Group Name
                                     </h4>
-                                    <h4 className="uppercase mb-6  text-gray-500 dark:text-gray-400">
+                                    <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
                                         {final.groupName}
                                     </h4>
                                 </div>
                                 <div className="mb-4">
-                                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                    <h4 className=" mb-2 text-gray-500 ">
                                         Description
                                     </h4>
-                                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                         {final.description}
                                     </h4>
                                 </div>
                                 <div className="mb-4">
-                                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                    <h4 className=" mb-2 text-gray-500 ">
                                         Staus
                                     </h4>
-                                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                         {final.status}
                                     </h4>
                                 </div>
@@ -475,17 +475,17 @@ const GetApprovalRequest = () => {
                     <div className="card">
                         <div >
                             <div>
-                                <h3 className="uppercase mb-8  text-xl">
+                                <h3 className=" mb-8  text-xl">
                                     Final State
                                 </h3>
                             </div>
                             <div className="grid grid-cols-4 gap-6 ">
                                 {Object.entries(final).map(([group, value], index) => (
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Group {index + 1}
                                         </h4>
-                                        <h4 className="uppercase mb-6  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
                                             {value}
                                         </h4>
                                     </div>
@@ -499,17 +499,17 @@ const GetApprovalRequest = () => {
                     <div className="card">
                         <div >
                             <div>
-                                <h3 className="uppercase mb-8 text-xl">
+                                <h3 className=" mb-8 text-xl">
                                     Final State
                                 </h3>
                             </div>
                             <div className="grid grid-cols-4 gap-6">
                                 {Object.entries(final).map(([group, value], index) => (
                                     <div className="mb-4">
-                                        <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                                        <h4 className=" mb-2 text-gray-500 ">
                                             Permisssion {index + 1}
                                         </h4>
-                                        <h4 className="uppercase mb-6  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
                                             {removeUnderscores(value)}
                                         </h4>
                                     </div>

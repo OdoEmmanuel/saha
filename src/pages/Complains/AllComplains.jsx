@@ -236,7 +236,7 @@ const AllComplains = () => {
 
                 <div className="overflow-x-scroll no-scrollbar">
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                        <thead className="bg-gray-50 text-[#667085] font-[500]">
+                        <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600]">
                             <tr>
                                 <th className="px-4 py-4 text-start text-sm whitespace-nowrap">ID</th>
                                 <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Created Date</th>

@@ -27,7 +27,7 @@ const passwordRegExp =
     .min(8, "password must containat least 8 characters ")
     .matches(
       passwordRegExp,
-      "characters with at least one of each: uppercase, lowercase, number and special"
+      "characters with at least one of each: , lowercase, number and special"
     )
     .required("required"),
     confirmPassword: yup

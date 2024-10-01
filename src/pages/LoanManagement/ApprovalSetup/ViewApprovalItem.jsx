@@ -89,66 +89,66 @@ const ViewApprovalItem = () => {
 
             <div className='grid grid-cols-3 gap-4'>
                 <div className="mb-4 ">
-                    <h4 className="uppercase mb-6 dark:text-gray-400   text-gray-900">
+                    <h4 className=" mb-6 dark:text-gray-400   text-gray-900">
                         Company Code
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.companyCode}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-400   text-gray-900 ">
+                    <h4 className=" mb-6 dark:text-gray-400   text-gray-900 ">
                         Approval Item Type
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.approvalItemType}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6   dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-6   dark:text-gray-700   text-gray-900 ">
                         Approval Levels
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.approvalLevels}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                         Created At
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {formatDate(data.createdAt)}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                         Updated At
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {formatDate(data.updatedAt)}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Created By
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.createdBy}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Updated By
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.updatedBy}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                         Status
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.status}
                     </h4>
                 </div>

@@ -116,7 +116,7 @@ const ResolveComplaintModal = ({ func, id }) => {
       <div className="bg-white p-4 rounded-lg max-w-md mx-auto">
         <div className="flex justify-between">
           <div>
-            <h4 className="uppercase mb-2 dark:text-gray-300">
+            <h4 className=" mb-2 dark:text-gray-300">
               Resolve Complaint
             </h4>
           </div>

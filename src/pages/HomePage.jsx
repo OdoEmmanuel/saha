@@ -166,7 +166,7 @@ const HomePage = () => {
 
     return (
         <motion.div 
-            className='relative z-0'
+            className='relative z-0 p-4'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -237,7 +237,7 @@ const HomePage = () => {
                 ].map((item, index) => (
                     <motion.div 
                         key={index}
-                        className={`bg-[#fff] lg:w-[300px] sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)] text-white relative`}
+                        className={`bg-[#fff] lg:w-[300px] 2xl:w-full sm:w-[200px] h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)] text-white relative`}
                         variants={fadeInUp}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -269,7 +269,7 @@ const HomePage = () => {
                 >
                     <div className="overflow-hidden p-2">
                         <div className="flex justify-between overflow-hidden">
-                            <h5 className="text-[15px] font-semibold text-gray-800 uppercase">
+                            <h5 className="text-[15px] font-semibold text-gray-800 ">
                                 {showTransactionChart ? "Transaction Status Summary By Value" : "Loan Summary By Value"}
                             </h5>
                             <CustomToggle
@@ -385,8 +385,8 @@ const HomePage = () => {
                     variants={fadeInUp}
                 >
                     <div className="p-5">
-                        <div className="flex items-center justify-between mb-4">
-                            <h5 className="text-[15px] font-semibold text-gray-800 uppercase">
+                        <div className=" items-center justify-between mb-4">
+                            <h5 className="text-[15px] font-semibold text-gray-800 mb-8 ">
                                 {showLoanChart ? "Transaction Status Summary By Volume" : "Loan Summary By Volume"}
                             </h5>
                             <CustomToggle

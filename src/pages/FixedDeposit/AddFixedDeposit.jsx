@@ -167,7 +167,14 @@ const AddFixedDeposit = () => {
                         errorText={formik.errors.tax}
                     />
 
-                    <div className='flex items-center mt-6'>
+                   
+
+
+
+
+
+                </div>
+                <div className='flex items-center mt-6'>
                         <div className='flex items-center justify-between '>
                             <div className='flex items-center mr-4'>
                                 <label className='mr-2'>Tax Deductible</label>
@@ -180,12 +187,6 @@ const AddFixedDeposit = () => {
                         </div>
 
                     </div>
-
-
-
-
-
-                </div>
                 <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Add Fixed Deposit'}</button>
             </form>
         </div>

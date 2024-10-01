@@ -100,74 +100,74 @@ const ViewFixedDeposit = () => {
 
             <div className='grid grid-cols-3 gap-4'>
                 <div className="mb-4 ">
-                    <h4 className="uppercase mb-6 dark:text-gray-400   text-gray-900">
+                    <h4 className=" mb-6 dark:text-gray-400   text-gray-900">
                         Fixed Deposit Type
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.fixedDepositType}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-400   text-gray-900 ">
+                    <h4 className=" mb-6 dark:text-gray-400   text-gray-900 ">
                         Available
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.available === true ? 'Yes' : 'No'}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6   dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-6   dark:text-gray-700   text-gray-900 ">
                         Description
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.description}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                         Max Amount
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.maxAmount}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                         Min Amount
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.minAmount}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Rate
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.rate}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                         Tax
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.tax}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                         Tax Deductible
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.taxDeductible ? 'Yes' : 'No'}
                     </h4>
                 </div>
                 <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                         Tenure
                     </h4>
-                    <h4 className="uppercase mb-6 text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                         {data.tenure}
                     </h4>
                 </div>
