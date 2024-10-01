@@ -1,38 +1,46 @@
-import React, { useState, useEffect } from 'react'
-import { PulseLoader } from "react-spinners";
-import { toast } from 'react-toastify';
-import { useAuthContext } from '../../../common/context/useAuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
-const ViewHeader = ({id}) => {
-    const navigate = useNavigate();
-    const [activeLink, setActiveLink] = useState("customers");
-    return (
-        <div className=''>
-            <div className='flex items-center mb-8'>
-                <button onClick={() => navigate(-1)} className="mr-4">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="33"
-                        height="33"
-                        viewBox="0 0 33 33"
-                        fill="none"
-                        className="svg"
-                    >
-                        <path
-                            d="M8.29289 16.2929C7.90237 16.6834 7.90237 17.3166 8.29289 17.7071L14.6569 24.0711C15.0474 24.4616 15.6805 24.4616 16.0711 24.0711C16.4616 23.6805 16.4616 23.0474 16.0711 22.6569L10.4142 17L16.0711 11.3431C16.4616 10.9526 16.4616 10.3195 16.0711 9.92893C15.6805 9.53841 15.0474 9.53841 14.6569 9.92893L8.29289 16.2929ZM25 16L9 16V18L25 18V16Z"
-                            fill="#000"
-                        />
-                        <circle cx="16.5" cy="16.5" r="16" stroke="#000" />
-                    </svg>
-                </button>
-                <Link to={`/ui/customer/Veiw-all-customer/${id}/`} onClick={() => setActiveLink('customers')} className={`mr-4   pb-2 ${activeLink === 'customers' ? 'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-400'}`}> Customers Details </Link>
-                <Link to={`/ui/customer/Veiw-all-customer/${id}/kin`} onClick={() => setActiveLink('kin')} className={`mr-4  pb-2 ${activeLink === 'kin' ?  'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-500'}` }>Next of Kin details</Link>
-                <Link to={`/ui/customer/Veiw-all-customer/${id}/documents`} onClick={() => setActiveLink('documents')} className={`mr-4  pb-2 ${activeLink === 'documents' ? 'text-gray-600 font-[500]  border-b-2 border-gray-700':'text-gray-500'}`}>Documents</Link>
-            </div>
+const ViewHeader = ({ id }) => {
+  const navigate = useNavigate();
+  const [activeLink, setActiveLink] = useState("customers");
 
-        </div>
-    )
-}
+  const links = [
+    { name: 'Customer Details', value: 'customers', path: `/ui/customer/Veiw-all-customer/${id}/` },
+    { name: 'Next of Kin Details', value: 'kin', path: `/ui/customer/Veiw-all-customer/${id}/kin` },
+    { name: 'Documents', value: 'documents', path: `/ui/customer/Veiw-all-customer/${id}/documents` },
+  ];
 
-export default ViewHeader
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 mb-8">
+      <div className="flex items-center mb-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="mr-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+        >
+          <ArrowLeft className="w-6 h-6 text-gray-600" />
+        </button>
+        <h1 className="text-2xl font-semibold text-gray-800">Customer View</h1>
+      </div>
+      <nav className="flex space-x-1">
+        {links.map((link) => (
+          <Link
+            key={link.value}
+            to={link.path}
+            onClick={() => setActiveLink(link.value)}
+            className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+              activeLink === link.value
+                ? 'bg-blue-500 text-white font-medium'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            {link.name}
+          </Link>
+        ))}
+      </nav>
+    </div>
+  );
+};
+
+export default ViewHeader;

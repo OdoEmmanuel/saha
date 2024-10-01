@@ -63,10 +63,10 @@ const ConfirmationModal = ({func,id}) => {
         </div>
 
         <div className="flex flex-col text-center mt-5 text-[18px]">
-          <p className="uppercase mb-2 dark:text-gray-300">
+          <p className=" mb-2 dark:text-gray-300">
             By clicking this button,
           </p>
-          <p className="uppercase mb-2 dark:text-gray-300">
+          <p className=" mb-2 dark:text-gray-300">
             the status change will be irreversible
           </p>
         </div>

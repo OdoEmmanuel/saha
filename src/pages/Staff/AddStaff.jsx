@@ -132,7 +132,7 @@ const AddStaff = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+            <div className="max-w mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
                 <div className="px-6 py-4">
                     <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
                         <BiArrowBack className="mr-2" />

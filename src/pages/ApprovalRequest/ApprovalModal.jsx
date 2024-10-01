@@ -61,7 +61,7 @@ const ApprovalModal = ({func,id}) => {
     <div className="bg-white p-10 rounded-lg w-[40%] mx-auto">
       <div className="flex justify-between">
         <div>
-          <h4 className="uppercase mb-2 dark:text-gray-300">
+          <h4 className=" mb-2 dark:text-gray-300">
             Approval Comment
           </h4>
         </div>

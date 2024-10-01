@@ -205,7 +205,7 @@ const ActiveLoan = () => {
                         <div className="">
                             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll">
 
-                                <thead className="bg-gray-50 text-[#667085] font-[500] ">
+                                <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                     <tr className=" ">
                                         <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
                                             {' '}
@@ -269,7 +269,7 @@ const ActiveLoan = () => {
                                         {filteredUsers.map((staff, idx) => (
                                             <tr
                                                 key={idx}
-                                                className="bg-[#fff] text-[#667085]"
+                                                className="bg-[#fff] text-[rgba(84,84,84,1)]"
                                             >
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
                                                     {idCounter++}

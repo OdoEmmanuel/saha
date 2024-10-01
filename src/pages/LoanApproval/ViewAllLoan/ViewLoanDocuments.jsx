@@ -16,7 +16,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                       Utility Bill
                     </h4>
 
@@ -79,7 +79,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                       Salary Statement
                     </h4>
 
@@ -141,7 +141,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                       Guarantor
                     </h4>
 
@@ -204,7 +204,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                       Guarantor Id Card
                     </h4>
 
@@ -266,7 +266,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                       Goverment Issued Id
                     </h4>
 
@@ -329,7 +329,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900">
+                    <h4 className=" mb-2 text-gray-500 ">
                       cac
                     </h4>
 
@@ -392,7 +392,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                       Guarantor Passport
                     </h4>
 
@@ -455,7 +455,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                       Work Id Card
                     </h4>
 
@@ -518,7 +518,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                     Confirmation Letter
                     </h4>
 
@@ -580,7 +580,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                       Remita Appliction Evidence
                     </h4>
 
@@ -642,7 +642,7 @@ const ViewLoanDocuments = ({ data }) => {
                   ''
                 ) : (
                   <div className="mb-4">
-                    <h4 className="uppercase mb-6 dark:text-gray-700   text-gray-900 ">
+                    <h4 className=" mb-2 text-gray-500  ">
                       Bank Statement
                     </h4>
 
