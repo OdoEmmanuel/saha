@@ -204,7 +204,7 @@ const AssignPermission = () => {
     //   };
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg p-8">
+        <div className="bg-white rounded-2xl shadow-lg p-8 m-8">
             <div className="my-4">
                 <div className="flex">
                     <button onClick={() => navigate(-1)} className="mb-6 mr-4">
@@ -239,11 +239,12 @@ const AssignPermission = () => {
                                 <input
                                     type="checkbox"
                                     id={permission.permissionId}
+                                    className='w-4 h-4 rounded-lg'
                                     checked={permission.checked || false}
                                     value={permission.permissionId}
                                     onChange={() => handleCheckboxChange(permission.permissionId)}
                                 />
-                                <label htmlFor={permission.permissionId} className="ml-1">
+                                <label htmlFor={permission.permissionId} className="ml-1 form-check-label font-semibold">
                                     <p>{removeUnderscores(permission.permission)}</p>
                                 </label>
                             </div>

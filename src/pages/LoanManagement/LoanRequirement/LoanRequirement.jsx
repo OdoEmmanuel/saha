@@ -8,6 +8,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { FaPen } from 'react-icons/fa';
 import { IoEyeSharp } from "react-icons/io5";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 
 const LoanRequirement = () => {
@@ -96,7 +98,7 @@ const LoanRequirement = () => {
 
     let idCounter = 1
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -214,13 +216,16 @@ const LoanRequirement = () => {
 
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
 
-
+                                                   <Tippy content="Edit">
                                                     <Link
                                                         to={`/ui/tables/loan-requirement/edit/${staff.loanProductCode}`}
                                                         className="text-[#072D56] mr-8"
                                                     >
                                                         <FaPen size={'1.5em'} />
                                                     </Link>
+                                                    </Tippy>
+
+                                                    <Tippy content="View">
 
                                                     <Link
                                                         to={`/ui/tables/loan-requirement/details/${staff.loanProductCode}`}
@@ -231,6 +236,7 @@ const LoanRequirement = () => {
                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M2.323 5.646C1.904 6.25 1.75 6.723 1.75 7C1.75 7.277 1.904 7.75 2.323 8.354C2.729 8.937 3.331 9.57 4.093 10.155C5.62 11.327 7.713 12.25 10 12.25C12.287 12.25 14.38 11.327 15.907 10.155C16.669 9.57 17.271 8.937 17.677 8.354C18.096 7.75 18.25 7.277 18.25 7C18.25 6.723 18.096 6.25 17.677 5.646C17.271 5.063 16.669 4.43 15.907 3.845C14.38 2.673 12.287 1.75 10 1.75C7.713 1.75 5.62 2.673 4.093 3.845C3.331 4.43 2.729 5.063 2.323 5.646ZM3.179 2.655C4.91 1.327 7.316 0.25 10 0.25C12.684 0.25 15.09 1.327 16.82 2.655C17.687 3.32 18.403 4.062 18.909 4.791C19.401 5.5 19.75 6.277 19.75 7C19.75 7.723 19.4 8.5 18.909 9.209C18.403 9.938 17.687 10.679 16.821 11.345C15.091 12.673 12.684 13.75 10 13.75C7.316 13.75 4.91 12.673 3.18 11.345C2.313 10.68 1.597 9.938 1.091 9.209C0.6 8.5 0.25 7.723 0.25 7C0.25 6.277 0.6 5.5 1.091 4.791C1.597 4.062 2.313 3.321 3.179 2.655Z" fill="#072D56" />
                                                         </svg>
                                                     </Link>
+                                                    </Tippy>
 
                                                 </td>
                                             </tr>

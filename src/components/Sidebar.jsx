@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen, tog }) => {
                         whileTap={{ scale: 0.95 }}
                       >
                         <span className="flex items-center">
-                          {items.icon && <items.icon className="mr-2" size={18} />}
+                          {items.icon && <items.icon className="mr-4" size={18} />}
                           <span>{items.label}</span>
                         </span>
                         <motion.div

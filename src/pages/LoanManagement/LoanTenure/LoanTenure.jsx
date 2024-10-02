@@ -8,6 +8,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { FaPen } from 'react-icons/fa';
 import { IoEyeSharp } from "react-icons/io5";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const LoanTenure = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
@@ -102,7 +104,7 @@ const LoanTenure = () => {
 
     let idCounter = 1
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -205,13 +207,14 @@ const LoanTenure = () => {
             
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
                                                     
-
+                                                    <Tippy content="edit">
                                                     <Link
                                                         to={`/ui/tables/editloantenure/${staff.id}`}
                                                         className="text-[#072D56] mr-8"
                                                     >
                                                         <FaPen size={'1.5em'} />
                                                     </Link>
+                                                    </Tippy>
 
                                                   
 

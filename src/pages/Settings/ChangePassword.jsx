@@ -157,7 +157,7 @@ const ChangePassword = () => {
                                     <InputField2
                                         label={`Confirm Password`}
                                         name={`confirmPassword`}
-                                        type={toggle ? "text" : "Password"}
+                                        type={toggle2 ? "text" : "Password"}
                                         value={formik.values.confirmPassword}
                                         onChange={formik.handleChange}
                                         error={formik.touched.confirmPassword && formik.errors.confirmPassword}
@@ -170,13 +170,13 @@ const ChangePassword = () => {
                                         {toggle2 ? (
                                             <RiEyeFill
                                                 onClick={() => {
-                                                    settoggle(!toggle);
+                                                    settoggle2(!toggle2);
                                                 }}
                                             />
                                         ) : (
                                             <RiEyeOffFill
                                                 onClick={() => {
-                                                    settoggle(!toggle2);
+                                                    settoggle2(!toggle2);
                                                 }}
                                             />
                                         )}

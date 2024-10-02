@@ -23,7 +23,7 @@ const UpdateStaff = () => {
     const fetchCompanyCode = localStorage.getItem('companyCode')
     const navigate = useNavigate()
 
-    setHeaders('UPDATE STAFF')
+    setHeaders('Update Staff')
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -160,14 +160,14 @@ const UpdateStaff = () => {
         }
     })
     return (
-        <div className=" bg-gray-100 ">
+        <div className=" p-8 ">
               {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+        <div className=" mx-auto bg-white rounded-lg  shadow-xl overflow-hidden">
         <div className="px-6 py-4">
         <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
           <BiArrowBack className="mr-2" />

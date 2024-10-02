@@ -136,6 +136,10 @@ const SetSystem = () => {
           .map((word) => word.charAt(0).to() + word.slice(1))
           .join(' ')
       }
+
+      function removeUnderscores(text) {
+        return text.replace(/_/g, ' ')
+    }
     
     
   return (
@@ -143,8 +147,8 @@ const SetSystem = () => {
       <div className="bg-[#fff] shadow-md p-6 lg:w-1/2 w-full rounded-[10px]">
         {settings.map((setting) => (
           <div key={setting.key} className="m-4 flex flex-col justify-between">
-            <div>
-              <p>{formatSettingKey(setting.key)}:</p>
+            <div className='capitalize'> 
+              <p>{removeUnderscores(setting.key)}:</p>
             </div>
             <div className="flex items-center">
               {setting.key.endsWith('_state') && dropdownOptions[setting.key] ? (

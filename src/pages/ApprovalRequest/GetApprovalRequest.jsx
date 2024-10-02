@@ -4,10 +4,11 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useAuthContext } from '../../common/context/useAuthContext'
 import ApprovalModal from './ApprovalModal'
+import { ArrowLeft } from 'lucide-react';
 
 
 const GetApprovalRequest = () => {
-    const { middleware, authorizationService, pending, request, clientid,setHeaders } = useAuthContext()
+    const { middleware, authorizationService, pending, request, clientid, setHeaders } = useAuthContext()
     const { id } = useParams()
     const [approval, setApproval] = useState('')
     const [data, setdata] = useState({})
@@ -29,7 +30,7 @@ const GetApprovalRequest = () => {
 
     const navigate = useNavigate()
 
-    setHeaders('Appproval Request Details')
+    setHeaders('Approval Request Details')
 
     const open = () => {
         setOpenModal(true)
@@ -137,39 +138,20 @@ const GetApprovalRequest = () => {
     }, [])
 
     return (
-        <div className='bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8'>
+        <div className=' overflow-hidden px-8 py-4 mx-8'>
             {/* <PageBreadcrumb title="Basic Tables" subName="Table" /> */}
             {openModal && <ApprovalModal func={close} id={data.id} />}
-            <div className="grid items-stretch lg:grid-cols-3 grid-cols-1 gap-6 mb-8">
-                <div className="xl:col-span-3">
-                    <div className="card h-full">
-                        <div >
-                            <div className="lg:flex lg:justify-between mb-6">
-                                <div className="flex items-center  ">
-                                    <button onClick={() => navigate(-1)} className=" mr-4">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="33"
-                                            height="33"
-                                            viewBox="0 0 33 33"
-                                            fill="none"
-                                            className="svg"
-                                        >
-                                            <path
-                                                d="M8.29289 16.2929C7.90237 16.6834 7.90237 17.3166 8.29289 17.7071L14.6569 24.0711C15.0474 24.4616 15.6805 24.4616 16.0711 24.0711C16.4616 23.6805 16.4616 23.0474 16.0711 22.6569L10.4142 17L16.0711 11.3431C16.4616 10.9526 16.4616 10.3195 16.0711 9.92893C15.6805 9.53841 15.0474 9.53841 14.6569 9.92893L8.29289 16.2929ZM25 16L9 16V18L25 18V16Z"
-                                                fill="#000"
-                                            />
-                                            <circle cx="16.5" cy="16.5" r="16" stroke="#000" />
-                                        </svg>
-                                    </button>
-                                    <div>
-                                        <h3 className="font-[500] text-[25px]">
-                                            Details
-                                        </h3>
-                                    </div>
-
-                                </div>
-                                <div className='flex items-center'>
+            <div className='flex justify-between  bg-[#fff] rounded-[10px] shadow-lg p-8 mb-8'>
+                <div className="flex items-center mb-4">
+                    <button
+                        onClick={() => navigate('/ui/approvalRequest')}
+                        className="mr-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                    >
+                        <ArrowLeft className="w-6 h-6 text-gray-600" />
+                    </button>
+                    <h1 className="text-2xl font-semibold text-gray-800">Details</h1>
+                </div>
+                <div className='flex items-center'>
                                     {data.status === 'Pending' ? (
                                         <button
                                             className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px] my-4 py-2 px-4"
@@ -183,7 +165,12 @@ const GetApprovalRequest = () => {
                                         </button>
                                     )}
                                 </div>
-                            </div>
+            </div>
+            <div className="grid items-stretch lg:grid-cols-3 grid-cols-1 gap-6 mb-8 p-8 bg-[#fff] rounded-[10px] shadow-lg">
+                <div className="xl:col-span-3">
+                    <div className="card h-full">
+                        <div >
+                           
                             <div className="overflow-x-auto">
                                 <div className="min-w-full inline-block align-middle">
                                     <div className="overflow-hidden">
@@ -312,10 +299,10 @@ const GetApprovalRequest = () => {
                 </div>
             </div>
             {approval === 'User' ? (
-                <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 ">
+                <div className="grid lg:grid-cols-3 grid-cols-1 gap-6">
                     <div className="xl:col-span-3">
-                        <div className="card">
-                            <div >
+                        <div className="">
+                            <div className="card bg-[#fff] rounded-[10px] shadow-lg p-8" >
                                 <div>
                                     <h3 className=" mb-8  text-xl">
                                         Inital State
@@ -372,7 +359,7 @@ const GetApprovalRequest = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div >
+                            <div className="card bg-[#fff] rounded-[10px] p-8 mt-8 shadow-lg">
                                 <div>
                                     <h3 className=" mt-8 mb-8  text-xl">
                                         Final State
@@ -383,7 +370,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Email
                                         </h4>
-                                        <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
+                                        <h4 className="font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {email}
                                         </h4>
                                     </div>
@@ -433,7 +420,7 @@ const GetApprovalRequest = () => {
                     </div>
                 </div>
             ) : approval === 'Group' ? (
-                <div className="xl:col-span-3">
+                <div className="xl:col-span-3 bg-[#fff] rounded-[10px] shadow-lg p-8">
                     <div className="card">
                         <div >
                             <div>
@@ -446,7 +433,7 @@ const GetApprovalRequest = () => {
                                     <h4 className=" mb-2 text-gray-500 ">
                                         Group Name
                                     </h4>
-                                    <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
+                                    <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                         {final.groupName}
                                     </h4>
                                 </div>
@@ -471,7 +458,7 @@ const GetApprovalRequest = () => {
                     </div>
                 </div>
             ) : approval === 'UserGroupPermission' ? (
-                <div className="xl:col-span-3">
+                <div className="xl:col-span-3 bg-[#fff] rounded-[10px] shadow-lg p-8">
                     <div className="card">
                         <div >
                             <div>
@@ -485,7 +472,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Group {index + 1}
                                         </h4>
-                                        <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {value}
                                         </h4>
                                     </div>
@@ -495,7 +482,7 @@ const GetApprovalRequest = () => {
                     </div>
                 </div>
             ) : approval === 'GroupPermission' ? (
-                <div className="xl:col-span-3">
+                <div className="xl:col-span-3 bg-[#fff] rounded-[10px] shadow-lg p-8">
                     <div className="card">
                         <div >
                             <div>
@@ -509,7 +496,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Permisssion {index + 1}
                                         </h4>
-                                        <h4 className=" mb-6  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-bold mb-6 text-lg text-gray-500 dark:text-gray-400">
                                             {removeUnderscores(value)}
                                         </h4>
                                     </div>

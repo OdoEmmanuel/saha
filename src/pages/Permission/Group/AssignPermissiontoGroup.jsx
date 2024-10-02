@@ -126,7 +126,7 @@ const AssignGroupPermission = () => {
   };
 
   return (
-    <div className="bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8">
+    <div className="bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8 m-8">
       <div className="flex">
         <button onClick={() => navigate(-1)} className="mb-6 mr-4">
           <svg
@@ -166,10 +166,11 @@ const AssignGroupPermission = () => {
                 <input
                   type="checkbox"
                   id={permission.id}
+                  className='w-4 h-4 rounded-lg'
                   checked={permission.checked}
                   onChange={() => handleCheckboxChange(permission.id)}
                 />
-                <label htmlFor={permission.id} className="ml-1">
+                <label htmlFor={permission.id} className="ml-1 form-check-label font-semibold">
                   {removeUnderscores(permission.permission)}
                 </label>
               </div>

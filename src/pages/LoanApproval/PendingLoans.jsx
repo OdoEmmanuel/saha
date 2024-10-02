@@ -8,6 +8,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
 import Checkbox from "../../assets/checkbox.png"
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const PendingLoans = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
@@ -197,7 +199,7 @@ const PendingLoans = () => {
 
     let idCounter = pageNumber * pagesize + 1
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -350,6 +352,7 @@ const PendingLoans = () => {
                                                     </button>
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                    <Tippy content="view">
                                                     <Link
                                                         to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
@@ -360,6 +363,7 @@ const PendingLoans = () => {
                                                         </svg>
 
                                                     </Link>
+                                                    </Tippy>
                                                 </td>
                                             </tr>
                                         ))}

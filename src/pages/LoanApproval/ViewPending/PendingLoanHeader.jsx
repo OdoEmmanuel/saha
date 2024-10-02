@@ -34,7 +34,7 @@ const PendingLoanHeader = ({ id }) => {
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/ui/customer/pending-kyc')}
             className="mr-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
           >
             <ArrowLeft className="w-6 h-6 text-gray-600" />

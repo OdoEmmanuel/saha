@@ -8,6 +8,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FaPen } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 
 const AllStaff = () => {
@@ -19,7 +21,7 @@ const AllStaff = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
-    setHeaders(`ALL STAFF`)
+    setHeaders(`All Staff`)
     useEffect(() => {
         setisLoading(true);
         fetchData()
@@ -108,7 +110,7 @@ const AllStaff = () => {
 
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -117,7 +119,7 @@ const AllStaff = () => {
             )}
 
 
-            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
+            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6    rounded-[10px]'>
                 
 
                     <div className="flex justify-between ">
@@ -216,13 +218,14 @@ const AllStaff = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
-
+                                                  <Tippy content="Edit">
                                                     <Link
                                                         to={`/ui/staffs/UpdateStaff/${staff.id}`}
                                                         className="text-[#072D56]"
                                                     >
                                                         <FaPen size={'1.5em'} />
                                                     </Link>
+                                                    </Tippy>
                                                 </td>
 
 
