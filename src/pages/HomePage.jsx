@@ -115,11 +115,20 @@ const HomePage = () => {
 
 
     const fetchCustomer = () => {
-        axios.get(`${middleware}user/allUsers?pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
+        const body = {
+            reference: null,
+            startDate: null,
+            endDate: null,
+            pageIndex: pageNumber,
+            pageSize: pagesize,
+            approvalStatus: null
+        }
+        axios.post(`${middleware}loan/filter`,body, config)
             .then((res) => {
-                console.log(res.data.data.users.content)
-                setCustomers(res.data.data.users.content)
-                SetElement(res.data.data.users.totalElements)
+                console.log(res.data.data)
+                console.log(res.data.totalContent)
+                setCustomers(res.data.data)
+                SetElement(res.data.totalContent)
 
             }).catch((e) => {
                 console.log(e.response.data.responseMessage)
@@ -301,11 +310,11 @@ const HomePage = () => {
                 </motion.div>
 
                 <motion.div 
-                    className="rounded-lg shadow-md p-6 flex flex-col justify-between row-span-2 items-start bg-[#fff] flex-1 gap-4"
+                    className="rounded-lg shadow-md px-2 py-4 flex flex-col justify-between row-span-2 items-start bg-[#fff] flex-1 gap-4"
                     variants={fadeInUp}
                 >
                     <div className="flex justify-between items-center w-full">
-                        <h1 className="text-[1.125rem] font-semibold">Customer</h1>
+                        <h1 className="text-[1.125rem] font-semibold">Loan</h1>
                         <div className="flex gap-x-3">
                             <h1 className="text-[1.125rem] font-normal">Total:</h1>
                             <p className="text-[1.125rem] font-bold">{Element}</p>
@@ -316,9 +325,9 @@ const HomePage = () => {
                         <table className="w-full h-full">
                             <thead className="bg-gray-100">
                                 <tr className="border-b">
-                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">#</th>
-                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">First Name</th>
-                                    <th className="px-4 py-4 text-start text-sm font-bold text-[#000]">Last Name</th>
+                                    <th className="px-2 py-2 text-start text-sm font-bold text-[#000]">#</th>
+                                    <th className="px-2 py-2 text-start text-sm font-bold text-[#000]">Customer Email</th>
+                                    <th className="px-2 py-2 text-start text-sm font-bold text-[#000]">Loan Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -332,14 +341,14 @@ const HomePage = () => {
                                             exit={{ opacity: 0, y: -20 }}
                                             transition={{ delay: index * 0.1 }}
                                         >
-                                            <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                            <td className="px-2 py-2 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
                                                 {index + 1}
                                             </td>
-                                            <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                                {data.firstName}
+                                            <td className="px-2 py-2 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                                {data.customerEmail}
                                             </td>
-                                            <td className="px-4 py-4 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                                {data.lastName}
+                                            <td className="px-2 py-2 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
+                                                {data.loanAmount}
                                             </td>
                                         </motion.tr>
                                     ))}

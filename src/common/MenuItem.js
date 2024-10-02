@@ -81,7 +81,7 @@ import {
             },
             {
               key: 'loan-requirement',
-              label: 'Loan Requirement Setup',
+              label: 'Loan Requirement',
               url: '/ui/tables/loan-requirement',
             },
             {

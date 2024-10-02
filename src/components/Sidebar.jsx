@@ -34,8 +34,8 @@ const Sidebar = ({ isOpen, tog }) => {
               const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-semibold" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2';
 
               return (
-                <motion.li 
-                  key={index} 
+                <motion.li
+                  key={index}
                   className={`mb-4`}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -74,15 +74,27 @@ const Sidebar = ({ isOpen, tog }) => {
                               const isChildActive = location.pathname === child.url;
                               const childActiveClass = isChildActive ? "text-blue-700 font-semibold" : 'text-[#fff] hover:text-blue-600';
                               return (
-                                <motion.li 
+                                <motion.li
                                   key={child.key}
                                   initial={{ opacity: 0, x: -10 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   exit={{ opacity: 0, x: -10 }}
                                   transition={{ duration: 0.2 }}
+                                  className='flex items-center mb-2 mt-2'
                                 >
-                                  <Link to={child.url} className={`flex items-center mb-2 ${childActiveClass}`}>
-                                    {child.icon && <child.icon className="mr-2" size={18} />}
+                                  <div className='flex items-center '>
+                                    {!isChildActive ? (<svg className='mr-4 ' width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <circle cx="4.66934" cy="4.66934" r="4.16934" stroke="#BABABA" />
+                                    </svg>) : (
+                                      <svg className='mr-4' width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="4.66934" cy="4.66934" r="4.66934" fill="white" />
+                                      </svg>
+                                    )}
+
+                                  </div>
+
+                                  <Link to={child.url} className={` ${childActiveClass}`}>
+                                    {/* {child.icon && <child.icon className="mr-4" size={18} />} */}
                                     <span>{child.label}</span>
                                   </Link>
                                 </motion.li>
@@ -95,7 +107,7 @@ const Sidebar = ({ isOpen, tog }) => {
                   ) : (
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Link to={items.url} className={`flex items-center ${activeClass}`}>
-                        {items.icon && <items.icon className="mr-2" size={18} />}
+                        {items.icon && <items.icon className="mr-4" size={18} />}
                         <span>{items.label}</span>
                       </Link>
                     </motion.div>
@@ -107,7 +119,7 @@ const Sidebar = ({ isOpen, tog }) => {
         ) : (
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link to={item.url} className={`flex items-center ${activeClass}`}>
-              {item.icon && <item.icon className="mr-2" size={18} />}
+              {item.icon && <item.icon className="mr-4" size={18} />}
               <span>{item.label}</span>
             </Link>
           </motion.div>
@@ -117,15 +129,15 @@ const Sidebar = ({ isOpen, tog }) => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className={`w-64 bg-[#002853] h-screen overflow-y-auto fixed lg:flex flex-col shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] no-scrollbar hidden`}
       initial={{ x: -300 }}
       animate={{ x: 0 }}
       transition={{ type: 'spring', stiffness: 120, damping: 20 }}
     >
       <div className='px-4 pt-2'>
-        <motion.img 
-          src={logo} 
+        <motion.img
+          src={logo}
           className='mb-4 w-[150px]'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
