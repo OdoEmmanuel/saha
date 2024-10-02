@@ -7,6 +7,8 @@ import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { FaPen } from 'react-icons/fa';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 
 const LoanPurpose = () => {
@@ -108,7 +110,7 @@ const LoanPurpose = () => {
     let idCounter = 1
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -213,14 +215,14 @@ const LoanPurpose = () => {
 
 
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-
+                                                   <Tippy content="Edit">
                                                     <Link
                                                         to={`/ui/tables/edit-loan-purpose/${staff.id}`}
                                                         className="text-[#072D56]"
                                                     >
                                                         <FaPen size={'1.5em'} />
                                                     </Link>
-
+                                                  </Tippy>
                                                 </td>
                                             </tr>
                                         ))}

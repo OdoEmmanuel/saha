@@ -7,6 +7,8 @@ import { useAuthContext } from '../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const ActiveCustomer = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
@@ -217,7 +219,7 @@ const ActiveCustomer = () => {
     return (
 
 
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}

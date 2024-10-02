@@ -96,7 +96,7 @@ const AllAssignStaff = () => {
 
     let idCounter = 1;
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}

@@ -8,7 +8,8 @@ import { IoMdCalendar } from 'react-icons/io';
 import DatePicker from 'react-datepicker';
 import { BiSearch } from "react-icons/bi";
 import "react-datepicker/dist/react-datepicker.css";
-
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import { IoFilter } from "react-icons/io5";
 
 const ApprovalRequest = () => {
@@ -168,7 +169,7 @@ const ApprovalRequest = () => {
 
     let idCounter = pageNumber * pagesize + 1
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -197,6 +198,20 @@ const ApprovalRequest = () => {
                         />
                     </div>
                     <div className='flex justify-between'>
+                    <div className="flex items-center">
+                            <select
+                                value={selectedType}
+                                onChange={(e) => setSelectedType(e.target.value)}
+                                className="rounded-[10px] border-2 p-2  mr-4"
+                            >
+                                <option value="">Select User Type</option>
+                                {userType.map((type, index) => (
+                                    <option key={index} value={type.transactionType}>
+                                        {type}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                         <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
                             <div>
                                 <IoFilter />
@@ -215,20 +230,7 @@ const ApprovalRequest = () => {
                                 <option value="50">50</option>
                             </select>
                         </div>
-                        <div className="flex items-center">
-                            <select
-                                value={selectedType}
-                                onChange={(e) => setSelectedType(e.target.value)}
-                                className="rounded-[10px] border-2 p-2  mr-4"
-                            >
-                                <option value="">Select User Type</option>
-                                {userType.map((type, index) => (
-                                    <option key={index} value={type.transactionType}>
-                                        {type}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                       
 
                     </div>
 
@@ -295,6 +297,7 @@ const ApprovalRequest = () => {
                                                     {staff.maker}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                    <Tippy content="view">
                                                     <Link
                                                         to={`/ui/getapprovalrequest/${staff.id}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
@@ -305,6 +308,7 @@ const ApprovalRequest = () => {
                                                         </svg>
 
                                                     </Link>
+                                                    </Tippy>
                                                 </td>
 
 

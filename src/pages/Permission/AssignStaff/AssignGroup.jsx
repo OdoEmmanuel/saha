@@ -111,7 +111,7 @@ const AssignGroup = () => {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8">
+    <div className="bg-white rounded-2xl shadow-lg p-8 m-8">
       <div className="my-4">
         <div className="flex">
           <button onClick={() => navigate(-1)} className="mb-6 mr-4">
@@ -139,11 +139,12 @@ const AssignGroup = () => {
                 <div key={group.id} className="flex items-center">
                   <input
                     type="checkbox"
+                    className='w-4 h-4 rounded-lg'
                     id={group.id}
                     checked={group.checked || false}
                     onChange={() => handleCheckboxChange(group.id)}
                   />
-                  <label htmlFor={group.id} className="ml-2">
+                  <label htmlFor={group.id} className="ml-2 form-check-label font-semibold">
                     {group.groupName}
                   </label>
                 </div>

@@ -20,7 +20,7 @@ const Navbar = ({ isOpen, tog }) => {
     <div className="p-6 w-full sticky top-0 mb-2 items-center border-2 bg-white z-50">
       <div className="flex justify-between">
         <div className="flex items-center text-black">
-          <p className="lg:text-[25px] text-[20px]">{headers}</p>
+          <p className="lg:text-[25px] text-[20px] capitalize">{headers}</p>
         </div>
         <div className="flex items-center text-gray-400">
           <div className="relative mr-2">

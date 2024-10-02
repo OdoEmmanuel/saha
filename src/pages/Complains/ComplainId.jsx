@@ -117,7 +117,7 @@ const ComplainId = () => {
         }
     })
     return (
-        <div className=" bg-gray-100 ">
+        <div className=" bg-gray-100 m-8 ">
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}

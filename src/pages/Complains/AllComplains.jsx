@@ -10,6 +10,8 @@ import DatePicker from 'react-datepicker';
 import { IoFilter } from "react-icons/io5";
 import { BiSearch } from 'react-icons/bi';
 import "react-datepicker/dist/react-datepicker.css";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const AllComplains = () => {
     const { middleware, request, clientid, setHeaders } = useAuthContext();
@@ -153,7 +155,7 @@ const AllComplains = () => {
     let idCounter = pageNumber * pageSize + 1
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
@@ -266,6 +268,7 @@ const AllComplains = () => {
                                         )}</td>
                                     <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{compliant.complaintByUserName}</td>
                                     <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                        <Tippy content="View">
                                         <Link
                                             to={`/ui/complaints/${compliant.id}`}
                                             className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
@@ -276,6 +279,7 @@ const AllComplains = () => {
                                             </svg>
 
                                         </Link>
+                                        </Tippy>
                                     </td>
                                 </tr>
                             ))}

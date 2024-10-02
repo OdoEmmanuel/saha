@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "@iconscout/react-unicons": "^2.0.2",
+    "@tippyjs/react": "^4.2.6",
     "@windmill/react-ui": "^0.6.0",
     "axios": "^1.7.2",
     "cookies-next": "^4.2.1",

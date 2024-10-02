@@ -16,7 +16,7 @@ const ViewHeader = ({ id }) => {
     <div className="bg-white shadow-md rounded-lg p-4 mb-8">
       <div className="flex items-center mb-4">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/ui/customer/customer-date')}
           className="mr-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
         >
           <ArrowLeft className="w-6 h-6 text-gray-600" />

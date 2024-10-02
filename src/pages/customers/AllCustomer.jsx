@@ -11,6 +11,8 @@ import Checkbox from "../../assets/checkbox.png"
 import { IoMdCalendar } from 'react-icons/io';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 
 function pad(num) {
@@ -40,7 +42,7 @@ const AllCustomer = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const name = localStorage.getItem('name')
-    setHeaders('ALL CUSTOMERS')
+    setHeaders('All Customers')
 
 
 
@@ -188,7 +190,7 @@ const AllCustomer = () => {
 
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -354,6 +356,7 @@ const AllCustomer = () => {
                                                     {staff.nin}
                                                 </td>
                                                 <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                    <Tippy content="View">
                                                     <Link
                                                         to={`/ui/customer/Veiw-all-customer/${staff.id}`}
                                                         className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
@@ -364,6 +367,7 @@ const AllCustomer = () => {
                                                         </svg>
 
                                                     </Link>
+                                                    </Tippy>
                                                 </td>
                                             </tr>
                                         ))}

@@ -5,7 +5,7 @@ import { toast, Bounce } from "react-toastify";
 import { useFormik } from "formik";
 import { recoverPassword } from '../services';
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
-import icon from "../assets/gti-microfinance-logo.png";
+import icon from '../assets/saha.png'
 import InputField from "../components/InputField";
 import JSEncrypt from 'jsencrypt'
 import { useAuthContext } from '../common/context/useAuthContext';
@@ -59,7 +59,7 @@ const ForgetPassword = () => {
         }
     })
     return (
-        <div className="bg-[rgb(17,24,39)] flex flex-col items-center py-10 px-10 min-h-screen ">
+        <div className="bg-[#002853] flex flex-col items-center py-10 px-10 min-h-screen ">
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -164,7 +164,7 @@ const ForgetPassword = () => {
                         {" "}
                         <button
                             type="submit"
-                            className="hover:bg-[rgb(129,140,248)] bg-[rgb(79,70,229)] py-2 shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full p-1 mt-4 text-white rounded-[5px]"
+                            className=" bg-[#002853] hover:bg-[rgb(17,24,39)]  py-2 shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full p-1 mt-4 text-white rounded-[5px]"
                         >
                             Submit
                         </button>
