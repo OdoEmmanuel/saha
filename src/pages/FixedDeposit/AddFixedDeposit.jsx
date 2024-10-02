@@ -19,7 +19,7 @@ const AddFixedDeposit = () => {
 
     const navigate = useNavigate()
 
-    setHeaders('Add FIXED DEPOSIT')
+    setHeaders('Add Fixed Deposit')
 
     const config = {
         headers: {
