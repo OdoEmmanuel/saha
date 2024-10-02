@@ -22,7 +22,8 @@ import {
     LockIcon,
     Wrench,
     Archive,
-    Anchor
+    Anchor,
+    User
   } from 'lucide-react'
 
 
@@ -80,7 +81,7 @@ import {
             },
             {
               key: 'loan-requirement',
-              label: 'Loan Requirement Setup',
+              label: 'Loan Requirement',
               url: '/ui/tables/loan-requirement',
             },
             {
@@ -116,7 +117,7 @@ import {
           key: 'customer-management',
           label: 'Customer',
           isTitle: false,
-          icon: File,
+          icon: User,
           children: [
             {
               key: 'all-customers',
