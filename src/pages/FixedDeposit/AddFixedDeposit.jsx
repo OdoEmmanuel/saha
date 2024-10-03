@@ -93,7 +93,7 @@ const AddFixedDeposit = () => {
             </button>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Fixed Deposit</h2>
             <form className="space-y-4" onSubmit={formik.handleSubmit}>
-                <div className='grid grid-cols-2 gap-4'>
+                <div className='grid l:grid-cols-3 grid-cols-2 gap-6'>
 
                     <InputField2
                         label={`Fixed Deposit Type`}
