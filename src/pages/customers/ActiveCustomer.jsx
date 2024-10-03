@@ -273,49 +273,49 @@ const ActiveCustomer = () => {
 
                                 <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                     <tr className=" ">
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             #{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             First Name{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Last Name{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
                                             Email{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             BVN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             MOBILE{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Gender{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             DOB{' '}
                                         </th>
 
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             State{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             NIN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Actions</th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">Actions</th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
 
@@ -326,46 +326,46 @@ const ActiveCustomer = () => {
                                                 key={idx}
                                                 className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]':'bg-[#fff]'}`}
                                             >
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {idCounter++}
 
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.firstName}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.lastName}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.email}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.bvn}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.mobilePhone}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.gender}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {formatDate(staff.dateOfBirth)}
                                                 </td>
 
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.stateOfResidence}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.nin}
                                                 </td>
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <button onClick={() => handleUnblockUser(staff.loginId, staff.pinBlocked)} className={`${staff.pinBlocked ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.pinBlocked === true ? 'Unblock Pin' : 'Block Pin'
                                                         }
                                                     </button>
                                                 </td>
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <button onClick={() => handleBlockandUnblockUser(staff.id, staff.accountBlocked)} className={`${staff.accountBlocked ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300' }`}>
                                                         {
                                                             staff.accountBlocked ? 'Unblock Customer' : 'Block Customer'

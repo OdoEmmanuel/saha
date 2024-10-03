@@ -42,10 +42,10 @@ const ViewPendingDocument = ({ kycs }) => {
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th className="px-4 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-4 text-left  font-medium text-gray-500 uppercase tracking-wider">
                             Document Name
                         </th>
-                        <th className="px-4 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-4 text-left  font-medium text-gray-500 uppercase tracking-wider">
                             View
                         </th>
                     </tr>
@@ -53,10 +53,10 @@ const ViewPendingDocument = ({ kycs }) => {
                 <tbody className="bg-white divide-y divide-gray-200">
                     {kycs.map((kyc, idx) => (
                         <tr key={idx}>
-                            <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <td className="px-4 py-4 whitespace-nowrap  font-medium text-gray-900">
                                 {removeUnderscores(kyc.documentType)}
                             </td>
-                            <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <td className="px-4 py-4 whitespace-nowrap  text-gray-500">
                                 <LucideEye 
                                     className='cursor-pointer text-indigo-600 hover:text-indigo-900'
                                     onClick={() => openModal(kyc.s3ObjectUrl)}

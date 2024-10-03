@@ -155,44 +155,44 @@ const ApprovalSetup = () => {
 
                                 <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                     <tr className=" ">
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             #{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Company Code{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Approval Item Type{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
                                             Approval Levels{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Updated By{' '}
                                         </th>
 
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Created By{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Created At{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Updated At{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Enabled{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">Action(s)</th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">Action(s)</th>
 
 
                                     </tr>
@@ -206,33 +206,33 @@ const ApprovalSetup = () => {
                                                 className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]' : 'bg-[#fff]'}`}
 
                                             >
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {idCounter++}
 
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.companyCode}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.approvalItemType}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.approvalLevels}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.createdBy}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.updatedBy}
                                                 </td>
 
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap  ">
+                                                <td className="px-4 py-4 text-start  font-medium whitespace-nowrap  ">
                                                     {formatDateString(staff.createdAt)}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap  ">
+                                                <td className="px-4 py-4 text-start  font-medium whitespace-nowrap  ">
                                                     {formatDateString(staff.updatedAt)}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap ">
+                                                <td className="px-4 py-4 text-start  font-medium whitespace-nowrap ">
                                                     {staff.status}
                                                 </td>
 
@@ -243,7 +243,7 @@ const ApprovalSetup = () => {
 
 
 
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
+                                                <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap flex">
 
                                                    <Tippy content="Edit">
                                                    <Link

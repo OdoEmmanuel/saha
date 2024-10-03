@@ -122,7 +122,7 @@ const ResolveComplaintModal = ({ func, id }) => {
           </div>
           <button
             type="button"
-            className=" inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
+            className=" inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all  dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
             onClick={func}
           >
             <span className="sr-only">Close</span>
@@ -146,7 +146,7 @@ const ResolveComplaintModal = ({ func, id }) => {
             <option value="IN_PROGRESS">IN PROGRESS</option>
             <option value="OPEN">OPEN</option>
           </select>
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && <p className="text-red-500 ">{error}</p>}
         </div>
 
         <div>
@@ -160,7 +160,7 @@ const ResolveComplaintModal = ({ func, id }) => {
               setResponse(true)
             }}
           />
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && <p className="text-red-500 ">{error}</p>}
         </div>
         <div className="flex gap-4 justify-end mt-6 w-full">
           <button

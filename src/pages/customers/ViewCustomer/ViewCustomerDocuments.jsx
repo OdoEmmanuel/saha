@@ -50,10 +50,10 @@ const ViewCustomerDocuments = ({ kycs }) => {
 
                 <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                     <tr className=" ">
-                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                             Document Name
                         </th>
-                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                             View
                         </th>
 
@@ -65,10 +65,10 @@ const ViewCustomerDocuments = ({ kycs }) => {
 
                     {Kyc.map((kyc, idx) => (
                         <tr key={idx}>
-                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap text-[#667085]">
+                            <td className="px-4 py-4 text-start  font-medium whitespace-nowrap text-[#667085]">
                                 {removeUnderscores(kyc.documentType)}
                             </td>
-                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap hover:text-blue-500/[0.7] text-[rgb(79,70,229)]">
+                            <td className="px-4 py-4 text-start  font-medium whitespace-nowrap hover:text-blue-500/[0.7] text-[rgb(79,70,229)]">
                                 <LucideEye onClick={() => openModal(kyc.s3ObjectUrl)} className='cursor-pointer' />
                             </td>
                         </tr>

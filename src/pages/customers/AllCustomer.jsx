@@ -271,48 +271,48 @@ const AllCustomer = () => {
 
                                 <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                     <tr className=" ">
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             #{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             First Name{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Last Name{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
                                             Email{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             BVN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             MOBILE{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Gender{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             DOB{' '}
                                         </th>
 
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             State{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             NIN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
 
@@ -323,39 +323,39 @@ const AllCustomer = () => {
                                                 key={idx}
                                                 className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]':'bg-[#fff]'}`}
                                             >
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {idCounter++}
 
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.firstName}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.lastName}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.email}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.bvn}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.mobilePhone}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.gender}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {formatDate(staff.dateOfBirth)}
                                                 </td>
 
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.stateOfResidence}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.nin}
                                                 </td>
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Tippy content="View">
                                                     <Link
                                                         to={`/ui/customer/Veiw-all-customer/${staff.id}`}

@@ -54,15 +54,15 @@ const ViewLoanDocuments = ({ data }) => {
             <table className='min-w-full divide-y divide-gray-200'>
                 <thead className='bg-gray-50'>
                     <tr>
-                        <th className='px-4 py-4 text-left text-sm font-semibold text-[rgba(7,45,86,1)]'>Document</th>
-                        <th className='px-4 py-4 text-left text-sm font-semibold text-[rgba(7,45,86,1)]'>View</th>
+                        <th className='px-4 py-4 text-left  font-semibold text-[rgba(7,45,86,1)]'>Document</th>
+                        <th className='px-4 py-4 text-left  font-semibold text-[rgba(7,45,86,1)]'>View</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                     {documents.map((doc, index) => 
                         doc.url && (
                             <tr key={index}>
-                                <td className="px-4 py-4 text-sm font-medium text-[#667085]">{doc.name}</td>
+                                <td className="px-4 py-4  font-medium text-[#667085]">{doc.name}</td>
                                 <td className="px-4 py-4">
                                     <button
                                         onClick={() => openModal(doc.url)}

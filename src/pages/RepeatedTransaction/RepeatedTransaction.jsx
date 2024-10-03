@@ -217,44 +217,44 @@ const RepeatedTransaction = () => {
 
                             <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                 <tr className=" ">
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         #{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         Bill Payment Customer Name{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         Receiver Name{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start  whitespace-nowrap">
                                         {' '}
                                         Type{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         Transaction Status{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         Retrieval Reference Number{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         Receivers Phone Number{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         Bill Payment Type{' '}
                                     </th>
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {''}
                                         From Account Number{' '}
                                     </th>
 
-                                    <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                    <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                         {' '}
                                         To Account Number{' '}
                                     </th>
@@ -269,36 +269,36 @@ const RepeatedTransaction = () => {
                                             key={idx}
                                             className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]':'bg-[#fff]'}`}
                                         >
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {idCounter++}
 
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.billsPaymentCustomerName}
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.receiverName}
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {removeUnderscores(staff.type)}
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.transactionStatus}
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.retrievalReferenceNumber}
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.receiversPhoneNumber}
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.billsPaymentType}
                                             </td>
 
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.fromAccountNumber}
                                             </td>
-                                            <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                            <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                 {staff.toAccountNumber}
                                             </td>
                                            

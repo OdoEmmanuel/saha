@@ -15,7 +15,12 @@ export default {
         mxl: "1400px",
         ...defaultTheme.screens,
       },
-    extend: {},
+    extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        rubik: ["Rubik", "sans-serif"],
+      },
+    },
   },
   plugins: [
     // require('daisyui'),

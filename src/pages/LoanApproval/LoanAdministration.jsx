@@ -257,52 +257,52 @@ const LoanAdministration = () => {
 
                                 <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                     <tr className=" ">
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             #{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Email{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Stage{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
                                             Phone{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             loan Amount{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Customer Id{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Reference{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Approval Status{' '}
                                         </th>
 
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Monthly Income{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Created At{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Action (s){' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
 
@@ -313,46 +313,46 @@ const LoanAdministration = () => {
                                                 key={idx}
                                                 className="bg-[#fff] text-[#667085]"
                                             >
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {idCounter++}
 
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.customerEmail}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.customerPhone}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.currentApprovalStage}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.body.loanAmount}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.body.customerId}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.reference}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.approvalStatus}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.body.monthlyIncome}
                                                 </td>
 
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {formatDateString(staff.createdAt)}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ?  'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
                                                         }
                                                     </button>
                                                 </td>
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Tippy content="view">
                                                     <Link
                                                         to={`/ui/LoanApproval/pendingloans/${staff.reference}`}

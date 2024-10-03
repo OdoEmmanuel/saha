@@ -68,7 +68,7 @@ const Modal = ({id,func,status}) => {
         </div>
         <button
           type="button"
-          className=" inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
+          className=" inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all  dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
           onClick={() => func()}
         >
           <span className="sr-only">Close</span>
@@ -87,7 +87,7 @@ const Modal = ({id,func,status}) => {
             
           }}
         />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-red-500 ">{error}</p>}
       </div>
       <div className="flex gap-4 justify-end mt-6 w-full">
         <button onClick={() => func()} className='bg-red-500 text-white text-lg px-8 py-2 rounded-md hover:bg-red-500/[.57] transition-colors duration-300'>

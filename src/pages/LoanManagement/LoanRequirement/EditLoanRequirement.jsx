@@ -360,7 +360,7 @@ const EditLoanRequirement = () => {
                                     </select>
                                 </div>
                             </div>
-                            {error && <p className="text-red-500 text-sm">{error}</p>}
+                            {error && <p className="text-red-500 ">{error}</p>}
                             <div className="mb-3">
                                 <label
                                     className="block mb-2 font-semibold"

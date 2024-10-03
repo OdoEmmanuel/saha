@@ -157,27 +157,27 @@ const LoanPurpose = () => {
 
                                 <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                     <tr className=" ">
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             #{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Purpose{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Description{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
                                             Created By{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Updated By{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-sm  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
 
                                     </tr>
                                 </thead>
@@ -190,20 +190,20 @@ const LoanPurpose = () => {
                                                 className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]' : 'bg-[#fff]'}`}
 
                                             >
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {idCounter++}
 
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.purpose}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.description}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.createdBy}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {formatDateString(staff.createdDate)}
                                                 </td>
 
@@ -214,7 +214,7 @@ const LoanPurpose = () => {
 
 
 
-                                                <td className="px-4 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                    <Tippy content="Edit">
                                                     <Link
                                                         to={`/ui/tables/edit-loan-purpose/${staff.id}`}

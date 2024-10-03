@@ -325,9 +325,9 @@ const HomePage = () => {
                         <table className="w-full h-full">
                             <thead className="bg-gray-100">
                                 <tr className="border-b">
-                                    <th className="px-2 py-2 text-start text-sm font-bold text-[#000]">#</th>
-                                    <th className="px-2 py-2 text-start text-sm font-bold text-[#000]">Customer Email</th>
-                                    <th className="px-2 py-2 text-start text-sm font-bold text-[#000]">Loan Amount</th>
+                                    <th className="px-2 py-2 text-start  font-bold text-[#000]">#</th>
+                                    <th className="px-2 py-2 text-start  font-bold text-[#000]">Customer Email</th>
+                                    <th className="px-2 py-2 text-start  font-bold text-[#000]">Loan Amount</th>
                                 </tr>
                             </thead>
                             <tbody>

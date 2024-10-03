@@ -16,7 +16,7 @@ const Sidebar = ({ isOpen, tog }) => {
   const renderMenuItem = (item) => {
     const isActive = location.pathname === item.url;
     const isParentOfActive = item.children && item.children.some(child => location.pathname === child.url);
-    const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-semibold" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2 hover:text-blue-600';
+    const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[500] text-[16px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2 hover:text-blue-600';
 
     return (
       <motion.li
@@ -31,7 +31,7 @@ const Sidebar = ({ isOpen, tog }) => {
               const Open = openDropdown === items.key;
               const isActive = location.pathname === items.url;
               const isParentOfActive = items.children && items.children.some(child => location.pathname === child.url);
-              const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-semibold" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2';
+              const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[500] text-[16px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2 font-[500] text-[16px] font-inter';
 
               return (
                 <motion.li
@@ -50,8 +50,8 @@ const Sidebar = ({ isOpen, tog }) => {
                         whileTap={{ scale: 0.95 }}
                       >
                         <span className="flex items-center">
-                          {items.icon && <items.icon className="mr-4" size={18} />}
-                          <span>{items.label}</span>
+                          {items.icon && <items.icon className="mr-4" size={24} />}
+                          <span >{items.label}</span>
                         </span>
                         <motion.div
                           initial={false}
@@ -107,7 +107,7 @@ const Sidebar = ({ isOpen, tog }) => {
                   ) : (
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Link to={items.url} className={`flex items-center ${activeClass}`}>
-                        {items.icon && <items.icon className="mr-4" size={18} />}
+                        {items.icon && <items.icon className="mr-4" size={24} />}
                         <span>{items.label}</span>
                       </Link>
                     </motion.div>
@@ -119,7 +119,7 @@ const Sidebar = ({ isOpen, tog }) => {
         ) : (
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link to={item.url} className={`flex items-center ${activeClass}`}>
-              {item.icon && <item.icon className="mr-4" size={18} />}
+              {item.icon && <item.icon className="mr-4" size={24} />}
               <span>{item.label}</span>
             </Link>
           </motion.div>

@@ -23,7 +23,8 @@ import {
     Wrench,
     Archive,
     Anchor,
-    User
+    User,
+    ContactRound
   } from 'lucide-react'
 
 
@@ -145,7 +146,7 @@ import {
           key: 'Staff',
           label: 'Staff',
           isTitle: false,
-          icon: Bookmark,
+          icon: ContactRound,
           url: '/ui/staffs/AllStaff',
         },
       
