@@ -173,33 +173,33 @@ const Transaction = () => {
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                         <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600]">
                             <tr>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">ID</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Type</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Status</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Amount</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Date</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Description</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">From Account</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">To Account</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Reference Number</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Narration</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Bank Name</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">ID</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Type</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Status</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Amount</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Date</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Description</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">From Account</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">To Account</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Reference Number</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Narration</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Bank Name</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                             {transactions.map((transaction, idx) => (
                                 <tr key={idx} className="bg-[#fff] text-[#667085]">
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.id}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.type}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.transactionStatus}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.transactionAmount}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{new Date(...transaction.createdDate).toLocaleString()}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.transactionDescription}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.fromAccountNumber}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.toAccountNumber}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.retrievalRefferenceNumber}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.narration}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{transaction.receivingBankName}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.id}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.type}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionStatus}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionAmount}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{new Date(...transaction.createdDate).toLocaleString()}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionDescription}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.fromAccountNumber}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.toAccountNumber}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.retrievalRefferenceNumber}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.narration}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.receivingBankName}</td>
                                 </tr>
                             ))}
                         </tbody>

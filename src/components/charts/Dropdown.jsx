@@ -24,14 +24,14 @@ const Dropdown = () => {
           aria-labelledby="hs-dropright"
         >
           <Link
-            className="flex items-center gap-x-3.5 py-2 px-3 rounded text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+            className="flex items-center gap-x-3.5 py-2 px-3 rounded  text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             to=""
           >
             <UilEditAlt size={14} className="me-1" />
             <span>Edit</span>
           </Link>
           <Link
-            className="flex items-center gap-x-3.5 py-2 px-3 rounded text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+            className="flex items-center gap-x-3.5 py-2 px-3 rounded  text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             to=""
           >
             <UilSignout size={14} className="me-1" />
@@ -39,7 +39,7 @@ const Dropdown = () => {
           </Link>
           <hr className="my-2 dark:border-gray-600" />
           <Link
-            className="flex items-center gap-x-3.5 py-2 px-3 rounded text-sm text-danger hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center gap-x-3.5 py-2 px-3 rounded  text-danger hover:bg-gray-100 dark:hover:bg-gray-700"
             to=""
           >
             <UilTrashAlt size={14} className="me-1" />

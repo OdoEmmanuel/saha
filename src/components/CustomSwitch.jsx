@@ -17,10 +17,10 @@ const CustomToggle = ({ onToggle, label1 = "Transactions", label2 = "Loan" }) =>
         className={`absolute w-[7rem] h-8 bg-white rounded-full shadow-md transform duration-300 ease-in-out ${isChecked ? 'translate-x-24' : ''}`}
       />
       <div className="flex justify-between w-full px-2 z-10">
-        <span className={`text-sm font-medium ${isChecked ? 'text-white' : 'text-gray-900'}`}>
+        <span className={` font-medium ${isChecked ? 'text-white' : 'text-gray-900'}`}>
           {label1}
         </span>
-        <span className={`text-sm font-medium ${isChecked ? 'text-gray-900' : 'text-white'}`}>
+        <span className={` font-medium ${isChecked ? 'text-gray-900' : 'text-white'}`}>
           {label2}
         </span>
       </div>

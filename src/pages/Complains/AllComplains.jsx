@@ -240,34 +240,34 @@ const AllComplains = () => {
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                         <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600]">
                             <tr>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">ID</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Created Date</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Updated Date</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Compliant Type</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Compliant Description</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Complaint Status</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Complaint Response Date</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Compliant By</th>
-                                <th className="px-4 py-4 text-start text-sm whitespace-nowrap">Action(s)</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">ID</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Created Date</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Updated Date</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Compliant Type</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Compliant Description</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Complaint Status</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Complaint Response Date</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Compliant By</th>
+                                <th className="px-4 py-4 text-start text-[16px] whitespace-nowrap">Action(s)</th>
 
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                             {filteredComplains.map((compliant, idx) => (
                                 <tr key={idx} className="bg-[#fff] text-[#667085]">
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{idCounter++}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{compliant.createdDate}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{compliant.updatedDate}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{removeUnderscores(compliant.complaintType)}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{TrimText(compliant.complaintDescription)}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{compliant.complaintStatus}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">   {compliant.complaintResponseDate === null
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{idCounter++}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{compliant.createdDate}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{compliant.updatedDate}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{removeUnderscores(compliant.complaintType)}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{TrimText(compliant.complaintDescription)}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{compliant.complaintStatus}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">   {compliant.complaintResponseDate === null
                                         ? ''
                                         : convertDateToString(
                                             compliant.complaintResponseDate
                                         )}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">{compliant.complaintByUserName}</td>
-                                    <td className="px-4 py-4 text-start text-sm font-medium whitespace-nowrap">
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{compliant.complaintByUserName}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                         <Tippy content="View">
                                         <Link
                                             to={`/ui/complaints/${compliant.id}`}
