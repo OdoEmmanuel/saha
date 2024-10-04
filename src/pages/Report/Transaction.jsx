@@ -126,8 +126,8 @@ const Transaction = () => {
             )}
 
             <div className='bg-[#fff] mt-4 shadow-md p-6 overflow-hidden rounded-[10px]'>
-                <div className="flex justify-between mb-2">
-                    <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
+                <div className="md:flex justify-between mb-2">
+                    <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2 w-full">
                         <div className="relative flex items-center border border-gray-300 rounded px-4 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200">
                             <IoMdCalendar className="text-gray-500 mr-2" size={20} />
                             <DatePicker
@@ -141,7 +141,7 @@ const Transaction = () => {
                             />
                         </div>
                     </div>
-                    <div className='flex justify-between'>
+                    <div className='md:flex justify-between md:mt-0 mt-4'>
                         <select
                             value={selectedTransactionType}
                             onChange={(e) => setSelectedTransactionType(e.target.value)}
