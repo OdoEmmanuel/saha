@@ -130,7 +130,7 @@ const Sidebar = ({ isOpen, tog }) => {
 
   return (
     <motion.div
-      className={`w-64 bg-[#002853] h-screen overflow-y-auto fixed lg:flex flex-col shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] no-scrollbar hidden`}
+      className={`w-[17rem] bg-[#002853] h-screen overflow-y-auto fixed lg:flex flex-col shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)] no-scrollbar hidden`}
       initial={{ x: -300 }}
       animate={{ x: 0 }}
       transition={{ type: 'spring', stiffness: 120, damping: 20 }}

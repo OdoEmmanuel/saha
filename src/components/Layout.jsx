@@ -28,7 +28,7 @@ const Layout = () => {
       <div className="flex w-full  ">
           <Sidebar isOpen={isOpen} tog={toggle} />
 
-          <div className=" lg:ml-[16rem] w-full overflow-hidden">
+          <div className=" lg:ml-[17rem] w-full overflow-hidden">
             
          <Routes>
           <Route path="/*" element={<RightSide isOpen={isOpen} tog={toggle} />}></Route>
