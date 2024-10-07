@@ -144,15 +144,10 @@ const LoanTenure = () => {
                     </div>
 
                     <div className='flex'>
-                    <Link
-                        to={`/ui/tables/addloantenure`}
-                        className="text-white btn bg-[#072D56] hover:bg-primary rounded-[10px] my-4 py-2 px-4"
-                    >
-                        {' '}
-                        Add Loan Tenure
-                    </Link>
-                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
-                            <div className='mr-4'>
+                  
+                    <div className='flex justify-between items-center rounded-[5px] border-2 p-1 my-4 mx-2 '>
+                            <button className='flex' onClick={downloadExcel} >
+                                <div  className='mr-2'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">
                                         <path d="M3.99984 9.07335H9.07317V4.00002H15.9998V9.58669H17.3332V4.00002C17.3332 3.6464 17.1927 3.30726 16.9426 3.05721C16.6926 2.80716 16.3535 2.66669 15.9998 2.66669H7.2465L2.6665 7.24669V20C2.6665 20.3536 2.80698 20.6928 3.05703 20.9428C3.30708 21.1929 3.64622 21.3334 3.99984 21.3334H15.9998C16.3535 21.3334 16.6926 21.1929 16.9426 20.9428C17.1927 20.6928 17.3332 20.3536 17.3332 20H3.99984V9.07335ZM3.99984 7.79335L7.79317 4.00002H7.99984V8.00002H3.99984V7.79335Z" fill="#344054" />
@@ -164,9 +159,18 @@ const LoanTenure = () => {
                                         </clipPath>
                                     </defs>
                                 </svg>
-                            </div>
-                            <p className='font-[400] text-[14px] font-inter'>Exports Loans Tenure</p>
-                        </button>
+                                </div>
+                               
+                            </button>
+                            <p className='font-[400] text-[14px] font-inter mr-4'>Exports Loans Tenure</p>
+                            <Link
+                        to={`/ui/tables/addloantenure`}
+                        className="text-white btn bg-[#072D56] hover:bg-primary rounded-[10px]  py-2 px-4"
+                    >
+                        {' '}
+                        Add Loan Tenure
+                    </Link>
+                        </div>
                     </div>
                  
 
