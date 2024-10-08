@@ -87,7 +87,7 @@ const ViewApprovalItem = () => {
                 <h1 className=' font-[500] text-[25px]'>Approval Item Setup Details</h1>
             </div>
 
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid sm:grid-cols-3 grid-cols-2 gap-6'>
                 <div className="mb-4 ">
                     <h4 className=" mb-6 dark:text-gray-400   text-gray-900">
                         Company Code

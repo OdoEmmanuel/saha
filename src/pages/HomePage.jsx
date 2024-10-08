@@ -267,13 +267,13 @@ const HomePage = () => {
             </motion.div>
 
             <motion.div 
-                className="grid lg:grid-cols-3 grid-cols-2 gap-x-5 gap-y-4 mt-16"
+                className="grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-4 mt-16"
                 variants={staggerChildren}
                 initial="initial"
                 animate="animate"
             >
                 <motion.div 
-                    className="bg-white rounded-lg shadow-md overflow-hidden col-span-2 w-full"
+                    className="bg-white rounded-lg shadow-md overflow-hidden col-span-3 w-full"
                     variants={fadeInUp}
                 >
                     <div className="overflow-hidden p-2">
@@ -309,7 +309,7 @@ const HomePage = () => {
                     </div>
                 </motion.div>
 
-                <motion.div 
+                {/* <motion.div 
                     className="rounded-lg shadow-md px-2 py-4 flex flex-col justify-between row-span-2 items-start bg-[#fff] flex-1 gap-4"
                     variants={fadeInUp}
                 >
@@ -368,10 +368,47 @@ const HomePage = () => {
                             View More
                         </Link>
                     </motion.div>
-                </motion.div>
+                </motion.div> */}
+
+                <div className='flex flex-col gap-6 h-full'>
+                      <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md col-span-2 px-8 py-8 h-full'>
+                        <div className='flex justify-between'>
+                            <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
+                                <span>
+                                Total
+                                </span>
+                               Loan Approved</h1>
+                            <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
+                                <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
+                                {Element}
+                            </p>
+                        </div>
+                        <div className='flex items-center justify-center my-6'>
+                        <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
+                        </div>
+                        
+                      </div>
+                      <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md col-span-2 px-8 py-8 h-full'>
+                        <div className='flex justify-between'>
+                            <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
+                                <span>
+                                Total
+                                </span>
+                               Loan Processed</h1>
+                            <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
+                                <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
+                                {Element}
+                            </p>
+                        </div>
+                        <div className='flex items-center justify-center my-6'>
+                        <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
+                        </div>
+                        
+                      </div>
+                </div>
 
                 <motion.div 
-                    className='bg-[#fff] overflow-hidden rounded-lg shadow-md'
+                    className='bg-[#fff] overflow-hidden rounded-lg shadow-md col-span-2'
                     variants={fadeInUp}
                 >
                     <SalesChart 
@@ -390,7 +427,7 @@ const HomePage = () => {
                 </motion.div>
 
                 <motion.div 
-                    className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full"
+                    className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full col-span-2"
                     variants={fadeInUp}
                 >
                     <div className="p-5">
