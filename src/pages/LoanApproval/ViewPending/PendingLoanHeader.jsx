@@ -31,7 +31,7 @@ const PendingLoanHeader = ({ id }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 mb-8">
       {openModal && <Modal id={id} func={() => setOpenModal(false)} status={approvalStatus} />}
-      <div className="flex justify-between items-center mb-4">
+      <div className="sm:flex justify-between items-center mb-4">
         <div className="flex items-center">
           <button
             onClick={() => navigate('/ui/customer/pending-kyc')}
@@ -43,7 +43,7 @@ const PendingLoanHeader = ({ id }) => {
         </div>
         <div className="relative">
           <select
-            className=" border-2  text-black px-4 py-2 pr-8 rounded-md cursor-pointer  transition-colors duration-200"
+            className=" border-2  text-black px-4 py-2 pr-8 rounded-md cursor-pointer  transition-colors duration-200 sm:mt-0 mt-4 w-full"
             value={approvalStatus}
             onChange={handleStatusChange}
           >

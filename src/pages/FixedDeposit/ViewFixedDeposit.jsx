@@ -98,7 +98,7 @@ const ViewFixedDeposit = () => {
                <button className="bg-[#DC3545] text-white py-3 px-8 rounded-lg" onClick={open}> Delete</button>
             </div>
 
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid sm:grid-cols-3 grid-cols-2 gap-4'>
                 <div className="mb-4 ">
                     <h4 className=" mb-6 dark:text-gray-400   text-gray-900">
                         Fixed Deposit Type
