@@ -25,6 +25,7 @@ const SalesChart = ({ series, labels, title, height = 380 }) => {
       },
     },
     series: series,
+    
     labels:  ["Resolved", "In Progress", "Open"],
     responsive: [
       {

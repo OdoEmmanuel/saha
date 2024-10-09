@@ -47,7 +47,7 @@ const Otp = () => {
         }
     })
     return (
-        <div className="bg-[#002853]  flex flex-col items-center py-10 px-10 min-h-screen ">
+        <div className="bg-[#002853]  flex flex-col items-center py-10 sm:px-10 px-5 min-h-screen ">
             {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
@@ -55,8 +55,8 @@ const Otp = () => {
                 </div>
             )}
             <img alt="Your Company" src={icon} className=" h-[100px] w-[200px] mb-6" />
-            <div className="bg-[#fff] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px]  px-16 py-5 lg:w-[35%]   w-[80%]">
-                <h1 className="font-[500] text-[25px] mb-8 text-center">Enter email to get OTP</h1>
+            <div className="bg-[#fff] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px]  sm:px-16 px-4 py-5 lg:w-[35%]   w-[80%]">
+                <h1 className="font-[500] sm:text-[25px] text-[15px] mb-8 text-center">Enter email to get OTP</h1>
                 <form onSubmit={formik.handleSubmit}>
                     <InputField
                         label={`Email address`}

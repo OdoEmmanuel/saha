@@ -52,7 +52,7 @@ const TragetChart = ({ series, labels, title, name, series2 }) => {
       width: 2,
       colors: ["transparent"],
     },
-    colors: ['#12629C'],
+    colors: ['#002853'],
     series: [
       {
         name: 'Volume',

@@ -226,7 +226,7 @@ const LoanAdministration = () => {
             </div>
 
             <div className='bg-[#fff] mt-4 shadow-md overflow-hidden  p-6  rounded-[10px]'>
-                <div className="flex justify-between ">
+                <div className="sm:flex justify-between ">
                     <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center my-4 p-2" >
                         <div className=' mr-2 text-gray-500'>
                             <BiSearch />
@@ -239,7 +239,7 @@ const LoanAdministration = () => {
                             onChange={handleSearchInputChange}
                         />
                     </div>
-                    <div className='flex'>
+                    <div className='flex sm:w-auto w-full'>
                     <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
                         <div>
                             <IoFilter />

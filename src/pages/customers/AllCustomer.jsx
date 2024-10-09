@@ -215,7 +215,7 @@ const AllCustomer = () => {
 
             <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6  rounded-[10px]'>
 
-                <div className="flex justify-between ">
+                <div className="sm:flex justify-between ">
                     <div className=" flex flex-col rounded-lg ">
                         <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
 
@@ -238,8 +238,8 @@ const AllCustomer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-between'>
-                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
+                    <div className='sm:flex justify-between'>
+                    <button onClick={downloadExcel} className='flex justify-between  items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">

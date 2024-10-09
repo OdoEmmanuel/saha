@@ -35,22 +35,22 @@ const RevenueChart = ({ series, labels, title, name, set }) => {
       curve: 'smooth',
       width: 3,
     },
-    markers: {
-      size: 4,
-      colors: ['#008FFB'],
-      strokeColors: '#fff',
-      strokeWidth: 2,
-      hover: {
-        size: 7,
-      }
-    },
+    // markers: {
+    //   size: 4,
+    //   colors: ['#008FFB'],
+    //   strokeColors: '#fff',
+    //   strokeWidth: 2,
+    //   hover: {
+    //     size: 7,
+    //   }
+    // },
     series: [
       {
         name: 'Revenue',
         data: series,
       },
     ],
-    colors: ['#12629C'],
+    colors: ['#002853'],
     fill: {
       type: 'gradient',
       gradient: {

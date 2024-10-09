@@ -28,7 +28,7 @@ const Navbar = ({ isOpen, tog }) => {
               <div className="flex items-center">
                 <div className="flex">
                   <img src={avatar} className="mr-2" alt="Avatar" />
-                  <div className="flex flex-col">
+                  <div className="sm:flex hidden flex-col">
                     <span className="font-[500] text-[14px] text-black">{name}</span>
                     <span className="font-[400] text-[12px] text-[#959595]">{email}</span>
                   </div>
