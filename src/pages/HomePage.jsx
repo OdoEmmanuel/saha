@@ -123,7 +123,7 @@ const HomePage = () => {
             pageSize: pagesize,
             approvalStatus: null
         }
-        axios.post(`${middleware}loan/filter`,body, config)
+        axios.post(`${middleware}loan/filter`, body, config)
             .then((res) => {
                 console.log(res.data.data)
                 console.log(res.data.totalContent)
@@ -174,14 +174,14 @@ const HomePage = () => {
     };
 
     return (
-        <motion.div 
+        <motion.div
             className='relative z-0 p-4'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
             {isLoading && (
-                <motion.div 
+                <motion.div
                     className="fixed bg-black/[0.6] h-screen w-screen z-[70] left-0 top-0 items-center flex justify-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -190,63 +190,67 @@ const HomePage = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </motion.div>
             )}
-            <motion.h1 
+            <motion.h1
                 className='text-[16px] sm:text-left xss:text-center'
                 {...fadeInUp}
             >
                 Welcome Back
             </motion.h1>
-            <motion.p 
-                className='text-[26px] sm:text-left xss:text-center'
-                {...fadeInUp}
-            >
-                {name}
-            </motion.p>
-            <motion.div 
-                className='flex justify-between items-center'
-                {...fadeInUp}
-            >
-                <p className='text-gray-500'>View your analytics here</p>
+            <motion.div className='sm:flex justify-between' {...fadeInUp}>
+                <motion.p
+                    className='text-[26px] sm:text-left xss:text-center'
 
-                <div className="lg:flex mb-5">
-                    <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
-                        <label className="text-gray-700">Date Range:</label>
-                        <motion.div 
-                            className="relative flex items-center border border-gray-300 rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <IoMdCalendar className="text-gray-500 mr-2" size={20} />
-                            <DatePicker
-                                selectsRange={true}
-                                startDate={startDate}
-                                endDate={endDate}
-                                onChange={(update) => {
-                                    setDateRange(update);
-                                }}
-                                isClearable={true}
-                                placeholderText="Select date range"
-                                className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
-                            />
-                        </motion.div>
+                >
+                    {name}
+                </motion.p>
+                <motion.div
+                    className='flex justify-between items-center'
+
+                >
+
+
+                    <div className="lg:flex mb-5">
+                        <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
+                            <label className="text-gray-700">Date Range:</label>
+                            <motion.div
+                                className="relative flex items-center border border-gray-300 rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <IoMdCalendar className="text-gray-500 mr-2" size={20} />
+                                <DatePicker
+                                    selectsRange={true}
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    onChange={(update) => {
+                                        setDateRange(update);
+                                    }}
+                                    isClearable={true}
+                                    placeholderText="Select date range"
+                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                                />
+                            </motion.div>
+                        </div>
                     </div>
-                </div>
+                </motion.div>
             </motion.div>
 
-            <motion.div 
+
+
+            <motion.div
                 className='sm:grid grid-cols-3   gap-4 xss:flex flex-col items-center mt-5'
                 variants={staggerChildren}
-                initial="initial"
-                animate="animate"
+            // initial="initial"
+            // animate="animate"
             >
                 {[
                     { title: "Total Customers", value: data.noOfCustomers, image: Ornament13 },
                     { title: "Total accounts", value: data.noOfAccounts, image: Ornament2 },
                     { title: "Total Transaction Counts", value: data.transactionCounts, image: Ornament16 }
                 ].map((item, index) => (
-                    <motion.div 
+                    <motion.div
                         key={index}
-                        className={`bg-[#fff] lg:w-[300px] 2xl:w-full w-full h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)] text-white relative`}
+                        className={`bg-[#fff] lg:w-full 2xl:w-full w-full h-[150px] rounded-[10px] overflow-hidden shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)] text-white relative`}
                         variants={fadeInUp}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -255,8 +259,8 @@ const HomePage = () => {
                             <p className='text-[#000000] text-[20px] font-[400]'>{item.title}</p>
                             <p className='text-[30px] text-[#000000] font-[600]'>{item.value}</p>
                         </div>
-                        <motion.img 
-                            src={item.image} 
+                        <motion.img
+                            src={item.image}
                             className='absolute right-0 bottom-0'
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -266,18 +270,18 @@ const HomePage = () => {
                 ))}
             </motion.div>
 
-            <motion.div 
-                className="grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-4 mt-16"
+            <motion.div
+                className="sm:grid flex flex-col lg:grid-cols-4 sm:grid-cols-2  gap-x-5 gap-y-4 mt-16"
                 variants={staggerChildren}
                 initial="initial"
                 animate="animate"
             >
-                <motion.div 
+                <motion.div
                     className="bg-white rounded-lg shadow-md overflow-hidden col-span-3 w-full"
                     variants={fadeInUp}
                 >
                     <div className="overflow-hidden p-2">
-                        <div className="flex justify-between overflow-hidden">
+                        <div className="sm:flex justify-between overflow-hidden">
                             <h5 className="text-[15px] font-semibold text-gray-800 ">
                                 {showTransactionChart ? "Transaction Status Summary By Value" : "Loan Summary By Value"}
                             </h5>
@@ -309,111 +313,54 @@ const HomePage = () => {
                     </div>
                 </motion.div>
 
-                {/* <motion.div 
-                    className="rounded-lg shadow-md px-2 py-4 flex flex-col justify-between row-span-2 items-start bg-[#fff] flex-1 gap-4"
-                    variants={fadeInUp}
-                >
-                    <div className="flex justify-between items-center w-full">
-                        <h1 className="text-[1.125rem] font-semibold">Loan</h1>
-                        <div className="flex gap-x-3">
-                            <h1 className="text-[1.125rem] font-normal">Total:</h1>
-                            <p className="text-[1.125rem] font-bold">{Element}</p>
+
+                <motion.div variants={fadeInUp} className='w-full'>
+                    <motion.div className='flex flex-col gap-6 h-full' >
+                        <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md  px-8 py-8 h-full'>
+                            <div className='flex justify-between'>
+                                <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
+                                    <span>
+                                        Total
+                                    </span>
+                                    Loan Approved</h1>
+                                <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
+                                    <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
+                                    {Element}
+                                </p>
+                            </div>
+                            <div className='flex items-center justify-center my-6'>
+                                <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
+                            </div>
+
                         </div>
-                    </div>
+                        <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md  px-8 py-8 h-full'>
+                            <div className='flex justify-between'>
+                                <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
+                                    <span>
+                                        Total
+                                    </span>
+                                    Loan Processed</h1>
+                                <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
+                                    <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
+                                    {Element}
+                                </p>
+                            </div>
+                            <div className='flex items-center justify-center my-6'>
+                                <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
+                            </div>
 
-                    <div className="w-full h-full overflow-hidden">
-                        <table className="w-full h-full">
-                            <thead className="bg-gray-100">
-                                <tr className="border-b">
-                                    <th className="px-2 py-2 text-start  font-bold text-[#000]">#</th>
-                                    <th className="px-2 py-2 text-start  font-bold text-[#000]">Customer Email</th>
-                                    <th className="px-2 py-2 text-start  font-bold text-[#000]">Loan Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <AnimatePresence>
-                                    {customers.map((data, index) => (
-                                        <motion.tr 
-                                            key={index}
-                                            className="border-b"
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -20 }}
-                                            transition={{ delay: index * 0.1 }}
-                                        >
-                                            <td className="px-2 py-2 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                                {index + 1}
-                                            </td>
-                                            <td className="px-2 py-2 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                                {data.customerEmail}
-                                            </td>
-                                            <td className="px-2 py-2 text-start font-semibold text-gray-400 dark:text-gray-400 text-[.9rem] items-center">
-                                                {data.loanAmount}
-                                            </td>
-                                        </motion.tr>
-                                    ))}
-                                </AnimatePresence>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <Link
-                            to="/ui/customer/customer-date"
-                            className="py-2 text-white font-light tracking-wide bg-[#072D56] rounded-md px-4"
-                        >
-                            View More
-                        </Link>
+                        </div>
                     </motion.div>
-                </motion.div> */}
+                </motion.div>
 
-                <div className='flex flex-col gap-6 h-full'>
-                      <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md col-span-2 px-8 py-8 h-full'>
-                        <div className='flex justify-between'>
-                            <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
-                                <span>
-                                Total
-                                </span>
-                               Loan Approved</h1>
-                            <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
-                                <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
-                                {Element}
-                            </p>
-                        </div>
-                        <div className='flex items-center justify-center my-6'>
-                        <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
-                        </div>
-                        
-                      </div>
-                      <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md col-span-2 px-8 py-8 h-full'>
-                        <div className='flex justify-between'>
-                            <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
-                                <span>
-                                Total
-                                </span>
-                               Loan Processed</h1>
-                            <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
-                                <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
-                                {Element}
-                            </p>
-                        </div>
-                        <div className='flex items-center justify-center my-6'>
-                        <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
-                        </div>
-                        
-                      </div>
-                </div>
 
-                <motion.div 
+                <motion.div
                     className='bg-[#fff] overflow-hidden rounded-lg shadow-md col-span-2'
                     variants={fadeInUp}
                 >
-                    <SalesChart 
+                    <SalesChart
                         // ... (keep your existing props)
-                        
+
                         series={complaintsStatusSummary.map(
                             (item) => item.complainCounts
                         )}
@@ -426,7 +373,7 @@ const HomePage = () => {
                     />
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                     className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full col-span-2"
                     variants={fadeInUp}
                 >
@@ -443,7 +390,7 @@ const HomePage = () => {
                         </div>
                         <TragetChart
                             // ... (keep your existing props)
-                                  className="h-full"
+                            className="h-full"
                             series={showLoanChart
                                 ? transactionStatusSummary.map((item) => item.transactionVolume)
                                 : loanStatusSummary.map((item) => item.loanVolume)

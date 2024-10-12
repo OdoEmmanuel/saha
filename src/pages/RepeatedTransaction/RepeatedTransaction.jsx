@@ -161,11 +161,11 @@ const RepeatedTransaction = () => {
 
         <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6  rounded-[10px]'>
 
-            <div className="flex justify-between ">
+            <div className="md:flex justify-between ">
                 <div className=" flex flex-col rounded-lg ">
                     <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
 
-                        <div className="relative flex items-center border border-gray-300 rounded px-4 py-2  bg-[#fff] hover:border-blue-500 transition-colors duration-200">
+                        <div className="relative flex items-center border border-gray-300 rounded px-4 py-2  bg-[#fff] hover:border-blue-500 transition-colors duration-200 md:w-auto w-full">
                             <IoMdCalendar className="text-gray-500 mr-2" size={20} />
                             <DatePicker
                                 selectsRange={true}
@@ -184,8 +184,9 @@ const RepeatedTransaction = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex justify-between'>
-                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                <div className='md:flex justify-between'>
+                    <div className='flex'>
+                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 md:my-4 my-2 md:mx-2 mx-0'>
                         <div>
                             <IoFilter />
                         </div>
@@ -203,21 +204,7 @@ const RepeatedTransaction = () => {
                             <option value="50">50</option>
                         </select>
                     </div>
-                    <div className="flex  border-2 bg-[#fff] rounded-lg px-4 py-2   items-center my-4" >
-                        <div className=' mr-2 text-gray-500'>
-                            <BiSearch />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Search by email "
-                            value={searchQuery}
-                            className=" bg-inherit rounded-md outline-none"
-                            onChange={handleSearchInputChange}
-                        />
-                    </div>
-
-
-                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
+                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 md:my-4 my-2 md:mx-2 mx-0 md:w-auto w-full md:ml-0 ml-4'>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">
@@ -233,6 +220,23 @@ const RepeatedTransaction = () => {
                             </div>
                             <p className='font-[400] text-[14px] font-inter'>Exports Repeated Transactions</p>
                         </button>
+                    </div>
+                   
+                    <div className="flex  border-2 bg-[#fff] rounded-lg px-4 py-2   items-center md:my-4 my-2" >
+                        <div className=' mr-2 text-gray-500'>
+                            <BiSearch />
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search by email "
+                            value={searchQuery}
+                            className=" bg-inherit rounded-md outline-none"
+                            onChange={handleSearchInputChange}
+                        />
+                    </div>
+
+
+                    
                 </div>
 
 

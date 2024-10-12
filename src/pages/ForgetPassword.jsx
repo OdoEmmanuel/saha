@@ -67,7 +67,7 @@ const ForgetPassword = () => {
                 </div>
             )}
             <img alt="Your Company" src={icon} className="mx-auto h-10 w-auto mb-6" />
-            <div className="bg-[#fff] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px]  px-16 py-5 lg:w-[35%] w-[80%]">
+            <div className="bg-[#fff] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px]  sm:px-16 px-4 py-5 lg:w-[35%] w-[80%]">
                 <h1 className="font-[500] text-[25px] mb-8 text-center">Reset Your Password</h1>
                 <form onSubmit={formik.handleSubmit}>
 

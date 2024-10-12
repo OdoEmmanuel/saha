@@ -173,9 +173,9 @@ const AllComplains = () => {
             )}
 
             <div className='bg-[#fff] mt-4 shadow-md p-6 overflow-hidden rounded-[10px]'>
-                <div className="flex justify-between mb-2">
+                <div className="md:flex justify-between mb-2">
                   
-                    <div className='flex justify-between '>
+                    <div className='md:flex justify-between '>
                          
                         <div className="flex  justify-between   lg:w-full w-full items-center rounded mr-4">
 

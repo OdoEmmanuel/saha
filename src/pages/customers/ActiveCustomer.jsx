@@ -74,11 +74,11 @@ const ActiveCustomer = () => {
     const downloadExcel = () => {
         const workbook = XLSX.utils.book_new();
         const worksheet = XLSX.utils.table_to_sheet(
-          document.getElementById("active-customer")
+            document.getElementById("active-customer")
         );
         XLSX.utils.book_append_sheet(workbook, worksheet, "Active Customers");
         XLSX.writeFile(workbook, "active-customer.xlsx");
-      };
+    };
 
 
     const handleNextPage = () => {
@@ -240,10 +240,10 @@ const ActiveCustomer = () => {
 
 
             <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
-                <div className="flex justify-between">
-                    <div className='flex justify-between px-2'>
+                <div className="sm:flex  justify-between">
+                    <div className='flex  justify-between px-2'>
 
-                        <div className="flex  border-2 bg-[#fff] rounded-lg  h-1/2 my-4 items-center">
+                        <div className="flex  border-2 bg-[#fff] rounded-lg sm:w-auto w-full  h-1/2 my-4 items-center">
                             <div className=' mr-2 text-gray-500'>
                                 <BiSearch />
                             </div>
@@ -256,26 +256,26 @@ const ActiveCustomer = () => {
                             />
                         </div>
                     </div>
-                    <div className='flex'>
-                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
-                        <div>
-                            <IoFilter />
+                    <div className='flex sm:w-auto w-full'>
+                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2 sm:w-auto w-[30%]'>
+                            <div>
+                                <IoFilter />
+                            </div>
+                            <select
+                                value={pagesize}
+                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                                className='outline-none'
+                            >
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
                         </div>
-                        <select
-                            value={pagesize}
-                            onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                            className='outline-none'
-                        >
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                            <option value="25">25</option>
-                            <option value="30">30</option>
-                            <option value="50">50</option>
-                        </select>
-                    </div>
-                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
+                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 sm:w-auto w-full'>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">
@@ -353,7 +353,7 @@ const ActiveCustomer = () => {
                                         {filteredUsers.map((staff, idx) => (
                                             <tr
                                                 key={idx}
-                                                className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]':'bg-[#fff]'}`}
+                                                className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]' : 'bg-[#fff]'}`}
                                             >
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {idCounter++}
@@ -395,7 +395,7 @@ const ActiveCustomer = () => {
                                                     </button>
                                                 </td>
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <button onClick={() => handleBlockandUnblockUser(staff.id, staff.accountBlocked)} className={`${staff.accountBlocked ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300' }`}>
+                                                    <button onClick={() => handleBlockandUnblockUser(staff.id, staff.accountBlocked)} className={`${staff.accountBlocked ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.accountBlocked ? 'Unblock Customer' : 'Block Customer'
                                                         }
@@ -443,10 +443,10 @@ const ActiveCustomer = () => {
                                     d="M15 19l-7-7 7-7"
                                 />
                             </svg>
-                            
+
                         </button>
                         <div className='border-2 px-2 rounded-md'>
-                            {pageNumber + 1} 
+                            {pageNumber + 1}
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages
@@ -457,7 +457,7 @@ const ActiveCustomer = () => {
                             // disabled={currentPage === totalPages}
                             disabled={pageNumber + 1 === totalPages}
                         >
-                            
+
                             <svg
                                 className="w-6 h-6 inline-block align-middle"
                                 xmlns="http://www.w3.org/2000/svg"

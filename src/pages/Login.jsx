@@ -87,8 +87,8 @@ const Login = () => {
         </div>
       )}
       <img alt="Your Company" src={logo} className=" h-[100px] w-[200px] mb-6" />
-      <div className="bg-[#fff] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px]  px-16 py-5 lg:w-[35%] w-[80%]">
-        <h1 className="font-[500] text-[25px] mb-8 text-center">Login to your account</h1>
+      <div className="bg-[#fff] rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px]  sm:px-16 px-4 py-5 lg:w-[35%] w-[80%]">
+        <h1 className="font-[500] sm:text-[25px] text-[15px] mb-8 text-center">Login to your account</h1>
 
         <form onSubmit={formik.handleSubmit}>
           <div>

@@ -166,7 +166,7 @@ const GetApprovalRequest = () => {
                                     )}
                                 </div>
             </div>
-            <div className=" gap-6 mb-8 p-8 bg-[#fff] rounded-[10px] shadow-lg">
+            <div className=" gap-8 mb-8 p-8 bg-[#fff] rounded-[10px] shadow-lg">
                 <div className="xl:col-span-3">
                     <div className="card h-full">
                         <div >
@@ -299,7 +299,7 @@ const GetApprovalRequest = () => {
                 </div>
             </div>
             {approval === 'User' ? (
-                <div className="grid sm:grid-cols-3 grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-3 grid-cols-2 gap-8">
                     <div className="xl:col-span-3">
                         <div className="">
                             <div className="card bg-[#fff] rounded-[10px] shadow-lg p-8" >
@@ -308,7 +308,7 @@ const GetApprovalRequest = () => {
                                         Inital State
                                     </h3>
                                 </div>
-                                <div className="grid sm:grid-cols-3 grid-cols-2 gap-6">
+                                <div className="grid sm:grid-cols-3 grid-cols-2 gap-8">
                                     <div className="mb-4">
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Email
@@ -365,7 +365,7 @@ const GetApprovalRequest = () => {
                                         Final State
                                     </h3>
                                 </div>
-                                <div className="grid sm:grid-cols-3 grid-cols-2 gap-6">
+                                <div className="grid sm:grid-cols-3 grid-cols-2 gap-8">
                                     <div className="mb-4">
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Email
@@ -428,7 +428,7 @@ const GetApprovalRequest = () => {
                                     Final State
                                 </h3>
                             </div>
-                            <div className="grid sm:grid-cols-3 grid-cols-2 gap-6 ">
+                            <div className="grid sm:grid-cols-3 grid-cols-2 gap-8 ">
                                 <div className="mb-4">
                                     <h4 className=" mb-2 text-gray-500 ">
                                         Group Name
@@ -466,7 +466,7 @@ const GetApprovalRequest = () => {
                                     Final State
                                 </h3>
                             </div>
-                            <div className="grid sm:grid-cols-3 grid-cols-2 gap-6 ">
+                            <div className="grid sm:grid-cols-3 grid-cols-2 gap-8 ">
                                 {Object.entries(final).map(([group, value], index) => (
                                     <div className="mb-4">
                                         <h4 className=" mb-2 text-gray-500 ">
@@ -490,7 +490,7 @@ const GetApprovalRequest = () => {
                                     Final State
                                 </h3>
                             </div>
-                            <div className="grid sm:grid-cols-3 grid-cols-2 gap-6">
+                            <div className="grid sm:grid-cols-3 grid-cols-2 gap-8">
                                 {Object.entries(final).map(([group, value], index) => (
                                     <div className="mb-4">
                                         <h4 className=" mb-2 text-gray-500 ">
