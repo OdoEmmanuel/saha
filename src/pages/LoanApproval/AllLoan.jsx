@@ -186,7 +186,7 @@ const AllLoan = () => {
                         />
                     </div>
                     <div className='flex sm:w-auto w-full'>
-                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0 sm:w-auto w-[30%]'>
                             <div>
                                 <IoFilter />
                             </div>
@@ -204,7 +204,7 @@ const AllLoan = () => {
                                 <option value="50">50</option>
                             </select>
                         </div>
-                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
+                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0 sm:w-auto w-full sm:ml-0 ml-4'>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">

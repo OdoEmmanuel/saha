@@ -130,7 +130,7 @@ const LoanProduct = () => {
             </div>
 
             <div className='bg-[#fff] mt-4 shadow-md overflow-hidden  p-6 rounded-[10px]'>
-                <div className="sm:flex justify-between ">
+                <div className="md:flex justify-between ">
                     <div className="flex  border-2 bg-[#fff] rounded-lg px-4 my-4 items-center  p-2" >
                         <div className=' mr-2 text-gray-500'>
                             <BiSearch />
@@ -144,7 +144,7 @@ const LoanProduct = () => {
                         />
                     </div>
 
-                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
+                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 md:mx-2 mx-0 md:w-auto w-full'>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">

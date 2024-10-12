@@ -139,7 +139,7 @@ const Transaction = () => {
             <div className='bg-[#fff] mt-4 shadow-md p-6 overflow-hidden rounded-[10px]'>
                 <div className="md:flex justify-between mb-2">
                     <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2 ">
-                        <div className="relative flex items-center border border-gray-300 rounded px-4 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200">
+                        <div className="relative flex items-center border border-gray-300 rounded px-4 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200 md:w-auto w-full">
                             <IoMdCalendar className="text-gray-500 mr-2" size={20} />
                             <DatePicker
                                 selectsRange={true}
@@ -156,7 +156,7 @@ const Transaction = () => {
                         <select
                             value={selectedTransactionType}
                             onChange={(e) => setSelectedTransactionType(e.target.value)}
-                            className="rounded-[10px] border-2 p-2 mr-4"
+                            className="rounded-[10px] border-2 p-2 mr-4 md:w-auto w-full"
                         >
                             <option value="">Select Transaction Type</option>
                             {transactionTypes.map((type, index) => (
@@ -168,7 +168,7 @@ const Transaction = () => {
                         <select
                             value={selectedTransactionStatus}
                             onChange={(e) => setSelectedTransactionStatus(e.target.value)}
-                            className="border-2 p-2 rounded-[10px]"
+                            className="border-2 p-2 rounded-[10px] md:w-auto w-full md:mt-0 mt-4"
                         >
                             <option value="">Select Transaction Status</option>
                             {transactionStatuses.map((status, index) => (
@@ -178,7 +178,7 @@ const Transaction = () => {
                             ))}
                         </select>
 
-                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
+                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 md:mx-2 mx-0 md:w-auto w-full '>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">

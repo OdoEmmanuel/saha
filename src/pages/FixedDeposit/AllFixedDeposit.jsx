@@ -147,7 +147,7 @@ const AllFixedDeposit = () => {
             <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
 
 
-                <div className="flex justify-between ">
+                <div className="sm:flex justify-between ">
                     <div className="flex  border-2 bg-[#fff] rounded-lg px-4 my-4 items-center  p-2" >
                         <div className=' mr-2 text-gray-500'>
                             <BiSearch />

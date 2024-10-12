@@ -134,7 +134,7 @@ const ApprovalSetup = () => {
             </div>
 
             <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6  rounded-[10px]'>
-                <div className="sm:flex justify-between ">
+                <div className="md:flex justify-between ">
                     <div className="flex  border-2 bg-[#fff] rounded-lg px-4 my-4 items-center  p-2" >
                         <div className=' mr-2 text-gray-500'>
                             <BiSearch />
@@ -150,7 +150,7 @@ const ApprovalSetup = () => {
 
                     <div className='flex'>
                 
-                    <div className='flex justify-between items-center rounded-[5px] border-2 p-1 my-4 mx-2 '>
+                    <div className='flex justify-between items-center rounded-[5px] border-2 p-1 md:my-4 my-2 md:mx-2 mx-0 md:w-auto w-full '>
                         
                             <button className='flex' onClick={downloadExcel} >
                                 <div className='mr-2'>
