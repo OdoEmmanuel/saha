@@ -175,7 +175,7 @@ const AllComplains = () => {
             <div className='bg-[#fff] mt-4 shadow-md p-6 overflow-hidden rounded-[10px]'>
                 <div className="md:flex justify-between mb-2">
                   
-                    <div className='md:flex justify-between '>
+                    <div className=' flex md:flex-row flex-col justify-between md:gap-0 gap-4 '>
                          
                         <div className="flex  justify-between   lg:w-full w-full items-center rounded mr-4">
 
@@ -227,7 +227,7 @@ const AllComplains = () => {
                         </div>
                     </div>
                     <div className='flex'>
-                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2'>
+                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 md:my-4 my-2 md:mx-2 mx-0 md:w-auto w-full mr-2 md:mr-0'>
                             <div>
                                 <IoFilter />
                             </div>
@@ -246,7 +246,7 @@ const AllComplains = () => {
                             </select>
                         </div>
                         
-                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 '>
+                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 md:my-4 my-2 md:mx-2 mx-0 md:w-auto w-full '>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">

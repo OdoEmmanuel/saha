@@ -204,12 +204,12 @@ const HomePage = () => {
                     {name}
                 </motion.p>
                 <motion.div
-                    className='flex justify-between items-center'
+                    className='flex flex-col items-center'
 
                 >
 
 
-                    <div className="lg:flex mb-5">
+                    <div className=" mb-5">
                         <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
                             <label className="text-gray-700">Date Range:</label>
                             <motion.div

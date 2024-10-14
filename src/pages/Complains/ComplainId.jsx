@@ -17,13 +17,13 @@ const ComplainId = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [languages, setLanguages] = useState([])
     const [userType, setUserType] = useState([])
-    const [data,setData] = useState({})
+    const [data, setData] = useState({})
     const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const fetchCompanyCode = localStorage.getItem('companyCode')
     const navigate = useNavigate()
-    const [openModel,setOpenModal] = useState(false)
+    const [openModel, setOpenModal] = useState(false)
 
 
     const close = () => {
@@ -125,7 +125,7 @@ const ComplainId = () => {
                 </div>
             )}
 
-            {openModel && (<ResolveComplaintModal func={close} id={id}/>)}
+            {openModel && (<ResolveComplaintModal func={close} id={id} />)}
             <div className=" mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
                 <div className="px-6 py-4">
                     <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
@@ -134,74 +134,61 @@ const ComplainId = () => {
                     </button>
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">View Complaint by {`${data.complaintByUserName}`}</h2>
                     <form className="space-y-4" onSubmit={formik.handleSubmit}>
-                        <div className='grid grid-cols-2 gap-4'>
-
-                            <InputField2
-                                label={`Complain Type`}
-                                name={`compliantType`}
-                                disabled={true}
-                                value={formik.values.complaintType}
-                                onChange={formik.handleChange}
-                                error={formik.touched.complaintType && formik.errors.complaintType}
-                                errorText={formik.errors.complaintType}
-
-                            />
-
-                            <InputField2
-                                label={`Complain Date`}
-                                name={`complaintDate`}
-                                disabled={true}
-                                value={formik.values.complaintDate}
-                                onChange={formik.handleChange}
-                                error={formik.touched.complaintDate && formik.errors.complaintDate}
-                                errorText={formik.errors.complaintDate}
-
-                            />
+                        <div className='grid grid-cols-3 gap-4'>
 
 
-                            <InputField2
-                                label={`Complain Status`}
-                                name={`complaintStatus`}
-                                disabled={true}
-                                value={formik.values.complaintStatus}
-                                onChange={formik.handleChange}
-                                error={formik.touched.complaintStatus && formik.errors.complaintStatus}
-                                errorText={formik.errors.complaintStatus}
-                            />
+                            <div className="mb-4 ">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                     Complain Type
+                                </h4>
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                {formik?.values?.complaintType || '-----'}
+                                </h4>
+                            </div>
+                            <div className="mb-4 ">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                     Complain Date
+                                </h4>
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                {formik?.values?.complaintDate || '-----'}
+                                </h4>
+                            </div>
+                            <div className="mb-4 ">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                     Complain Status
+                                </h4>
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                {formik?.values?.complaintStatus || '-----'}
+                                </h4>
+                            </div>
+                            <div className="mb-4 ">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                     Complain Description
+                                </h4>
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                {formik?.values?.compliantDescription || '-----'}
+                                </h4>
+                            </div>
+                          
+                            <div className="mb-4 ">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                     Complain Response
+                                </h4>
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                {formik?.values?.compliantResponse || '-----'}
+                                </h4>
+                            </div>
 
-                            <InputField2
-                                label={`Complain Description`}
-                                name={`complaintDescription`}
-                                disabled={true}
-                                value={formik.values.compliantDescription}
-                                onChange={formik.handleChange}
-                                error={formik.touched.compliantDescription && formik.errors.compliantDescription}
-                                errorText={formik.errors.compliantDescription}
-                            />
-                            <InputField2
-                                label={`Complain Response`}
-                                name={`complaintResponse`}
-                                disabled={true}
-                                value={formik.values.compliantResponse}
-                                onChange={formik.handleChange}
-                                error={formik.touched.compliantResponse && formik.errors.compliantResponse}
-                                errorText={formik.errors.compliantResponse}
-                            />
-
-                            <InputField2
-                                label={`Complain Response Date`}
-                                name={`complaintResponseDate`}
-                                disabled={true}
-                                value={formik.values.complaintResponseDate}
-                                onChange={formik.handleChange}
-                                error={formik.touched.complaintResponseDate && formik.errors.complaintResponseDate}
-                                errorText={formik.errors.complaintResponseDate}
-                            />
-
-
-
+                            <div className="mb-4 ">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                Complain Response Date
+                                </h4>
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                {formik?.values?.complaintResponseDate || '-----'}
+                                </h4>
+                            </div>
                         </div>
-                        <button onClick={()=> setOpenModal(true)} className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Resolve Compliant'}</button>
+                        <button onClick={() => setOpenModal(true)} className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Resolve Compliant'}</button>
                     </form>
                 </div>
 

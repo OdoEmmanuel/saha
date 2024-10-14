@@ -10,7 +10,7 @@ const CustomToggle = ({ onToggle, label1 = "Transactions", label2 = "Loan" }) =>
 
   return (
     <div 
-      className={`relative w-[13.5rem] h-10 flex items-center ${isChecked ? 'bg-blue-500' : 'bg-gray-300'} rounded-full p-1 cursor-pointer`}
+      className={`relative w-[13.5rem] h-10 flex items-center ${isChecked ? 'bg-[#072D56] ' : 'bg-gray-300'} rounded-full p-1 cursor-pointer`}
       onClick={handleToggle}
     >
       <div 
