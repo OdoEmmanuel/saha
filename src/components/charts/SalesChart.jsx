@@ -25,7 +25,7 @@ const SalesChart = ({ series, labels, title, height = 380 }) => {
       },
     },
     series: series,
-    
+    colors:['#072D56','#f1c40f','#8cfc03'],
     labels:  ["Resolved", "In Progress", "Open"],
     responsive: [
       {
