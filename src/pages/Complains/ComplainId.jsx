@@ -153,6 +153,10 @@ const ComplainId = () => {
     
       }
 
+      function removeUnderscores(text) {
+        return text.replace(/_/g, ' ')
+    }
+
    
 
     const formik = useFormik({
@@ -217,7 +221,7 @@ const ComplainId = () => {
                                     Complain Type
                                 </h4>
                                 <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                    {formik?.values?.complaintType || '-----'}
+                                    {removeUnderscores(formik?.values?.complaintType) || '-----'}
                                 </h4>
                             </div>
                             <div className="mb-4 ">
