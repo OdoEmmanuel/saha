@@ -16,6 +16,7 @@ const ComplainId = () => {
     const { id } = useParams()
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [languages, setLanguages] = useState([])
+    const [complaintStatus, setComplaintStatus] = useState('')
     const [userType, setUserType] = useState([])
     const [data, setData] = useState({})
     const [isLoading, setisLoading] = useState(false);
@@ -24,6 +25,7 @@ const ComplainId = () => {
     const fetchCompanyCode = localStorage.getItem('companyCode')
     const navigate = useNavigate()
     const [openModel, setOpenModal] = useState(false)
+    const [status, setStatus] = useState(false)
 
 
     const close = () => {
@@ -100,6 +102,59 @@ const ComplainId = () => {
             })
     }, [])
 
+
+    const handleStatusChange = async (value) => {
+
+        if(value.trim()){
+            setisLoading(true)
+            setComplaintStatus(value)
+            try {
+              const config = {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  'Content-Type': 'application/json',
+                  'request-source': request,
+                  'Username': email,
+                  'client-id': clientid,
+                }
+              }
+              const result = await axios.put(
+                `${middleware}complaint/status?complaintId=${id}&complaintStatus=${value}`,
+                {},
+                config
+              )
+              setisLoading(false)
+            
+              toast.success(`${result.data.data.responseData}`)
+              
+            } catch (e) {
+              setisLoading(false)
+              
+              console.log(e.response.data.responseMessage)
+
+              if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                  toast.error(e.response.data.responseMessage)
+                  navigate('/auth/login')
+                  localStorage.clear()
+              }
+              else if (e.response.data.responseMessage === 'Insufficient permission') {
+                  toast.error(e.response.data.responseMessage)
+                  navigate('/')
+              }
+              else {
+                  toast.error(e.response.data.responseMessage)
+              }
+            }
+        }else{
+            toast.info("select a complain status")
+        }
+        
+         
+    
+      }
+
+   
+
     const formik = useFormik({
         initialValues: {
             complaintType: '',
@@ -128,10 +183,30 @@ const ComplainId = () => {
             {openModel && (<ResolveComplaintModal func={close} id={id} />)}
             <div className=" mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
                 <div className="px-6 py-4">
-                    <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
-                        <BiArrowBack className="mr-2" />
-                        Back
-                    </button>
+                    <div className='flex justify-between'>
+                        <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
+                            <BiArrowBack className="mr-2" />
+                            Back
+                        </button>
+                        <div className=" mb-4">
+                           
+                            <select
+                                className="p-3 rounded-[5px]   border-2 border-gray-200"
+                                value={complaintStatus}
+                                onChange={(e) => {
+                                    
+                                    handleStatusChange(e.target.value)
+                                }}
+                            >
+                                <option value="">Change Compliant status</option>
+                                <option value="RESOLVED">RESOLVED</option>
+                                <option value="IN_PROGRESS">IN PROGRESS</option>
+                                <option value="OPEN">OPEN</option>
+                            </select>
+                          
+                        </div>
+                    </div>
+
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">View Complaint by {`${data.complaintByUserName}`}</h2>
                     <form className="space-y-4" onSubmit={formik.handleSubmit}>
                         <div className='grid grid-cols-3 gap-4'>
@@ -139,52 +214,52 @@ const ComplainId = () => {
 
                             <div className="mb-4 ">
                                 <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
-                                     Complain Type
+                                    Complain Type
                                 </h4>
                                 <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                {formik?.values?.complaintType || '-----'}
+                                    {formik?.values?.complaintType || '-----'}
                                 </h4>
                             </div>
                             <div className="mb-4 ">
                                 <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
-                                     Complain Date
+                                    Complain Date
                                 </h4>
                                 <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                {formik?.values?.complaintDate || '-----'}
+                                    {formik?.values?.complaintDate || '-----'}
                                 </h4>
                             </div>
                             <div className="mb-4 ">
                                 <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
-                                     Complain Status
+                                    Complain Status
                                 </h4>
                                 <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                {formik?.values?.complaintStatus || '-----'}
+                                    {formik?.values?.complaintStatus || '-----'}
                                 </h4>
                             </div>
                             <div className="mb-4 ">
                                 <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
-                                     Complain Description
+                                    Complain Description
                                 </h4>
                                 <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                {formik?.values?.compliantDescription || '-----'}
-                                </h4>
-                            </div>
-                          
-                            <div className="mb-4 ">
-                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
-                                     Complain Response
-                                </h4>
-                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                {formik?.values?.compliantResponse || '-----'}
+                                    {formik?.values?.compliantDescription || '-----'}
                                 </h4>
                             </div>
 
                             <div className="mb-4 ">
                                 <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
-                                Complain Response Date
+                                    Complain Response
                                 </h4>
                                 <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                {formik?.values?.complaintResponseDate || '-----'}
+                                    {formik?.values?.compliantResponse || '-----'}
+                                </h4>
+                            </div>
+
+                            <div className="mb-4 ">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                    Complain Response Date
+                                </h4>
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                    {formik?.values?.complaintResponseDate || '-----'}
                                 </h4>
                             </div>
                         </div>

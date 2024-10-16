@@ -7,109 +7,124 @@ import axios from 'axios'
 
 const ResolveComplaintModal = ({ func, id }) => {
 
-    const { middleware, authorizationService, request, clientid } = useAuthContext()
-    const [complaintStatus, setComplaintStatus] = useState('')
-    const [complaintResponse, setComplaintResponse] = useState('')
-    const [status, setStatus] = useState(false)
-    const [response, setResponse] = useState(false)
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-    const email = localStorage.getItem('email')
-    const token = localStorage.getItem('token')
-   
- 
-    const handleResolveCompliant = async () => {
-        if (response) {
-          try {
-            setLoading(true)
-            const requestBody = {
-              complaintResponse: complaintResponse,
-            }
-            const config = {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                'request-source': request,
-                'Username': email,
-                'client-id': clientid,
-              }
-            }
-            const result = await axios.put(
-              `${middleware}complaint/resolve?complaintId=${id}`,
-              requestBody,
-              config
-            )
-            setLoading(false)
-            setComplaintResponse('')
-            toast.success(`${result.data.data.responseData}`)
-            func()
-          } catch (error) {
-            setLoading(false)
-            setComplaintResponse('')
-            if (error.response) {
-              handleErrorResponse(error.response)
-            } else {
-              toast.error('An error occurred while resolving the complaint')
-            }
+  const { middleware, authorizationService, request, clientid } = useAuthContext()
+  const [complaintStatus, setComplaintStatus] = useState('')
+  const [complaintResponse, setComplaintResponse] = useState('')
+  const [status, setStatus] = useState(false)
+  const [response, setResponse] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const email = localStorage.getItem('email')
+  const token = localStorage.getItem('token')
+
+
+  const handleResolveCompliant = async () => {
+    if (response) {
+      try {
+        setLoading(true)
+        const requestBody = {
+          complaintResponse: complaintResponse,
+        }
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email,
+            'client-id': clientid,
           }
         }
-      }
-
-
-      const handleStatusChange = async () => {
-        if (status) {
-          setLoading(true)
-          try {
-            const config = {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                'request-source': request,
-                'Username': email,
-                'client-id': clientid,
-              }
-            }
-            const result = await axios.put(
-              `${middleware}complaint/status?complaintId=${id}&complaintStatus=${complaintStatus}`,
-              {},
-              config
-            )
-            setLoading(false)
-            setComplaintStatus('')
-            toast.success(`${result.data.data.responseData}`)
-            func()
-          } catch (error) {
-            setLoading(false)
-            setComplaintStatus('')
-            if (error.response) {
-              handleErrorResponse(error.response)
-            } else {
-              toast.error('An error occurred while updating the status')
-            }
-          }
-        }
-      }
-
-      const handleErrorResponse = (error) => {
-        const responseMessage = error.response?.data?.responseMessage
-        if (
-          responseMessage === 'Invalid/Expired Token' ||
-          responseMessage === 'Invalid Token' ||
-          responseMessage === 'Login Token Expired'
-        ) {
-          toast.error(responseMessage)
-          localStorage.clear()
-          func()
+        const result = await axios.put(
+          `${middleware}complaint/resolve?complaintId=${id}`,
+          requestBody,
+          config
+        )
+        setLoading(false)
+        setComplaintResponse('')
+        toast.success(`${result.data.data.responseData}`)
+        func()
+      } catch (e) {
+        setLoading(false)
+        setComplaintResponse('')
+        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+          toast.error(e.response.data.responseMessage)
           navigate('/auth/login')
-        } else if (responseMessage === 'Insufficient permission') {
-          toast.error(responseMessage)
-          func()
+          localStorage.clear()
+        }
+        else if (e.response.data.responseMessage === 'Insufficient permission') {
+          toast.error(e.response.data.responseMessage)
           navigate('/')
-        } else {
-          toast.error(responseMessage || 'An error occurred')
-          func()
+        }
+        else {
+          toast.error(e.response.data.responseMessage)
         }
       }
+    }
+  }
+
+
+  const handleStatusChange = async () => {
+    if (status) {
+      setLoading(true)
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email,
+            'client-id': clientid,
+          }
+        }
+        const result = await axios.put(
+          `${middleware}complaint/status?complaintId=${id}&complaintStatus=${complaintStatus}`,
+          {},
+          config
+        )
+        setLoading(false)
+        setComplaintStatus('')
+        toast.success(`${result.data.data.responseData}`)
+        func()
+      } catch (error) {
+        setLoading(false)
+        setComplaintStatus('')
+        func()
+        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+          toast.error(e.response.data.responseMessage)
+          navigate('/auth/login')
+          localStorage.clear()
+        }
+        else if (e.response.data.responseMessage === 'Insufficient permission') {
+          toast.error(e.response.data.responseMessage)
+          navigate('/')
+        }
+        else {
+          toast.error(e.response.data.responseMessage)
+        }
+      }
+    }
+  }
+
+  const handleErrorResponse = (error) => {
+    const responseMessage = error.response?.data?.responseMessage
+    if (
+      responseMessage === 'Invalid/Expired Token' ||
+      responseMessage === 'Invalid Token' ||
+      responseMessage === 'Login Token Expired'
+    ) {
+      toast.error(responseMessage)
+      localStorage.clear()
+      func()
+      navigate('/auth/login')
+    } else if (responseMessage === 'Insufficient permission') {
+      toast.error(responseMessage)
+      func()
+      navigate('/')
+    } else {
+      toast.error(responseMessage || 'An error occurred')
+      func()
+    }
+  }
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -130,7 +145,7 @@ const ResolveComplaintModal = ({ func, id }) => {
           </button>
         </div>
 
-        <div className="w-full mb-4">
+        {/* <div className="w-full mb-4">
           <label className="font-semibold">Complaint Status</label>
           <select
             className="p-2 w-full border border-gray-200"
@@ -147,12 +162,12 @@ const ResolveComplaintModal = ({ func, id }) => {
             <option value="OPEN">OPEN</option>
           </select>
           {error && <p className="text-red-500 ">{error}</p>}
-        </div>
+        </div> */}
 
         <div>
           <label className="font-semibold">Complaint Response</label>
           <textarea
-            className="p-2 w-full border border-gray-200 mt-2 mb-6 h-20"
+            className="p-2 w-full border border-gray-200 mt-2 mb-2 h-32"
             value={complaintResponse}
             onChange={(e) => {
               setComplaintResponse(e.target.value)
@@ -170,13 +185,13 @@ const ResolveComplaintModal = ({ func, id }) => {
           >
             {loading ? 'loading...' : 'update response'}
           </button>
-          <button
+          {/* <button
             className="btn bg-[#072D56] rounded-lg p-3 text-white w-full"
             type="submit"
             onClick={handleStatusChange}
           >
             {loading ? 'loading...' : 'update status'}
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
