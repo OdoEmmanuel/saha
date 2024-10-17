@@ -28,6 +28,7 @@ const ComplainId = () => {
     const [status, setStatus] = useState(false)
 
 
+
     const close = () => {
         setOpenModal(false)
     }
@@ -108,43 +109,52 @@ const ComplainId = () => {
         if(value.trim()){
             setisLoading(true)
             setComplaintStatus(value)
-            try {
-              const config = {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  'Content-Type': 'application/json',
-                  'request-source': request,
-                  'Username': email,
-                  'client-id': clientid,
-                }
-              }
-              const result = await axios.put(
-                `${middleware}complaint/status?complaintId=${id}&complaintStatus=${value}`,
-                {},
-                config
-              )
-              setisLoading(false)
-            
-              toast.success(`${result.data.data.responseData}`)
-              
-            } catch (e) {
-              setisLoading(false)
-              
-              console.log(e.response.data.responseMessage)
-
-              if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                  toast.error(e.response.data.responseMessage)
-                  navigate('/auth/login')
-                  localStorage.clear()
-              }
-              else if (e.response.data.responseMessage === 'Insufficient permission') {
-                  toast.error(e.response.data.responseMessage)
-                  navigate('/')
-              }
-              else {
-                  toast.error(e.response.data.responseMessage)
-              }
+       
+            if(value === "RESOLVED"){
+                setOpenModal(true)
+                setisLoading(false)
             }
+
+            else{
+                try {
+                    const config = {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'request-source': request,
+                        'Username': email,
+                        'client-id': clientid,
+                      }
+                    }
+                    const result = await axios.put(
+                      `${middleware}complaint/status?complaintId=${id}&complaintStatus=${value}`,
+                      {},
+                      config
+                    )
+                    setisLoading(false)
+                  
+                    toast.success(`${result.data.data.responseData}`)
+                    
+                  } catch (e) {
+                    setisLoading(false)
+                    
+                    console.log(e.response.data.responseMessage)
+      
+                    if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                        toast.error(e.response.data.responseMessage)
+                        navigate('/auth/login')
+                        localStorage.clear()
+                    }
+                    else if (e.response.data.responseMessage === 'Insufficient permission') {
+                        toast.error(e.response.data.responseMessage)
+                        navigate('/')
+                    }
+                    else {
+                        toast.error(e.response.data.responseMessage)
+                    }
+                  }
+            }
+            
         }else{
             toast.info("select a complain status")
         }
@@ -193,8 +203,10 @@ const ComplainId = () => {
                             Back
                         </button>
                         <div className=" mb-4">
-                           
-                            <select
+
+
+                            {formik?.values?.complaintStatus ===  "RESOLVED" ? (<div className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2">Resolved</div>):(
+                                <select
                                 className="p-3 rounded-[5px]   border-2 border-gray-200"
                                 value={complaintStatus}
                                 onChange={(e) => {
@@ -207,6 +219,9 @@ const ComplainId = () => {
                                 <option value="IN_PROGRESS">IN PROGRESS</option>
                                 <option value="OPEN">OPEN</option>
                             </select>
+                            )}
+                           
+                            
                           
                         </div>
                     </div>
