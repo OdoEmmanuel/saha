@@ -52,7 +52,7 @@ const Login = () => {
         .post(`${authorizationService}oauth/login`, body, config)
         .then((res) => {
           toast.success(res.data.responseMessage);
-          console.log(res.data.data)
+        
           localStorage.setItem('token', res.data.data.accessToken)
           localStorage.setItem('email', res.data.data.email)
           localStorage.setItem('name', res.data.data.username)
@@ -69,8 +69,7 @@ const Login = () => {
           // secureLocalStorage.setItem("values", values);
         })
         .catch((e) => {
-          console.log(e)
-          // console.log(e.response.data.responseMessage);
+         
           toast.error(e.response.data.responseMessage || 'an error occured');
         })
         .finally(() => {

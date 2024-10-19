@@ -78,7 +78,7 @@ const ApprovalRequest = () => {
                 setUserType(res.data.data)
             })
             .catch((e) => {
-                console.log(e.response.data.responseMessage)
+                
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
@@ -111,12 +111,12 @@ const ApprovalRequest = () => {
         setIsLoading(true)
         axios.post(`${authorizationService}approvals/requests/filter`, body, config)
             .then((res) => {
-                console.log(res.data.data)
+                
                 setData(res.data.data)
                 setTotalPages(res.data.totalPages)
             })
             .catch((e) => {
-                console.log(e.response.data.responseMessage)
+              
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)

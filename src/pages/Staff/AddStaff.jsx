@@ -44,7 +44,7 @@ const AddStaff = () => {
             setLanguages(response1.data.data)
             setUserType(response2.data.data)
         }).catch((e) => {
-            console.log(e.response.data.responseMessage)
+          
 
 
             if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -100,7 +100,7 @@ const AddStaff = () => {
             }
             axios.post(`${authorizationService}user/create`, body, config)
                 .then((res) => {
-                    console.log()
+                   
                     toast.success(res.data.responseMessage)
                     resetForm()
                 })

@@ -43,7 +43,7 @@ const UpdateGroup = () => {
     setisLoading(true)
     axios.get(`${authorizationService}group/${id}`, config)
       .then((res) => {
-        console.log(res.data.data)
+       
         setFetchCompanyCode(res.data.data.companyCode)
         formik.setValues({
           groupName: res.data.data.groupName,
@@ -51,7 +51,7 @@ const UpdateGroup = () => {
         })
       })
       .catch((e) => {
-        console.log(e.response.data.responseMessage)
+        
 
 
         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -82,7 +82,7 @@ const UpdateGroup = () => {
 
       axios.put(`${authorizationService}group/update`, {...values, companyCode:fetchCompanyCode}, config)
         .then((res) => {
-          console.log()
+      
           toast.success(res.data.responseMessage)
           navigate(-1)
         })

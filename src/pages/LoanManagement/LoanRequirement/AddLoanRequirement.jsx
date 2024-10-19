@@ -181,7 +181,7 @@ const AddLoanRequirement = () => {
                 navigate(-1)
             })
             .catch((error) => {
-                console.log(error.response.data.responseMessage)
+                
 
 
                 if (error.response.data.responseMessage === 'Invalid/Expired Token' || error.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {

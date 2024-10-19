@@ -102,7 +102,7 @@ const GetApprovalRequest = () => {
                 setdata(resp.data)
                 setLoading(false)
             } catch (error) {
-                console.error(error)
+          
                 if (error.response) {
                     const errordata = error.response.data
                     if (errordata.responseCode === '400' || errordata.responseCode === '417') {

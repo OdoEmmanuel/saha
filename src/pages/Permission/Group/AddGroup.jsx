@@ -46,7 +46,7 @@ const AddGroup = () => {
 
       axios.post(`${authorizationService}group/create`, {...values, companyCode:fetchCompanyCode}, config)
         .then((res) => {
-          console.log()
+         
           toast.success(res.data.responseMessage)
           resetForm()
         })

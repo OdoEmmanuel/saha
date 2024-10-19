@@ -40,13 +40,13 @@ const PendingLoanDetails = () => {
         }
         axios.get(`${middleware}loan/${id}/details`,config)
         .then((res) => {
-             console.log()
-                setdata(res.data.data)
+            
+                
 
              
              
         }).catch((e) => {
-            // console.log(e.response.data.responseMessage)
+            
             if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                 toast.error(e.response.data.responseMessage)
                 navigate('/auth/login')

@@ -43,14 +43,14 @@ const AddLonTenure = () => {
         onSubmit: (values,{ resetForm} ) => {
             axios.post(`${middleware}loan/tenure/create`, values, config)
                 .then((res) => {
-                    console.log(res.data)
+                    
                     toast.success(res.data.responseMessage)
                     resetForm()
                     
 
                 })
                 .catch((e) => {
-                    console.log(e.response.data.responseMessage)
+                    
 
                     if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                         toast.error(e.response.data.responseMessage)

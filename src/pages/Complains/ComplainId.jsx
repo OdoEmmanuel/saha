@@ -70,7 +70,7 @@ const ComplainId = () => {
         axios.get(`${middleware}complaint/?complaintId=${id}`, config)
             .then((res) => {
                 const userData = res.data.data.complaint;
-                console.log(userData)
+           
                 setData(userData)
                 formik.setValues({
                     complaintType: userData.complaintType,
@@ -83,7 +83,7 @@ const ComplainId = () => {
             }
             )
             .catch((e) => {
-                console.log(e.response.data.responseMessage)
+               
 
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -138,7 +138,7 @@ const ComplainId = () => {
                   } catch (e) {
                     setisLoading(false)
                     
-                    console.log(e.response.data.responseMessage)
+                
       
                     if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                         toast.error(e.response.data.responseMessage)

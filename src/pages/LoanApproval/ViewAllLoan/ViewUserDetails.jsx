@@ -2,7 +2,7 @@ import React from 'react'
 
 const ViewUserDetails = ({dat}) => {
     const data = dat
-    console.log(data)
+    
     return (
         <div className='bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8 '>
             <h1 className='mb-8 font-[500] text-[25px]'>CUSTOMERS DETAILS</h1>

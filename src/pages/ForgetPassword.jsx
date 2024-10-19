@@ -46,7 +46,7 @@ const ForgetPassword = () => {
             axios
                 .put(`${authorizationService}oauth/reset-password`, { ...values, newPassword: newPass, confirmPassword: confirm }, config)
                 .then((res) => {
-                    console.log(res)
+                   
                     toast.success(res.data.responseMessage)
                 })
                 .catch((e) => {
