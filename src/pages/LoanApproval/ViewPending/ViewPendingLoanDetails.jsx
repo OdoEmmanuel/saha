@@ -2,7 +2,7 @@ import React from 'react'
 
 const ViewPendingLoanDetails = ({ dat }) => {
     const data = dat
-    console.log(data)
+   
 
    
 

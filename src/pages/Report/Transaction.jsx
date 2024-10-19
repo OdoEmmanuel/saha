@@ -100,7 +100,7 @@ const Transaction = () => {
 
     const handleApiError = (error) => {
 
-        console.log(error.response?.data?.responseMessage)
+      
         const responseMessage = error.response?.data?.responseMessage;
         if (responseMessage === 'Invalid/Expired Token' || responseMessage === 'Invalid Token' || responseMessage === 'Login Token Expired') {
             toast.error(responseMessage);

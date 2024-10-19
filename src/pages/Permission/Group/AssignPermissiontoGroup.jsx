@@ -75,7 +75,7 @@ const AssignGroupPermission = () => {
         const updatedPermissions = processPermissions(userPermissionIds, permissionsArray)
         setPermissions(updatedPermissions)
       } catch (error) {
-        console.error('Error fetching and processing data:', error)
+        
         toast.error('Failed to fetch and process data', { position: 'top-right' })
       }
     }
@@ -111,7 +111,7 @@ const AssignGroupPermission = () => {
   }
 
   const handleApiError = (error) => {
-    console.log(error.response?.data?.responseMessage)
+ 
     const responseMessage = error.response?.data?.responseMessage;
     if (responseMessage === 'Invalid/Expired Token' || responseMessage === 'Invalid Token' || responseMessage === 'Login Token Expired') {
         toast.error(responseMessage);

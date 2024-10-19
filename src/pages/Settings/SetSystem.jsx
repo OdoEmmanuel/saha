@@ -28,7 +28,7 @@ const SetSystem = () => {
             setSettings(response.data.data || [])
           })
           .catch((error) => {
-            console.error('Error fetching data from API: ', error)
+            // console.error('Error fetching data from API: ', error)
           })
     
         // Fetch dropdown options from another endpoint
@@ -37,7 +37,7 @@ const SetSystem = () => {
             setDropdownOptions(response.data.data || {})
           })
           .catch((error) => {
-            console.error('Error fetching dropdown options: ', error)
+            // console.error('Error fetching dropdown options: ', error)
           })
       }, [])
 
@@ -75,7 +75,7 @@ const SetSystem = () => {
             }
           })
           .catch((error) => {
-            console.error('Error sending payload: ', error)
+           
             toast.error(error.response?.data?.responseMessage || 'An error occurred', { position: 'top-right' })
           })
       }
@@ -110,7 +110,7 @@ const SetSystem = () => {
             }
           })
           .catch((error) => {
-            console.error('Error sending payload: ', error)
+            
             toast.error(error.response?.data?.responseMessage || 'An error occurred', { position: 'top-right' })
           })
       }

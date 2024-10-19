@@ -125,13 +125,12 @@ const HomePage = () => {
         }
         axios.post(`${middleware}loan/filter`, body, config)
             .then((res) => {
-                console.log(res.data.data)
-                console.log(res.data.totalContent)
+               
                 setCustomers(res.data.data)
                 SetElement(res.data.totalContent)
 
             }).catch((e) => {
-                console.log(e.response.data.responseMessage)
+              
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)

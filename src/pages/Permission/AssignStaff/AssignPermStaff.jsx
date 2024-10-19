@@ -50,7 +50,7 @@ const AssignPermission = () => {
                 return permissionsData.data;
             } catch (error) {
                 handleApiError(error);
-                console.error('Error fetching permissions:', error);
+                
                 toast.error('Failed to fetch permissions', { position: 'top-right' });
             }
         };
@@ -65,7 +65,7 @@ const AssignPermission = () => {
                 return userPermissionIds;
             } catch (error) {
                 handleApiError(error);
-                console.error('Error fetching individual permissions:', error);
+                
                 toast.error('Failed to fetch individual permissions', {
                     position: 'top-right',
                 });
@@ -82,7 +82,7 @@ const AssignPermission = () => {
                 }));
                 setPermissions(updatedPermissions);
             } catch (error) {
-                console.error('Error processing permissions:', error);
+                
                 toast.error('Failed to process permissions', { position: 'top-right' });
             }
         };
@@ -93,7 +93,7 @@ const AssignPermission = () => {
                 const userPermissionIds = await fetchIndividualPermission();
                 processPermissions(userPermissionIds, permissionsArray);
             } catch (error) {
-                console.error('Error fetching and processing data:', error);
+                
                 toast.error('Failed to fetch and process data', {
                     position: 'top-right',
                 });
@@ -151,7 +151,7 @@ const AssignPermission = () => {
             });
         } catch (error) {
             handleApiError(error);
-            console.error('Error assigning permissions:', error);
+            
             toast.error('An error occurred while assigning permissions', {
                 position: 'top-right',
             });
@@ -163,7 +163,7 @@ const AssignPermission = () => {
     //   const handleApiError = (error) => {
 
     const handleApiError = (error) => {
-        console.log(error.response?.data?.responseMessage)
+        
         const responseMessage = error.response?.data?.responseMessage;
         if (responseMessage === 'Invalid/Expired Token' || responseMessage === 'Invalid Token' || responseMessage === 'Login Token Expired') {
             toast.error(responseMessage);

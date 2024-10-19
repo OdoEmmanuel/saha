@@ -41,7 +41,7 @@ const EditLoanTenure = () => {
         setisLoading(true)
         axios.get(`${middleware}loan/tenure/${id}`,config)
         .then((res) => {
-            console.log(res.data.data)
+            
             const userData = res.data.data
             formik.setValues({
                 description:userData.description,
@@ -49,7 +49,7 @@ const EditLoanTenure = () => {
             })
         })
         .catch((e) => {
-            console.log(e.response.data.responseMessage)
+           
 
             if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                 toast.error(e.response.data.responseMessage)
@@ -78,13 +78,13 @@ const EditLoanTenure = () => {
         onSubmit: (values) => {
             axios.post(`${middleware}loan/tenure/create`, values, config)
                 .then((res) => {
-                    console.log(res.data)
+                
                     toast.success(res.data.responseMessage)
                     navigate(-1)
 
                 })
                 .catch((e) => {
-                    console.log(e.response.data.responseMessage)
+                    
 
                     if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                         toast.error(e.response.data.responseMessage)

@@ -21,7 +21,7 @@ const Layout = () => {
   if (!token) {
     return <Navigate to="/auth/login" replace />;
   }
-  console.log(isOpen)
+ 
   return (
     <div>
         

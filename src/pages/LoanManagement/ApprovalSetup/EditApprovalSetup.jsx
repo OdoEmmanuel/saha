@@ -94,7 +94,7 @@ const EditApprovalSetup = () => {
     }, [id, authorizationService]);
 
     const handleError = (e) => {
-        console.log(e.response?.data?.responseMessage);
+       
         const errorMessage = e.response?.data?.responseMessage;
         if (errorMessage === 'Invalid/Expired Token' || errorMessage === 'Invalid Token' || errorMessage === 'Login Token Expired') {
             toast.error(errorMessage);
@@ -183,7 +183,7 @@ const EditApprovalSetup = () => {
                 setSelectedAmount({})
                 navigate(-1)
             }).catch((e) => {
-                console.log(e.response.data.responseMessage)
+               
 
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {

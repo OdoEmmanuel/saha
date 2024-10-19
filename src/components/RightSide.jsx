@@ -58,7 +58,7 @@ import ChangePassword from '../pages/Settings/ChangePassword';
 import SetSystem from '../pages/Settings/SetSystem';
 const RightSide = ({isOpen, tog}) => {
   
-  console.log(isOpen)
+ 
   return (
     <>
       

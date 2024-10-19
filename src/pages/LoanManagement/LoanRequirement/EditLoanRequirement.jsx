@@ -72,7 +72,7 @@ const EditLoanRequirement = () => {
         setisLoading(true)
         axios.get(`${middleware}loan/requirements/${id}/detail`, config)
             .then((res) => {
-                console.log(res.data.data)
+               
                 setLoanProductCode(res.data.data.loanProductCode)
                 setMoratium(res.data.data.moratium)
                 setMinAmount(res.data.data.minAmountForSpecialApproval)
@@ -104,7 +104,7 @@ const EditLoanRequirement = () => {
 
             })
             .catch((e) => {
-                console.log(e.response.data.responseMessage)
+                
 
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -135,7 +135,7 @@ const EditLoanRequirement = () => {
             setTenure(response1.data.data)
             setProduct(response2.data.data)
         }).catch((e) => {
-            console.log(e.response.data.responseMessage)
+            
 
 
             if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -284,7 +284,7 @@ const EditLoanRequirement = () => {
                 navigate(-1)
             })
             .catch((error) => {
-                console.log(error.response.data.responseMessage)
+                
 
 
                 if (error.response.data.responseMessage === 'Invalid/Expired Token' || error.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
