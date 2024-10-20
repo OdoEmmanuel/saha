@@ -44,11 +44,11 @@ const ViewPendingKycdetail = () => {
         }
         axios.get(`${middleware}kyc/getCustomerKycInformation?customerId=${id}`,config)
         .then((res) => {
-             console.log(res.data.data.customerKYCDetails)
+        
              setdata(res.data.data.customerKYCDetails || [])
              setKyc(res.data.data.kycDocumentsDetails || [])
         }).catch((e) => {
-            // console.log(e.response.data.responseMessage)
+            
             if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                 toast.error(e.response.data.responseMessage)
                 navigate('/auth/login')

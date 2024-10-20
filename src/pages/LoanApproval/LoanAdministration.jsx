@@ -77,7 +77,7 @@ const LoanAdministration = () => {
 
             })
             .catch((e) => {
-                console.log(e.response.data.responseMessage)
+               
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
@@ -118,7 +118,7 @@ const LoanAdministration = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                        console.log(e.response.data.responseMessage)
+                      
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
@@ -145,7 +145,7 @@ const LoanAdministration = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                        console.log(e.response.data.responseMessage)
+                        
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
