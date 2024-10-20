@@ -37,7 +37,7 @@ const ViewCustomerDocuments = ({ kycs }) => {
     }
 
     const Kyc = kycs
-    console.log(Kyc)
+
 
     function openImage(src) {
         // Open the image in a new tab/window

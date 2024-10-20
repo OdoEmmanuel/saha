@@ -57,11 +57,11 @@ const PendingKyc = () => {
     const fetchData = () => {
         axios.get(`${middleware}user/getCustomersByKycStatus?pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
             .then((res) => {
-                console.log(res.data.data.users.content)
+                
                 setUsers(res.data.data.users.content)
                 setTotalPages(res.data.data.users.totalPages)
             }).catch((e) => {
-                console.log(e.response.data.responseMessage)
+              
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)

@@ -37,7 +37,7 @@ const UpdateDeposits = () => {
         setisLoading(true)
         axios.get(`${middleware}fixed-deposit-setup/${id}`, config)
             .then((res) => {
-                console.log(res.data.data)
+        
                 const userData = res.data.data
                 formik.setValues({
                     fixedDepositType: userData.fixedDepositType,
@@ -53,7 +53,7 @@ const UpdateDeposits = () => {
                 })
             })
             .catch((e) => {
-                console.log(e.response.data.responseMessage)
+                
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
@@ -97,7 +97,7 @@ const UpdateDeposits = () => {
                     
                 })
                 .catch((e) => {
-                    console.log(e.response.data.responseMessage)
+                   
 
                     if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                         toast.error(e.response.data.responseMessage)
