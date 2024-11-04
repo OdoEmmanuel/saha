@@ -143,7 +143,7 @@ const ViewCustomer = ({dat}) => {
                         Business Phone
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                        {data?.businessAddress || '----'}
+                        {data?.businessPhone || '----'}
                     </h4>
                 </div>
 
