@@ -41,7 +41,7 @@ const PendingLoanDetails = () => {
         axios.get(`${middleware}loan/${id}/details`,config)
         .then((res) => {
             
-                
+            setdata(res.data.data)
 
              
              

@@ -15,7 +15,7 @@ const ViewLoanDetails = ({ dat }) => {
         const min = date.getMinutes()
         const sec = date.getSeconds()
 
-        const formattedDate = `${day}-${month}-${year}`
+        const formattedDate = `${year}-${month}-${day}`
         return formattedDate
     }
 
