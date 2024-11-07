@@ -2,6 +2,8 @@ import React from 'react'
 
 const ViewPendingLoanDetails = ({ dat }) => {
     const data = dat
+
+    console.log(data)
    
 
    
@@ -14,10 +16,10 @@ const ViewPendingLoanDetails = ({ dat }) => {
         const hr = date.getHours()
         const min = date.getMinutes()
         const sec = date.getSeconds()
-
-        const formattedDate = `${day}-${month}-${year}`
+    
+        const formattedDate = `${year}-${month}-${day}`
         return formattedDate
-    }
+      }
 
     function removeUnderscores(text) {
        
