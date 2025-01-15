@@ -51,6 +51,47 @@ const AddLoanRequirement = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'client-id': clientid,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email
+        },
+    };
+    
+
+    useEffect(() => {
+        const api1 = axios.get(`${middleware}loan/tenure`, config)
+        const api2 = axios.get(`${middleware}loan/products/all`, config)
+
+        setisLoading(true)
+
+        Promise.all([api1, api2]).then(([response1, response2]) => {
+            setTenure(response1.data.data)
+            setProduct(response2.data.data)
+        }).catch((e) => {
+            
+
+
+            if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                toast.error(e.response.data.responseMessage)
+                navigate('/auth/login')
+                localStorage.clear()
+            }
+            else if (e.response.data.responseMessage === 'Insufficient permission') {
+                toast.error(e.response.data.responseMessage)
+                navigate('/')
+            }
+            else {
+                toast.error(e.response.data.responseMessage)
+            }
+        }).finally(() => {
+            setisLoading(false)
+        })
+    }, [])
+
 
     setHeaders('Add Loan Requirement')
     const handleGuarantorIdChecked = () => {
@@ -140,6 +181,7 @@ const AddLoanRequirement = () => {
         setLoading(true)
         if (!LoanProductCode.trim) {
             setError('enter Loan Product Code')
+            toast.error('enter Loan Product Code')
         }
 
         const requestbody = {
@@ -216,7 +258,7 @@ const AddLoanRequirement = () => {
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Loan Requirement</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Loan Requirement</h2>
                     <form className="space-y-6">
                         <div className="grid grid-cols-4 gap-x-8 gap-y-8">
                             <div className="mb-3">

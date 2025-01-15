@@ -78,9 +78,9 @@ const UpdateLoanPuropse = () => {
         },
         validationSchema:loanPurpose,
         onSubmit:(values)=>{
-            axios.post(`${middleware}loan/purpose/create`,values,config)
+            axios.put(`${middleware}loan/purpose/${id}`,values,config)
             .then((res) => {
-                toast.success(res.data.responseData.responseMessage)
+              toast.success(res.data.responseMessage)
                 navigate(-1)
                 
             })
