@@ -76,7 +76,7 @@ const EditHomeOwnership = () => {
         },
         validationSchema: homeOwnership,
         onSubmit: (values) => {
-            axios.post(`${middleware}loan/tenure/create`, values, config)
+            axios.put(`${middleware}loan/homeowner/${id}`, values, config)
                 .then((res) => {
                     
                     toast.success(res.data.responseMessage)

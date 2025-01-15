@@ -76,7 +76,7 @@ const EditLoanTenure = () => {
         },
         validationSchema: loanTenure,
         onSubmit: (values) => {
-            axios.post(`${middleware}loan/tenure/create`, values, config)
+            axios.put(`${middleware}loan/tenure/${id}`, values, config)
                 .then((res) => {
                 
                     toast.success(res.data.responseMessage)
