@@ -207,7 +207,7 @@ const AddLoanRequirement = () => {
             confirmationLetterRequired: confirm,
             remitaApplicationRequired: remita,
             maxLoanTenure: LoanTenure,
-            // minAmountForSpecialApproval: minAmount,
+            minAmountForSpecialApproval: minAmount,
             computationMode: comMode,
             moratium: moratium,
             interestRate: interest,
@@ -384,6 +384,25 @@ const AddLoanRequirement = () => {
                                         value={moratium}
                                         onChange={(e) => {
                                             setMoratium(e.target.value)
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label
+                                    className="block mb-2 font-semibold"
+                                    htmlFor="example-password"
+                                >
+                                    Min Amount for Special Approval
+                                </label>
+                                <div>
+                                    <input
+                                        className="border-2 p-2 rounded-lg w-full placeholder:text-gray-400"
+                                        type="number"
+                                        id="example-password"
+                                        value={minAmount}
+                                        onChange={(e) => {
+                                            setMinAmount(e.target.value)
                                         }}
                                     />
                                 </div>
