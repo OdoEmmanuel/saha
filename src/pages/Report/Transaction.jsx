@@ -221,7 +221,7 @@ const Transaction = () => {
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.type}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionStatus}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionAmount}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{new Date(...transaction.createdDate).toLocaleString()}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.createdDate}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionDescription}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.fromAccountNumber}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.toAccountNumber}</td>
