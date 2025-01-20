@@ -22,6 +22,7 @@ const ChangePassword = () => {
     const email = localStorage.getItem('email')
     const [toggle, settoggle] = useState(false);
     const [toggle2, settoggle2] = useState(false);
+    const Public_key = import.meta.env.VITE_public_key
     const fetchCompanyCode = localStorage.getItem('companyCode')
     const navigate = useNavigate()
 
