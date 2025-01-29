@@ -41,6 +41,7 @@ const EditLoanRequirement = () => {
     const [guarantorPassport, setGuarantorPassportChecked] = useState(false)
     const [workId, setWorkIdChecked] = useState(false)
     const [confirm, setConfirmChecked] = useState(false)
+    const [eligibity,setEglibility]=useState(false)
     const [remita, setRemita] = useState(false)
     const [salary, setSalary] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -101,6 +102,7 @@ const EditLoanRequirement = () => {
                 setWorkIdChecked(res.data.data.workIdCardRequired)
                 setConfirmChecked(res.data.data.confirmationLetterRequired)
                 setSalary(res.data.data.salaryStatementRequired)
+                setEglibility(res.data.data.eligibilityCheckRequired)
 
             })
             .catch((e) => {
@@ -237,6 +239,10 @@ const EditLoanRequirement = () => {
         setSalary(!salary)
     }
 
+    const handleEligibility = () => {
+        setEglibility(!eligibity)
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -274,7 +280,8 @@ const EditLoanRequirement = () => {
             interestRate: interest,
             principalPaymentFrequency: principal,
             interestPaymentFrequency: interestFreq,
-            salaryStatementRequired: salary
+            salaryStatementRequired: salary,
+            eligibilityCheckRequired:eligibity,
         }
 
         axios.post(`${middleware}loan/requirement`, requestbody, config)
@@ -828,6 +835,21 @@ const EditLoanRequirement = () => {
                                     id="customCheck3"
                                     checked={salary}
                                     onChange={handleSalaryChecked}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                     Eligibility Check
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={eligibity}
+                                    onChange={handleEligibility}
                                 />
                             </div>
                         </div>

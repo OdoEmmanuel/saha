@@ -101,6 +101,11 @@ import {
               url: '/ui/tables/loan-product',
             },
             {
+              key:'property',
+              label:'Property',
+              url:'/ui/tables/property/'
+            },
+            {
               key: 'approval-item-setup',
               label: 'Approval Item Setup',
               url: '/ui/tables/approval',

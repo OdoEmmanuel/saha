@@ -44,6 +44,7 @@ const AddLoanRequirement = () => {
     const [remita, setRemita] = useState(false)
     const [salary, setSalary] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [eligibity,setEglibility]=useState(false)
     const [error, setError] = useState('')
     const [product, setProduct] = useState([])
     const [tenure, setTenure] = useState([])
@@ -176,6 +177,10 @@ const AddLoanRequirement = () => {
         setSalary(!salary)
     }
 
+    const handleEligibility = () => {
+        setEglibility(!eligibity)
+      }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -213,7 +218,8 @@ const AddLoanRequirement = () => {
             interestRate: interest,
             principalPaymentFrequency: principal,
             interestPaymentFrequency: interestFreq,
-            salaryStatementRequired: salary
+            salaryStatementRequired: salary,
+            eligibilityCheckRequired:eligibity
         }
 
         axios.post(`${middleware}loan/requirement`, requestbody, config)
@@ -764,6 +770,21 @@ const AddLoanRequirement = () => {
                                     id="customCheck3"
                                     checked={salary}
                                     onChange={handleSalaryChecked}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                     Eligibility Check
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={eligibity}
+                                    onChange={handleEligibility}
                                 />
                             </div>
                         </div>
