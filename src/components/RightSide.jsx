@@ -56,6 +56,8 @@ import ApprovalRequest from '../pages/ApprovalRequest/ApprovalRequest';
 import GetApprovalRequest from '../pages/ApprovalRequest/GetApprovalRequest';
 import ChangePassword from '../pages/Settings/ChangePassword';
 import SetSystem from '../pages/Settings/SetSystem';
+import AllProperties from '../pages/LoanManagement/Property/AllProperties';
+import GetPropertDetail from '../pages/LoanManagement/Property/GetPropertiesById/GetPropertDetail';
 const RightSide = ({isOpen, tog}) => {
   
  
@@ -125,6 +127,8 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/getapprovalrequest/:id" element={<GetApprovalRequest/>}></Route>
             <Route path="/ui/system/changepassword" element={<ChangePassword/>}></Route>
             <Route path="/ui/system/setsystem" element={<SetSystem/>}></Route>
+            <Route path="/ui/tables/property/" element={<AllProperties/>}></Route>
+            <Route path="/ui/tables/property/:id/*" element={<GetPropertDetail/>}></Route>
           </Routes>
      
         
