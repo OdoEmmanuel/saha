@@ -45,7 +45,7 @@ const GetPropertDetail = () => {
         axios.get(`${middleware}property/${id}`,config)
         .then((res) => {
         
-             
+             setdata(res.data.data)
              setKyc(res.data.data.documents || [])
         }).catch((e) => {
             
