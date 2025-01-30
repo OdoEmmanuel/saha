@@ -100,11 +100,7 @@ import {
               label: 'Loan Products',
               url: '/ui/tables/loan-product',
             },
-            {
-              key:'property',
-              label:'Property',
-              url:'/ui/tables/property/'
-            },
+          
             {
               key: 'approval-item-setup',
               label: 'Approval Item Setup',
@@ -171,6 +167,14 @@ import {
           icon: Archive,
           url: '/ui/fixed-deposit/Allfixed',
           
+        },
+
+        {
+          key:'property',
+          label:'Properties',
+          url:'/ui/tables/property/',
+          isTitle:false,
+          icon:Briefcase
         },
         // {
         //   key: 'maker-checker',
