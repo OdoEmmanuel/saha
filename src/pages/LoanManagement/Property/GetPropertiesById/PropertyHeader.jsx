@@ -85,7 +85,7 @@ const PropertyHeader = ({id}) => {
             >
               <ArrowLeft className="w-6 h-6 text-gray-600" />
             </button>
-            <h1 className="text-2xl font-semibold text-gray-800">Pending Loan Details</h1>
+            <h1 className="text-2xl font-semibold text-gray-800">Properties Details</h1>
           </div>
           <div className="relative">
             <select

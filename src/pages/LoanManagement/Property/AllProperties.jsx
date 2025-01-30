@@ -24,7 +24,7 @@ const AllProperties = () => {
         const navigate = useNavigate()
         const token = localStorage.getItem('token')
         const email = localStorage.getItem('email')
-        const [status,setStatus] = useState('Approved')
+        const [status,setStatus] = useState('InReview')
 
         const config = {
             headers: {
