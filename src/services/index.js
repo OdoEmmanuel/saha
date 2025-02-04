@@ -107,4 +107,11 @@ const passwordRegExp =
     .oneOf([yup.ref("newPassword")], "Passwords must match")
     .required("required"),
   })
+
+  export const LoanType = yup.object().shape({
+    productCode:yup.string().required('Product Code Required'),
+    productName:yup.string().required('Product Name Required'),
+    category:yup.string().required('category Required'),
+    status:yup.string().required('status')
+  })
   

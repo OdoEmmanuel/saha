@@ -7,6 +7,7 @@ import { useAuthContext } from '../../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
+import { FaPen } from 'react-icons/fa';
 import Checkbox from "../../../assets/checkbox.png"
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
@@ -268,10 +269,11 @@ const AllProperties = () => {
 
                                         
                                         <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                            <Tippy content="view">
+                                            <div className='flex justify-center items-center'>
+                                            <Tippy content="view" >
                                                 <Link
                                                     to={`/ui/tables/property/${staff.id}`}
-                                                    className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                    className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)] mr-8"
                                                 >
                                                     <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 7C6.25 6.00544 6.64509 5.05161 7.34835 4.34835C8.05161 3.64509 9.00544 3.25 10 3.25C10.9946 3.25 11.9484 3.64509 12.6517 4.34835C13.3549 5.05161 13.75 6.00544 13.75 7C13.75 7.99456 13.3549 8.94839 12.6517 9.65165C11.9484 10.3549 10.9946 10.75 10 10.75C9.00544 10.75 8.05161 10.3549 7.34835 9.65165C6.64509 8.94839 6.25 7.99456 6.25 7ZM10 4.75C9.40326 4.75 8.83097 4.98705 8.40901 5.40901C7.98705 5.83097 7.75 6.40326 7.75 7C7.75 7.59674 7.98705 8.16903 8.40901 8.59099C8.83097 9.01295 9.40326 9.25 10 9.25C10.5967 9.25 11.169 9.01295 11.591 8.59099C12.0129 8.16903 12.25 7.59674 12.25 7C12.25 6.40326 12.0129 5.83097 11.591 5.40901C11.169 4.98705 10.5967 4.75 10 4.75Z" fill="#072D56" />
@@ -280,7 +282,18 @@ const AllProperties = () => {
 
                                                 </Link>
                                             </Tippy>
+                                            <Tippy content="Edit">
+                                                    <Link
+                                                        to={`/ui/tables/updateProperty/${staff.id}`}
+                                                        className="text-[#072D56]"
+                                                    >
+                                                        <FaPen size={'1.5em'} />
+                                                    </Link>
+                                                    </Tippy>
+                                            </div>
+                                            
                                         </td>
+                                       
                                     </tr>
                                 ))}
                             </tbody>
