@@ -58,6 +58,7 @@ import ChangePassword from '../pages/Settings/ChangePassword';
 import SetSystem from '../pages/Settings/SetSystem';
 import AllProperties from '../pages/LoanManagement/Property/AllProperties';
 import GetPropertDetail from '../pages/LoanManagement/Property/GetPropertiesById/GetPropertDetail';
+import UpdateProperty from '../pages/LoanManagement/Property/UpdateProperty';
 const RightSide = ({isOpen, tog}) => {
   
  
@@ -129,6 +130,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/system/setsystem" element={<SetSystem/>}></Route>
             <Route path="/ui/tables/property/" element={<AllProperties/>}></Route>
             <Route path="/ui/tables/property/:id/*" element={<GetPropertDetail/>}></Route>
+            <Route path="/ui/tables/updateProperty/:id" element={<UpdateProperty/>}></Route>
           </Routes>
      
         
