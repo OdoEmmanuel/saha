@@ -96,6 +96,11 @@ import {
               url: '/ui/tables/homeownership',
             },
             {
+              key:'loan-type',
+              label:'Loan Type',
+              url: '/ui/tables/loantype'
+            },
+            {
               key: 'loan-products',
               label: 'Loan Products',
               url: '/ui/tables/loan-product',

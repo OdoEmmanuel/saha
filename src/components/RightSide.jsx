@@ -59,6 +59,9 @@ import SetSystem from '../pages/Settings/SetSystem';
 import AllProperties from '../pages/LoanManagement/Property/AllProperties';
 import GetPropertDetail from '../pages/LoanManagement/Property/GetPropertiesById/GetPropertDetail';
 import UpdateProperty from '../pages/LoanManagement/Property/UpdateProperty';
+import GetAllLoanTypes from '../pages/LoanManagement/LoanTypes/GetAllLoanTypes'; 
+import CreateLoanType from '../pages/LoanManagement/LoanTypes/CreateLoanType';
+import UpdateLoanType from '../pages/LoanManagement/LoanTypes/UpdateLoanType';
 const RightSide = ({isOpen, tog}) => {
   
  
@@ -131,6 +134,9 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/tables/property/" element={<AllProperties/>}></Route>
             <Route path="/ui/tables/property/:id/*" element={<GetPropertDetail/>}></Route>
             <Route path="/ui/tables/updateProperty/:id" element={<UpdateProperty/>}></Route>
+            <Route path="/ui/tables/loantype" element={<GetAllLoanTypes/>}></Route>
+            <Route path="/ui/tables/createLoanType" element={<CreateLoanType/>}></Route>
+            <Route path="/ui/tables/updateloanType/:id" element={<UpdateLoanType/>}></Route>
           </Routes>
      
         
