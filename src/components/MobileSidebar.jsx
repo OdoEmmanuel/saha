@@ -122,7 +122,7 @@ const MobileSidebar = ({ isOpen, tog }) => {
       >
         {item.key !== 'dashboard' ? (
           <div>
-            <h1 className='text-[#73809C] font-[500] text-[20px] mb-2'>{item.key}</h1>
+            {/* <h1 className='text-[#73809C] font-[500] text-[20px] mb-2'>{item.key}</h1> */}
             {item.children.map((items, index) => {
               const Open = openDropdown === items.key;
               const isActive = location.pathname === items.url;
@@ -201,7 +201,7 @@ const MobileSidebar = ({ isOpen, tog }) => {
                       </AnimatePresence>
                     </div>
                   ) : (
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} >
                       <Link to={items.url} className={`flex items-center ${activeClass}`}>
                         {items.icon && <items.icon className="mr-4" size={24} />}
                         <span>{items.label}</span>
@@ -213,7 +213,7 @@ const MobileSidebar = ({ isOpen, tog }) => {
             })}
           </div>
         ) : (
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className='mb-4'>
             <Link to={item.url} className={`flex items-center ${activeClass}`}>
               {item.icon && <item.icon className="mr-4" size={24} />}
               <span>{item.label}</span>
