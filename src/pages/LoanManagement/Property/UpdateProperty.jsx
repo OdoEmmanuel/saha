@@ -32,7 +32,7 @@ const UpdateProperty = () => {
         headers: {
             Authorization: `Bearer ${token}`,
             'client-id': clientid,
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/json',
             'request-source': request,
             'Username': email
         },
@@ -77,7 +77,7 @@ const UpdateProperty = () => {
             })
             .catch((error) => {
                 if (error.response.data.responseMessage === 'Invalid/Expired Token' || error.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                    toast.error(e.response.data.responseMessage)
+                    toast.error(error.response.data.responseMessage)
                     navigate('/auth/login')
                     localStorage.clear()
                 }
@@ -286,7 +286,7 @@ const UpdateProperty = () => {
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium text-white bg-[#072D56] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Adding...' : 'Update Approval Item'}
+                                {isLoading ? 'Adding...' : 'Update Properties'}
                             </button>
                         </div>
 

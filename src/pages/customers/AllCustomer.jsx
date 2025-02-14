@@ -213,7 +213,7 @@ const AllCustomer = () => {
 
             </div>
 
-            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6  rounded-[10px]'>
+            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6 min-h-[350px]  rounded-[10px]'>
 
                 <div className="md:flex justify-between ">
                     <div className=" flex flex-col rounded-lg ">
@@ -230,7 +230,7 @@ const AllCustomer = () => {
                                     }}
                                     isClearable={true}
                                     placeholderText="Select date range"
-                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
                                 />
                                 {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                                 <IoMdCalendar className="text-gray-400" size={16} />
