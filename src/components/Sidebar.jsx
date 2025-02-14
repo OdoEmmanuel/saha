@@ -16,7 +16,7 @@ const Sidebar = ({ isOpen, tog }) => {
   const renderMenuItem = (item) => {
     const isActive = location.pathname === item.url;
     const isParentOfActive = item.children && item.children.some(child => location.pathname === child.url);
-    const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[500] text-[16px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2 hover:text-blue-600';
+    const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[700] text-[14px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg font-[700] text-[14px] py-2 px-2 hover:text-blue-600';
 
     return (
       <motion.li
@@ -26,12 +26,12 @@ const Sidebar = ({ isOpen, tog }) => {
       >
         {item.key !== 'dashboard' ? (
           <div>
-            <h1 className='text-[#73809C] font-[500] text-[20px] mb-2'>{item.key}</h1>
+            {/* <h1 className='text-[#73809C] font-[500] text-[20px] mb-2'>{item.key}</h1> */}
             {item.children.map((items, index) => {
               const Open = openDropdown === items.key;
               const isActive = location.pathname === items.url;
               const isParentOfActive = items.children && items.children.some(child => location.pathname === child.url);
-              const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[500] text-[16px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2 font-[500] text-[16px] font-inter';
+              const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[700] text-[14px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2 font-[700] text-[14px] font-inter';
 
               return (
                 <motion.li
@@ -117,7 +117,7 @@ const Sidebar = ({ isOpen, tog }) => {
             })}
           </div>
         ) : (
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className='mb-4'>
             <Link to={item.url} className={`flex items-center ${activeClass}`}>
               {item.icon && <item.icon className="mr-4" size={24} />}
               <span>{item.label}</span>
@@ -145,7 +145,7 @@ const Sidebar = ({ isOpen, tog }) => {
         />
       </div>
       <nav className="mt-5">
-        <ul className='flex flex-col gap-4 p-4'>
+        <ul className='flex flex-col  p-4'>
           {MENU_ITEMS.map(renderMenuItem)}
         </ul>
       </nav>

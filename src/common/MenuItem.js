@@ -42,30 +42,49 @@ import {
       isTitle: true,
       children: [
         {
-          key: 'loan-approval',
-          label: 'Loan Approval',
+          key: 'Staff',
+          label: 'Staff Management',
           isTitle: false,
-          icon: FileText,
+          icon: ContactRound,
+          // url: '/ui/staffs/AllStaff',
+          children:[
+            {
+              key: 'All Staff',
+              label: 'All Staff',
+              url: '/ui/staffs/AllStaff',
+            },
+            {
+              key:'Add Staff',
+              label:'Add Staff',
+              url: '/ui/staffs/AddStaff'
+            }
+          ]
+        },
+        {
+          key: 'customer-management',
+          label: 'Customer Management',
+          isTitle: false,
+          icon: User,
           children: [
             {
-              key: 'all-loans',
-              label: 'All Loans',
-              url: '/ui/LoanApproval/GetAllLoans',
+              key: 'all-customers',
+              label: 'All Customers',
+              url: '/ui/customer/customer-date',
             },
             {
-              key: 'pending-loans',
-              label: 'Pending Loans',
-              url: '/ui/LoanApproval/pendingloans',
+              key: 'active-customers',
+              label: 'Active Customers',
+              url: '/ui/customer/all-customer',
             },
             {
-              key: 'active-loans',
-              label: 'Active Loans',
-              url: '/ui/LoanApproval/activeloans',
+              key: 'blocked-customers',
+              label: 'Blocked Customers',
+              url: '/ui/customer/block-customers',
             },
             {
-              key: 'loan-administration',
-              label: 'Loan Administration',
-              url: '/ui/LoanApproval/loanAdminisration',
+              key: 'pending-kyc',
+              label: 'Pending KYC',
+              url: '/ui/customer/pending-kyc',
             },
           ],
         },
@@ -113,6 +132,35 @@ import {
             },
           ],
         },
+        {
+          key: 'loan-approval',
+          label: 'Loan Approval',
+          isTitle: false,
+          icon: FileText,
+          children: [
+            {
+              key: 'all-loans',
+              label: 'All Loans',
+              url: '/ui/LoanApproval/GetAllLoans',
+            },
+            {
+              key: 'pending-loans',
+              label: 'Pending Loans',
+              url: '/ui/LoanApproval/pendingloans',
+            },
+            {
+              key: 'active-loans',
+              label: 'Active Loans',
+              url: '/ui/LoanApproval/activeloans',
+            },
+            {
+              key: 'loan-administration',
+              label: 'Loan Administration',
+              url: '/ui/LoanApproval/loanAdminisration',
+            },
+          ],
+        },
+     
       ],
     },
     {
@@ -120,41 +168,8 @@ import {
       label: 'Account',
       isTitle: true,
       children: [
-        {
-          key: 'customer-management',
-          label: 'Customer',
-          isTitle: false,
-          icon: User,
-          children: [
-            {
-              key: 'all-customers',
-              label: 'All Customers',
-              url: '/ui/customer/customer-date',
-            },
-            {
-              key: 'active-customers',
-              label: 'Active Customers',
-              url: '/ui/customer/all-customer',
-            },
-            {
-              key: 'blocked-customers',
-              label: 'Blocked Customers',
-              url: '/ui/customer/block-customers',
-            },
-            {
-              key: 'pending-kyc',
-              label: 'Pending KYC',
-              url: '/ui/customer/pending-kyc',
-            },
-          ],
-        },
-        {
-          key: 'Staff',
-          label: 'Staff',
-          isTitle: false,
-          icon: ContactRound,
-          url: '/ui/staffs/AllStaff',
-        },
+       
+       
       
       ],
     },
@@ -167,11 +182,57 @@ import {
       
         {
           key: 'fixed-deposit',
-          label: 'Fixed Deposit Setup',
+          label: 'Investment',
           isTitle: false,
           icon: Archive,
           url: '/ui/fixed-deposit/Allfixed',
+          children:[
+            {
+              key: 'Fixed deposit setup',
+              label: 'Fixed deposit setup',
+              url: '/ui/fixed-deposit/createnewfixed',
+            },
+            {
+              key: ' All Fixed deposit ',
+              label: 'All Fixed deposit ',
+              url: '/ui/fixed-deposit/Allfixed',
+            }
+          ]
           
+        },
+
+        {
+          key: 'reports',
+          label: 'Reports',
+          isTitle: false,
+          icon: File,
+          children: [
+            {
+              key: 'customer-report',
+              label: 'All Customer',
+              url: '/ui/report/getCustomer',
+            },
+            {
+              key: 'transaction-report',
+              label: 'All Transaction',
+              url: '/ui/report/Transaction',
+            },
+          ],
+        },
+
+
+        {
+          key: 'risk-management',
+          label: 'Risk Management',
+          isTitle: false,
+          icon: Wrench,
+          children: [
+            {
+              key: 'repeated-transaction',
+              label: 'Repeated Transaction',
+              url: '/ui/risk-management/',
+            },
+          ],
         },
 
         {
@@ -194,45 +255,16 @@ import {
         //     },
         //   ],
         // },
-        {
-          key: 'approval-request',
-          label: 'Approval Request',
-          isTitle: false,
-          icon: Anchor,
-          url: '/ui/approvalRequest',
+        // {
+        //   key: 'approval-request',
+        //   label: 'Approval Request',
+        //   isTitle: false,
+        //   icon: Anchor,
+        //   url: '/ui/approvalRequest',
           
-        },
-        {
-          key: 'risk-management',
-          label: 'Risk Management',
-          isTitle: false,
-          icon: Wrench,
-          children: [
-            {
-              key: 'repeated-transaction',
-              label: 'Repeated Transaction',
-              url: '/ui/risk-management/',
-            },
-          ],
-        },
-        {
-          key: 'reports',
-          label: 'Reports',
-          isTitle: false,
-          icon: File,
-          children: [
-            {
-              key: 'customer-report',
-              label: 'Customer',
-              url: '/ui/report/getCustomer',
-            },
-            {
-              key: 'transaction-report',
-              label: 'Transaction',
-              url: '/ui/report/Transaction',
-            },
-          ],
-        },
+        // },
+      
+        
       
         {
           key: 'Customer complaints',
@@ -255,15 +287,29 @@ import {
           icon: LockIcon,
           children: [
             {
+              key: 'all-groups',
+              label: 'All Groups',
+              url: '/ui/permission/allgroup',
+            },
+            {
+              key: 'add-groups',
+              label: 'Add Groups',
+              url: '/ui/permission/Addgroup',
+            },
+            {
               key: 'assign-staff',
               label: 'Assign Staff',
               url: '/ui/permission/alluser',
             },
             {
-              key: 'all-groups',
-              label: 'All Groups',
-              url: '/ui/permission/allgroup',
+              key: 'approval-request',
+              label: 'Maker & Checker',
+              // isTitle: false,
+              // icon: Anchor,
+              url: '/ui/approvalRequest',
+              
             },
+            
           ],
         },
         {
@@ -273,15 +319,16 @@ import {
           icon: Settings,
           children: [
             {
-              key: 'system-configuration',
-              label: 'System Configuration',
-              url: '/ui/system/setsystem',
-            },
-            {
               key: 'change-password',
               label: 'Change Password',
               url: '/ui/system/changepassword',
             },
+            {
+              key: 'system-configuration',
+              label: 'System Configuration',
+              url: '/ui/system/setsystem',
+            },
+          
           ],
         },
       ],

@@ -159,7 +159,7 @@ const RepeatedTransaction = () => {
 
         </div>
 
-        <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6  rounded-[10px]'>
+        <div className='bg-[#fff] mt-4 shadow-md overflow-hidden min-h-[350px]    p-6  rounded-[10px]'>
 
             <div className="md:flex justify-between ">
                 <div className=" flex flex-col rounded-lg ">

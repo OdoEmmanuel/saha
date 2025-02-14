@@ -136,7 +136,7 @@ const Transaction = () => {
                 </div>
             )}
 
-            <div className='bg-[#fff] mt-4 shadow-md p-6 overflow-hidden rounded-[10px]'>
+            <div className='bg-[#fff] mt-4 shadow-md p-6 overflow-hidden min-h-[350px]   rounded-[10px]'>
                 <div className="md:flex justify-between mb-2">
                     <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2 ">
                         <div className="relative flex items-center border border-gray-300 rounded px-4 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200 md:w-auto w-full">
@@ -148,7 +148,7 @@ const Transaction = () => {
                                 onChange={(update) => setDateRange(update)}
                                 isClearable={true}
                                 placeholderText="Select date range"
-                                className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                                className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
                             />
                         </div>
                     </div>

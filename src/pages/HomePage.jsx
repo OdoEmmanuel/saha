@@ -125,12 +125,12 @@ const HomePage = () => {
         }
         axios.post(`${middleware}loan/filter`, body, config)
             .then((res) => {
-               
+
                 setCustomers(res.data.data)
                 SetElement(res.data.totalContent)
 
             }).catch((e) => {
-              
+
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
@@ -208,7 +208,7 @@ const HomePage = () => {
                 >
 
 
-                    <div className=" mb-5">
+                    {/* <div className=" mb-5">
                         <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
                             <label className="text-gray-700">Date Range:</label>
                             <motion.div
@@ -226,7 +226,30 @@ const HomePage = () => {
                                     }}
                                     isClearable={true}
                                     placeholderText="Select date range"
-                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-[16rem]"
+                                />
+                            </motion.div>
+                        </div>
+                    </div> */}
+                    <div className="mb-5">
+                        <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
+                            <label className="text-gray-700">Date Range:</label>
+                            <motion.div
+                                className="relative flex items-center border border-gray-300 rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <IoMdCalendar className="text-gray-500 mr-2 flex-shrink-0" size={20} />
+                                <DatePicker
+                                    selectsRange={true}
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    onChange={(update) => {
+                                        setDateRange(update);
+                                    }}
+                                    isClearable={true}
+                                    placeholderText="Select date range"
+                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
                                 />
                             </motion.div>
                         </div>
