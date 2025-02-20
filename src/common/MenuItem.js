@@ -214,8 +214,33 @@ import {
             },
             {
               key: 'transaction-report',
-              label: 'All Transaction',
+              label: 'Inter Bank',
               url: '/ui/report/Transaction',
+            },
+            {
+              key: 'transaction-report',
+              label: 'Intra Bank',
+              url: '/ui/report/Transaction/Intrabank',
+            },
+            {
+              key: 'transaction-report',
+              label: 'Airtime Purchase',
+              url: '/ui/report/Transaction/airtime',
+            },
+            {
+              key: 'transaction-report',
+              label: 'Bill Payment',
+              url: '/ui/report/Transaction/bills',
+            },
+            {
+              key: 'transaction-report',
+              label: 'Data Purchase',
+              url: '/ui/report/Transaction/data',
+            },
+            {
+              key: 'transaction-report',
+              label: 'Fixed Deposit',
+              url: '/ui/report/Transaction/fixed',
             },
           ],
         },
