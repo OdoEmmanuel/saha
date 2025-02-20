@@ -62,6 +62,11 @@ import UpdateProperty from '../pages/LoanManagement/Property/UpdateProperty';
 import GetAllLoanTypes from '../pages/LoanManagement/LoanTypes/GetAllLoanTypes'; 
 import CreateLoanType from '../pages/LoanManagement/LoanTypes/CreateLoanType';
 import UpdateLoanType from '../pages/LoanManagement/LoanTypes/UpdateLoanType';
+import IntraBank from '../pages/Report/IntraBank';
+import Airtime from '../pages/Report/Airtime';
+import Bill from '../pages/Report/Bill';
+import Data from '../pages/Report/Data';
+import Fixed from '../pages/Report/Fixed';
 const RightSide = ({isOpen, tog}) => {
   
  
@@ -113,6 +118,11 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/tables/editapproval/:id' element={<EditApprovalSetup/>}></Route>
             <Route path='/ui/report/getCustomer' element={<Customer/>}></Route>
             <Route path='/ui/report/Transaction' element={<Transaction/>}></Route>
+            <Route path='/ui/report/Transaction/Intrabank' element={<IntraBank/>}></Route>
+            <Route path='/ui/report/Transaction/airtime' element={<Airtime/>}></Route>
+            <Route path='/ui/report/Transaction/bills' element={<Bill/>}></Route>
+            <Route path='/ui/report/Transaction/data' element={<Data/>}></Route>
+            <Route path='/ui/report/Transaction/fixed' element={<Fixed/>}></Route>
             <Route path="/ui/permission/allgroup" element={<AllGroup/>}></Route>
             <Route path="/ui/permission/assign-permission-group/:id" element={<AssignGroupPermission/>}></Route>
             <Route path="/ui/permission/updategroup/:id" element={<UpdateGroup/>}></Route>

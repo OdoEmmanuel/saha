@@ -9,7 +9,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import * as XLSX from "xlsx";
 
-const Transaction = () => {
+const Data = () => {
     const { middleware, request, clientid, setHeaders } = useAuthContext();
     const navigate = useNavigate();
     const [dateRange, setDateRange] = useState([
@@ -26,10 +26,11 @@ const Transaction = () => {
     const [selectedTransactionType, setSelectedTransactionType] = useState('INTRABANK');
     const [selectedTransactionStatus, setSelectedTransactionStatus] = useState('SUCCESSFUL');
 
-    setHeaders('Inter Bank');
+    setHeaders('Data Purchase');
 
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('email');
+
 
     const config = {
         headers: {
@@ -41,6 +42,7 @@ const Transaction = () => {
         },
     };
 
+
     const formatDateString = (date) => {
         if (!date) return '';
         return date.toISOString().split('T')[0];
@@ -50,11 +52,11 @@ const Transaction = () => {
     const downloadExcel = () => {
         const workbook = XLSX.utils.book_new();
         const worksheet = XLSX.utils.table_to_sheet(
-          document.getElementById("transactions")
+            document.getElementById("transactions")
         );
         XLSX.utils.book_append_sheet(workbook, worksheet, "transaction");
         XLSX.writeFile(workbook, "transactions.xlsx");
-      };
+    };
 
     const fetchTransactionData = useCallback(async () => {
         setIsLoading(true);
@@ -64,7 +66,7 @@ const Transaction = () => {
                 {
                     ...config,
                     params: {
-                        transactionType: "INTERBANK",
+                        transactionType: "DATA_PURCHASE",
                         transactionStatus: selectedTransactionStatus,
                         startDate: `${formatDateString(startDate)} 00:00:00`,
                         endDate: `${formatDateString(endDate)} 00:00:00`,
@@ -100,7 +102,7 @@ const Transaction = () => {
 
     const handleApiError = (error) => {
 
-      
+
         const responseMessage = error.response?.data?.responseMessage;
         if (responseMessage === 'Invalid/Expired Token' || responseMessage === 'Invalid Token' || responseMessage === 'Login Token Expired') {
             toast.error(responseMessage);
@@ -127,7 +129,6 @@ const Transaction = () => {
     const handlePageChange = (newPage) => {
         setPageNumber(newPage);
     };
-
     return (
         <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
@@ -153,18 +154,18 @@ const Transaction = () => {
                         </div>
                     </div>
                     <div className='md:flex justify-between items-center md:mt-0 mt-4 '>
-                        <select
-                            value={selectedTransactionType}
-                            onChange={(e) => setSelectedTransactionType(e.target.value)}
-                            className="rounded-[10px] border-2 p-2 mr-4 md:w-auto w-full"
-                        >
-                            <option value="">Select Transaction Type</option>
-                            {transactionTypes.map((type, index) => (
-                                <option key={index} value={type.transactionType}>
-                                    {type.transactionType}
-                                </option>
-                            ))}
-                        </select>
+                        {/* <select
+                                               value={selectedTransactionType}
+                                               onChange={(e) => setSelectedTransactionType(e.target.value)}
+                                               className="rounded-[10px] border-2 p-2 mr-4 md:w-auto w-full"
+                                           >
+                                               <option value="">Select Transaction Type</option>
+                                               {transactionTypes.map((type, index) => (
+                                                   <option key={index} value={type.transactionType}>
+                                                       {type.transactionType}
+                                                   </option>
+                                               ))}
+                                           </select> */}
                         <select
                             value={selectedTransactionStatus}
                             onChange={(e) => setSelectedTransactionStatus(e.target.value)}
@@ -237,7 +238,7 @@ const Transaction = () => {
                 {/* Pagination controls can be added here */}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Transaction;
+export default Data
