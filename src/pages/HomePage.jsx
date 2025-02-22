@@ -174,7 +174,7 @@ const HomePage = () => {
 
     return (
         <motion.div
-            className='relative z-0 p-4'
+            className='relative z-0 p-0'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -235,7 +235,7 @@ const HomePage = () => {
                         <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
                             <label className="text-gray-700">Date Range:</label>
                             <motion.div
-                                className="relative flex items-center border border-gray-300 rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
+                                className="relative flex items-center border rounded-[10px] border-gray-300  px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -267,7 +267,7 @@ const HomePage = () => {
             >
                 {[
                     { title: "Total Customers", value: data.noOfCustomers, image: Ornament13 },
-                    { title: "Total accounts", value: data.noOfAccounts, image: Ornament2 },
+                    { title: "Total Accounts", value: data.noOfAccounts, image: Ornament2 },
                     { title: "Total Transaction Counts", value: data.transactionCounts, image: Ornament16 }
                 ].map((item, index) => (
                     <motion.div
@@ -340,35 +340,35 @@ const HomePage = () => {
                     <motion.div className='flex flex-col gap-6 h-full' >
                         <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md  px-8 py-8 h-full'>
                             <div className='flex justify-between'>
-                                <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
+                                <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[600]'>
                                     <span>
                                         Total
                                     </span>
                                     Loan Approved</h1>
-                                <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
-                                    <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
+                                <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[600]'>
+                                    <span className=''>{parseFloat(data.noOfLoanApproved)}</span>
                                     {Element}
                                 </p>
                             </div>
-                            <div className='flex items-center justify-center my-6'>
-                                <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
+                            <div className='flex items-center justify-center my-6 w-full'>
+                                <button className='text-white btn w-full bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
                             </div>
 
                         </div>
                         <div className='bg-[#fff] overflow-hidden rounded-lg shadow-md  px-8 py-8 h-full'>
                             <div className='flex justify-between'>
-                                <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[400]'>
+                                <h1 className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[600]'>
                                     <span>
                                         Total
                                     </span>
                                     Loan Processed</h1>
-                                <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px]'>
-                                    <span className='font-[700]'>{parseFloat(data.noOfLoanApproved)}</span>
+                                <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[600]'>
+                                    <span className=''>{parseFloat(data.noOfLoanApproved)}</span>
                                     {Element}
                                 </p>
                             </div>
                             <div className='flex items-center justify-center my-6'>
-                                <button className='text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
+                                <button className='text-white btn bg-[#072D56] w-full   hover:bg-primary rounded-[10px]  py-2 px-4'> View Loans</button>
                             </div>
 
                         </div>

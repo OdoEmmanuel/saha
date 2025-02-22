@@ -324,7 +324,7 @@ const AllCustomer = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            MOBILE{' '}
+                                            Phone{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}

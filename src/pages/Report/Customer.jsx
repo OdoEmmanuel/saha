@@ -39,7 +39,7 @@ const Customer = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const name = localStorage.getItem('name')
-    setHeaders('ALL CUSTOMERS')
+    setHeaders('All Customers')
 
     useEffect(() => {
         if (startDate && endDate) {
@@ -286,7 +286,7 @@ const Customer = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            MOBILE{' '}
+                                            Phone {' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}

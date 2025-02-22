@@ -173,11 +173,11 @@ const HomeOwnership = () => {
                             </button>
                            
                             <Link
-                        to={`/ui/tables/addhomeownership`}
+                        to={`/ui/tables/Createhomeownership`}
                         className="text-white btn bg-[#072D56] rounded-[10px] text-[10px] sm:font-[16px]  py-2 px-4"
                     >
                         {' '}
-                        Add Home Ownership
+                        Create Home Ownership
                     </Link>
                         </div>
                     </div>

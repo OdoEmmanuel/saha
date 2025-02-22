@@ -30,7 +30,7 @@ const EditLoanRequirement = () => {
     const [monthlyChecked, setMonthlyChecked] = useState(false)
     const [name, setNameChecked] = useState(false)
     const [emailChecked, setEmailChecked] = useState(false)
-    const [addressChecked, setAddressChecked] = useState(false)
+    const [CreateressChecked, setCreateressChecked] = useState(false)
     const [roleChecked, setRoleChecked] = useState(false)
     const [statementChecked, setStatementChecked] = useState(false)
     const [cac, setCacChecked] = useState(false)
@@ -89,7 +89,7 @@ const EditLoanRequirement = () => {
                 setMonthlyChecked(res.data.data.monthlyIncomeRequired)
                 setNameChecked(res.data.data.businessNameRequired)
                 setEmailChecked(res.data.data.businessEmailRequired)
-                setAddressChecked(res.data.data.businessAddressRequired)
+                setCreateressChecked(res.data.data.businessCreateressRequired)
                 setRoleChecked(res.data.data.businessRoleRequired)
                 setStatementChecked(res.data.data.bankStatementRequired)
                 setCacChecked(res.data.data.cacRequired)
@@ -190,8 +190,8 @@ const EditLoanRequirement = () => {
         setEmailChecked(!emailChecked)
     }
 
-    const handleAddressChecked = () => {
-        setAddressChecked(!addressChecked)
+    const handleCreateressChecked = () => {
+        setCreateressChecked(!CreateressChecked)
     }
 
     const handleRoleChecked = () => {
@@ -261,7 +261,7 @@ const EditLoanRequirement = () => {
             monthlyIncomeRequired: monthlyChecked,
             businessNameRequired: name,
             businessEmailRequired: emailChecked,
-            businessAddressRequired: addressChecked,
+            businessCreateressRequired: CreateressChecked,
             businessRoleRequired: roleChecked,
             bankStatementRequired: statementChecked,
             cacRequired: cac,
@@ -647,14 +647,14 @@ const EditLoanRequirement = () => {
                                     className="form-check-label font-semibold"
                                     htmlFor="customCheck3"
                                 >
-                                    Business Address
+                                    Business Createress
                                 </label>
                                 <input
                                     type="checkbox"
                                     className="w-4 h-4 rounded-lg"
                                     id="customCheck3"
-                                    checked={addressChecked}
-                                    onChange={handleAddressChecked}
+                                    checked={CreateressChecked}
+                                    onChange={handleCreateressChecked}
                                 />
                             </div>
                             <div className="flex items-center gap-2 mb-6">

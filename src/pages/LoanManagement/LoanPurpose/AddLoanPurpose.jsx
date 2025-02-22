@@ -14,7 +14,7 @@ import SelectField from '../../../components/SelectField';
 import { BiArrowBack } from "react-icons/bi";
 import { loanPurpose } from '../../../services';
 
-const AddLoanPurpose = () => {
+const CreateLoanPurpose = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [languages, setLanguages] = useState([])
     const [userType, setUserType] = useState([])
@@ -23,7 +23,7 @@ const AddLoanPurpose = () => {
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
 
-    setHeaders('Add Loan Purpose')
+    setHeaders('Create Loan Purpose')
 
     const config = {
         headers: {
@@ -84,7 +84,7 @@ const AddLoanPurpose = () => {
           <BiArrowBack className="mr-2" />
           Back
         </button>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Loan Purpose</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Loan Purpose</h2>
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <InputField2
             label="Description"
@@ -108,7 +108,7 @@ const AddLoanPurpose = () => {
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium text-white bg-[#072D56] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               disabled={isLoading}
             >
-              {isLoading ? 'Adding...' : 'Add Loan Purpose'}
+              {isLoading ? 'Createing...' : 'Create Loan Purpose'}
             </button>
           </div>
         </form>
@@ -119,4 +119,4 @@ const AddLoanPurpose = () => {
   )
 }
 
-export default AddLoanPurpose
+export default CreateLoanPurpose

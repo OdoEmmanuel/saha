@@ -18,9 +18,9 @@ export const uiRoutes = {
             name: 'staffs',
             children: [
               {
-                path: '/ui/staffs/AddStaff',
+                path: '/ui/staffs/CreateStaff',
                 name: 'Staff Form',
-                element: <ADDSTAFF />,
+                element: <CreateSTAFF />,
                 route: PrivateRoute,
               },
               {

@@ -21,7 +21,7 @@ const MobileSidebar = ({ isOpen, tog }) => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.CreateEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };

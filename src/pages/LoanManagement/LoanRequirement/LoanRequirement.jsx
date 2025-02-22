@@ -162,11 +162,11 @@ const LoanRequirement = () => {
                             </button>
                            
                             <Link
-                                to={`/ui/tables/loan-requirement/addLoan`}
+                                to={`/ui/tables/loan-requirement/CreateLoan`}
                                 className="text-white btn bg-[#072D56] rounded-[10px] text-[10px] md:text-[16px]  py-2 px-4"
                             >
                                 {' '}
-                                Add Loan Requirements
+                                Create Loan Requirements
                             </Link>
                         </div>
                     </div>

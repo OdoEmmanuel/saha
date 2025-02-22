@@ -159,7 +159,7 @@ const GetAllLoanTypes = () => {
                         className="text-white btn bg-[#072D56] hover:bg-primary rounded-[10px] text-[10px] md:text-[16px]  py-2 px-4"
                     >
                         {' '}
-                        Add Loan Type
+                        Create Loan Type
                     </Link>
                         </div>
                     </div>

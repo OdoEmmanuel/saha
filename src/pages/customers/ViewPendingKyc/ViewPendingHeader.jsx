@@ -25,7 +25,7 @@ const ViewPendingHeader = ({ id, func }) => {
           <h1 className="text-2xl font-semibold text-gray-800">Pending KYC View</h1>
         </div>
         <button
-          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200"
+          className="flex items-center px-4 py-2 bg-[#002853] text-white rounded-md hover:bg-blue-600 transition-colors duration-200"
           onClick={func}
         >
           <Check className="w-5 h-5 mr-2" />
@@ -40,7 +40,7 @@ const ViewPendingHeader = ({ id, func }) => {
             onClick={() => setActiveLink(link.value)}
             className={`px-4 py-2 rounded-md transition-colors duration-200 ${
               activeLink === link.value
-                ? 'bg-blue-500 text-white font-medium'
+                ? 'bg-[#002853] text-white font-medium'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >

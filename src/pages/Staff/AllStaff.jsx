@@ -167,11 +167,11 @@ const AllStaff = () => {
                             </button>
                           
                             <Link
-                            to={`/ui/staffs/AddStaff`}
+                            to={`/ui/staffs/CreateStaff`}
                             className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4"
                         >
                             {' '}
-                            Add Staff
+                            Create Staff
                         </Link>
                         </div>
 
@@ -201,17 +201,17 @@ const AllStaff = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            PHONE{' '}
+                                            Phone{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            UserType{' '}
+                                            User Type{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Status{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">Action(s)</th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>

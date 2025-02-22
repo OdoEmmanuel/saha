@@ -10,7 +10,7 @@ import InputField2 from '../../../components/InputField2';
 import SelectField from '../../../components/SelectField';
 import { BiArrowBack } from "react-icons/bi";
 
-const AddGroup = () => {
+const CreateGroup = () => {
     const { id } = useParams()
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [data, setData] = useState([])
@@ -22,7 +22,7 @@ const AddGroup = () => {
     const fetchCompanyCode = localStorage.getItem('companyCode')
     const navigate = useNavigate()
 
-    setHeaders('Add Group')
+    setHeaders('Create Group')
 
     const config = {
         headers: {
@@ -85,7 +85,7 @@ const AddGroup = () => {
           <BiArrowBack className="mr-2" />
           Back
         </button>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Group</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Group</h2>
         <form className="space-y-4" onSubmit={formik.handleSubmit}>
           <div className='flex flex-col gap-4'>
 
@@ -110,7 +110,7 @@ const AddGroup = () => {
             />
 
           </div>
-          <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Add Group'}</button>
+          <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Create Group'}</button>
         </form>
       </div>
 
@@ -120,4 +120,4 @@ const AddGroup = () => {
   )
 }
 
-export default AddGroup
+export default CreateGroup

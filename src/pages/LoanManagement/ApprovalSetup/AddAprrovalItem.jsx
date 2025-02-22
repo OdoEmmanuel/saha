@@ -8,7 +8,7 @@ import { BiArrowBack } from "react-icons/bi";
 import Select from 'react-select'
 
 
-const AddAprrovalItem = () => {
+const CreateAprrovalItem = () => {
 
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [items, setItems] = useState([])
@@ -23,7 +23,7 @@ const AddAprrovalItem = () => {
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
 
-    setHeaders('Add Approval Item')
+    setHeaders('Create Approval Item')
 
     const config = {
         headers: {
@@ -182,7 +182,7 @@ const AddAprrovalItem = () => {
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Approval Item</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Approval Item</h2>
                     <form className="space-y-6">
                         <div className="mb-3">
                             <label
@@ -296,7 +296,7 @@ const AddAprrovalItem = () => {
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium text-white bg-[#072D56] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Adding...' : 'Add Approval Item'}
+                                {isLoading ? 'Createing...' : 'Create Approval Item'}
                             </button>
                         </div>
                     </form>
@@ -307,4 +307,4 @@ const AddAprrovalItem = () => {
     )
 }
 
-export default AddAprrovalItem
+export default CreateAprrovalItem

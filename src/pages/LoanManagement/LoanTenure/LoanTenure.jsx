@@ -164,11 +164,11 @@ const LoanTenure = () => {
                             </button>
                             <p className='font-[400] text-[14px] font-inter mr-4'>Exports Loans Tenure</p>
                             <Link
-                        to={`/ui/tables/addloantenure`}
+                        to={`/ui/tables/Createloantenure`}
                         className="text-white btn bg-[#072D56] hover:bg-primary rounded-[10px] text-[10px] md:text-[16px]  py-2 px-4"
                     >
                         {' '}
-                        Add Loan Tenure
+                        Create Loan Tenure
                     </Link>
                         </div>
                     </div>
