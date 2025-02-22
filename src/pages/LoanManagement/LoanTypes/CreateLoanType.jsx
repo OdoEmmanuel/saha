@@ -22,7 +22,7 @@ const CreateLoanType = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
-    setHeaders('Add Loan Type')
+    setHeaders('Create Loan Type')
 
     const config = {
         headers: {
@@ -112,7 +112,7 @@ const CreateLoanType = () => {
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Loan Type</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Loan Type</h2>
                     <form onSubmit={formik.handleSubmit} className="space-y-6">
                         <InputField2
                             label="Product Code"
@@ -158,7 +158,7 @@ const CreateLoanType = () => {
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium text-white bg-[#072D56] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Adding...' : 'Add Loan Type'}
+                                {isLoading ? 'Createing...' : 'Create Loan Type'}
                             </button>
                         </div>
                     </form>

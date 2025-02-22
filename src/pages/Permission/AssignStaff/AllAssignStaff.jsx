@@ -152,7 +152,7 @@ const AllAssignStaff = () => {
 
 
                         <Link
-                            to={`/ui/staffs/AddStaff`}
+                            to={`/ui/staffs/CreateStaff`}
                             className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4"
                         >
                             {' '}

@@ -44,7 +44,7 @@ const PropertyHeader = ({id}) => {
         const formData = new FormData();
         formData.append("propertyStatus", e.target.value);
     
-        // Add the correct headers configuration
+        // Create the correct headers configuration
         const configWithFormData = {
             ...config,
             headers: {
@@ -110,7 +110,7 @@ const PropertyHeader = ({id}) => {
               onClick={() => setActiveLink(link.value)}
               className={`px-4 py-2 rounded-md transition-colors duration-200 ${
                 activeLink === link.value
-                  ? 'bg-blue-500 text-white font-medium'
+                  ? 'bg-[#002853] text-white font-medium'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >

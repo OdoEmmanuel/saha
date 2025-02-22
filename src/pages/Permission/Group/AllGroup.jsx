@@ -156,11 +156,11 @@ const AllGroup = () => {
                         </button>
 
                         <Link
-                            to={`/ui/permission/Addgroup`}
+                            to={`/ui/permission/Creategroup`}
                             className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4"
                         >
                             {' '}
-                            Add Group
+                            Create Group
                         </Link>
                     </div>
 

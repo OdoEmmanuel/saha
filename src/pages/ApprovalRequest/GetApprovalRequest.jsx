@@ -179,7 +179,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-6 dark:text-gray-400   text-gray-900">
                                                     Approval Item Type
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.approvalItemType || '----'}
                                                 </h4>
                                             </div>
@@ -187,7 +187,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-6 dark:text-gray-400   text-gray-900 ">
                                                     Action
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.action || '----'}
                                                 </h4>
                                             </div>
@@ -195,7 +195,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-6   dark:text-gray-700   text-gray-900 ">
                                                     Description
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.description || '----'}
                                                 </h4>
                                             </div>
@@ -203,7 +203,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500  ">
                                                     Entity
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.entity || '----'}
                                                 </h4>
                                             </div>
@@ -211,7 +211,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500  ">
                                                     Status
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.status || '----'}
                                                 </h4>
                                             </div>
@@ -219,7 +219,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500 ">
                                                     Comment
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.comment || '----'}
                                                 </h4>
                                             </div>
@@ -228,7 +228,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500 ">
                                                     Maker
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.maker || '----'}
                                                 </h4>
                                             </div>
@@ -237,24 +237,24 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500  ">
                                                     Checker
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400 ">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400 ">
                                                     {data?.mothersMaidenName || '----'}
                                                 </h4>
                                             </div>
 
                                             <div className="mb-4">
                                                 <h4 className=" mb-2 text-gray-500 ">
-                                                    Contact Address
+                                                    Contact Createress
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                                                    {data?.contactAddress || '----'}
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
+                                                    {data?.contactCreateress || '----'}
                                                 </h4>
                                             </div>
                                             <div className="mb-4">
                                                 <h4 className=" mb-2 text-gray-500 ">
                                                     Approval Required
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.approvalRequired || '----'}
                                                 </h4>
                                             </div>
@@ -262,7 +262,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500 ">
                                                     Created At
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.createdAt || '----'}
                                                 </h4>
                                             </div>
@@ -270,7 +270,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500 ">
                                                     Updated At
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.updatedAt || '----'}
                                                 </h4>
                                             </div>
@@ -278,7 +278,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500 ">
                                                     Created By
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.createdBy || '----'}
                                                 </h4>
                                             </div>
@@ -286,7 +286,7 @@ const GetApprovalRequest = () => {
                                                 <h4 className=" mb-2 text-gray-500 ">
                                                     Updated By
                                                 </h4>
-                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                                     {data?.updatedBy || '----'}
                                                 </h4>
                                             </div>
@@ -321,7 +321,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Phone
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {iphone}
                                         </h4>
                                     </div>
@@ -329,7 +329,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Language
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {ilang}
                                         </h4>
                                     </div>
@@ -337,7 +337,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500  ">
                                             Staff Name
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {istaff}
                                         </h4>
                                     </div>
@@ -345,7 +345,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500  ">
                                             User Type
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {iuser}
                                         </h4>
                                     </div>
@@ -353,7 +353,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500  ">
                                             Status
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {istatus}
                                         </h4>
                                     </div>
@@ -378,7 +378,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Phone
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {phone}
                                         </h4>
                                     </div>
@@ -386,7 +386,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Language
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {lang}
                                         </h4>
                                     </div>
@@ -394,7 +394,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500  ">
                                             Staff Name
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {staff}
                                         </h4>
                                     </div>
@@ -402,7 +402,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500  ">
                                             User Type
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {user}
                                         </h4>
                                     </div>
@@ -410,7 +410,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500  ">
                                             Status
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {status}
                                         </h4>
                                     </div>
@@ -433,7 +433,7 @@ const GetApprovalRequest = () => {
                                     <h4 className=" mb-2 text-gray-500 ">
                                         Group Name
                                     </h4>
-                                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                         {final.groupName}
                                     </h4>
                                 </div>
@@ -441,7 +441,7 @@ const GetApprovalRequest = () => {
                                     <h4 className=" mb-2 text-gray-500 ">
                                         Description
                                     </h4>
-                                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                         {final.description}
                                     </h4>
                                 </div>
@@ -449,7 +449,7 @@ const GetApprovalRequest = () => {
                                     <h4 className=" mb-2 text-gray-500 ">
                                         Staus
                                     </h4>
-                                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                         {final.status}
                                     </h4>
                                 </div>
@@ -472,7 +472,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Group {index + 1}
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {value}
                                         </h4>
                                     </div>
@@ -496,7 +496,7 @@ const GetApprovalRequest = () => {
                                         <h4 className=" mb-2 text-gray-500 ">
                                             Permisssion {index + 1}
                                         </h4>
-                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                        <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                             {removeUnderscores(value)}
                                         </h4>
                                     </div>

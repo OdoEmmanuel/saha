@@ -14,7 +14,7 @@ import SelectField from '../../../components/SelectField';
 import { BiArrowBack } from "react-icons/bi";
 import { loanTenure } from '../../../services';
 
-const AddLonTenure = () => {
+const CreateLonTenure = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [languages, setLanguages] = useState([])
     const [userType, setUserType] = useState([])
@@ -22,7 +22,7 @@ const AddLonTenure = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
-    setHeaders('Add Loan Tenure')
+    setHeaders('Create Loan Tenure')
 
     const config = {
         headers: {
@@ -84,7 +84,7 @@ const AddLonTenure = () => {
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Loan Tenure</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Loan Tenure</h2>
                     <form onSubmit={formik.handleSubmit} className="space-y-6">
                         <InputField2
                             label="Tenure"
@@ -110,7 +110,7 @@ const AddLonTenure = () => {
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium text-white bg-[#072D56] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Adding...' : 'Add Loan Tenure'}
+                                {isLoading ? 'Createing...' : 'Create Loan Tenure'}
                             </button>
                         </div>
                     </form>
@@ -120,4 +120,4 @@ const AddLonTenure = () => {
     )
 }
 
-export default AddLonTenure
+export default CreateLonTenure

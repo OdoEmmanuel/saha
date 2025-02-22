@@ -92,13 +92,13 @@ const Login = () => {
         <form onSubmit={formik.handleSubmit}>
           <div>
             <InputField
-              label={`Email address`}
+              label={`Email Createress`}
               name={`email`}
               value={formik.values.email}
               onChange={formik.handleChange}
               error={formik.touched.email && formik.errors.email}
               errorText={formik.errors.email}
-              placeHolder={`Enter Your E-mail Address`}
+              placeHolder={`Enter Your E-mail Createress`}
             />
           </div>
 

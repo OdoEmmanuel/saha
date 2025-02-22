@@ -171,11 +171,11 @@ const ApprovalSetup = () => {
                             </button>
                             
                             <Link
-                        to={`/ui/tables/addapproval`}
+                        to={`/ui/tables/Createapproval`}
                         className="text-white btn bg-[#072D56] rounded-[10px] text-[10px] sm:text-[16px]  py-2 px-4"
                     >
                         {' '}
-                        Add Approvals Items
+                        Create Approvals Items
                     </Link>
                         </div>
                     </div>

@@ -161,8 +161,8 @@ const BlockCustomer = () => {
 
       <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6  rounded-[10px]'>
 
-        <div className='sm:flex justify-between my-4 '>
-          <div className="flex  border-2 bg-[#fff] p-2 rounded-lg px-4 items-center">
+        <div className='sm:flex justify-between my-4 items-center'>
+          <div className="flex  border-2 bg-[#fff] p-2 rounded-lg  items-center h-1/2">
             <div className=' mr-2 text-gray-500'>
               <BiSearch />
             </div>
@@ -226,7 +226,7 @@ const BlockCustomer = () => {
                     </th>
                     <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                       {' '}
-                      MOBILE{' '}
+                      Phone{' '}
                     </th>
                     <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                       {' '}

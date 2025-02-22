@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import { useAuthContext } from '../../common/context/useAuthContext';
-import { addStaff } from '../../services';
+import { CreateStaffs } from '../../services';
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import { PulseLoader } from "react-spinners";
 import { Formik, useFormik } from "formik";
@@ -122,7 +122,7 @@ const UpdateStaff = () => {
             userType: ''
 
         },
-        validationSchema: addStaff,
+        validationSchema: CreateStaffs,
         onSubmit: (values) => {
             setisLoading(true)
             const body = {
@@ -228,7 +228,7 @@ const UpdateStaff = () => {
               />
       
           </div>
-          <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Add Staff'}</button>
+          <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Create Staff'}</button>
       </form>
         </div>
     

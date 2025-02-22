@@ -188,7 +188,7 @@ const AllFixedDeposit = () => {
                         className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4"
                     >
                         {' '}
-                        Add Deposits
+                        Create Deposits
                     </Link>
                         </div>
 
@@ -206,7 +206,7 @@ const AllFixedDeposit = () => {
 
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-
+                                            ID
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}

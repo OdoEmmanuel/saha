@@ -217,7 +217,7 @@ const EditApprovalSetup = () => {
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Approval Item</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Approval Item</h2>
                     <form className="space-y-6">
                         <div className="mb-3">
                             <label
@@ -340,7 +340,7 @@ const EditApprovalSetup = () => {
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium text-white bg-[#072D56] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Adding...' : 'Update Approval Item'}
+                                {isLoading ? 'Createing...' : 'Update Approval Item'}
                             </button>
                         </div>
 

@@ -11,7 +11,7 @@ import SelectField from '../../components/SelectField';
 import { BiArrowBack } from "react-icons/bi";
 import { Description } from '@headlessui/react';
 
-const AddFixedDeposit = () => {
+const CreateFixedDeposit = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
@@ -19,7 +19,7 @@ const AddFixedDeposit = () => {
 
     const navigate = useNavigate()
 
-    setHeaders('Add Fixed Deposit')
+    setHeaders('Create Fixed Deposit')
 
     const config = {
         headers: {
@@ -91,7 +91,7 @@ const AddFixedDeposit = () => {
                 <BiArrowBack className="mr-2" />
                 Back
             </button>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Fixed Deposit</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Fixed Deposit</h2>
             <form className="space-y-4" onSubmit={formik.handleSubmit}>
                 <div className='grid l:grid-cols-3 grid-cols-2 gap-6'>
 
@@ -187,7 +187,7 @@ const AddFixedDeposit = () => {
                         </div>
 
                     </div>
-                <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Add Fixed Deposit'}</button>
+                <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....' : 'Create Fixed Deposit'}</button>
             </form>
         </div>
 
@@ -197,4 +197,4 @@ const AddFixedDeposit = () => {
   )
 }
 
-export default AddFixedDeposit
+export default CreateFixedDeposit

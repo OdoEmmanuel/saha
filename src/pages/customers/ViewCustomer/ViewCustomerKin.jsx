@@ -51,23 +51,23 @@ const ViewCustomerKin = ({ dat }) => {
                     <h4 className=" mb-2 text-gray-500   ">
                         Next Of Kin Relationship
                     </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                         {data?.nextOfKinRelationship || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 text-gray-500 ">
-                        Next Of Kin Address
+                        Next Of Kin Createress
                     </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
-                        {data?.nextOfKinAddress || '----'}
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
+                        {data?.nextOfKinCreateress || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 text-gray-500 ">
                         Next Of Kin PhoneNo
                     </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                         {data?.nextOfKinPhoneNo || '----'}
                     </h4>
                 </div>
@@ -75,7 +75,7 @@ const ViewCustomerKin = ({ dat }) => {
                     <h4 className=" mb-2 text-gray-500 ">
                         Next Of Kin PhoneNo
                     </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                         {data?.nextOfKinPhoneNo || '----'}
                     </h4>
                 </div>
@@ -83,7 +83,7 @@ const ViewCustomerKin = ({ dat }) => {
                     <h4 className=" mb-2 text-gray-500 ">
                         Next Of Kin Relationship Other
                     </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                         {data?.nextOfKinRelationshipOther || '----'}
                     </h4>
                 </div>

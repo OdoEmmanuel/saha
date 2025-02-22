@@ -16,7 +16,7 @@ const Sidebar = ({ isOpen, tog }) => {
   const renderMenuItem = (item) => {
     const isActive = location.pathname === item.url;
     const isParentOfActive = item.children && item.children.some(child => location.pathname === child.url);
-    const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[700] text-[14px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg font-[700] text-[14px] py-2 px-2 hover:text-blue-600';
+    const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[700] text-[14px] font-inter" : 'text-[#fff]  rounded-lg font-[700] text-[14px] py-2 px-2 hover:text-blue-600';
 
     return (
       <motion.li
@@ -31,7 +31,7 @@ const Sidebar = ({ isOpen, tog }) => {
               const Open = openDropdown === items.key;
               const isActive = location.pathname === items.url;
               const isParentOfActive = items.children && items.children.some(child => location.pathname === child.url);
-              const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[700] text-[14px] font-inter" : 'text-[#fff] bg-[#007AFF26] rounded-lg py-2 px-2 font-[700] text-[14px] font-inter';
+              const activeClass = isActive || isParentOfActive ? "bg-[#007AFF26] text-[#009EDA] py-2 px-2 rounded-lg font-[700] text-[14px] font-inter" : 'text-[#fff]  rounded-lg py-2 px-2 font-[700] text-[14px] font-inter';
 
               return (
                 <motion.li

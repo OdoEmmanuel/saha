@@ -54,7 +54,7 @@ const ComplainId = () => {
 
         // Format the date into a string
         const twoDigitDay = ('0' + date.getDate()).slice(-2);
-        const twoDigitMonth = ('0' + (date.getMonth() + 1)).slice(-2); // Adding 1 to month since it's zero-based
+        const twoDigitMonth = ('0' + (date.getMonth() + 1)).slice(-2); // Createing 1 to month since it's zero-based
         const year = date.getFullYear();
 
         const hours = ('0' + date.getHours()).slice(-2);
@@ -232,52 +232,52 @@ const ComplainId = () => {
 
 
                             <div className="mb-4 ">
-                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                                     Complain Type
                                 </h4>
-                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                     {removeUnderscores(formik?.values?.complaintType) || '-----'}
                                 </h4>
                             </div>
                             <div className="mb-4 ">
-                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                                     Complain Date
                                 </h4>
-                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                     {formik?.values?.complaintDate || '-----'}
                                 </h4>
                             </div>
                             <div className="mb-4 ">
-                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                                     Complain Status
                                 </h4>
-                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                     {formik?.values?.complaintStatus || '-----'}
                                 </h4>
                             </div>
                             <div className="mb-4 ">
-                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                                     Complain Description
                                 </h4>
-                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                     {formik?.values?.compliantDescription || '-----'}
                                 </h4>
                             </div>
 
                             <div className="mb-4 ">
-                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                                     Complain Response
                                 </h4>
-                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                     {formik?.values?.compliantResponse || '-----'}
                                 </h4>
                             </div>
 
                             <div className="mb-4 ">
-                                <h4 className=" mb-2 dark:text-gray-400 font-[400]    text-gray-500">
+                                <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                                     Complain Response Date
                                 </h4>
-                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-500 dark:text-gray-400">
+                                <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
                                     {formik?.values?.complaintResponseDate || '-----'}
                                 </h4>
                             </div>

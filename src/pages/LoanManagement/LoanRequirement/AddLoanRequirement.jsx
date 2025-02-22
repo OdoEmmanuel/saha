@@ -11,7 +11,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import InputField2 from '../../../components/InputField2';
 import SelectField from '../../../components/SelectField';
 
-const AddLoanRequirement = () => {
+const CreateLoanRequirement = () => {
 
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const navigate = useNavigate()
@@ -30,7 +30,7 @@ const AddLoanRequirement = () => {
     const [monthlyChecked, setMonthlyChecked] = useState(false)
     const [name, setNameChecked] = useState(false)
     const [emailChecked, setEmailChecked] = useState(false)
-    const [addressChecked, setAddressChecked] = useState(false)
+    const [CreateressChecked, setCreateressChecked] = useState(false)
     const [roleChecked, setRoleChecked] = useState(false)
     const [statementChecked, setStatementChecked] = useState(false)
     const [cac, setCacChecked] = useState(false)
@@ -94,7 +94,7 @@ const AddLoanRequirement = () => {
     }, [])
 
 
-    setHeaders('Add Loan Requirement')
+    setHeaders('Create Loan Requirement')
     const handleGuarantorIdChecked = () => {
         setGuarantorId(!guarantorId)
     }
@@ -128,8 +128,8 @@ const AddLoanRequirement = () => {
         setEmailChecked(!emailChecked)
     }
 
-    const handleAddressChecked = () => {
-        setAddressChecked(!addressChecked)
+    const handleCreateressChecked = () => {
+        setCreateressChecked(!CreateressChecked)
     }
 
     const handleRoleChecked = () => {
@@ -199,7 +199,7 @@ const AddLoanRequirement = () => {
             monthlyIncomeRequired: monthlyChecked,
             businessNameRequired: name,
             businessEmailRequired: emailChecked,
-            businessAddressRequired: addressChecked,
+            businessCreateressRequired: CreateressChecked,
             businessRoleRequired: roleChecked,
             bankStatementRequired: statementChecked,
             cacRequired: cac,
@@ -264,7 +264,7 @@ const AddLoanRequirement = () => {
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Loan Requirement</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Loan Requirement</h2>
                     <form className="space-y-6">
                         <div className="grid grid-cols-4 gap-x-8 gap-y-8">
                             <div className="mb-3">
@@ -582,14 +582,14 @@ const AddLoanRequirement = () => {
                                     className="form-check-label font-semibold"
                                     htmlFor="customCheck3"
                                 >
-                                    Business Address
+                                    Business Createress
                                 </label>
                                 <input
                                     type="checkbox"
                                     className="w-4 h-4 rounded-lg"
                                     id="customCheck3"
-                                    checked={addressChecked}
-                                    onChange={handleAddressChecked}
+                                    checked={CreateressChecked}
+                                    onChange={handleCreateressChecked}
                                 />
                             </div>
                             <div className="flex items-center gap-2 mb-6">
@@ -806,4 +806,4 @@ const AddLoanRequirement = () => {
     )
 }
 
-export default AddLoanRequirement
+export default CreateLoanRequirement

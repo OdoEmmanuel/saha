@@ -36,7 +36,7 @@ const passwordRegExp =
     .required("required"),
   })
 
-  export const addStaff= yup.object().shape({
+  export const CreateStaffs= yup.object().shape({
     email: yup
     .string()
     .email('Please enter valid email')

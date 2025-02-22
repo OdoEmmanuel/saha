@@ -153,7 +153,7 @@ const Transaction = () => {
                         </div>
                     </div>
                     <div className='md:flex justify-between items-center md:mt-0 mt-4 '>
-                        <select
+                        {/* <select
                             value={selectedTransactionType}
                             onChange={(e) => setSelectedTransactionType(e.target.value)}
                             className="rounded-[10px] border-2 p-2 mr-4 md:w-auto w-full"
@@ -164,7 +164,7 @@ const Transaction = () => {
                                     {type.transactionType}
                                 </option>
                             ))}
-                        </select>
+                        </select> */}
                         <select
                             value={selectedTransactionStatus}
                             onChange={(e) => setSelectedTransactionStatus(e.target.value)}
@@ -201,40 +201,42 @@ const Transaction = () => {
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600" id="transactions">
                         <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600]">
                             <tr>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">ID</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">Type</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">Status</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap"> Login ID</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Transaction Date</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Account Number</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Account Name</th>
                                 <th className="px-4 py-4 text-start  whitespace-nowrap">Amount</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">Date</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">Description</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">From Account</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">To Account</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">Reference Number</th>
                                 <th className="px-4 py-4 text-start  whitespace-nowrap">Narration</th>
-                                <th className="px-4 py-4 text-start  whitespace-nowrap">Bank Name</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Beneficiary Name</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Beneficiary Account</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Beneficiary Bank</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Transfer Reference</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Transfer Type</th>
+                                <th className="px-4 py-4 text-start  whitespace-nowrap">Status</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                             {transactions.map((transaction, idx) => (
                                 <tr key={idx} className="bg-[#fff] text-[#667085]">
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.id}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.loginId}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionDate}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.fromAccountNumber}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.billsPaymentCustomerName}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionAmount}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.narration}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.receiverName}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.toAccountNumber}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.receivingBankName}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.retrievalReferenceNumber}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.type}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionStatus}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionAmount}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.createdDate}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionDescription}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.fromAccountNumber}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.toAccountNumber}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.retrievalRefferenceNumber}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.narration}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.receivingBankName}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
 
-                {/* Pagination controls can be added here */}
+                {/* Pagination controls can be Createed here */}
             </div>
         </div>
     );

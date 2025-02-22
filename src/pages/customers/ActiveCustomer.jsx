@@ -243,7 +243,7 @@ const ActiveCustomer = () => {
                 <div className="sm:flex  justify-between">
                     <div className='flex  justify-between px-2'>
 
-                        <div className="flex  border-2 bg-[#fff] rounded-lg sm:w-auto w-full  h-1/2 my-4 items-center">
+                        <div className="flex  border-2 bg-[#fff] rounded-lg sm:w-auto w-full  h-1/2 my-4 items-center p-2">
                             <div className=' mr-2 text-gray-500'>
                                 <BiSearch />
                             </div>
@@ -324,7 +324,7 @@ const ActiveCustomer = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            MOBILE{' '}
+                                            Phone{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}

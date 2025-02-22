@@ -97,7 +97,7 @@ const RevenueChart = ({ series, labels, title, name, set }) => {
     },
     grid: {
       borderColor: '#f1f1f1',
-      padding: {
+      pCreateing: {
         top: 10,
         right: 10,
         bottom: 10,

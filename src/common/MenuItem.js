@@ -54,9 +54,9 @@ import {
               url: '/ui/staffs/AllStaff',
             },
             {
-              key:'Add Staff',
-              label:'Add Staff',
-              url: '/ui/staffs/AddStaff'
+              key:'Create Staff',
+              label:' Create Staff',
+              url: '/ui/staffs/CreateStaff'
             }
           ]
         },
@@ -317,9 +317,9 @@ import {
               url: '/ui/permission/allgroup',
             },
             {
-              key: 'add-groups',
-              label: 'Add Groups',
-              url: '/ui/permission/Addgroup',
+              key: 'Create-groups',
+              label: 'Create Groups',
+              url: '/ui/permission/Creategroup',
             },
             {
               key: 'assign-staff',

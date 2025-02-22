@@ -171,11 +171,11 @@ const LoanPurpose = () => {
 
 
                             <Link
-                                to={`/ui/tables/add-loan-purpose`}
+                                to={`/ui/tables/Create-loan-purpose`}
                                 className="text-white btn bg-[#072D56] text-[10px] md:text-[16px]  hover:bg-primary rounded-[10px]  py-2 px-4"
                             >
                                 {' '}
-                                Add Loan Purpose
+                                Create Loan Purpose
                             </Link>
                         </div>
 

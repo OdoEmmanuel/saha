@@ -65,7 +65,7 @@ const AllComplains = () => {
 
         // Format the date into a string
         const twoDigitDay = ('0' + date.getDate()).slice(-2);
-        const twoDigitMonth = ('0' + (date.getMonth() + 1)).slice(-2); // Adding 1 to month since it's zero-based
+        const twoDigitMonth = ('0' + (date.getMonth() + 1)).slice(-2); // Createing 1 to month since it's zero-based
         const year = date.getFullYear();
 
         const hours = ('0' + date.getHours()).slice(-2);
@@ -179,7 +179,7 @@ const AllComplains = () => {
                          
                         <div className="flex  justify-between   lg:w-full w-full items-center rounded mr-4">
 
-                            <label className='w-[60%]'>Select Complaint Status:</label>
+                            <label className='w-[60%]'> Complaint Status:</label>
 
                             <select
                                 className="rounded-[10px] border-2 p-2 w-[200px] "
@@ -195,7 +195,7 @@ const AllComplains = () => {
                         </div>
                         <div className="flex topbar  w-full  items-center ">
 
-                            <label className='w-full'>Select Complaint Type:</label>
+                            <label className='w-full'>Complaint Type:</label>
 
                             <select
                               className="rounded-[10px] border-2 p-2 w-[200px] "

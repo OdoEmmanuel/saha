@@ -236,7 +236,7 @@ const Fixed = () => {
                             </table>
                         </div>
         
-                        {/* Pagination controls can be added here */}
+                        {/* Pagination controls can be Createed here */}
                     </div>
                 </div>
     )
