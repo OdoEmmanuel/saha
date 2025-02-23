@@ -132,7 +132,7 @@ const CreateStaff = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className="max-w mx-auto bg-white rounded-[10px] shadow-xl overflow-hidden">
+            <div className="max-w-md mx-auto bg-white rounded-[10px] shadow-xl overflow-hidden">
                 <div className="px-6 py-4">
                     <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
                         <BiArrowBack className="mr-2" />
@@ -140,7 +140,7 @@ const CreateStaff = () => {
                     </button>
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Staff</h2>
                     <form className="space-y-4" onSubmit={formik.handleSubmit}>
-                        <div className='grid grid-cols-2 gap-4'>
+                        <div className='grid grid-cols-1 gap-4'>
 
                             <InputField2
                                 label={`Email`}

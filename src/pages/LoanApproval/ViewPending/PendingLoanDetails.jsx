@@ -11,10 +11,13 @@ import ViewUserDetails from './ViewPendingUserDetails';
 import ViewLoanDocuments from './ViewPendingLoanDocuments';
 import AllLoanHeader from './PendingLoanHeader';
 import Modal from './Modal';
+import ViewPendingCollateral from './ViewPendingCollateral';
 
 const PendingLoanDetails = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [data, setdata] = useState({})
+     const[collaterals,setCollaterals] =useState([])
+        const [status,setStaus] = useState()
   const [kyc, setKyc] = useState([])
   const [approvalStatus, setApprovalStatus] = useState('')
   const [isLoading, setisLoading] = useState(false);
@@ -42,6 +45,8 @@ const PendingLoanDetails = () => {
         .then((res) => {
             
             setdata(res.data.data)
+            setCollaterals(res.data.data.collaterals)
+            setStaus(res.data.data.lienStatus)
 
              
              
@@ -74,9 +79,10 @@ const PendingLoanDetails = () => {
             )}
             <AllLoanHeader id={id} func={open} />
             <Routes>
-                <Route path={'/'} element={<ViewLoanDetails dat={data}/>} />
+                <Route path={'/'} element={<ViewLoanDetails dat={data} status={status}/>} />
                 <Route path={'/user'} element={<ViewUserDetails  dat={data}/>} />
                 <Route path={'/documents'} element={<ViewLoanDocuments data={data} />} />
+                <Route path={'/collaterals'} element={<ViewPendingCollateral data={collaterals} />} />
             </Routes>
         </div>
     )

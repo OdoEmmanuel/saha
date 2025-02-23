@@ -5,12 +5,14 @@ import axios from 'axios'
 
 
 const SetSystem = () => {
-    const { middleware, authorizationService, request, clientid } = useAuthContext()
+    const { middleware, authorizationService, request, clientid, setHeaders} = useAuthContext()
     const [settings, setSettings] = useState([])
     const [dropdownOptions, setDropdownOptions] = useState({})
     const superAdminKey = 'super_admin_emails'
     const superAdminValue = localStorage.getItem('email')
     const email = localStorage.getItem('email')
+
+    setHeaders('System Configuration')
 
     useEffect(() => {
         const token = localStorage.getItem('token')

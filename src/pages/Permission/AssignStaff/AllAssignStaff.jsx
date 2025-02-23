@@ -19,7 +19,7 @@ const AllAssignStaff = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     const navigate = useNavigate()
-    setHeaders(`Assign STAFF`)
+    setHeaders(`Assign Staff`)
 
     useEffect(() => {
         setisLoading(true);
@@ -188,11 +188,11 @@ const AllAssignStaff = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            PHONE{' '}
+                                            Phone{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            UserType{' '}
+                                            User Type{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}

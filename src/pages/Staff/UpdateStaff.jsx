@@ -167,7 +167,7 @@ const UpdateStaff = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-        <div className=" mx-auto bg-white rounded-lg  shadow-xl overflow-hidden">
+        <div className="max-w-md mx-auto bg-white rounded-lg  shadow-xl overflow-hidden">
         <div className="px-6 py-4">
         <button onClick={() => navigate(-1)} className="mb-6 flex items-center text-[#072D56] transition-colors">
           <BiArrowBack className="mr-2" />
@@ -175,7 +175,7 @@ const UpdateStaff = () => {
         </button>
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Staff</h2>
         <form className="space-y-4" onSubmit={formik.handleSubmit}>
-          <div className='grid grid-cols-2 gap-4'>
+          <div className='grid grid-cols-1 gap-4'>
 
           <InputField2
                   label={`Email`}
@@ -228,7 +228,7 @@ const UpdateStaff = () => {
               />
       
           </div>
-          <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Create Staff'}</button>
+          <button type='submit' className="text-white btn w-full bg-[#072D56] rounded-[10px] px-5 py-2"  > {isLoading ? 'loading....':'Update Staff'}</button>
       </form>
         </div>
     

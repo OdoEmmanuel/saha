@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
-const AllLoanHeader = ({ id }) => {
+const AllLoanHeader = ({ id,status }) => {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("customers");
 
@@ -10,6 +10,8 @@ const AllLoanHeader = ({ id }) => {
     { name: 'Loan Details', value: 'customers', path: `/ui/LoanApproval/${id}/details/` },
     { name: 'User Details', value: 'kin', path: `/ui/LoanApproval/${id}/details/user` },
     { name: 'Documents', value: 'documents', path: `/ui/LoanApproval/${id}/details/documents` },
+    ...(status === 'ACTIVE' ? [{ name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/${id}/details/collaterals` }] : [])
+
   ];
 
   return (

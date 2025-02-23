@@ -363,7 +363,7 @@ const HomePage = () => {
                                     </span>
                                     Loan Processed</h1>
                                 <p className='flex flex-col gap-2 text-[rgba(94,92,92,1)] text-[16px] font-[600]'>
-                                    <span className=''>{parseFloat(data.noOfLoanApproved)}</span>
+                                    <span className=''>{parseFloat(data.noOfLoanProcessed)}</span>
                                     {Element}
                                 </p>
                             </div>
