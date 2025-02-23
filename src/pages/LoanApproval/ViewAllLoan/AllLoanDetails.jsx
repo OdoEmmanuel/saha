@@ -9,11 +9,14 @@ import { useNavigate, Link, Route, Routes, useParams } from 'react-router-dom';
 import ViewLoanDetails from './ViewLoanDetails';
 import ViewUserDetails from './ViewUserDetails';
 import ViewLoanDocuments from './ViewLoanDocuments';
+import ViewLoanCollateral from './ViewLoanCollateral';
 import AllLoanHeader from './AllLoanHeader';
 
 const AllLoanDetails = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [data, setdata] = useState({})
+    const[collaterals,setCollaterals] =useState([])
+    const [status,setStaus] = useState()
   const [kyc, setKyc] = useState([])
   const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
@@ -38,6 +41,8 @@ const AllLoanDetails = () => {
         .then((res) => {
            
                 setdata(res.data.data)
+                setCollaterals(res.data.data.collaterals)
+                setStaus(res.data.data.lienStatus)
              
              
         }).catch((e) => {
@@ -66,11 +71,12 @@ const AllLoanDetails = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <AllLoanHeader id={id} />
+            <AllLoanHeader id={id} status={status} />
             <Routes>
                 <Route path={'/'} element={<ViewLoanDetails dat={data}/>} />
                 <Route path={'/user'} element={<ViewUserDetails  dat={data}/>} />
                 <Route path={'/documents'} element={<ViewLoanDocuments data={data} />} />
+                <Route path={'/collaterals'} element={< ViewLoanCollateral data={collaterals} />} />
             </Routes>
         </div>
     )

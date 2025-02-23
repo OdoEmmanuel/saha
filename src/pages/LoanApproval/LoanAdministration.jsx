@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useRef } from 'react'
 import { PulseLoader } from "react-spinners";
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ import Checkbox from "../../assets/checkbox.png"
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import * as XLSX from "xlsx";
+import { MdMoreVert, } from "react-icons/md";
 
 const LoanAdministration = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
@@ -20,10 +21,12 @@ const LoanAdministration = () => {
     const [pagesize, SetPageSize] = useState(10)
     const [totalPages, setTotalPages] = useState(1)
     const [users, setUsers] = useState([])
+    const [activeDropdown, setActiveDropdown] = useState(null);
     const [filteredUsers, setFilteredUsers] = useState([])
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
+    const dropdownRef = useRef(null);
 
     setHeaders('Loan Administration')
 
@@ -37,14 +40,31 @@ const LoanAdministration = () => {
         },
     };
 
+
+    useEffect(() => {
+        function handleDropdownClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setActiveDropdown(null);
+            }
+        }
+
+        if (activeDropdown !== null) {
+            document.addEventListener("mousedown", handleDropdownClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleDropdownClickOutside);
+        };
+    }, [activeDropdown]);
+
     const downloadExcel = () => {
         const workbook = XLSX.utils.book_new();
         const worksheet = XLSX.utils.table_to_sheet(
-          document.getElementById("Loan-admin")
+            document.getElementById("Loan-admin")
         );
         XLSX.utils.book_append_sheet(workbook, worksheet, "Loan Adminisration Table");
         XLSX.writeFile(workbook, "Loan-admin.xlsx");
-      };
+    };
 
     useEffect(() => {
 
@@ -77,7 +97,7 @@ const LoanAdministration = () => {
 
             })
             .catch((e) => {
-               
+
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
@@ -108,6 +128,14 @@ const LoanAdministration = () => {
         return `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`
     }
 
+    const handleActionClick = (userId) => {
+        if (activeDropdown === userId) {
+            setActiveDropdown(null);
+        } else {
+            setActiveDropdown(userId);
+        }
+    };
+
 
     const bookandUnbook = async (reference, status) => {
         try {
@@ -118,7 +146,7 @@ const LoanAdministration = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                      
+
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
@@ -145,7 +173,7 @@ const LoanAdministration = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                        
+
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
@@ -240,25 +268,25 @@ const LoanAdministration = () => {
                         />
                     </div>
                     <div className='flex sm:w-auto w-full'>
-                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0  sm:w-auto w-[30%]'>
-                        <div>
-                            <IoFilter />
+                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0  sm:w-auto w-[30%]'>
+                            <div>
+                                <IoFilter />
+                            </div>
+                            <select
+                                value={pagesize}
+                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                                className='outline-none'
+                            >
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
                         </div>
-                        <select
-                            value={pagesize}
-                            onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                            className='outline-none'
-                        >
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                            <option value="25">25</option>
-                            <option value="30">30</option>
-                            <option value="50">50</option>
-                        </select>
-                    </div>
-                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0  sm:w-auto w-full sm:ml-0 ml-4'>
+                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0  sm:w-auto w-full sm:ml-0 ml-4'>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">
@@ -275,7 +303,7 @@ const LoanAdministration = () => {
                             <p className='font-[400] text-[14px] font-inter'>Exports Loan Administation</p>
                         </button>
                     </div>
-                    
+
 
                 </div>
 
@@ -374,8 +402,8 @@ const LoanAdministration = () => {
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {formatDateString(staff.createdAt)}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ?  'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
+                                                {/* <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
+                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
                                                         }
@@ -383,18 +411,79 @@ const LoanAdministration = () => {
                                                 </td>
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Tippy content="view">
-                                                    <Link
-                                                        to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
-                                                        className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
-                                                    >
-                                                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 7C6.25 6.00544 6.64509 5.05161 7.34835 4.34835C8.05161 3.64509 9.00544 3.25 10 3.25C10.9946 3.25 11.9484 3.64509 12.6517 4.34835C13.3549 5.05161 13.75 6.00544 13.75 7C13.75 7.99456 13.3549 8.94839 12.6517 9.65165C11.9484 10.3549 10.9946 10.75 10 10.75C9.00544 10.75 8.05161 10.3549 7.34835 9.65165C6.64509 8.94839 6.25 7.99456 6.25 7ZM10 4.75C9.40326 4.75 8.83097 4.98705 8.40901 5.40901C7.98705 5.83097 7.75 6.40326 7.75 7C7.75 7.59674 7.98705 8.16903 8.40901 8.59099C8.83097 9.01295 9.40326 9.25 10 9.25C10.5967 9.25 11.169 9.01295 11.591 8.59099C12.0129 8.16903 12.25 7.59674 12.25 7C12.25 6.40326 12.0129 5.83097 11.591 5.40901C11.169 4.98705 10.5967 4.75 10 4.75Z" fill="#072D56" />
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.323 5.646C1.904 6.25 1.75 6.723 1.75 7C1.75 7.277 1.904 7.75 2.323 8.354C2.729 8.937 3.331 9.57 4.093 10.155C5.62 11.327 7.713 12.25 10 12.25C12.287 12.25 14.38 11.327 15.907 10.155C16.669 9.57 17.271 8.937 17.677 8.354C18.096 7.75 18.25 7.277 18.25 7C18.25 6.723 18.096 6.25 17.677 5.646C17.271 5.063 16.669 4.43 15.907 3.845C14.38 2.673 12.287 1.75 10 1.75C7.713 1.75 5.62 2.673 4.093 3.845C3.331 4.43 2.729 5.063 2.323 5.646ZM3.179 2.655C4.91 1.327 7.316 0.25 10 0.25C12.684 0.25 15.09 1.327 16.82 2.655C17.687 3.32 18.403 4.062 18.909 4.791C19.401 5.5 19.75 6.277 19.75 7C19.75 7.723 19.4 8.5 18.909 9.209C18.403 9.938 17.687 10.679 16.821 11.345C15.091 12.673 12.684 13.75 10 13.75C7.316 13.75 4.91 12.673 3.18 11.345C2.313 10.68 1.597 9.938 1.091 9.209C0.6 8.5 0.25 7.723 0.25 7C0.25 6.277 0.6 5.5 1.091 4.791C1.597 4.062 2.313 3.321 3.179 2.655Z" fill="#072D56" />
-                                                        </svg>
+                                                        <Link
+                                                            to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
+                                                            className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
+                                                        >
+                                                            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 7C6.25 6.00544 6.64509 5.05161 7.34835 4.34835C8.05161 3.64509 9.00544 3.25 10 3.25C10.9946 3.25 11.9484 3.64509 12.6517 4.34835C13.3549 5.05161 13.75 6.00544 13.75 7C13.75 7.99456 13.3549 8.94839 12.6517 9.65165C11.9484 10.3549 10.9946 10.75 10 10.75C9.00544 10.75 8.05161 10.3549 7.34835 9.65165C6.64509 8.94839 6.25 7.99456 6.25 7ZM10 4.75C9.40326 4.75 8.83097 4.98705 8.40901 5.40901C7.98705 5.83097 7.75 6.40326 7.75 7C7.75 7.59674 7.98705 8.16903 8.40901 8.59099C8.83097 9.01295 9.40326 9.25 10 9.25C10.5967 9.25 11.169 9.01295 11.591 8.59099C12.0129 8.16903 12.25 7.59674 12.25 7C12.25 6.40326 12.0129 5.83097 11.591 5.40901C11.169 4.98705 10.5967 4.75 10 4.75Z" fill="#072D56" />
+                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.323 5.646C1.904 6.25 1.75 6.723 1.75 7C1.75 7.277 1.904 7.75 2.323 8.354C2.729 8.937 3.331 9.57 4.093 10.155C5.62 11.327 7.713 12.25 10 12.25C12.287 12.25 14.38 11.327 15.907 10.155C16.669 9.57 17.271 8.937 17.677 8.354C18.096 7.75 18.25 7.277 18.25 7C18.25 6.723 18.096 6.25 17.677 5.646C17.271 5.063 16.669 4.43 15.907 3.845C14.38 2.673 12.287 1.75 10 1.75C7.713 1.75 5.62 2.673 4.093 3.845C3.331 4.43 2.729 5.063 2.323 5.646ZM3.179 2.655C4.91 1.327 7.316 0.25 10 0.25C12.684 0.25 15.09 1.327 16.82 2.655C17.687 3.32 18.403 4.062 18.909 4.791C19.401 5.5 19.75 6.277 19.75 7C19.75 7.723 19.4 8.5 18.909 9.209C18.403 9.938 17.687 10.679 16.821 11.345C15.091 12.673 12.684 13.75 10 13.75C7.316 13.75 4.91 12.673 3.18 11.345C2.313 10.68 1.597 9.938 1.091 9.209C0.6 8.5 0.25 7.723 0.25 7C0.25 6.277 0.6 5.5 1.091 4.791C1.597 4.062 2.313 3.321 3.179 2.655Z" fill="#072D56" />
+                                                            </svg>
 
-                                                    </Link>
+                                                        </Link>
                                                     </Tippy>
-                                                </td>
+                                                </td> */}
+                                             <td className='relative'>
+  <div className="flex items-center gap-2">
+    <button
+      className="p-2 text-gray-400 hover:bg-[#1a5493] rounded-lg transition-colors"
+      onClick={() => handleActionClick(staff.id)}
+    >
+      <MdMoreVert size={20} />
+    </button>
+
+    {activeDropdown === (staff.id || idx) && (
+      <div
+        className="absolute left-1 top-12 mt-2 w-48 py-1 bg-white rounded-md shadow-lg z-10 border border-[#F2F2F2]"
+        ref={dropdownRef}
+      >
+        <Link
+          to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
+          className="flex items-center justify-between px-4 py-2 text-[#667085] hover:bg-[#F8F8F8] transition-colors duration-200"
+        >
+          <svg
+            width="20"
+            height="14"
+            viewBox="0 0 20 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M6.25 7C6.25 6.00544 6.64509 5.05161 7.34835 4.34835C8.05161 3.64509 9.00544 3.25 10 3.25C10.9946 3.25 11.9484 3.64509 12.6517 4.34835C13.3549 5.05161 13.75 6.00544 13.75 7C13.75 7.99456 13.3549 8.94839 12.6517 9.65165C11.9484 10.3549 10.9946 10.75 10 10.75C9.00544 10.75 8.05161 10.3549 7.34835 9.65165C6.64509 8.94839 6.25 7.99456 6.25 7ZM10 4.75C9.40326 4.75 8.83097 4.98705 8.40901 5.40901C7.98705 5.83097 7.75 6.40326 7.75 7C7.75 7.59674 7.98705 8.16903 8.40901 8.59099C8.83097 9.01295 9.40326 9.25 10 9.25C10.5967 9.25 11.169 9.01295 11.591 8.59099C12.0129 8.16903 12.25 7.59674 12.25 7C12.25 6.40326 12.0129 5.83097 11.591 5.40901C11.169 4.98705 10.5967 4.75 10 4.75Z"
+              fill="#072D56"
+            />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M2.323 5.646C1.904 6.25 1.75 6.723 1.75 7C1.75 7.277 1.904 7.75 2.323 8.354C2.729 8.937 3.331 9.57 4.093 10.155C5.62 11.327 7.713 12.25 10 12.25C12.287 12.25 14.38 11.327 15.907 10.155C16.669 9.57 17.271 8.937 17.677 8.354C18.096 7.75 18.25 7.277 18.25 7C18.25 6.723 18.096 6.25 17.677 5.646C17.271 5.063 16.669 4.43 15.907 3.845C14.38 2.673 12.287 1.75 10 1.75C7.713 1.75 5.62 2.673 4.093 3.845C3.331 4.43 2.729 5.063 2.323 5.646ZM3.179 2.655C4.91 1.327 7.316 0.25 10 0.25C12.684 0.25 15.09 1.327 16.82 2.655C17.687 3.32 18.403 4.062 18.909 4.791C19.401 5.5 19.75 6.277 19.75 7C19.75 7.723 19.4 8.5 18.909 9.209C18.403 9.938 17.687 10.679 16.821 11.345C15.091 12.673 12.684 13.75 10 13.75C7.316 13.75 4.91 12.673 3.18 11.345C2.313 10.68 1.597 9.938 1.091 9.209C0.6 8.5 0.25 7.723 0.25 7C0.25 6.277 0.6 5.5 1.091 4.791C1.597 4.062 2.313 3.321 3.179 2.655Z"
+              fill="#072D56"
+            />
+          </svg>
+          <p className="text-[16px] font-[400]">View Loan</p>
+        </Link>
+
+        {
+            staff.lien
+        }
+        <div className='p-4'>
+        <button
+          onClick={() => bookandUnbook(staff.reference, staff.bookStatus)}
+          className={`w-full px-4 py-2 text-xs rounded-[25px] transition-colors duration-200 ${
+            staff.bookStatus === "Booked"
+              ? "bg-[#E2FFF1] border-2 border-[#0FA958] text-[#000000] hover:bg-green-500/[.57]"
+              : "bg-[#FFE8EA] border-2 border-[#DC3545] text-[#000000] hover:bg-red-500/[.57]"
+          }`}
+        >
+          {staff.bookStatus === "Booked" ? "Unbook" : "Book"}
+        </button>
+        </div>
+       
+      </div>
+    )}
+  </div>
+</td>
                                             </tr>
                                         ))}
                                     </tbody>

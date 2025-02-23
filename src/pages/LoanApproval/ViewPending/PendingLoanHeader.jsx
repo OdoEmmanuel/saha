@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown } from 'lucide-react';
 import Modal from './Modal';
 
-const PendingLoanHeader = ({ id }) => {
+const PendingLoanHeader = ({ id,status }) => {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("customers");
   const [openModal, setOpenModal] = useState(false);
@@ -13,6 +13,7 @@ const PendingLoanHeader = ({ id }) => {
     { name: 'Loan Details', value: 'customers', path: `/ui/LoanApproval/pendingloans/${id}/` },
     { name: 'User Details', value: 'kin', path: `/ui/LoanApproval/pendingloans/${id}/user` },
     { name: 'Documents', value: 'documents', path: `/ui/LoanApproval/pendingloans/${id}/documents` },
+    ...(status === 'ACTIVE' ? [{ name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/pendingloans/${id}/collaterals` }] : [])
   ];
 
   const statusOptions = [
