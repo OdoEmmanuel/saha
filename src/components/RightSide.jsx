@@ -67,6 +67,8 @@ import Airtime from '../pages/Report/Airtime';
 import Bill from '../pages/Report/Bill';
 import Data from '../pages/Report/Data';
 import Fixed from '../pages/Report/Fixed';
+import LienAdministration from '../pages/LoanApproval/LienAdministration';
+import AllLienApproval from '../pages/LoanManagement/Property/LienApproval/AllLienApprova;l';
 const RightSide = ({isOpen, tog}) => {
   
  
@@ -98,6 +100,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path='/ui/LoanApproval/pendingloans/:id/*' element={<PendingLoanDetails/>}></Route>
             <Route path='/ui/LoanApproval/activeloans'element={<ActiveLoan/>}></Route>
             <Route path='/ui/LoanApproval/loanAdminisration' element={<LoanAdministration/>}></Route>
+            <Route path='/ui/LoanApproval/lien-Adminisration' element={<LienAdministration/>}></Route>
             <Route path='/ui/tables/loan-purpose' element={<LoanPurpose/>}></Route>
             <Route path='/ui/tables/Create-loan-purpose' element={<CreateLoanPurpose/>}></Route>
             <Route path='/ui/tables/edit-loan-purpose/:id' element={<UpdateLoanPuropse/>}></Route>
@@ -147,6 +150,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/tables/loantype" element={<GetAllLoanTypes/>}></Route>
             <Route path="/ui/tables/createLoanType" element={<CreateLoanType/>}></Route>
             <Route path="/ui/tables/updateloanType/:id" element={<UpdateLoanType/>}></Route>
+            <Route path="/ui/tables/approveLien" element={<AllLienApproval/>}></Route>
           </Routes>
      
         

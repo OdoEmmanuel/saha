@@ -158,6 +158,8 @@ import {
               label: 'Loan Administration',
               url: '/ui/LoanApproval/loanAdminisration',
             },
+            
+            
           ],
         },
      
@@ -263,9 +265,28 @@ import {
         {
           key:'property',
           label:'Properties',
-          url:'/ui/tables/property/',
+     
           isTitle:false,
-          icon:Briefcase
+          icon:Briefcase,
+          children: [
+            {
+              key: 'All Properties',
+              label: 'All Properties',
+              url: '/ui/tables/property',
+            },
+            {
+              key: 'lien-administration',
+              label: 'Lien Administration',
+              url: '/ui/LoanApproval/lien-Adminisration',
+            },
+            {
+              key: 'lien-administration',
+              label: 'Lien Approval Setup',
+              url: '/ui/tables/approveLien',
+            },
+
+           
+          ],
         },
         // {
         //   key: 'maker-checker',
