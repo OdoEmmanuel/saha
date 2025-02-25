@@ -160,7 +160,7 @@ const UpdateStaff = () => {
         }
     })
     return (
-        <div className=" p-8 ">
+        <div className=" px-8 py-4 ">
               {isLoading && (
                 <div className="fixed bg-black/[0.6] h-screen w-screen z-50 left-0 top-0 items-center flex justify-center">
                     {" "}
