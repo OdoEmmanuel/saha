@@ -24,7 +24,7 @@ const AllLienApproval = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
-    setHeaders('Pending Loans')
+    setHeaders('Lien Approval Setup')
 
     const config = {
         headers: {
@@ -45,18 +45,33 @@ const AllLienApproval = () => {
 
 
     const fetchData = async () => {
+        // const body = {
+        //     approvalItemType: 'ReleasePropertyLien',
+        //     companyCode: 'GTI',
+        //     currentApprovalStage: null,
+        //     reference: null,
+        //     approvalStatus: null,
+        //     startDate: null,
+        //     endDate: null,
+        //     allowOnlyLoggedInUser: true,
+        //     pageIndex: pageNumber,
+        //     pageSize: pagesize,
+        // }
+
         const body = {
-            approvalItemType: 'ReleasePropertyLien',
-            companyCode: 'GTI',
-            currentApprovalStage: null,
-            reference: null,
-            approvalStatus: null,
-            startDate: null,
-            endDate: null,
-            allowOnlyLoggedInUser: true,
-            pageIndex: pageNumber,
-            pageSize: pagesize,
+            "approvalItemType":"ReleasePropertyLien",
+            "includeLoggedInUser":true,
+            "approvalStatus":null,
+            "reference":null,
+            "currentApprovalStage": null,
+            "companyCode":"GTI",
+            "startDate":null,
+            "endDate":null,
+            "pageIndex": 0,
+            "pageSize": 50
         }
+        
+        
 
         setisLoading(true)
         axios.post(`${authorizationService}approvals/filter`, body, config)
@@ -69,17 +84,17 @@ const AllLienApproval = () => {
             .catch((e) => {
               
 
-                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                    toast.error(e.response.data.responseMessage)
+                if (e.response?.data?.responseMessage === 'Invalid/Expired Token' || e.response?.data?.responseMessage === 'Invalid Token' || e.response?.data?.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response?.data?.responseMessage)
                     navigate('/auth/login')
                     localStorage.clear()
                 }
-                else if (e.response.data.responseMessage === 'Insufficient permission') {
-                    toast.error(e.response.data.responseMessage)
+                else if (e.response?.data?.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response?.data?.responseMessage)
                     navigate('/')
                 }
                 else {
-                    toast.error(e.response.data.responseMessage)
+                    toast.error(e.response?.data?.responseMessage)
                 }
             })
             .finally(() => {
@@ -291,41 +306,27 @@ const AllLienApproval = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Email{' '}
+                                             Email{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Stage{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
                                             Phone{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
-                                            loan Amount{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Customer Id{' '}
+                                            Approval Stage{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Reference{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
                                             Approval Status{' '}
                                         </th>
-
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Monthly Income{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Created At{' '}
-                                        </th>
+                                        
+                                        
+                                        
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Action (s){' '}
@@ -354,25 +355,16 @@ const AllLienApproval = () => {
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.currentApprovalStage}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.loanAmount}
-                                                </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.customerId}
-                                                </td>
+                                               
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.reference}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.approvalStatus}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.monthlyIncome}
-                                                </td>
+                                              
 
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {formatDateString(staff.createdAt)}
-                                                </td>
+                                               
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
@@ -383,7 +375,7 @@ const AllLienApproval = () => {
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Tippy content="view">
                                                         <Link
-                                                            to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
+                                                            to={`/ui/tables/viewapprovelien/${staff.id}`}
                                                             className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                         >
                                                             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">

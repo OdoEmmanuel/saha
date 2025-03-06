@@ -224,7 +224,7 @@ const AllProperties = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Createress{' '}
+                                        Address{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}

@@ -69,6 +69,11 @@ import Data from '../pages/Report/Data';
 import Fixed from '../pages/Report/Fixed';
 import LienAdministration from '../pages/LoanApproval/LienAdministration';
 import AllLienApproval from '../pages/LoanManagement/Property/LienApproval/AllLienApprova;l';
+import LienApprovalDetails from '../pages/LoanManagement/Property/LienApproval/ViewLienApproval/PendingLoanDetails';
+import AllStock from '../pages/StocksManagement/AllStock';
+import CreateStocks from '../pages/StocksManagement/CreateStocks';
+import UpdateStock from '../pages/StocksManagement/UpdateStock';
+import ViewStock from '../pages/StocksManagement/ViewStock';
 const RightSide = ({isOpen, tog}) => {
   
  
@@ -151,6 +156,11 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/tables/createLoanType" element={<CreateLoanType/>}></Route>
             <Route path="/ui/tables/updateloanType/:id" element={<UpdateLoanType/>}></Route>
             <Route path="/ui/tables/approveLien" element={<AllLienApproval/>}></Route>
+            <Route path= "/ui/tables/viewapprovelien/:id" element={<LienApprovalDetails/>}></Route>
+            <Route path="/ui/tables/stocks/" element={<AllStock/>}></Route>
+            <Route path="/ui/tables/create-stocks/" element={<CreateStocks/>}></Route>
+            <Route path="/ui/tables/stocks/:id/" element={<UpdateStock/>}></Route>
+            <Route path="/ui/tables/View-stocks/:id/" element={<ViewStock/>}></Route>
           </Routes>
      
         

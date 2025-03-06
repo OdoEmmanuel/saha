@@ -21,6 +21,7 @@
     "framer-motion": "^11.9.0",
     "jsencrypt": "^3.3.2",
     "lucide-react": "^0.416.0",
+    "lucide-solid": "^0.477.0",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
     "react-datepicker": "^7.3.0",

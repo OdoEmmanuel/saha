@@ -24,7 +24,8 @@ import {
     Archive,
     Anchor,
     User,
-    ContactRound
+    ContactRound,
+    AlignEndHorizontal
   } from 'lucide-react'
 
 
@@ -287,6 +288,34 @@ import {
 
            
           ],
+        },
+
+        {
+          key:'stocks',
+          label:'Stocks Management',
+          isTitle:false,
+          icon:AlignEndHorizontal,
+          
+      
+      
+      
+        children: [
+          {
+            key: 'Allstocks',
+            label: 'All Stocks',
+            url: '/ui/tables/stocks',
+            parentKey: 'dashboard'
+          }
+      
+          // {
+          //   key: 'all-customer',
+          //   label: 'Customer',
+          //   url: '/ui/customer/customer-date',
+          //   parentKey: 'dashboard',
+          // },
+          
+          
+        ],
         },
         // {
         //   key: 'maker-checker',

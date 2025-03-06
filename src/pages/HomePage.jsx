@@ -235,7 +235,7 @@ const HomePage = () => {
                         <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
                             <label className="text-gray-700">Date Range:</label>
                             <motion.div
-                                className="relative flex items-center border rounded-[10px] border-gray-300  px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
+                                className="relative flex items-center border rounded-[10px] border-gray-300  px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200 "
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -249,7 +249,7 @@ const HomePage = () => {
                                     }}
                                     isClearable={true}
                                     placeholderText="Select date range"
-                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
+                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full z-[00]"
                                 />
                             </motion.div>
                         </div>
