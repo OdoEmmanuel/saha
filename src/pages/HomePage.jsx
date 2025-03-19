@@ -19,11 +19,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const HomePage = () => {
     // ... (keep all your existing state and functions)
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext();
-    const [dateRange, setDateRange] = useState([
-        new Date(new Date().setMonth(new Date().getMonth() - 5)),
-        new Date()
-    ]);
+    const [dateRange, setDateRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
+    const [datesSelected, setDatesSelected] = useState(false);
     const [data, setData] = useState({});
     const [transactionStatusSummary, setTransactionSummary] = useState([]);
     const [loanStatusSummary, setLoanStatusSummary] = useState([]);
@@ -51,14 +49,12 @@ const HomePage = () => {
     };
 
     useEffect(() => {
-        if (startDate && endDate) {
-            FetchData().finally(() => setIsLoading(false));
-        }
-        fetchCustomer()
+        FetchData().finally(() => setIsLoading(false));
+        fetchCustomer();
     }, [dateRange]);
 
     const formatDateString = (date) => {
-        if (!date) return '';
+        if (!date) return null;
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
@@ -174,7 +170,7 @@ const HomePage = () => {
 
     return (
         <motion.div
-            className='relative z-0 p-0'
+            className='relative  p-0'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -208,13 +204,14 @@ const HomePage = () => {
                 >
 
 
-                    {/* <div className=" mb-5">
-                        <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
+                    <div className=" mb-5 ">
+                        <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2 ">
                             <label className="text-gray-700">Date Range:</label>
                             <motion.div
-                                className="relative flex items-center border border-gray-300 rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
+                                className="relative flex items-center border border-gray-300 z-[99999] rounded px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                            // Ensure the parent has a proper z-index
                             >
                                 <IoMdCalendar className="text-gray-500 mr-2" size={20} />
                                 <DatePicker
@@ -227,41 +224,23 @@ const HomePage = () => {
                                     isClearable={true}
                                     placeholderText="Select date range"
                                     className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-[16rem]"
+                                    popperPlacement="start" // Set the dropdown to appear above the input
+                                    popperClassName="react-datepicker-popper-custom" // Add a custom class for styling
+                                    portalId="root-portal"  // Add a custom class for styling
                                 />
                             </motion.div>
-                        </div>
-                    </div> */}
-                    <div className="mb-5">
-                        <div className="flex items-center space-x-4 md:flex-row md:items-center md:space-x-4 mt-2">
-                            <label className="text-gray-700">Date Range:</label>
-                            <motion.div
-                                className="relative flex items-center border rounded-[10px] border-gray-300  px-3 py-2 bg-[#fff] hover:border-blue-500 transition-colors duration-200"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <IoMdCalendar className="text-gray-500 mr-2 flex-shrink-0" size={20} />
-                                <DatePicker
-                                    selectsRange={true}
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    onChange={(update) => {
-                                        setDateRange(update);
-                                    }}
-                                    isClearable={true}
-                                    placeholderText="Select date range"
-                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
-                                />
-                            </motion.div>
+
                         </div>
                     </div>
+
                 </motion.div>
             </motion.div>
 
 
 
             <motion.div
-                className='sm:grid grid-cols-3   gap-4 xss:flex flex-col items-center mt-5'
-                variants={staggerChildren}
+                className='sm:grid grid-cols-3   gap-4 xss:flex flex-col items-center mt-5 z-0'
+            // variants={staggerChildren}
             // initial="initial"
             // animate="animate"
             >
@@ -277,7 +256,7 @@ const HomePage = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <div className='absolute top-[15%] left-[8%] flex flex-col z-[1]'>
+                        <div className='absolute top-[15%] left-[8%] flex flex-col z-[0]'>
                             <p className='text-[#000000] text-[20px] font-[400]'>{item.title}</p>
                             <p className='text-[30px] text-[#000000] font-[600]'>{item.value}</p>
                         </div>
@@ -294,7 +273,7 @@ const HomePage = () => {
 
             <motion.div
                 className="sm:grid flex flex-col lg:grid-cols-4 sm:grid-cols-2  gap-x-5 gap-y-4 mt-16"
-                variants={staggerChildren}
+                // variants={staggerChildren}
                 initial="initial"
                 animate="animate"
             >

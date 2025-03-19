@@ -17,7 +17,7 @@ const Navbar = ({ isOpen, tog }) => {
   };
 
   return (
-    <div className="p-6 w-full sticky top-0 mb-2 items-center border-2 bg-white z-50">
+    <div className="p-6 w-full sticky top-0 mb-2 items-center border-2 bg-white ">
       <div className="flex justify-between">
         <div className="flex items-center text-black">
           <p className="lg:text-[25px] text-[20px] capitalize font-[700]">{headers}</p>

@@ -114,4 +114,16 @@ const passwordRegExp =
     category:yup.string().required('category Required'),
     status:yup.string().required('status')
   })
+
+  export const AllStocks = yup.object().shape({
+    stockCode:yup.string().required('Stock Code is required'),
+    isAllowed:yup.bool()
+  })
+
+  export const updateStocks = yup.object().shape({
+    stockId:yup.string(),
+    isAllowed:yup.bool(),
+    name:yup.string()
+  })
+   
   
