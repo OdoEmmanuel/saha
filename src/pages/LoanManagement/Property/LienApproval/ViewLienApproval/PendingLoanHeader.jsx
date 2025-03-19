@@ -20,8 +20,8 @@ const PendingLoanHeader = ({ id,status }) => {
     { value: '', label: 'Select Status' },
     { value: 'Approve', label: 'Approve' },
     { value: 'Reject', label: 'Reject' },
-    { value: 'Recall', label: 'Recall' },
-    { value: 'Rework', label: 'Rework' },
+    // { value: 'Recall', label: 'Recall' },
+    // { value: 'Rework', label: 'Rework' },
   ];
 
   const handleStatusChange = (e) => {
@@ -40,7 +40,7 @@ const PendingLoanHeader = ({ id,status }) => {
           >
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </button>
-          <h1 className="text-2xl font-semibold text-gray-800">Pending Loan Details</h1>
+          <h1 className="text-2xl font-semibold text-gray-800">Lien Approvals Details</h1>
         </div>
         <div className="relative">
           <select
@@ -57,7 +57,7 @@ const PendingLoanHeader = ({ id,status }) => {
           <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white pointer-events-none" />
         </div>
       </div>
-      <nav className="flex space-x-1">
+      {/* <nav className="flex space-x-1">
         {links.map((link) => (
           <Link
             key={link.value}
@@ -72,7 +72,7 @@ const PendingLoanHeader = ({ id,status }) => {
             {link.name}
           </Link>
         ))}
-      </nav>
+      </nav> */}
     </div>
   );
 };

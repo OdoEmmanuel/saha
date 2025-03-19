@@ -28,83 +28,101 @@ const ViewPendingLoanDetails = ({ dat }) => {
 
     return (
         <div className='bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8 '>
-            <h1 className='mb-8 font-[500] text-[25px]'>CUSTOMERS DETAILS</h1>
+            {/* <h1 className='mb-8 font-[500] text-[25px]'></h1> */}
             <div className='grid sm:grid-cols-3 grid-cols-2 gap-4'>
                 <div className="mb-4 ">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Loan Product Code
+                        Customer Email
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.loanProductCode || '----'}
+                        {data?.customerEmail || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Loan Amount
+                        Customer Phone
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.loanAmount || '----'}
+                        {data?.customerPhone || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Tenure
+                        Company Code
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.tenure || '----'}
+                        {data?.companyCode || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Moratorium
+                        Approval Item Type
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.moratium || '----'}
+                        {data?.approvalItemType || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Purpose
+                        Approval Stage
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.purpose || '----'}
+                        {data?.currentApprovalStage || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Terms And Condition Accepted
+                        Approval Status
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.termsAndConditionAccepted || '----'}
+                        {data?.approvalStatus || '----'}
+                    </h4>
+                </div>
+                <div className="mb-4">
+                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
+                        Approval Activities Comment
+                    </h4>
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
+                        {data?.approvalActivityLogComment || '----'}
+                    </h4>
+                </div>
+                <div className="mb-4">
+                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
+                    Approval Activity Log
+                    </h4>
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
+                        {data?.approvalActivityLog || '----'}
+                    </h4>
+                </div>
+                <div className="mb-4">
+                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
+                        Book Status
+                    </h4>
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
+                        {data?.bookStatus || '----'}
+                    </h4>
+                </div>
+                <div className="mb-4">
+                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
+                        Book By
+                    </h4>
+                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
+                        {data?.bookBy || '----'}
                     </h4>
                 </div>
 
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        NO Of Dependent
+                    Comment
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.noOfDependent || '----'}
+                        {data?.comment || '----'}
                     </h4>
                 </div>
 
-                <div className="mb-4">
-                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Interest Rate
-                    </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400 ">
-                        {data?.interestRate || '----'}
-                    </h4>
-                </div>
+            
 
-                <div className="mb-4">
-                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Transaction Tracking Reference
-                    </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.transactionTrackingRef || '----'}
-                    </h4>
-                </div>
+                
                 <div className="mb-4 w-full">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                         Reference
@@ -113,36 +131,14 @@ const ViewPendingLoanDetails = ({ dat }) => {
                         {data?.reference || '----'}
                     </h4>
                 </div>
-                <div className="mb-4">
-                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Remark
-                    </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.remark || '----'}
-                    </h4>
-                </div>
-                <div className="mb-4">
-                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Editable
-                    </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.editable || '----'}
-                    </h4>
-                </div>
-                <div className="mb-4">
-                    <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                        Approval Status
-                    </h4>
-                    <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {removeUnderscores(data?.approvalStatus) || '----'}
-                    </h4>
-                </div>
+              
+              
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
                         Created Date
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {formatDate(data?.createdDate) || '----'}
+                        {formatDate(data?.createdAt) || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
@@ -150,7 +146,7 @@ const ViewPendingLoanDetails = ({ dat }) => {
                         Updated Date
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {formatDate(data?.updatedDate) || '----'}
+                        {formatDate(data?.updatedAt) || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">

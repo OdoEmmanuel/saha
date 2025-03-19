@@ -40,6 +40,7 @@ const AllCustomer = () => {
     const [totalPages, setTotalPages] = useState(1)
     const [filteredUsers, setFilteredUsers] = useState([])
     const [element, setElement] = useState(0)
+    const [totalCustomers, setTotalCustomers] = useState(0);
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
@@ -113,6 +114,7 @@ const AllCustomer = () => {
                 setUsers(res.data.data.users.content)
                 setTotalPages(res.data.data.users.totalPages)
                 setElement(res.data.data.users.numberOfElements)
+                
 
             })
             .catch((e) => {
@@ -207,13 +209,10 @@ const AllCustomer = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className='lg:flex justify-between'>
-
-
-
-            </div>
+             
 
             <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6 min-h-[350px]  rounded-[10px]'>
+           
 
                 <div className="md:flex justify-between ">
                     <div className=" flex flex-col rounded-lg ">
@@ -343,6 +342,10 @@ const AllCustomer = () => {
                                             {' '}
                                             NIN{' '}
                                         </th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
+                                            {' '}
+                                            Created Date{' '}
+                                        </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
                                     </tr>
                                 </thead>
@@ -385,6 +388,9 @@ const AllCustomer = () => {
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.nin}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
+                                                    {staff.createdDate}
                                                 </td>
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Tippy content="View">

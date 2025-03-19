@@ -41,10 +41,10 @@ const LienApprovalDetails = () => {
                 'client-id': clientid,
             },
         }
-        axios.get(`${authorizationService}loan/${id}/details`,config)
+        axios.get(`${authorizationService}approvals/${id}`,config)
         .then((res) => {
-            
-            setdata(res.data.data)
+            console.log(res.data)
+            setdata(res.data)
             setCollaterals(res.data.data.collaterals)
             setStaus(res.data.data.lienStatus)
 

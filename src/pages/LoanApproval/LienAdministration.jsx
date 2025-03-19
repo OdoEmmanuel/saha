@@ -30,6 +30,9 @@ const LienAdministration = () => {
     const [open,setOpen] = useState(false)
     const [applicationId, setApplicationId] = useState(null);
 
+    const productCode = import.meta.env.VITE_productCode
+    console.log(productCode)
+
     setHeaders('Lien Administration')
 
     function func() {
@@ -92,6 +95,7 @@ const LienAdministration = () => {
             allowOnlyLoggedInUser: false,
             pageIndex: pageNumber,
             pageSize: pagesize,
+            productCode:productCode
         }
 
         setisLoading(true)

@@ -64,7 +64,7 @@ const Sidebar = ({ isOpen, tog }) => {
                       <AnimatePresence>
                         {Open && (
                           <motion.ul
-                            className="mt-1 ml-12 space-y-1"
+                            className="mt-1 ml-12"
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
@@ -80,19 +80,10 @@ const Sidebar = ({ isOpen, tog }) => {
                                   animate={{ opacity: 1, x: 0 }}
                                   exit={{ opacity: 0, x: -10 }}
                                   transition={{ duration: 0.2 }}
-                                  className='flex items-center mb-2 mt-2'
+                                  className={`flex items-center p-4 relative border-l-2  ${isChildActive ? 'border-[#A6A6A6]':'border-[#6B6B6B]'} `}
                                 >
-                                  <div className='flex items-center '>
-                                    {!isChildActive ? (<svg className='mr-4 ' width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <circle cx="4.66934" cy="4.66934" r="4.16934" stroke="#BABABA" />
-                                    </svg>) : (
-                                      <svg className='mr-4' width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="4.66934" cy="4.66934" r="4.66934" fill="white" />
-                                      </svg>
-                                    )}
-
-                                  </div>
-
+                             
+                             <div className={`w-2 h-2 bg-[#6B6B6B] rounded-full absolute -left-[0.3rem] top-1/2 transform -translate-y-1/2 ${isChildActive ? 'bg-[#A6A6A6]':'bg-[#6B6B6B]' }`}></div>
                                   <Link to={child.url} className={` ${childActiveClass}`}>
                                     {/* {child.icon && <child.icon className="mr-4" size={18} />} */}
                                     <span>{child.label}</span>

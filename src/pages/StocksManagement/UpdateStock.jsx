@@ -41,6 +41,7 @@ const UpdateStock = () => {
               const userData = res.data.data;
               formik.setValues({
                 stockId:userData.id,
+                name:userData.stockName,
                  isAllowed:userData.isAllowed
               });
           }
@@ -113,7 +114,8 @@ const UpdateStock = () => {
   const formik = useFormik({
       initialValues: {
           stockId:'',
-          isAllowed:false
+          isAllowed:false,
+          name:''
 
       },
       validationSchema: updateStocks,
@@ -170,6 +172,16 @@ const UpdateStock = () => {
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Stock</h2>
       <form className="space-y-4" onSubmit={formik.handleSubmit}>
         <div className='grid grid-cols-1 gap-4'>
+        <InputField2
+                label={`Stock Name`}
+                name={`name`}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && formik.errors.name}
+                errorText={formik.errors.name}
+                disabled={true}
+
+            />
 
         <InputField2
                 label={`Stock Id`}
@@ -181,6 +193,7 @@ const UpdateStock = () => {
                 disabled={true}
 
             />
+            
 
 <div className='flex items-center gap-x-6'>
 

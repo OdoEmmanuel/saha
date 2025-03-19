@@ -375,7 +375,7 @@ const AllLienApproval = () => {
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
                                                     <Tippy content="view">
                                                         <Link
-                                                            to={`/ui/tables/viewapprovelien/${staff.id}`}
+                                                            to={`/ui/tables/viewapprovelien/${staff.reference}`}
                                                             className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                         >
                                                             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">

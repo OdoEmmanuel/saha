@@ -53,3 +53,7 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.react-datepicker-popper {
+  z-index: 9999999999999999999 !important; /* Ensure it's higher than other elements */
+}

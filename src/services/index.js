@@ -122,7 +122,8 @@ const passwordRegExp =
 
   export const updateStocks = yup.object().shape({
     stockId:yup.string(),
-    isAllowed:yup.bool()
+    isAllowed:yup.bool(),
+    name:yup.string()
   })
    
   

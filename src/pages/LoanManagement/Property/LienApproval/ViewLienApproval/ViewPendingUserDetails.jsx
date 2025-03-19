@@ -2,10 +2,11 @@ import React from 'react'
 
 const ViewPendingUserDetails = ({dat}) => {
     const data = dat
+    console.log(data)
    
     return (
         <div className='bg-[#fff] rounded-[10px] shadow-lg overflow-hidden p-8 '>
-            <h1 className='mb-8 font-[500] text-[25px]'>CUSTOMERS DETAILS</h1>
+            {/* <h1 className='mb-8 font-[500] text-[25px]'>CUSTOMERS DETAILS</h1> */}
             <div className='grid sm:grid-cols-3 grid-cols-2 gap-4'>
                 <div className="mb-4 ">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
@@ -17,10 +18,10 @@ const ViewPendingUserDetails = ({dat}) => {
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                    Disbursement Account
+                    Customer Email
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                    {data?.disbursementAccount || '----'}
+                    {data?.customerEmail || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">
