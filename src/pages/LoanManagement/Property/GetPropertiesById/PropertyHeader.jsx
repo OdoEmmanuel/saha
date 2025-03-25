@@ -80,7 +80,7 @@ const PropertyHeader = ({id}) => {
         <div className="sm:flex justify-between items-center mb-4">
           <div className="flex items-center">
             <button
-              onClick={() => navigate('/ui/LoanApproval/pendingloans')}
+              onClick={() => navigate('/ui/tables/property')}
               className="mr-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
             >
               <ArrowLeft className="w-6 h-6 text-gray-600" />
