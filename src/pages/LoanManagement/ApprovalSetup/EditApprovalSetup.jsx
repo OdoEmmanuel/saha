@@ -217,7 +217,7 @@ const EditApprovalSetup = () => {
                         <BiArrowBack className="mr-2" />
                         Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Approval Item</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Approval Item</h2>
                     <form className="space-y-6">
                         <div className="mb-3">
                             <label

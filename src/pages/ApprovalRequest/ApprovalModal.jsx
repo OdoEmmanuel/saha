@@ -111,7 +111,7 @@ const ApprovalModal = ({func,id}) => {
             onClick={approveKyc}
           >
          
-            {isLoading ? 'loading...':'Delete'}
+            {isLoading ? 'loading...':'Approve'}
             {/* {loading ? 'loading...' : 'submit'} */}
           </button>
         </div>

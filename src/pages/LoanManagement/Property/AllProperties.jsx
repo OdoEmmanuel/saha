@@ -234,13 +234,10 @@ const AllProperties = () => {
                                             {' '}
                                             Value{' '}
                                         </th>
+                                       
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Status{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Status Meaning{' '}
+                                            Status {' '}
                                         </th>
 
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
@@ -273,9 +270,7 @@ const AllProperties = () => {
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.value}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.status}
-                                                </td>
+                                              
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.statusMeaning}
                                                 </td>

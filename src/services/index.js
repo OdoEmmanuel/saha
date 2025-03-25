@@ -89,8 +89,8 @@ const passwordRegExp =
     maxAmount: yup.number().required(`Enter the maximum Amount`),
     rate:yup.number().required('Enter the rate'),
     tax: yup.number().required(`Enter Tax `),
-    taxDeductible: yup.boolean().required().oneOf([true , false]),
-    available: yup.boolean().required().oneOf([true , false]),
+    isTaxDeductible: yup.boolean().required().oneOf([true , false]),
+    isAvailable: yup.boolean().required().oneOf([true , false]),
 
   })
 

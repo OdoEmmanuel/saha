@@ -41,8 +41,8 @@ const CreateFixedDeposit = () => {
             maxAmount: 0,
             rate: 0,
             tax: 0,
-            taxDeductible: false,
-            available: false
+            isTaxDeductible: false,
+            isAvailable: false
 
         },
         validationSchema: fixedDeposit,
@@ -178,11 +178,11 @@ const CreateFixedDeposit = () => {
                         <div className='flex items-center justify-between '>
                             <div className='flex items-center mr-4'>
                                 <label className='mr-2'>Tax Deductible</label>
-                                <input className='w-5 h-5' type='checkbox' name={`taxDeductible`} checked={formik.values.taxDeductible} onChange={formik.handleChange} />
+                                <input className='w-5 h-5' type='checkbox' name={`isTaxDeductible`} checked={formik.values.isTaxDeductible} onChange={formik.handleChange} />
                             </div>
                             <div className='flex items-center'>
                                 <label className='mr-2'>Available</label>
-                                <input className='w-5 h-5' type='checkbox' name={`available`} checked={formik.values.available} onChange={formik.handleChange} />
+                                <input className='w-5 h-5' type='checkbox' name={`isAvailable`} checked={formik.values.isAvailable} onChange={formik.handleChange} />
                             </div>
                         </div>
 
