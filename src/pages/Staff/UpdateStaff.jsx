@@ -184,6 +184,7 @@ const UpdateStaff = () => {
                   onChange={formik.handleChange}
                   error={formik.touched.email && formik.errors.email}
                   errorText={formik.errors.email}
+                  disabled={true}
 
               />
 
@@ -200,7 +201,7 @@ const UpdateStaff = () => {
             
               <InputField2
                   label={`Phone`}
-                  name={`Phone`}
+                  name={`phone`}
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   error={formik.touched.phone && formik.errors.phone}
