@@ -190,7 +190,7 @@ const Customer = () => {
                                     }}
                                     isClearable={true}
                                     placeholderText="Select date range"
-                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                                    className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
                                 />
                                 {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                                 <IoMdCalendar className="text-gray-400" size={16} />

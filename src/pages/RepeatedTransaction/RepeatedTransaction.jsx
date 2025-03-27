@@ -16,7 +16,7 @@ const RepeatedTransaction = () => {
     const { middleware, request, clientid, setHeaders } = useAuthContext();
     const navigate = useNavigate();
     const [dateRange, setDateRange] = useState([
-        new Date(new Date().setMonth(new Date().getMonth() - 5)),
+        new Date(2020, 0, 1),
         new Date()
     ]);
     const [startDate, endDate] = dateRange;
@@ -176,7 +176,7 @@ const RepeatedTransaction = () => {
                                 }}
                                 isClearable={true}
                                 placeholderText="Select date range"
-                                className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none w-48"
+                                className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
                             />
                             {/* <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                             <IoMdCalendar className="text-gray-400" size={16} />
