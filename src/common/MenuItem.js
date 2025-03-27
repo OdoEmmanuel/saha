@@ -212,7 +212,7 @@ import {
           children: [
             {
               key: 'customer-report',
-              label: 'All Customer',
+              label: 'Customer Accounts',
               url: '/ui/report/getCustomer',
             },
             {
