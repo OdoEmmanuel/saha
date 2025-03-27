@@ -15,7 +15,7 @@ const IntraBank = () => {
     const { middleware, request, clientid, setHeaders } = useAuthContext();
     const navigate = useNavigate();
     const [dateRange, setDateRange] = useState([
-        new Date(new Date().setMonth(new Date().getMonth() - 5)),
+        new Date(2020, 0, 1),
         new Date()
     ]);
     const [startDate, endDate] = dateRange;
