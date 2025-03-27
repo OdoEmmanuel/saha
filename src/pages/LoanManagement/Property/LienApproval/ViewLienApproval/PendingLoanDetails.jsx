@@ -43,8 +43,9 @@ const LienApprovalDetails = () => {
         }
         axios.get(`${authorizationService}approvals/${id}`,config)
         .then((res) => {
-            console.log(res.data)
+            
             setdata(res.data)
+            console.log(res.data)
             setCollaterals(res.data.data.collaterals)
             setStaus(res.data.data.lienStatus)
 
@@ -52,17 +53,17 @@ const LienApprovalDetails = () => {
              
         }).catch((e) => {
             
-            if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+            if (e.response?.data?.responseMessage === 'Invalid/Expired Token' || e.response?.data?.responseMessage === 'Invalid Token' || e.response?.data?.responseMessage === 'Login Token Expired') {
                 toast.error(e.response.data.responseMessage)
                 navigate('/auth/login')
                 localStorage.clear()
             }
-            else if (e.response.data.responseMessage === 'Insufficient permission') {
-                toast.error(e.response.data.responseMessage)
+            else if (e.response?.data?.responseMessage === 'Insufficient permission') {
+                toast.error(e.response?.data?.responseMessage)
                 navigate('/')
             }
             else {
-                toast.error(e.response.data.responseMessage)
+                toast.error(e.response?.data?.responseMessage)
             }
         }).finally(() => {
             setisLoading(false)
