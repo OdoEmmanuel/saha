@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { UilTimes } from '@iconscout/react-unicons'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 import { useAuthContext } from '../../common/context/useAuthContext'
 import axios from 'axios'
@@ -16,6 +17,7 @@ const ResolveComplaintModal = ({ func, id }) => {
   const [loading, setLoading] = useState(false)
   const email = localStorage.getItem('email')
   const token = localStorage.getItem('token')
+  const navigate = useNavigate()
 
 
   const handleResolveCompliant = async () => {
