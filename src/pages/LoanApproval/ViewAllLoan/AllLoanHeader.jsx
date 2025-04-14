@@ -10,8 +10,8 @@ const AllLoanHeader = ({ id,status }) => {
     { name: 'Loan Details', value: 'customers', path: `/ui/LoanApproval/${id}/details/` },
     { name: 'User Details', value: 'kin', path: `/ui/LoanApproval/${id}/details/user` },
     { name: 'Documents', value: 'documents', path: `/ui/LoanApproval/${id}/details/documents` },
-    { name: 'Collaterals', value: 'collateral', path: `/ui/LoanApproval/${id}/details/collaterals` },
-    // ...(status === 'ACTIVE' ? [{ name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/${id}/details/collaterals` }] : [])
+    // { name: 'Collaterals', value: 'collateral', path: `/ui/LoanApproval/${id}/details/collaterals` },
+    ...(status === 'ACTIVE' ? [{ name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/${id}/details/collaterals` }] : [])
 
   ];
 

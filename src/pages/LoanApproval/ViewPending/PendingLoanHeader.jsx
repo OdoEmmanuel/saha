@@ -13,8 +13,8 @@ const PendingLoanHeader = ({ id,status }) => {
     { name: 'Loan Details', value: 'customers', path: `/ui/LoanApproval/pendingloans/${id}/` },
     { name: 'User Details', value: 'kin', path: `/ui/LoanApproval/pendingloans/${id}/user` },
     { name: 'Documents', value: 'documents', path: `/ui/LoanApproval/pendingloans/${id}/documents` },
-    { name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/pendingloans/${id}/collaterals`}
-    // ...(status === 'ACTIVE' ? [{ name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/pendingloans/${id}/collaterals` }] : [])
+    // { name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/pendingloans/${id}/collaterals`}
+    ...(status === 'ACTIVE' ? [{ name: 'Collaterals', value: 'collaterals', path: `/ui/LoanApproval/pendingloans/${id}/collaterals` }] : [])
   ];
 
   const statusOptions = [
