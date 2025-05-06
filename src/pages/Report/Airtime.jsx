@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { IoMdCalendar } from 'react-icons/io';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { BiSearch } from "react-icons/bi";
+import { IoFilter } from "react-icons/io5";
 import * as XLSX from "xlsx";
 
 const Airtime = () => {
@@ -21,10 +23,13 @@ const Airtime = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
     const [pageSize, setPageSize] = useState(10);
+    const [totalPages, setTotalPages] = useState(1)
     const [transactionTypes, setTransactionTypes] = useState([]);
     const [transactionStatuses, setTransactionStatuses] = useState([]);
     const [selectedTransactionType, setSelectedTransactionType] = useState('INTRABANK');
     const [selectedTransactionStatus, setSelectedTransactionStatus] = useState('SUCCESSFUL');
+    const [filteredTransactiion, setFilteredTransaction] = useState([])
+    const [searchQuery, setSearchQuery] = useState('')
 
     setHeaders('Airtime Purchase');
 
@@ -126,9 +131,57 @@ const Airtime = () => {
         }
     }, [fetchTransactionData, startDate, endDate]);
 
+
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value)
+    }
+
+
+
+    useEffect(() => {
+        if (searchQuery.trim() === '') {
+            setFilteredTransaction(transactions);
+        } else {
+            const filtered = transactions.filter((transaction) => {
+                // Check each field safely (using optional chaining and nullish coalescing)
+                const searchableFields = [
+                    transaction.loginId?.toString()?.toLowerCase() ?? '',
+                    transaction.createdDate?.toString()?.toLowerCase() ?? '',
+                    transaction.fromAccountNumber?.toString()?.toLowerCase() ?? '',
+                    transaction.fromAccountName?.toString()?.toLowerCase() ?? '',
+                    transaction.billerTransId?.toString()?.toLowerCase() ?? '',
+                    transaction.receivingBankName?.toString()?.toLowerCase() ?? '',
+                    transaction.type?.toString()?.toLowerCase() ?? '',
+                    transaction.receiversPhoneNumber?.toString()?.toLowerCase() ?? '',
+                    transaction.transactionAmount?.toString()?.toLowerCase() ?? '',
+                    transaction.retrievalReferenceNumber?.toString()?.toLowerCase() ?? '',
+                    transaction.transactionStatus?.toString()?.toLowerCase() ?? ''
+                ];
+
+                return searchableFields.some(field =>
+                    field.includes(searchQuery.toLowerCase())
+                );
+            });
+            setFilteredTransaction(filtered);
+        }
+    }, [searchQuery, transactions]);
+
+
     const handlePageChange = (newPage) => {
         setPageNumber(newPage);
     };
+
+    const handleNextPage = () => {
+        setPageNumber(pageNumber + 1)
+    }
+
+    const handlePreviousPage = () => {
+        if (pageNumber > 0) {
+            setPageNumber(pageNumber - 1)
+        }
+    }
+
+    let idCounter = pageNumber * pageSize + 1
     return (
         <div className='flex flex-col lg:p-0 p-4'>
             {isLoading && (
@@ -152,6 +205,18 @@ const Airtime = () => {
                                 className="flex-grow appearance-none bg-transparent border-none text-gray-700 py-1 pr-8 leading-tight focus:outline-none min-w-[200px] w-full"
                             />
                         </div>
+                        <div className="flex  border-2 bg-[#fff] rounded-lg px-4 py-2   items-center md:my-4 my-2" >
+                            <div className=' mr-2 text-gray-500'>
+                                <BiSearch />
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                value={searchQuery}
+                                className=" bg-inherit rounded-md outline-none"
+                                onChange={handleSearchInputChange}
+                            />
+                        </div>
                     </div>
                     <div className='md:flex justify-between items-center md:mt-0 mt-4 '>
                         {/* <select
@@ -166,6 +231,24 @@ const Airtime = () => {
                                            </option>
                                        ))}
                                    </select> */}
+                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 md:my-4 my-2 md:mx-2 mx-0'>
+                            <div>
+                                <IoFilter />
+                            </div>
+                            <select
+                                value={pageSize}
+                                onChange={(e) => setPageSize(parseInt(e.target.value))}
+                                className='outline-none'
+                            >
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
                         <select
                             value={selectedTransactionStatus}
                             onChange={(e) => setSelectedTransactionStatus(e.target.value)}
@@ -216,7 +299,7 @@ const Airtime = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
-                            {transactions.map((transaction, idx) => (
+                            {filteredTransactiion.map((transaction, idx) => (
                                 <tr key={idx} className="bg-[#fff] text-[#667085]">
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.loginId}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.createdDate}</td>
@@ -236,6 +319,65 @@ const Airtime = () => {
                 </div>
 
                 {/* Pagination controls can be Createed here */}
+                <div className='flex justify-between p-4'>
+                    <div></div>
+
+                    <div className="flex justify-end items-center ">
+                        <button
+                            className={`mr-2 ${pageNumber === 0
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
+                                }`}
+                            // onClick={() => onPageChange(currentPage - 1)}
+                            onClick={handlePreviousPage}
+                            disabled={pageNumber === 0}
+                        >
+                            <svg
+                                className="w-6 h-6 inline-block align-middle"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M15 19l-7-7 7-7"
+                                />
+                            </svg>
+
+                        </button>
+                        <div className='border-2 px-2 rounded-md'>
+                            {pageNumber + 1}
+                        </div>
+                        <button
+                            className={`ml-2 ${pageNumber + 1 === totalPages
+                                ? 'opacity-50 cursor-not-allowed bg-[#919EAB] border-2 border-[#919EAB] rounded-md'
+                                : 'cursor-pointer border-2 rounded-md'
+                                }`}
+                            onClick={handleNextPage}
+                            // disabled={currentPage === totalPages}
+                            disabled={pageNumber + 1 === totalPages}
+                        >
+
+                            <svg
+                                className="w-6 h-6 inline-block align-middle"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )

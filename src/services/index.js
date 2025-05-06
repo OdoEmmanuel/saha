@@ -82,9 +82,10 @@ const passwordRegExp =
   })
 
   export const fixedDeposit = yup.object().shape({
+    // productCode:yup.string().required(`Please enter the Product Code`),
     fixedDepositType: yup.string().required(`Please enter the fixed deposit type`),
     description: yup.string().required('Enter The Description'),
-    tenure:yup.number().required('Enter the duration'),
+    tenure:yup.string().required('Enter the duration'),
     minAmount: yup.number().required(`Enter Minimmum Amount`),
     maxAmount: yup.number().required(`Enter the maximum Amount`),
     rate:yup.number().required('Enter the rate'),

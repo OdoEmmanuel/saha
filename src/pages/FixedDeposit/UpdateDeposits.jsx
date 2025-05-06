@@ -17,6 +17,8 @@ const UpdateDeposits = () => {
     const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
+     const [product, setProduct] = useState([])
+        const [tenure, setTenure] = useState([])
 
     const navigate = useNavigate()
 
@@ -40,6 +42,7 @@ const UpdateDeposits = () => {
         
                 const userData = res.data.data
                 formik.setValues({
+                    
                     fixedDepositType: userData.fixedDepositType,
                     description: userData.description,
                     tenure: userData.tenure,
@@ -72,6 +75,36 @@ const UpdateDeposits = () => {
                 setisLoading(false)
             })
     }, [])
+
+       useEffect(() => {
+            const api1 = axios.get(`${middleware}loan/tenure`, config)
+            const api2 = axios.get(`${middleware}loan/products/all`, config)
+    
+            setisLoading(true)
+    
+            Promise.all([api1, api2]).then(([response1, response2]) => {
+                setTenure(response1.data.data)
+                setProduct(response2.data.data)
+            }).catch((e) => {
+    
+    
+    
+                if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/auth/login')
+                    localStorage.clear()
+                }
+                else if (e.response.data.responseMessage === 'Insufficient permission') {
+                    toast.error(e.response.data.responseMessage)
+                    navigate('/')
+                }
+                else {
+                    toast.error(e.response.data.responseMessage)
+                }
+            }).finally(() => {
+                setisLoading(false)
+            })
+        }, [])
 
 
     const formik = useFormik({
