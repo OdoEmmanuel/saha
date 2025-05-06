@@ -46,6 +46,9 @@ const ComplainId = () => {
     };
 
     const convertDateToString = (dateArray) => {
+        if(dateArray ===null){
+            return '----'
+        }
         // Given date components
         const dateComponents = dateArray;
 
@@ -78,7 +81,7 @@ const ComplainId = () => {
                     complaintStatus: userData.complaintStatus,
                     compliantDescription: userData.complaintDescription,
                     compliantResponse: userData.complaintResponse || null,
-                    complaintResponseDate: convertDateToString(userData.complaintResponseDate) || null
+                    complaintResponseDate: (userData.complaintResponseDate) || null
                 });
             }
             )
@@ -278,7 +281,7 @@ const ComplainId = () => {
                                     Complain Response Date
                                 </h4>
                                 <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                                    {formik?.values?.complaintResponseDate || '-----'}
+                                    {convertDateToString(formik?.values?.complaintResponseDate) || '-----'}
                                 </h4>
                             </div>
                         </div>

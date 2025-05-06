@@ -21,6 +21,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 };
 
 const ViewPendingDocument = ({ kycs }) => {
+    console.log(kycs)
     const [selectedImage, setSelectedImage] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
