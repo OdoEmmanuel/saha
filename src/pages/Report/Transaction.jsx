@@ -316,7 +316,7 @@ const Transaction = () => {
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.narration}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.receiverName}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.toAccountNumber}</td>
-                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.receivingBankName === null}</td>
+                                    <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.receivingBankName}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.retrievalReferenceNumber}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.type}</td>
                                     <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">{transaction.transactionStatus}</td>
