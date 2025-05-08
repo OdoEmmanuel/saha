@@ -28,6 +28,8 @@ const ConfirmationModal = ({func,id}) => {
         axios.put(`${middleware}kyc/approve?customerId=${id}`,null,config)
         .then((res) => {
             toast.success(res.data.data.responseMessage)
+            navigate('/ui/customer/pending-kyc')
+            
         })
         .catch((e) => {
             if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {

@@ -34,6 +34,7 @@ const Modal = ({id,func,status}) => {
         axios.post(`${authorizationService}approvals/approve`,requestbody,config)
         .then((res) => {
             toast.success(res.data.responseMessage)
+            navigate('/ui/LoanApproval/pendingloans')
         })
         .catch((e) => {
             
