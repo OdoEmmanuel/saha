@@ -149,6 +149,7 @@ const AssignPermission = () => {
             toast.success(responseData.responseMessage, {
                 position: 'top-right',
             });
+            navigate('/ui/permission/alluser')
         } catch (error) {
             handleApiError(error);
             
@@ -224,7 +225,7 @@ const AssignPermission = () => {
                         </svg>
                     </button>
                     <h4 className="text-2xl font-bold mb-1 dark:text-gray-300 text-left">
-                        Assign Permission to Group
+                        Assign Permission to Staff
                     </h4>
                 </div>
 
