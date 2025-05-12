@@ -67,10 +67,10 @@ const ViewLoanRequirementFilled = ({data}) => {
                 </div>
                 <div className="mb-4">
                   <h4 className=" mb-2 text-gray-500  ">
-                    Business Createress Required
+                    Business Address Required
                   </h4>
                   <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                    {data?.businessCreateressRequired === true ? 'yes' : 'No'}
+                    {data?.businessAddressRequired === true ? 'yes' : 'No'}
                   </h4>
                 </div>
                 <div className="mb-4">

@@ -78,7 +78,7 @@ const ForgetPassword = () => {
                         onChange={formik.handleChange}
                         error={formik.touched.username && formik.errors.username}
                         errorText={formik.errors.username}
-                        placeHolder={`Enter Your E-mail Createress`}
+                        placeHolder={`Enter Your E-mail Address`}
                     />
 
                     <InputField
@@ -88,7 +88,7 @@ const ForgetPassword = () => {
                         onChange={formik.handleChange}
                         error={formik.touched.otp && formik.errors.otp}
                         errorText={formik.errors.otp}
-                        placeHolder={`Enter Your E-mail Createress`}
+                        placeHolder={`Enter Your E-mail Address`}
                     />
 
                     <div>

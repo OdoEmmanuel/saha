@@ -57,10 +57,10 @@ const ViewPendingKin = ({ dat }) => {
                 </div>
                 <div className="mb-4">
                     <h4 className=" mb-2 text-gray-500 ">
-                        Next Of Kin Createress
+                        Next Of Kin Address
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                        {data?.nextOfKinCreateress || '----'}
+                        {data?.nextOfKinAddress || '----'}
                     </h4>
                 </div>
                 <div className="mb-4">

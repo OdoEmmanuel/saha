@@ -59,13 +59,13 @@ const Otp = () => {
                 <h1 className="font-[500] sm:text-[25px] text-[15px] mb-8 text-center">Enter email to get OTP</h1>
                 <form onSubmit={formik.handleSubmit}>
                     <InputField
-                        label={`Email Createress`}
+                        label={`Email Address`}
                         name={`email`}
                         value={formik.values.email}
                         onChange={formik.handleChange}
                         error={formik.touched.email && formik.errors.email}
                         errorText={formik.errors.email}
-                        placeHolder={`Enter Your E-mail Createress`}
+                        placeHolder={`Enter Your E-mail Address`}
                     />
                     <div>
 

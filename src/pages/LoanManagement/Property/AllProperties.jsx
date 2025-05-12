@@ -101,13 +101,13 @@ const AllProperties = () => {
             // Filter users based on search query
             const filteredUsers = users.filter((user) => {
                 if (
-                    user.Createress === null
+                    user.Address === null
                 ) {
                     return false
                 }
 
                 return (
-                    user.Createress
+                    user.Address
                         .toLowerCase()
                         .includes(searchQuery.toLowerCase())
                 )
@@ -262,7 +262,7 @@ const AllProperties = () => {
                                                     {staff.userId}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.Createress}
+                                                    {staff.Address}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.titleNo}

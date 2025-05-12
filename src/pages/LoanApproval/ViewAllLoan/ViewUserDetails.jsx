@@ -76,10 +76,10 @@ const ViewUserDetails = ({dat}) => {
 
                 <div className="mb-4">
                     <h4 className=" mb-2 dark:text-gray-400 font-[400] text-[20px]    text-gray-500">
-                    Business Createress
+                    Business Address
                     </h4>
                     <h4 className=" font-semibold mb-6 text-[18px]  text-gray-800 dark:text-gray-400">
-                    {data?.businessCreateress || '----'}
+                    {data?.businessAddress || '----'}
                     </h4>
                 </div>
                 <div className="mb-4 w-full">

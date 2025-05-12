@@ -30,7 +30,7 @@ const CreateLoanRequirement = () => {
     const [monthlyChecked, setMonthlyChecked] = useState(false)
     const [name, setNameChecked] = useState(false)
     const [emailChecked, setEmailChecked] = useState(false)
-    const [CreateressChecked, setCreateressChecked] = useState(false)
+    const [AddressChecked, setAddressChecked] = useState(false)
     const [roleChecked, setRoleChecked] = useState(false)
     const [statementChecked, setStatementChecked] = useState(false)
     const [cac, setCacChecked] = useState(false)
@@ -128,8 +128,8 @@ const CreateLoanRequirement = () => {
         setEmailChecked(!emailChecked)
     }
 
-    const handleCreateressChecked = () => {
-        setCreateressChecked(!CreateressChecked)
+    const handleAddressChecked = () => {
+        setAddressChecked(!AddressChecked)
     }
 
     const handleRoleChecked = () => {
@@ -199,7 +199,7 @@ const CreateLoanRequirement = () => {
             monthlyIncomeRequired: monthlyChecked,
             businessNameRequired: name,
             businessEmailRequired: emailChecked,
-            businessCreateressRequired: CreateressChecked,
+            businessAddressRequired: AddressChecked,
             businessRoleRequired: roleChecked,
             bankStatementRequired: statementChecked,
             cacRequired: cac,
@@ -582,14 +582,14 @@ const CreateLoanRequirement = () => {
                                     className="form-check-label font-semibold"
                                     htmlFor="customCheck3"
                                 >
-                                    Business Createress
+                                    Business Address
                                 </label>
                                 <input
                                     type="checkbox"
                                     className="w-4 h-4 rounded-lg"
                                     id="customCheck3"
-                                    checked={CreateressChecked}
-                                    onChange={handleCreateressChecked}
+                                    checked={AddressChecked}
+                                    onChange={handleAddressChecked}
                                 />
                             </div>
                             <div className="flex items-center gap-2 mb-6">
