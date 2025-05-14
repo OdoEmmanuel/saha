@@ -103,6 +103,7 @@ const AssignGroupPermission = () => {
       })
 
       toast.success(response.data.responseMessage, { position: 'top-right' })
+      navigate('/ui/permission/allgroup')
     } catch (error) {
       handleApiError(error)
     } finally {

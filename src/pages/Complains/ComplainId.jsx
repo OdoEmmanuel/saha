@@ -137,6 +137,7 @@ const ComplainId = () => {
                     setisLoading(false)
                   
                     toast.success(`${result.data.data.responseData}`)
+                    navigate(`/ui/complaint/`)
                     
                   } catch (e) {
                     setisLoading(false)

@@ -45,6 +45,7 @@ const ResolveComplaintModal = ({ func, id }) => {
         setComplaintResponse('')
         toast.success(`${result.data.data.responseData}`)
         func()
+        navigate(`/ui/complaint/`)
       } catch (e) {
         setLoading(false)
         setComplaintResponse('')
