@@ -32,7 +32,7 @@ const passwordRegExp =
     .required("required"),
     confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
+    .oneOf([yup.ref("newPassword")], "Passwords must match")
     .required("required"),
   })
 

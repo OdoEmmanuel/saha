@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { PulseLoader } from "react-spinners";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { toast, Bounce } from "react-toastify";
 import { useFormik } from "formik";
@@ -12,6 +13,7 @@ import { useAuthContext } from '../common/context/useAuthContext';
 
 const ForgetPassword = () => {
     const { authorizationService, request, clientid } = useAuthContext()
+    const navigate = useNavigate()
     const [isLoading, setisLoading] = useState(false);
     const [toggle, settoggle] = useState(false);
     const Public_key = import.meta.env.VITE_public_key
@@ -48,6 +50,7 @@ const ForgetPassword = () => {
                 .then((res) => {
                    
                     toast.success(res.data.responseMessage)
+                    navigate('/auth/login')
                 })
                 .catch((e) => {
 
@@ -73,7 +76,7 @@ const ForgetPassword = () => {
 
                     <InputField
                         label={`Email`}
-                        name={`email`}
+                        name={`username`}
                         value={formik.values.username}
                         onChange={formik.handleChange}
                         error={formik.touched.username && formik.errors.username}
@@ -95,7 +98,7 @@ const ForgetPassword = () => {
                         <div className="relative">
                             <InputField
                                 label={`New Password`}
-                                name={`New Password`}
+                                name={`newPassword`}
                                 type={toggle ? "text" : "Password"}
                                 value={formik.values.newPassword}
                                 onChange={formik.handleChange}
@@ -129,7 +132,7 @@ const ForgetPassword = () => {
                         <div className="relative">
                             <InputField
                                 label={`Confirm Password`}
-                                name={`Confirm Password`}
+                                name={`confirmPassword`}
                                 type={toggle ? "text" : "Password"}
                                 value={formik.values.confirmPassword}
                                 onChange={formik.handleChange}
