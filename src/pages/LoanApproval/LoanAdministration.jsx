@@ -526,7 +526,7 @@ const LoanAdministration = () => {
 
                         </button>
                         <div>
-                            {pageNumber + 1}
+                            {pageNumber + 1} / {totalPages}
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages
