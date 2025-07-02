@@ -7,12 +7,12 @@ import { useAuthContext } from '../../common/context/useAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { IoEyeSharp } from "react-icons/io5";
 import { IoFilter } from "react-icons/io5";
-import Checkbox from "../../assets/checkbox.png"
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import * as XLSX from "xlsx";
 
-const PendingLoans = () => {
+const KycUnderReview = () => {
+
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -25,7 +25,7 @@ const PendingLoans = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
-    setHeaders('Pending Loans')
+    setHeaders('KYC Under Review')
 
     const config = {
         headers: {
@@ -44,30 +44,23 @@ const PendingLoans = () => {
 
     }, [pageNumber, pagesize])
 
+    const downloadExcel = () => {
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.table_to_sheet(
+            document.getElementById("kyc-under-review")
+        );
+        XLSX.utils.book_append_sheet(workbook, worksheet, "KYC Under Review");
+        XLSX.writeFile(workbook, "kyc-under-review.xlsx");
+    };
 
-    const fetchData = async () => {
-        const body = {
-            approvalItemType: 'Loan',
-            companyCode: 'GTI',
-            currentApprovalStage: null,
-            reference: null,
-            approvalStatus: 'PENDING',
-            startDate: null,
-            endDate: null,
-            allowOnlyLoggedInUser: true,
-            pageIndex: pageNumber,
-            pageSize: pagesize,
-        }
 
-        setisLoading(true)
-        axios.post(`${authorizationService}approvals/filter`, body, config)
+    const fetchData = () => {
+        axios.get(`${middleware}user/getCustomersByKycUnderReview?pageNumber=${pageNumber}&pageSize=${pagesize}`, config)
             .then((res) => {
-                setUsers(res.data.data)
-                setTotalPages(res.data.totalPages)
-                setElement(res.data.data.users.numberOfElements)
-
-            })
-            .catch((e) => {
+                
+                setUsers(res.data.data.users.content)
+                setTotalPages(res.data.data.users.totalPages)
+            }).catch((e) => {
               
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
@@ -82,83 +75,11 @@ const PendingLoans = () => {
                 else {
                     toast.error(e.response.data.responseMessage)
                 }
-            })
-            .finally(() => {
+            }).finally(() => {
                 setisLoading(false)
             })
     }
 
-    const formatDateString = (dateString) => {
-        const date = new Date(dateString)
-        const year = date.getFullYear()
-        const month = String(date.getMonth() + 1).padStart(2, '0')
-        const day = String(date.getDate()).padStart(2, '0')
-        const hours = String(date.getHours()).padStart(2, '0')
-        const minutes = String(date.getMinutes()).padStart(2, '0')
-        const seconds = String(date.getSeconds()).padStart(2, '0')
-        return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds}`
-    }
-
-
-    const bookandUnbook = async (reference, status) => {
-        try {
-            if (status === 'booked') {
-                axios.post(`${authorizationService}approvals/${reference}/unbook`, null, config)
-                    .then((res) => {
-                        toast.success(`${res.data.responseMessage}`)
-                        fetchData()
-                    })
-                    .catch((e) => {
-                      
-
-                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                            toast.error(e.response.data.responseMessage)
-                            navigate('/auth/login')
-                            localStorage.clear()
-                        }
-                        else if (e.response.data.responseMessage === 'Insufficient permission') {
-                            toast.error(e.response.data.responseMessage)
-                            navigate('/')
-                        }
-                        else {
-                            toast.error(e.response.data.responseMessage)
-                        }
-                    })
-                    .finally(() => {
-                        setisLoading(false)
-                    })
-            }
-
-            else {
-                axios.post(`${authorizationService}approvals/${reference}/book`, null, config)
-                    .then((res) => {
-                        toast.success(`${res.data.responseMessage}`)
-                        fetchData()
-                    })
-                    .catch((e) => {
-                   
-
-                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
-                            toast.error(e.response.data.responseMessage)
-                            navigate('/auth/login')
-                            localStorage.clear()
-                        }
-                        else if (e.response.data.responseMessage === 'Insufficient permission') {
-                            toast.error(e.response.data.responseMessage)
-                            navigate('/')
-                        }
-                        else {
-                            toast.error(e.response.data.responseMessage)
-                        }
-                    })
-                    .finally(() => {
-                        setisLoading(false)
-                    })
-            }
-        } catch (error) {
-
-        }
-    }
 
     const handleNextPage = () => {
         setPageNumber(pageNumber + 1)
@@ -182,30 +103,30 @@ const PendingLoans = () => {
             // Filter users based on search query
             const filteredUsers = users.filter((user) => {
                 if (
-                    user.customerEmail === null || user.approvalStatus === null
+                    user.email === null ||
+                    user.firstName === null ||
+                    user.lastName === null
                 ) {
                     return false
                 }
 
                 return (
-                    user.customerEmail
-                        .toLowerCase()
-                        .includes(searchQuery.toLowerCase()) ||
-                    user.approvalStatus.toLowerCase().includes(searchQuery.toLowerCase())
+                    user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    user.lastName.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             })
             setFilteredUsers(filteredUsers)
         }
     }, [searchQuery, users])
 
-    const downloadExcel = () => {
-        const workbook = XLSX.utils.book_new();
-        const worksheet = XLSX.utils.table_to_sheet(
-          document.getElementById("Pendings-Loans")
-        );
-        XLSX.utils.book_append_sheet(workbook, worksheet, "Pending Loan Table");
-        XLSX.writeFile(workbook, "PendingLoan.xlsx");
-      };
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const day = date.getDate().toString().padStart(2, '0')
+        const month = (date.getMonth() + 1).toString().padStart(2, '0')
+        const year = date.getFullYear()
+        return `${day}-${month}-${year}`
+    }
 
     let idCounter = pageNumber * pagesize + 1
     return (
@@ -216,17 +137,11 @@ const PendingLoans = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <div className='lg:flex justify-between'>
-                <div className=" flex flex-col rounded-lg ">
-
-                </div>
 
 
-            </div>
-
-            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
-                <div className="sm:flex justify-between">
-                    <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center my-4 p-2" >
+            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6    rounded-[10px]'>
+                <div className="sm:flex justify-between ">
+                    <div className="flex  border-2 bg-[#fff] p-2 rounded-lg my-4 items-center">
                         <div className=' mr-2 text-gray-500'>
                             <BiSearch />
                         </div>
@@ -238,26 +153,28 @@ const PendingLoans = () => {
                             onChange={handleSearchInputChange}
                         />
                     </div>
-                    <div className='flex sm:w-auto w-full'>
-                        <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0 sm:w-auto w-[30%]'>
-                            <div>
-                                <IoFilter />
-                            </div>
-                            <select
-                                value={pagesize}
-                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
-                                className='outline-none'
-                            >
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="50">50</option>
-                            </select>
+
+
+                    <div className='flex'>
+                    <div className='flex items-center justify-end rounded-[5px] border-2 p-2 my-4 mx-2 sm:w-auto w-[30%]'>
+                        <div>
+                            <IoFilter />
                         </div>
-                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0 sm:w-auto w-full sm:ml-0 ml-4'>
+                        <select
+                            value={pagesize}
+                            onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                            className='outline-none'
+                        >
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 mx-2 sm:w-auto w-full '>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">
@@ -271,20 +188,19 @@ const PendingLoans = () => {
                                     </defs>
                                 </svg>
                             </div>
-                            <p className='font-[400] text-[14px] font-inter'>Exports Pendings Loans</p>
+                            <p className='font-[400] text-[14px] font-inter'>Export KYC Under Review</p>
                         </button>
-
+                        
                     </div>
-
+                    
 
                 </div>
-
                 <div className="overflow-x-scroll no-scrollbar">
                     <div className="min-w-full inline-block align-middle">
                         <div className="">
-                            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll" id="Pendings-Loans">
+                            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll" id='kyc-under-review'>
 
-                                <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] " >
+                                <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] ">
                                     <tr className=" ">
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
@@ -292,46 +208,43 @@ const PendingLoans = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
+                                            First Name{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
+                                            {' '}
+                                            Last Name{' '}
+                                        </th>
+                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
+                                            {' '}
                                             Email{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Stage{' '}
+                                            BVN{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start  whitespace-nowrap">
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Phone{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            loan Amount{' '}
+                                            Gender{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Customer Id{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Reference{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Approval Status{' '}
+                                            DOB{' '}
                                         </th>
 
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Monthly Income{' '}
+                                            State{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Created At{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Action (s){' '}
+                                            NIN{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
+
                                     </tr>
                                 </thead>
 
@@ -347,44 +260,37 @@ const PendingLoans = () => {
 
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.customerEmail}
+                                                    {staff.firstName}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.customerPhone}
+                                                    {staff.lastName}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.currentApprovalStage}
+                                                    {staff.email}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.loanAmount}
+                                                    {staff.bvn}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.customerId}
+                                                    {staff.mobilePhone}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.reference}
+                                                    {staff.gender}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.approvalStatus}
-                                                </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.monthlyIncome}
+                                                    {formatDate(staff.dateOfBirth)}
                                                 </td>
 
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {formatDateString(staff.createdAt)}
+                                                    {staff.stateOfResidence}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
-                                                        {
-                                                            staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
-                                                        }
-                                                    </button>
+                                                    {staff.nin}
                                                 </td>
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <Tippy content="view">
+                                                    <Tippy content="View">
                                                         <Link
-                                                            to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
+                                                            to={`/ui/customer/kyc-under-review/view/${staff.id}`}
                                                             className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                         >
                                                             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -395,6 +301,7 @@ const PendingLoans = () => {
                                                         </Link>
                                                     </Tippy>
                                                 </td>
+
                                             </tr>
                                         ))}
                                     </tbody>
@@ -479,4 +386,4 @@ const PendingLoans = () => {
     )
 }
 
-export default PendingLoans
+export default KycUnderReview 

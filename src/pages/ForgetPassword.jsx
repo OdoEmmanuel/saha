@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PulseLoader } from "react-spinners";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -24,6 +24,12 @@ const ForgetPassword = () => {
         var ciphertext = encrypt.encrypt(text)
         return ciphertext
     }
+
+    useEffect(() => {
+        formik.setValues({
+            username: localStorage.getItem('otp-email')
+        })
+    }, [])
 
     const formik = useFormik({
         initialValues: {
@@ -77,6 +83,7 @@ const ForgetPassword = () => {
                     <InputField
                         label={`Email`}
                         name={`username`}
+                        className={`hidden`}
                         value={formik.values.username}
                         onChange={formik.handleChange}
                         error={formik.touched.username && formik.errors.username}
@@ -91,7 +98,7 @@ const ForgetPassword = () => {
                         onChange={formik.handleChange}
                         error={formik.touched.otp && formik.errors.otp}
                         errorText={formik.errors.otp}
-                        placeHolder={`Enter Your E-mail Address`}
+                        placeHolder={`Enter Your OTP`}
                     />
 
                     <div>

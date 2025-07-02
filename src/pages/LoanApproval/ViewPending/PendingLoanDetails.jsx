@@ -20,6 +20,7 @@ const PendingLoanDetails = () => {
         const [status,setStaus] = useState()
   const [kyc, setKyc] = useState([])
   const [approvalStatus, setApprovalStatus] = useState('')
+  const [customerId, setCustomerId] = useState('')
   const [isLoading, setisLoading] = useState(false);
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
@@ -47,6 +48,7 @@ const PendingLoanDetails = () => {
             setdata(res.data.data)
             setCollaterals(res.data.data.collaterals)
             setStaus(res.data.data.lienStatus)
+            setCustomerId(res.data.data.customerId)
 
              
              
@@ -77,7 +79,7 @@ const PendingLoanDetails = () => {
                     <PulseLoader speedMultiplier={0.9} color="#fff" size={20} />
                 </div>
             )}
-            <AllLoanHeader id={id} func={open} />
+            <AllLoanHeader id={id} func={open} customerId={customerId} />
             <Routes>
                 <Route path={'/'} element={<ViewLoanDetails dat={data} status={status}/>} />
                 <Route path={'/user'} element={<ViewUserDetails  dat={data}/>} />

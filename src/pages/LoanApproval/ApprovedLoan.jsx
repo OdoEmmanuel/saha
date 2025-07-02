@@ -12,7 +12,7 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import * as XLSX from "xlsx";
 
-const PendingLoans = () => {
+const ApprovedLoans = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -25,7 +25,7 @@ const PendingLoans = () => {
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
 
-    setHeaders('Pending Loans')
+    setHeaders('Approved Loans')
 
     const config = {
         headers: {
@@ -51,7 +51,7 @@ const PendingLoans = () => {
             companyCode: 'GTI',
             currentApprovalStage: null,
             reference: null,
-            approvalStatus: 'PENDING',
+            approvalStatus: 'APPROVED',
             startDate: null,
             endDate: null,
             allowOnlyLoggedInUser: true,
@@ -479,4 +479,4 @@ const PendingLoans = () => {
     )
 }
 
-export default PendingLoans
+export default ApprovedLoans
