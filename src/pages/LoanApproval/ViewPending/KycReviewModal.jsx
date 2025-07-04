@@ -5,6 +5,7 @@ import { useAuthContext } from '../../../common/context/useAuthContext';
 import { X } from 'lucide-react';
 
 const KycReviewModal = ({ isOpen, onClose, customerId }) => {
+  console.log(customerId);
   const { middleware, request, clientid } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({

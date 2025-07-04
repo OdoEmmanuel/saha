@@ -47,20 +47,25 @@ const ApprovedLoans = () => {
 
     const fetchData = async () => {
         const body = {
-            approvalItemType: 'Loan',
-            companyCode: 'GTI',
-            currentApprovalStage: null,
-            reference: null,
-            approvalStatus: 'APPROVED',
-            startDate: null,
-            endDate: null,
-            allowOnlyLoggedInUser: true,
-            pageIndex: pageNumber,
-            pageSize: pagesize,
+            // approvalItemType: 'Loan',
+            // companyCode: 'GTI',
+            // currentApprovalStage: null,
+            // reference: null,
+            // approvalStatus: 'APPROVED',
+            // startDate: null,
+            // endDate: null,
+            // allowOnlyLoggedInUser: null,
+            "reference":null,
+            "approvalStatus":"APPROVED",
+            "productCode":null,
+            "startDate":null,
+            "endDate":null,
+            "pageIndex": pageNumber,
+            "pageSize": pagesize,
         }
 
         setisLoading(true)
-        axios.post(`${authorizationService}approvals/filter`, body, config)
+        axios.post(`${middleware}loan/filter`, body, config)
             .then((res) => {
                 setUsers(res.data.data)
                 setTotalPages(res.data.totalPages)
@@ -68,7 +73,7 @@ const ApprovedLoans = () => {
 
             })
             .catch((e) => {
-              
+
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
@@ -109,7 +114,7 @@ const ApprovedLoans = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                      
+
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
@@ -136,7 +141,7 @@ const ApprovedLoans = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                   
+
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
@@ -201,11 +206,35 @@ const ApprovedLoans = () => {
     const downloadExcel = () => {
         const workbook = XLSX.utils.book_new();
         const worksheet = XLSX.utils.table_to_sheet(
-          document.getElementById("Pendings-Loans")
+            document.getElementById("Pendings-Loans")
         );
         XLSX.utils.book_append_sheet(workbook, worksheet, "Pending Loan Table");
         XLSX.writeFile(workbook, "PendingLoan.xlsx");
-      };
+    };
+
+    const disburseLoan = async (loanReference) => {
+        try {
+            setisLoading(true);
+            const response = await axios.post(`${middleware}loan/${loanReference}/disburse`, null, config);
+            toast.success(response.data.responseMessage || 'Loan disbursed successfully');
+            fetchData(); // Refresh the page data
+        } catch (error) {
+            if (error.response?.data?.responseMessage === 'Invalid/Expired Token' || 
+                error.response?.data?.responseMessage === 'Invalid Token' || 
+                error.response?.data?.responseMessage === 'Login Token Expired') {
+                toast.error(error.response.data.responseMessage);
+                navigate('/auth/login');
+                localStorage.clear();
+            } else if (error.response?.data?.responseMessage === 'Insufficient permission') {
+                toast.error(error.response.data.responseMessage);
+                navigate('/');
+            } else {
+                toast.error(error.response?.data?.responseMessage || 'Failed to disburse loan');
+            }
+        } finally {
+            setisLoading(false);
+        }
+    };
 
     let idCounter = pageNumber * pagesize + 1
     return (
@@ -331,7 +360,7 @@ const ApprovedLoans = () => {
                                             {' '}
                                             Action (s){' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
+                                        
                                     </tr>
                                 </thead>
 
@@ -374,15 +403,22 @@ const ApprovedLoans = () => {
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {formatDateString(staff.createdAt)}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
+                                                {/* <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
                                                         }
                                                     </button>
-                                                </td>
+                                                </td> */}
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <Tippy content="view">
+                                                    <button
+                                                        onClick={() => disburseLoan(staff.reference)}
+                                                        className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4"
+                                                    >
+                                                        {' '}
+                                                        Disburse Loan
+                                                    </button>
+                                                    {/* <Tippy content="view">
                                                         <Link
                                                             to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
                                                             className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
@@ -393,7 +429,7 @@ const ApprovedLoans = () => {
                                                             </svg>
 
                                                         </Link>
-                                                    </Tippy>
+                                                    </Tippy> */}
                                                 </td>
                                             </tr>
                                         ))}

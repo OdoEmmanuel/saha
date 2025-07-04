@@ -48,7 +48,7 @@ const PendingLoanDetails = () => {
             setdata(res.data.data)
             setCollaterals(res.data.data.collaterals)
             setStaus(res.data.data.lienStatus)
-            setCustomerId(res.data.data.customerId)
+            setCustomerId(res.data.data.id)
 
              
              

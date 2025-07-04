@@ -47,13 +47,7 @@ const PendingLoanHeader = ({ id,status,customerId }) => {
           <h1 className="text-2xl font-semibold text-gray-800">Pending Loan Details</h1>
         </div>
         <div className="flex items-center space-x-3">
-          <button
-            onClick={() => setOpenKycModal(true)}
-            className="flex items-center px-4 py-2 bg-[#002853] text-white rounded-md hover:bg-orange-700 transition-colors duration-200"
-          >
-            <MessageSquare className="w-4 h-4 mr-2" />
-            KYC Review
-          </button>
+        
           <div className="relative">
             <select
               className=" border-2  text-black px-4 py-2 pr-8 rounded-md cursor-pointer  transition-colors duration-200 sm:mt-0 mt-4 w-full"
