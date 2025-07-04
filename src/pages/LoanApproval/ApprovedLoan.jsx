@@ -68,6 +68,7 @@ const ApprovedLoans = () => {
         axios.post(`${middleware}loan/filter`, body, config)
             .then((res) => {
                 setUsers(res.data.data)
+                console.log(res.data.data)
                 setTotalPages(res.data.totalPages)
                 setElement(res.data.data.users.numberOfElements)
 
@@ -385,10 +386,10 @@ const ApprovedLoans = () => {
                                                     {staff.currentApprovalStage}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.loanAmount}
+                                                    {staff.loanAmount}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.customerId}
+                                                    {staff.customerId}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.reference}
@@ -397,11 +398,11 @@ const ApprovedLoans = () => {
                                                     {staff.approvalStatus}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.body.monthlyIncome}
+                                                    {staff.monthlyIncome}
                                                 </td>
 
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {formatDateString(staff.createdAt)}
+                                                    {formatDateString(staff.createdDate)}
                                                 </td>
                                                 {/* <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
