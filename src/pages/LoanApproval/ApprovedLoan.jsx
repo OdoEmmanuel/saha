@@ -12,7 +12,7 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import * as XLSX from "xlsx";
 
-const ActiveLoan = () => {
+const ApprovedLoans = () => {
     const { middleware, authorizationService, request, clientid, setHeaders } = useAuthContext()
     const [pageNumber, setPageNumber] = useState(0)
     const [isLoading, setisLoading] = useState(false);
@@ -24,9 +24,18 @@ const ActiveLoan = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
-    const type = "PROCESSED"
 
-    setHeaders('Active Loans')
+    setHeaders('Approved Loans')
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'client-id': clientid,
+            'Content-Type': 'application/json',
+            'request-source': request,
+            'Username': email
+        },
+    };
 
     useEffect(() => {
 
@@ -36,62 +45,36 @@ const ActiveLoan = () => {
     }, [pageNumber, pagesize])
 
 
-
-    const formatDateString = (dateString) => {
-        const date = new Date(dateString)
-        const year = date.getFullYear()
-        const month = String(date.getMonth() + 1).padStart(2, '0')
-        const day = String(date.getDate()).padStart(2, '0')
-        const hours = String(date.getHours()).padStart(2, '0')
-        const minutes = String(date.getMinutes()).padStart(2, '0')
-        const seconds = String(date.getSeconds()).padStart(2, '0')
-        return `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`
-
-    }
-
-
-    function TrimText(text) {
-        if (text === null) {
-            return ''
-        }
-        const trimmedText = text.length > 30 ? text.substring(0, 30) + '...' : text
-        return trimmedText
-    }
-
-    function removeUnderscores(text) {
-        return text.replace(/_/g, ' ')
-    }
-
-
-
     const fetchData = async () => {
         const body = {
-            reference: null,
-            startDate: null,
-            endDate: null,
-            pageIndex: pageNumber,
-            pageSize: pagesize,
-            approvalStatus: type
+            // approvalItemType: 'Loan',
+            // companyCode: 'GTI',
+            // currentApprovalStage: null,
+            // reference: null,
+            // approvalStatus: 'APPROVED',
+            // startDate: null,
+            // endDate: null,
+            // allowOnlyLoggedInUser: null,
+            "reference":null,
+            "approvalStatus":"APPROVED",
+            "productCode":null,
+            "startDate":null,
+            "endDate":null,
+            "pageIndex": pageNumber,
+            "pageSize": pagesize,
         }
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'client-id': clientid,
-                'Content-Type': 'application/json',
-                'request-source': request,
-                'Username': email
-            },
-        };
+
         setisLoading(true)
         axios.post(`${middleware}loan/filter`, body, config)
             .then((res) => {
                 setUsers(res.data.data)
+                console.log(res.data.data)
                 setTotalPages(res.data.totalPages)
                 setElement(res.data.data.users.numberOfElements)
 
             })
             .catch((e) => {
-                
+
 
                 if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                     toast.error(e.response.data.responseMessage)
@@ -111,32 +94,77 @@ const ActiveLoan = () => {
             })
     }
 
-    useEffect(() => {
-        if (searchQuery.trim() === '') {
-            // If search query is empty, do not filter users
-            setFilteredUsers(users)
-        } else {
-            // Filter users based on search query
-            const filteredUsers = users.filter((user) => {
-                if (
-                    user.purpose === null ||
-                    user.approvalStatus === null ||
-                    user.customerEmail === null
-                ) {
-                    return false
-                }
+    const formatDateString = (dateString) => {
+        const date = new Date(dateString)
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        const seconds = String(date.getSeconds()).padStart(2, '0')
+        return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds}`
+    }
 
-                return (
-                    user.purpose
-                        .toLowerCase()
-                        .includes(searchQuery.toLowerCase()) ||
-                    user.approvalStatus.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    user.customerEmail.toLowerCase().includes(searchQuery.toLowerCase())
-                )
-            })
-            setFilteredUsers(filteredUsers)
+
+    const bookandUnbook = async (reference, status) => {
+        try {
+            if (status === 'booked') {
+                axios.post(`${authorizationService}approvals/${reference}/unbook`, null, config)
+                    .then((res) => {
+                        toast.success(`${res.data.responseMessage}`)
+                        fetchData()
+                    })
+                    .catch((e) => {
+
+
+                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/auth/login')
+                            localStorage.clear()
+                        }
+                        else if (e.response.data.responseMessage === 'Insufficient permission') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/')
+                        }
+                        else {
+                            toast.error(e.response.data.responseMessage)
+                        }
+                    })
+                    .finally(() => {
+                        setisLoading(false)
+                    })
+            }
+
+            else {
+                axios.post(`${authorizationService}approvals/${reference}/book`, null, config)
+                    .then((res) => {
+                        toast.success(`${res.data.responseMessage}`)
+                        fetchData()
+                    })
+                    .catch((e) => {
+
+
+                        if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/auth/login')
+                            localStorage.clear()
+                        }
+                        else if (e.response.data.responseMessage === 'Insufficient permission') {
+                            toast.error(e.response.data.responseMessage)
+                            navigate('/')
+                        }
+                        else {
+                            toast.error(e.response.data.responseMessage)
+                        }
+                    })
+                    .finally(() => {
+                        setisLoading(false)
+                    })
+            }
+        } catch (error) {
+
         }
-    }, [searchQuery, users])
+    }
 
     const handleNextPage = () => {
         setPageNumber(pageNumber + 1)
@@ -152,17 +180,62 @@ const ActiveLoan = () => {
         setSearchQuery(event.target.value)
     }
 
+    useEffect(() => {
+        if (searchQuery.trim() === '') {
+            // If search query is empty, do not filter users
+            setFilteredUsers(users)
+        } else {
+            // Filter users based on search query
+            const filteredUsers = users.filter((user) => {
+                if (
+                    user.customerEmail === null || user.approvalStatus === null
+                ) {
+                    return false
+                }
+
+                return (
+                    user.customerEmail
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                    user.approvalStatus.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+            })
+            setFilteredUsers(filteredUsers)
+        }
+    }, [searchQuery, users])
 
     const downloadExcel = () => {
         const workbook = XLSX.utils.book_new();
         const worksheet = XLSX.utils.table_to_sheet(
-          document.getElementById("Active-Loans")
+            document.getElementById("Pendings-Loans")
         );
-        XLSX.utils.book_append_sheet(workbook, worksheet, "Active Loan Table");
-        XLSX.writeFile(workbook, "ActiveLoans.xlsx");
-      };
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Pending Loan Table");
+        XLSX.writeFile(workbook, "PendingLoan.xlsx");
+    };
 
-    
+    const disburseLoan = async (loanReference) => {
+        try {
+            setisLoading(true);
+            const response = await axios.post(`${middleware}loan/${loanReference}/disburse`, null, config);
+            toast.success(response.data.responseMessage || 'Loan disbursed successfully');
+            fetchData(); // Refresh the page data
+        } catch (error) {
+            if (error.response?.data?.responseMessage === 'Invalid/Expired Token' || 
+                error.response?.data?.responseMessage === 'Invalid Token' || 
+                error.response?.data?.responseMessage === 'Login Token Expired') {
+                toast.error(error.response.data.responseMessage);
+                navigate('/auth/login');
+                localStorage.clear();
+            } else if (error.response?.data?.responseMessage === 'Insufficient permission') {
+                toast.error(error.response.data.responseMessage);
+                navigate('/');
+            } else {
+                toast.error(error.response?.data?.responseMessage || 'Failed to disburse loan');
+            }
+        } finally {
+            setisLoading(false);
+        }
+    };
 
     let idCounter = pageNumber * pagesize + 1
     return (
@@ -181,8 +254,8 @@ const ActiveLoan = () => {
 
             </div>
 
-            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6  rounded-[10px]'>
-                <div className="sm:flex justify-between ">
+            <div className='bg-[#fff] mt-4 shadow-md overflow-hidden p-6   rounded-[10px]'>
+                <div className="sm:flex justify-between">
                     <div className="flex  border-2 bg-[#fff] rounded-lg px-4 items-center my-4 p-2" >
                         <div className=' mr-2 text-gray-500'>
                             <BiSearch />
@@ -214,7 +287,7 @@ const ActiveLoan = () => {
                                 <option value="50">50</option>
                             </select>
                         </div>
-                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4  sm:mx-2 mx-0 sm:w-auto w-full sm:ml-0 ml-4'>
+                        <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0 sm:w-auto w-full sm:ml-0 ml-4'>
                             <div className='mr-4'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_110_8471)">
@@ -228,19 +301,20 @@ const ActiveLoan = () => {
                                     </defs>
                                 </svg>
                             </div>
-                            <p className='font-[400] text-[14px] font-inter'>Exports Active Loans</p>
+                            <p className='font-[400] text-[14px] font-inter'>Exports Pendings Loans</p>
                         </button>
 
                     </div>
 
 
                 </div>
+
                 <div className="overflow-x-scroll no-scrollbar">
                     <div className="min-w-full inline-block align-middle">
                         <div className="">
-                            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll">
+                            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 overflow-x-scroll" id="Pendings-Loans">
 
-                                <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] " id="Active-Loans">
+                                <thead className="bg-gray-50 text-[rgba(7,45,86,1)] font-[600] " >
                                     <tr className=" ">
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
@@ -248,54 +322,46 @@ const ActiveLoan = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Customer Email{' '}
+                                            Email{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Loan Product Code{' '}
+                                            Stage{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
-                                            Loan Amount{' '}
+                                            Phone{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Tenure{' '}
+                                            loan Amount{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Moratorium{' '}
+                                            Customer Id{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Purpose{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Disbursement Account{' '}
-                                        </th>
-
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Loan Account{' '}
-                                        </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
-                                            {' '}
-                                            Interest Rate{' '}
+                                            Reference{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Approval Status{' '}
                                         </th>
+
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Created Date{' '}
+                                            Monthly Income{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Updated Date{' '}
+                                            Created At{' '}
                                         </th>
-                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap"></th>
+                                        <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
+                                            {' '}
+                                            Action (s){' '}
+                                        </th>
+                                        
                                     </tr>
                                 </thead>
 
@@ -304,7 +370,7 @@ const ActiveLoan = () => {
                                         {filteredUsers.map((staff, idx) => (
                                             <tr
                                                 key={idx}
-                                                className="bg-[#fff] text-[rgba(84,84,84,1)]"
+                                                className={` text-[#667085] ${idx % 2 === 0 ? 'bg-[#F3F9FF]' : 'bg-[#fff]'}`}
                                             >
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {idCounter++}
@@ -314,43 +380,48 @@ const ActiveLoan = () => {
                                                     {staff.customerEmail}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.loanProductCode}
+                                                    {staff.customerPhone}
+                                                </td>
+                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
+                                                    {staff.currentApprovalStage}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.loanAmount}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.tenure}
+                                                    {staff.customerId}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.moratium}
+                                                    {staff.reference}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.purpose}
+                                                    {staff.approvalStatus}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {staff.disbursementAccount}
+                                                    {staff.monthlyIncome}
                                                 </td>
 
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {TrimText(staff.loanAccount)}
-                                                </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {TrimText(staff.interestRate)}
-                                                </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {removeUnderscores(staff.approvalStatus)}
-                                                </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {formatDateString(staff.createdDate)}
                                                 </td>
-                                                <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    {formatDateString(staff.updatedDate)}
-                                                </td>
+                                                {/* <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
+                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
+                                                        {
+                                                            staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
+                                                        }
+                                                    </button>
+                                                </td> */}
                                                 <td className="px-4 py-4 text-center  font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                                    <Tippy content="View">
+                                                    <button
+                                                        onClick={() => disburseLoan(staff.reference)}
+                                                        className="text-white btn bg-[#072D56]   hover:bg-primary rounded-[10px]  py-2 px-4"
+                                                    >
+                                                        {' '}
+                                                        Disburse Loan
+                                                    </button>
+                                                    {/* <Tippy content="view">
                                                         <Link
-                                                            to={`/ui/LoanApproval/${staff.reference}/details`}
+                                                            to={`/ui/LoanApproval/pendingloans/${staff.reference}`}
                                                             className="text-blue-500/[0.7] hover:text-[rgb(79,70,229)]"
                                                         >
                                                             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -359,7 +430,7 @@ const ActiveLoan = () => {
                                                             </svg>
 
                                                         </Link>
-                                                    </Tippy>
+                                                    </Tippy> */}
                                                 </td>
                                             </tr>
                                         ))}
@@ -405,7 +476,7 @@ const ActiveLoan = () => {
                             </svg>
 
                         </button>
-                        <div>
+                        <div className=' px-2 rounded-md'>
                             {pageNumber + 1} / {totalPages}
                         </div>
                         <button
@@ -445,4 +516,4 @@ const ActiveLoan = () => {
     )
 }
 
-export default ActiveLoan
+export default ApprovedLoans

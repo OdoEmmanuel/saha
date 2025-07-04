@@ -389,8 +389,8 @@ const ApprovalRequest = () => {
                             </svg>
 
                         </button>
-                        <div className='border-2 px-2 rounded-md'>
-                            {pageNumber + 1}
+                        <div className=' px-2 rounded-md'>
+                            {pageNumber + 1} / {totalPages}
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages

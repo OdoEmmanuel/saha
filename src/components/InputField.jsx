@@ -18,7 +18,7 @@ const InputField = ({
     onBlur
   }) => {
   return (
-    <div className="flex flex-col w-full mb-2">
+    <div className={`flex flex-col w-full mb-2 ${className}`}>
     <label htmlFor="" className="text-[#000] mb-2">
       {label}
     </label>

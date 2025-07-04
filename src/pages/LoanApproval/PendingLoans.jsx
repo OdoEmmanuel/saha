@@ -51,7 +51,7 @@ const PendingLoans = () => {
             companyCode: 'GTI',
             currentApprovalStage: null,
             reference: null,
-            approvalStatus: null,
+            approvalStatus: 'PENDING',
             startDate: null,
             endDate: null,
             allowOnlyLoggedInUser: true,
@@ -439,8 +439,8 @@ const PendingLoans = () => {
                             </svg>
 
                         </button>
-                        <div className='border-2 px-2 rounded-md'>
-                            {pageNumber + 1}
+                        <div className=' px-2 rounded-md'>
+                            {pageNumber + 1} / {totalPages}
                         </div>
                         <button
                             className={`ml-2 ${pageNumber + 1 === totalPages

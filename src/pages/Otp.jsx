@@ -33,7 +33,7 @@ const Otp = () => {
           axios
           .put(`${authorizationService}oauth/reset-password/${values.email}/initiate`,values,config)
           .then((res) => {
-          
+            localStorage.setItem('otp-email',values.email)
             toast.success(res.data.responseMessage)
             navigate('/auth/reset-password')
           })

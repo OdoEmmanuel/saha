@@ -87,6 +87,11 @@ import {
               label: 'Pending KYC',
               url: '/ui/customer/pending-kyc',
             },
+            {
+              key: 'kyc-under-review',
+              label: 'KYC Under Review',
+              url: '/ui/customer/kyc-under-review',
+            },
           ],
         },
         {
@@ -153,6 +158,11 @@ import {
               key: 'active-loans',
               label: 'Active Loans',
               url: '/ui/LoanApproval/activeloans',
+            },
+            {
+              key: 'approved-loans',
+              label: 'Approved Loans',
+              url: '/ui/LoanApproval/approvedloans',
             },
             {
               key: 'loan-administration',
