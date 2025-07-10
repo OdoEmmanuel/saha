@@ -76,6 +76,7 @@ import UpdateStock from '../pages/StocksManagement/UpdateStock';
 import ViewStock from '../pages/StocksManagement/ViewStock';
 import KycUnderReview from '../pages/customers/KycUnderReview';
 import ApprovedLoans from '../pages/LoanApproval/ApprovedLoan';
+import ViewPendingKycUnderReviewdetail from '../pages/customers/ViewKycUnderReview/ViewPendingKycdetail';
 const RightSide = ({isOpen, tog}) => {
   
  
@@ -164,6 +165,7 @@ const RightSide = ({isOpen, tog}) => {
             <Route path="/ui/tables/stocks/:id/" element={<UpdateStock/>}></Route>
             <Route path="/ui/tables/View-stocks/:id/" element={<ViewStock/>}></Route>
             <Route path="/ui/customer/kyc-under-review" element={<KycUnderReview/>}></Route>
+            <Route path= "/ui/customer/kyc-under-review/view/:id/*" element={<ViewPendingKycUnderReviewdetail/>}></Route>
             <Route path="/ui/LoanApproval/approvedloans" element={<ApprovedLoans/>}></Route>
           </Routes>
      
