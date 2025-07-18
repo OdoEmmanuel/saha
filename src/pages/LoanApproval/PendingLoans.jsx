@@ -102,7 +102,7 @@ const PendingLoans = () => {
 
     const bookandUnbook = async (reference, status) => {
         try {
-            if (status === 'booked') {
+            if (status === 'Booked') {
                 axios.post(`${authorizationService}approvals/${reference}/unbook`, null, config)
                     .then((res) => {
                         toast.success(`${res.data.responseMessage}`)
@@ -375,7 +375,7 @@ const PendingLoans = () => {
                                                     {formatDateString(staff.createdAt)}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
-                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
+                                                    <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus !== 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
                                                             staff.bookStatus === 'Booked' ? 'Unbook' : 'Book'
                                                         }

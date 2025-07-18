@@ -324,11 +324,11 @@ const LoanAdministration = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Stage{' '}
+                                            Phone Number{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
-                                            Phone{' '}
+                                            Stage{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
