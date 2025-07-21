@@ -279,11 +279,12 @@ const LoanAdministration = () => {
                             >
                                 <option value="5">5</option>
                                 <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
                                 <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                                <option value="2000">2000</option>
                             </select>
                         </div>
                         <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0  sm:w-auto w-full sm:ml-0 ml-4'>
@@ -324,11 +325,11 @@ const LoanAdministration = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                            Stage{' '}
+                                            Phone Number{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start  whitespace-nowrap">
                                             {' '}
-                                            Phone{' '}
+                                            Stage{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
