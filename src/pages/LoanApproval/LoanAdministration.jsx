@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { PulseLoader } from "react-spinners";
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -277,13 +277,13 @@ const LoanAdministration = () => {
                                 onChange={(e) => SetPageSize(parseInt(e.target.value))}
                                 className='outline-none'
                             >
-                                <option value="5">5</option>
                                 <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
                                 <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                                <option value="2000">2000</option>
                             </select>
                         </div>
                         <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0  sm:w-auto w-full sm:ml-0 ml-4'>
@@ -423,7 +423,7 @@ const LoanAdministration = () => {
                                                         </Link>
                                                     </Tippy>
                                                 </td>
-                                             {/* <td className='relative'>
+                                                {/* <td className='relative'>
   <div className="flex items-center gap-2">
     <button
       className="p-2 text-gray-400 hover:bg-[#1a5493] rounded-lg transition-colors"

@@ -52,6 +52,7 @@ const AllCustomer = () => {
 
 
     useEffect(() => {
+        
         if (startDate && endDate) {
             fetchData().finally(() => setisLoading(false));
         }
@@ -262,16 +263,20 @@ const AllCustomer = () => {
                             </div>
                             <select
                                 value={pagesize}
-                                onChange={(e) => SetPageSize(parseInt(e.target.value))}
+                                onChange={(e) => {
+                                    setisLoading(true); // Show loading immediately
+                                    SetPageSize(parseInt(e.target.value));
+                                }}
                                 className='outline-none'
                             >
-                                <option value="5">5</option>
+                                
                                 <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
                                 <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                                <option value="2000">2000</option>
                             </select>
                         </div>
                         </div>

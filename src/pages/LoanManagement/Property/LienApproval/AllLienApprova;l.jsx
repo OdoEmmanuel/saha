@@ -59,19 +59,19 @@ const AllLienApproval = () => {
         // }
 
         const body = {
-            "approvalItemType":"ReleasePropertyLien",
-            "includeLoggedInUser":true,
-            "approvalStatus":null,
-            "reference":null,
+            "approvalItemType": "ReleasePropertyLien",
+            "includeLoggedInUser": true,
+            "approvalStatus": null,
+            "reference": null,
             "currentApprovalStage": null,
-            "companyCode":"GTI",
-            "startDate":null,
-            "endDate":null,
+            "companyCode": "GTI",
+            "startDate": null,
+            "endDate": null,
             "pageIndex": 0,
             "pageSize": 50
         }
-        
-        
+
+
 
         setisLoading(true)
         axios.post(`${authorizationService}approvals/filter`, body, config)
@@ -82,7 +82,7 @@ const AllLienApproval = () => {
 
             })
             .catch((e) => {
-              
+
 
                 if (e.response?.data?.responseMessage === 'Invalid/Expired Token' || e.response?.data?.responseMessage === 'Invalid Token' || e.response?.data?.responseMessage === 'Login Token Expired') {
                     toast.error(e.response?.data?.responseMessage)
@@ -123,7 +123,7 @@ const AllLienApproval = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                      
+
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
@@ -150,7 +150,7 @@ const AllLienApproval = () => {
                         fetchData()
                     })
                     .catch((e) => {
-                   
+
 
                         if (e.response.data.responseMessage === 'Invalid/Expired Token' || e.response.data.responseMessage === 'Invalid Token' || e.response.data.responseMessage === 'Login Token Expired') {
                             toast.error(e.response.data.responseMessage)
@@ -215,11 +215,11 @@ const AllLienApproval = () => {
     const downloadExcel = () => {
         const workbook = XLSX.utils.book_new();
         const worksheet = XLSX.utils.table_to_sheet(
-          document.getElementById("Pendings-Loans")
+            document.getElementById("Pendings-Loans")
         );
         XLSX.utils.book_append_sheet(workbook, worksheet, "Pending Loan Table");
         XLSX.writeFile(workbook, "PendingLoan.xlsx");
-      };
+    };
 
     let idCounter = pageNumber * pagesize + 1
     return (
@@ -262,13 +262,13 @@ const AllLienApproval = () => {
                                 onChange={(e) => SetPageSize(parseInt(e.target.value))}
                                 className='outline-none'
                             >
-                                <option value="5">5</option>
                                 <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
                                 <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                                <option value="2000">2000</option>
                             </select>
                         </div>
                         <button onClick={downloadExcel} className='flex justify-between items-center rounded-[5px] border-2 p-2 my-4 sm:mx-2 mx-0 sm:w-auto w-full sm:ml-0 ml-4'>
@@ -306,7 +306,7 @@ const AllLienApproval = () => {
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
-                                             Email{' '}
+                                            Email{' '}
                                         </th>
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
@@ -324,9 +324,9 @@ const AllLienApproval = () => {
                                             {' '}
                                             Approval Status{' '}
                                         </th>
-                                        
-                                        
-                                        
+
+
+
                                         <th className="px-4 py-4 text-start text-[16px]  whitespace-nowrap">
                                             {' '}
                                             Action (s){' '}
@@ -355,16 +355,16 @@ const AllLienApproval = () => {
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.currentApprovalStage}
                                                 </td>
-                                               
+
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.reference}
                                                 </td>
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     {staff.approvalStatus}
                                                 </td>
-                                              
 
-                                               
+
+
                                                 <td className="px-4 py-4 text-start text-[16px] font-[400] whitespace-nowrap">
                                                     <button onClick={() => bookandUnbook(staff.reference, staff.bookStatus)} className={`${staff.bookStatus === 'Booked' ? 'bg-[#E2FFF1] border-2 border-[#0FA958]  text-[#000000] text-xs px-4 py-2 rounded-[25px] w-[150px] hover:bg-green-500/[.57] transition-colors duration-300' : 'bg-[#FFE8EA] border-2 border-[#DC3545]   text-[#000000] rounded-[25px] text-xs px-4 py-2 w-[150px] hover:bg-red-500/[.57] transition-colors duration-300'}`}>
                                                         {
