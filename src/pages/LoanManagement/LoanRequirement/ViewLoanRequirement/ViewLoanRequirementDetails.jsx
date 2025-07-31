@@ -29,7 +29,7 @@ const ViewLoanRequirementDetails = () => {
 
     useEffect(() => {
         setisLoading(true)
-        axios.get(`${middleware}loan/requirements/${id}/detail`,config)
+        axios.get(`${middleware}loan/admin/requirements/${id}/detail`,config)
         .then((res) =>{
             setdata(res.data.data)
         })

@@ -71,7 +71,7 @@ const EditLoanRequirement = () => {
 
     const fetchData = () => {
         setisLoading(true)
-        axios.get(`${middleware}loan/requirements/${id}/detail`, config)
+        axios.get(`${middleware}loan/admin/requirements/${id}/detail`, config)
             .then((res) => {
                
                 setLoanProductCode(res.data.data.loanProductCode)

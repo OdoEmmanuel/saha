@@ -33,6 +33,8 @@ export function AuthProvider({ children }) {
 
   const authorizationService = "https://auth-server.saha.ng/"
   const middleware = "https://baascore.saha.ng/"
+  //  const authorizationService = "https://auth-service.test.saha.ng/"
+  // const middleware = "https://baascore.test.saha.ng/"
   const [pending,setpending] = useState(false)
   const [headers,setHeaders] = useState('')
   
