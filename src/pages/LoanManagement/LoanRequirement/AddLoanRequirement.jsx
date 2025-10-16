@@ -18,6 +18,7 @@ const CreateLoanRequirement = () => {
     const [LoanProductCode, setLoanProductCode] = useState('')
     const [LoanTenure, setLoanTenure] = useState(0)
     const [minAmount, setMinAmount] = useState(0)
+    const [minAmountForSpecialApproval, setMinAmountForSpecialApproval] = useState(0)
     const [comMode, setComMode] = useState(0)
     const [moratium, setMoratium] = useState(0)
     const [interest, setInterest] = useState(0)
@@ -249,7 +250,7 @@ const CreateLoanRequirement = () => {
             confirmationLetterRequired: confirm,
             remitaApplicationRequired: remita,
             maxLoanTenure: LoanTenure,
-            minAmountForSpecialApproval: minAmount,
+            minAmountForSpecialApproval: minAmountForSpecialApproval,
             minAmount: minAmount,
             maxAmount: maxAmount,
             computationMode: comMode,
@@ -438,7 +439,7 @@ const CreateLoanRequirement = () => {
                                     className="block mb-2 font-semibold"
                                     htmlFor="example-password"
                                 >
-                                    Min Amount for Special Approval
+                                    Min Amount
                                 </label>
                                 <div>
                                     <input
@@ -448,6 +449,26 @@ const CreateLoanRequirement = () => {
                                         value={minAmount}
                                         onChange={(e) => {
                                             setMinAmount(e.target.value)
+                                        }}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label
+                                    className="block mb-2 font-semibold"
+                                    htmlFor="example-password"
+                                >
+                                    Min Amount for Special Approval
+                                </label>
+                                <div>
+                                    <input
+                                        className="border-2 p-2 rounded-lg w-full placeholder:text-gray-400"
+                                        type="number"
+                                        id="example-password"
+                                        value={minAmountForSpecialApproval}
+                                        onChange={(e) => {
+                                            setMinAmountForSpecialApproval(e.target.value)
                                         }}
                                     />
                                 </div>
