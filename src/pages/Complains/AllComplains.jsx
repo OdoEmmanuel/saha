@@ -72,7 +72,7 @@ const AllComplains = () => {
         const minutes = ('0' + date.getMinutes()).slice(-2);
         const seconds = ('0' + date.getSeconds()).slice(-2);
 
-        const dateString = `${twoDigitDay}-${twoDigitMonth}-${year} ${hours}:${minutes}:${seconds}`;
+        const dateString = `${year}-${twoDigitMonth}-${twoDigitDay} ${hours}:${minutes}:${seconds}`;
         return dateString;
     };
 
