@@ -65,7 +65,7 @@ const AllComplains = () => {
 
         // Format the date into a string
         const twoDigitDay = ('0' + date.getDate()).slice(-2);
-        const twoDigitMonth = ('0' + (date.getMonth() + 1)).slice(-2); // Createing 1 to month since it's zero-based
+        const twoDigitMonth = ('0' + (date.getMonth())).slice(-2); // Createing 1 to month since it's zero-based
         const year = date.getFullYear();
 
         const hours = ('0' + date.getHours()).slice(-2);
