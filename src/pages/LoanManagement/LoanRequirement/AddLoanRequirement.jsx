@@ -18,6 +18,7 @@ const CreateLoanRequirement = () => {
     const [LoanProductCode, setLoanProductCode] = useState('')
     const [LoanTenure, setLoanTenure] = useState(0)
     const [minAmount, setMinAmount] = useState(0)
+    const [minAmountForSpecialApproval, setMinAmountForSpecialApproval] = useState(0)
     const [comMode, setComMode] = useState(0)
     const [moratium, setMoratium] = useState(0)
     const [interest, setInterest] = useState(0)
@@ -45,6 +46,13 @@ const CreateLoanRequirement = () => {
     const [salary, setSalary] = useState(false)
     const [loading, setLoading] = useState(false)
     const [eligibity,setEglibility]=useState(false)
+    const [guarantorEmailRequired, setGuarantorEmailRequired] = useState(false)
+    const [guarantorPhoneNumberRequired, setGuarantorPhoneNumberRequired] = useState(false)
+    const [guarantorDateOfBirthRequired, setGuarantorDateOfBirthRequired] = useState(false)
+    const [guarantorOccupationRequired, setGuarantorOccupationRequired] = useState(false)
+    const [guarantorResidentialAddressRequired, setGuarantorResidentialAddressRequired] = useState(false)
+    const [guarantorOfficeAddressRequired, setGuarantorOfficeAddressRequired] = useState(false)
+    const [maxAmount, setMaxAmount] = useState(0)
     const [error, setError] = useState('')
     const [product, setProduct] = useState([])
     const [tenure, setTenure] = useState([])
@@ -179,7 +187,31 @@ const CreateLoanRequirement = () => {
 
     const handleEligibility = () => {
         setEglibility(!eligibity)
-      }
+    }
+
+    const handleGuarantorEmailRequired = () => {
+        setGuarantorEmailRequired(!guarantorEmailRequired)
+    }
+
+    const handleGuarantorPhoneNumberRequired = () => {
+        setGuarantorPhoneNumberRequired(!guarantorPhoneNumberRequired)
+    }
+
+    const handleGuarantorDateOfBirthRequired = () => {
+        setGuarantorDateOfBirthRequired(!guarantorDateOfBirthRequired)
+    }
+
+    const handleGuarantorOccupationRequired = () => {
+        setGuarantorOccupationRequired(!guarantorOccupationRequired)
+    }
+
+    const handleGuarantorResidentialAddressRequired = () => {
+        setGuarantorResidentialAddressRequired(!guarantorResidentialAddressRequired)
+    }
+
+    const handleGuarantorOfficeAddressRequired = () => {
+        setGuarantorOfficeAddressRequired(!guarantorOfficeAddressRequired)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -208,11 +240,19 @@ const CreateLoanRequirement = () => {
             guarantorRequired: guarantor,
             guarantorIdCardRequired: guarantorId,
             guarantorPassportRequired: guarantorPassport,
+            guarantorEmailRequired: guarantorEmailRequired,
+            guarantorPhoneNumberRequired: guarantorPhoneNumberRequired,
+            guarantorDateOfBirthRequired: guarantorDateOfBirthRequired,
+            guarantorOccupationRequired: guarantorOccupationRequired,
+            guarantorResidentialAddressRequired: guarantorResidentialAddressRequired,
+            guarantorOfficeAddressRequired: guarantorOfficeAddressRequired,
             workIdCardRequired: workId,
             confirmationLetterRequired: confirm,
             remitaApplicationRequired: remita,
             maxLoanTenure: LoanTenure,
-            minAmountForSpecialApproval: minAmount,
+            minAmountForSpecialApproval: minAmountForSpecialApproval,
+            minAmount: minAmount,
+            maxAmount: maxAmount,
             computationMode: comMode,
             moratium: moratium,
             interestRate: interest,
@@ -399,7 +439,7 @@ const CreateLoanRequirement = () => {
                                     className="block mb-2 font-semibold"
                                     htmlFor="example-password"
                                 >
-                                    Min Amount for Special Approval
+                                    Min Amount
                                 </label>
                                 <div>
                                     <input
@@ -409,6 +449,45 @@ const CreateLoanRequirement = () => {
                                         value={minAmount}
                                         onChange={(e) => {
                                             setMinAmount(e.target.value)
+                                        }}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label
+                                    className="block mb-2 font-semibold"
+                                    htmlFor="example-password"
+                                >
+                                    Min Amount for Special Approval
+                                </label>
+                                <div>
+                                    <input
+                                        className="border-2 p-2 rounded-lg w-full placeholder:text-gray-400"
+                                        type="number"
+                                        id="example-password"
+                                        value={minAmountForSpecialApproval}
+                                        onChange={(e) => {
+                                            setMinAmountForSpecialApproval(e.target.value)
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label
+                                    className="block mb-2 font-semibold"
+                                    htmlFor="example-password"
+                                >
+                                    Max Amount
+                                </label>
+                                <div>
+                                    <input
+                                        className="border-2 p-2 rounded-lg w-full placeholder:text-gray-400"
+                                        type="number"
+                                        id="example-password"
+                                        value={maxAmount}
+                                        onChange={(e) => {
+                                            setMaxAmount(e.target.value)
                                         }}
                                     />
                                 </div>
@@ -710,6 +789,96 @@ const CreateLoanRequirement = () => {
                                     id="customCheck3"
                                     checked={guarantorPassport}
                                     onChange={handleGuarantorPassportChecked}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                    Guarantor Email
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={guarantorEmailRequired}
+                                    onChange={handleGuarantorEmailRequired}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                    Guarantor Phone Number
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={guarantorPhoneNumberRequired}
+                                    onChange={handleGuarantorPhoneNumberRequired}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                    Guarantor Date Of Birth
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={guarantorDateOfBirthRequired}
+                                    onChange={handleGuarantorDateOfBirthRequired}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                    Guarantor Occupation
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={guarantorOccupationRequired}
+                                    onChange={handleGuarantorOccupationRequired}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                    Guarantor Residential Address
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={guarantorResidentialAddressRequired}
+                                    onChange={handleGuarantorResidentialAddressRequired}
+                                />
+                            </div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <label
+                                    className="form-check-label font-semibold"
+                                    htmlFor="customCheck3"
+                                >
+                                    Guarantor Office Address
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 rounded-lg"
+                                    id="customCheck3"
+                                    checked={guarantorOfficeAddressRequired}
+                                    onChange={handleGuarantorOfficeAddressRequired}
                                 />
                             </div>
                             <div className="flex items-center gap-2 mb-6">

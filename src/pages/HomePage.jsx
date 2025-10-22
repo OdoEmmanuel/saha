@@ -368,7 +368,7 @@ const HomePage = () => {
                         labels={complaintsStatusSummary.map(
                             (item) => item.complainCounts
                         )}
-                        title="Transaction Status Summary By Volume"
+                        title="Complaints Status Summary"
                         name="Volume"
 
                     />
